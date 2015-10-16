@@ -1,6 +1,11 @@
-var gulp = require('gulp');
-var p = require('gulp-load-plugins')();
+var gulp = require('gulp'),
+    p = require('gulp-load-plugins')();
 
-p.util.log(
-    'gulp is running'
-);
+// load config
+var config = require('./config');
+
+gulp.task('default', function() {
+    p.util.log(
+        p.util.colors.green('gulp just ran')
+    );
+});

@@ -1,0 +1,6 @@
+{
+  "src": "src/",
+  "dist": "dist/",
+  "temp": "tmp/",
+  "templates": "templates/"
+}
