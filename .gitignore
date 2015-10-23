@@ -1,2 +1,10 @@
 *.DS_Store
+*.sw*
+.sass-cache
+
+bower_components/
+components/
 node_modules/
+tmp/
+templates/
+dist/
