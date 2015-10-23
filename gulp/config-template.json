@@ -42,5 +42,13 @@
       "<%= path.src %>base/sass/**/*.scss",
       "<%= path.src %>modules/**/sass/**/*.scss"
     ]
+  },
+  "templates": {
+    "src": [
+      "<%= path.src %>base/templates/**/*.jade",
+      "<%= path.src %>modules/**/templates/*.jade",
+      "!<%= path.src %>base/**/templates/layout.jade"
+    ],
+    "dist": "<%= path.templates %>"
   }
 }
