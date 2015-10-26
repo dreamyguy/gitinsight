@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     jadeOptions = require('./../../jadeOptions');
 
 // templates task
-gulp.task('templates', ['clean-templates'], function() {
+gulp.task('templates-jade', ['clean-templates'], function() {
     return gulp.src(config.src)
         .pipe(flatten())
         .pipe(jade(jadeOptions))
@@ -18,8 +18,6 @@ gulp.task('templates', ['clean-templates'], function() {
 gulp.task('templates-watch', function() {
     watch(
         'templates',
-        config.src.concat(config.widgets.src),
-        config.src.concat(config.strapr.src),
         false
     );
 });

@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+doctype html
 html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Jade Templating Example
+  block head
+    include globals/head.jade
+
 body
   h1
     a(href="#{homeUrl}") #{name}
@@ -21,7 +21,3 @@ body
   .wrapper
     block content
       p This is where the content of the pages will go
-
-  script(src="all.js")
-
-  
