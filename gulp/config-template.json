@@ -45,17 +45,23 @@
   },
   "injects": {
     "head": {
-      "src": "<%= path.src %>base/templates/globals/injects/*.html",
+      "src": "<%= path.src %>base/template/globals/injects/*.html",
       "dist": "<%= path.temp %>injects/"
     }
   },
   "templates": {
     "src": [
-      "<%= path.src %>base/templates/**/*.jade",
-      "<%= path.src %>modules/**/templates/*.jade",
-      "!<%= path.src %>base/templates/layout.jade",
-      "!<%= path.src %>base/templates/globals/**/*.jade"
+      "<%= path.src %>base/template/**/*.jade",
+      "<%= path.src %>modules/**/template/*.jade"
     ],
-    "dist": "<%= path.templates %>"
+    "dist": "<%= path.templates %>",
+    "flatten": {
+      "src": [
+        "<%= path.temp %>jade/*.jade",
+        "!<%= path.temp %>jade/layout.jade",
+        "!<%= path.temp %>jade/head.jade"
+      ],
+      "dist": "<%= path.temp %>jade/"
+    }
   }
 }

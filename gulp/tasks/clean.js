@@ -17,6 +17,13 @@ gulp.task('clean-temp', function(cb) {
     ], cb);
 });
 
+// clean temp jade folder
+gulp.task('clean-temp-jade', function(cb) {
+    del([
+        config.tempJade
+    ], cb);
+});
+
 // clean templates folder
 gulp.task('clean-templates', function(cb) {
     del([
