@@ -1,4 +1,6 @@
 {
+  "assets": "assets/",
+  "bower": "components/",
   "src": "src/",
   "dist": "dist/",
   "temp": "tmp/",

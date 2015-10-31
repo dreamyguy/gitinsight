@@ -11,6 +11,42 @@
     ],
     "dist": "<%= path.dist %>html/"
   },
+  "scripts": {
+    "src": {
+      "blocking": {
+        "src": [
+          "<%= path.src %>base/js/blocking/*.js",
+          "<%= path.src %>modules/**/js/blocking/*.js"
+        ],
+        "dist": "<%= pkg.name %>-<%= pkg.version %>.blocking.min.js",
+        "vendor": [
+          "<%= path.assets %>modernizr/modernizr.js"
+        ],
+        "bower": false
+      },
+      "async": {
+        "src": [
+          "<%= path.src %>base/js/**/*.js",
+          "!<%= path.src %>base/js/blocking/**",
+          "<%= path.src %>modules/**/js/*.js",
+          "!<%= path.src %>modules/**/js/blocking/**"
+        ],
+        "dist": "<%= pkg.name %>-<%= pkg.version %>.async.min.js",
+        "vendor": [
+          "<%= path.bower %>jquery/dist/jquery.min.js"
+        ],
+        "bower": true
+      }
+    },
+    "dist": "<%= path.dist %>js/",
+    "distfiles": {
+      "blocking": "<%= path.dist %>js/*blocking.min.js",
+      "async": [
+        "<%= path.dist %>js/*min.js",
+        "!<%= path.dist %>js/*blocking.min.js"
+      ]
+    }
+  },
   "styles": {
     "base": {
       "src": [

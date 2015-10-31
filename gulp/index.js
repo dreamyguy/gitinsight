@@ -1,21 +1,18 @@
 var gulp = require('gulp'),
     run = require('run-sequence'),
+    requireDir = require('require-dir'),
     p = require('gulp-load-plugins')();
 
 // load config
 var config = require('./config');
 
-// Load all tasks
-var bump = require('./tasks/bump'),
-    clean = require('./tasks/clean'),
-    html = require('./tasks/html'),
-    inject = require('./tasks/inject'),
-    styles = require('./tasks/styles'),
-    templates = require('./tasks/templates');
+// load all tasks
+var dir = requireDir('./tasks');
 
 // watch tasks merged into one
 gulp.task('watch', function(cb) {
     return  run([
+               'scripts-watch',
                'styles-watch',
                'inject-watch',
                'html-watch',
@@ -26,7 +23,7 @@ gulp.task('watch', function(cb) {
 
 // run compile only once clean has completed
 gulp.task('compile', ['clean'], function(cb) {
-    return run(['styles'],
+    return run(['scripts-blocking', 'scripts-async', 'styles'],
         'inject',
         cb);
 });
