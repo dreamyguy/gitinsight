@@ -30,7 +30,8 @@ gulp.task('compile', ['clean'], function(cb) {
 
 // run templates only once compile has completed
 gulp.task('templates', ['compile'], function(cb) {
-    return run('templates-jade',
+    // request only the last template task as all tasks are run on series
+    return run('templates-symlink',
         cb);
 });
 

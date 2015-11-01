@@ -7,10 +7,10 @@ var gulp = require('gulp'),
 // watcher for files, with logging on changes
 module.exports = function(name, source) {
     var watcher = gulp.watch(source, function() {
-        if (name === 'inject') {
+        if (name === 'templates') {
             return runSequence(name, 'reload');
         } else {
-            return runSequence(name, 'inject', 'reload');
+            return runSequence(name, 'templates', 'reload');
         }
     });
     gulp.start('reload-start');
