@@ -1,8 +1,7 @@
 var _ = require('lodash'),
     fs = require('fs'),
     gulp = require('gulp'),
-    // load gulp plugins prefixed with 'gulp-'
-    p = require('gulp-load-plugins')();
+    util = require('gulp-util');
 
 // use fs instead of require for pkg to prevent caching in watches
 var config = {
@@ -12,11 +11,11 @@ var config = {
 }
 
 // log config generation to console
-p.util.log(
+util.log(
     'Generating config from',
-    p.util.colors.cyan("'" + config.template + "'"),
+    util.colors.cyan("'" + config.template + "'"),
     'for',
-    p.util.colors.magenta(config.pkg.name)
+    util.colors.magenta(config.pkg.name)
 );
 
 // generate the template for paths

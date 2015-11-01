@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     run = require('run-sequence'),
-    requireDir = require('require-dir'),
-    p = require('gulp-load-plugins')();
+    requireDir = require('require-dir');
 
 // load config
 var config = require('./config');
