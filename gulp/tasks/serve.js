@@ -19,7 +19,8 @@ gulp.task('serve', function() {
     browserSync.init({
         server: {
             baseDir: root.templates
-        }
+        },
+        browser: "google chrome"
     });
     // watch for changes and refresh all bS sessions
     gulp.watch(root.templates + "index.html").on("change", browserSync.reload);
