@@ -1,3 +1,31 @@
+@import "variables";
+
+.heading-two {
+    line-height: 28px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    @media (max-width: 767px) { font-size: 24px; }
+}
+.heading-three {
+    margin-bottom: 10px;
+    font-size: 24px;
+    @media (max-width: 767px) { font-size: 20px; }
+}
+.heading-four {
+    margin-bottom: 8px;
+    font-size: 20px;
+    @media (max-width: 767px) { font-size: 18px; }
+}
+.heading-five {
+    margin-bottom: 8px;
+    font-size: 18px;
+    @media (max-width: 767px) { font-size: 16px; }
+}
+.heading-six {
+    margin-bottom: 6px;
+    font-size: 16px;
+    @media (max-width: 767px) { font-size: 14px; }
+}
 .rounded {
     border-radius: 100%;
 }
