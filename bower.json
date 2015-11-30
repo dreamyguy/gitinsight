@@ -1,6 +1,6 @@
 {
   "name": "gitinsight",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "jquery": "2.1.4",
     "foundation": "5.5.1",
