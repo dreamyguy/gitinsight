@@ -15,14 +15,16 @@ gulp.task('watch', function(cb) {
                'styles-watch',
                'inject-watch',
                'html-watch',
-               'templates-watch'
+               'fonts-watch',
+               'templates-watch',
+               'data-watch'
             ],
             cb);
 });
 
 // run compile only once clean has completed
 gulp.task('compile', ['clean'], function(cb) {
-    return run(['scripts-blocking', 'scripts-async', 'styles'],
+    return run(['scripts-blocking', 'scripts-async', 'styles', 'fonts', 'html', 'data'],
         'inject',
         cb);
 });

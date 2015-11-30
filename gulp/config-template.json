@@ -11,6 +11,20 @@
     ],
     "dist": "<%= path.dist %>html/"
   },
+  "data": {
+    "src": [
+      "<%= path.src %>base/data/**/*.js",
+      "<%= path.src %>modules/**/data/*.js"
+    ],
+    "dist": "<%= path.dist %>data/"
+  },
+  "fonts": {
+    "src": [
+      "<%= path.src %>base/fonts/**/*",
+      "<%= path.src %>modules/**/fonts/*"
+    ],
+    "dist": "<%= path.dist %>fonts/"
+  },
   "scripts": {
     "src": {
       "blocking": {
