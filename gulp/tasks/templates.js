@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     util = require('gulp-util'),
     flatten = require('gulp-flatten'),
     jade = require('gulp-jade'),
-    jadeOptions = require('./../../jadeOptions'),
+    jadeOptions = require('./../options/jade'),
     symlink = require('gulp-symlink');
 
 // flatten all jade templates so that they are compiled from one place
