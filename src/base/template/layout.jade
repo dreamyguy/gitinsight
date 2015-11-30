@@ -5,8 +5,12 @@ html(lang="en")
 
 body.open-sans-light
   include bar.jade
-  block menu
-    include menu.jade
   block content
     p This is where the content of the pages will go
   include bar.jade
+
+  script(src='dist/data/dataRepoAbcAdloader.js')
+  script(src='dist/data/dataRepoStartsidenFrontpageLayout.js')
+  script(src='dist/data/dataReposAllOfThem.js')
+//script(src='dist/data/dataReposAll.js')
+//script(src='dist/data/dataReposSome.js')
