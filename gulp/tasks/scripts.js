@@ -49,7 +49,11 @@ var process = function(source, type, cb) {
     }
     return gulp.src(source.vendor.concat(source.src))
         .pipe(concat(source.dist))
-        .pipe(uglify())
+        .pipe(uglify({
+            output: {
+                beautify: true
+            }
+        }))
         .pipe(header(config.banner))
         .pipe(gulp.dest(config.scripts.dist))
         .pipe(size({
