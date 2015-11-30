@@ -3,11 +3,10 @@ html(lang="en")
   block head
     include head.jade
 
-body
-  h1
-    a(href="#{homeUrl}") #{name}
+body.open-sans-light
+  include bar.jade
   block menu
     include menu.jade
-  .wrapper
-    block content
-      p This is where the content of the pages will go
+  block content
+    p This is where the content of the pages will go
+  include bar.jade

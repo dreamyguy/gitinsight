@@ -1,1 +1,18 @@
+// this file compiles and concatenates all the CSS
+@charset"utf-8";
+
+/* --------------------------------------------
+::::::: resets and fixes ::::::::::::::::::::::
+----------------------------------------------- */
+@import "reset";
+@import "clearfix";
+@import "mixins";
+
+// to avoid warnings, variables should be imported into every file that needs it
+
+/* --------------------------------------------
+::::::: main styles :::::::::::::::::::::::::::
+----------------------------------------------- */
 @import "colors";
+@import "fonts";
+@import "layout";

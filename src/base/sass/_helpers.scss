@@ -1,0 +1,36 @@
+.rounded {
+    border-radius: 100%;
+}
+.pos-absolute {
+    position: absolute;
+}
+.last-right {
+    margin-right: 0 !important;
+}
+.last-left {
+    margin-left: 0 !important;
+}
+.last-bottom {
+    margin-bottom: 0 !important;
+}
+.margin-bottom-default {
+    margin-bottom: 15px;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+.text-shadow-dark {
+    text-shadow: 0 1px 1px $cl-black;
+}
+.text-shadow-light {
+    text-shadow: 0 1px 1px $cl-white;
+}

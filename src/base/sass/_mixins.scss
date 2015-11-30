@@ -1,0 +1,23 @@
+$default-prefixes: webkit moz ms o;
+@mixin build-prefix( $property, $value, $prefixes: $default-prefixes) {
+    @each $prefix in $prefixes {
+        -#{$prefix}-#{$property}: #{$value};
+    }
+    #{$property}: #{$value};
+}
+
+@mixin translateX( $distance ){
+    -webkit-transform: translateX( $distance );
+    -moz-transform: translateX( $distance );
+    -ms-transform: translateX( $distance );
+    -o-transform: translateX( $distance );
+    transform: translateX( $distance );
+}
+
+@mixin transition( $time , $property , $transition_type ){
+    -webkit-transition: $time -webkit-#{$property} $transition_type;
+    -moz-transition: $time -moz-#{$property} $transition_type;
+    -ms-transition: $time -ms-#{$property} $transition_type;
+    -o-transition: $time -o-#{$property} $transition_type;
+    transition: $time $property $transition_type;
+}
