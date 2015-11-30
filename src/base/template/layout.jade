@@ -6,18 +6,8 @@ html(lang="en")
 body
   h1
     a(href="#{homeUrl}") #{name}
-  nav
-    ul
-      li
-        a(href="#") Menu Item 1
-      li
-        a(href="#") Menu Item 2
-      li
-        a(href="#") Menu Item 3
-      li
-        a(href="#") Menu Item 4
-      li
-        a(href="#") Menu Item 5
+  block menu
+    include menu.jade
   .wrapper
     block content
       p This is where the content of the pages will go
