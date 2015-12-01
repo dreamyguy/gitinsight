@@ -1,8 +1,8 @@
 // docready for modern browsers
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    //var datasrc = dataReposAllOfThem;
-    var datasrc = dataReposAll;
+    var datasrc = dataReposAllOfThem;
+    //var datasrc = dataReposAll;
     //var datasrc = dataReposSome;
     //console.log(datasrc);
 
@@ -191,6 +191,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var arrayYearChangesVar = arrayYearChanges(datasrc, 'date_year');
     //console.log(arrayYearChangesVar);
 
+    // Get author stats and output it on a dedicated object
+    // ------------------------------------------------------------
+    var groupByAuthorsStats = function(data, author) {
+        var obja = {};
+        for (var i in data) {
+            if (!obja.hasOwnProperty(data[i][author])) {
+                obja[data[i][author]] = [];
+            }
+            obja[data[i][author]].push(data[i]);
+        }
+        // create an object to receive customised author stats
+        var stats = {};
+        // iterate through 'obja' object
+        for (var b in obja) {
+           if (obja.hasOwnProperty(b)) {
+                var objb = obja[b];
+                // calculate total impact
+                var authorImpact = arrayByKey(objb, 'impact');
+                var authorImpactSum = totalSum(authorImpact);
+                // calculate total number of commits
+                var authorNrCommits = itemsSum(objb);
+                // push new data to array
+                if (!stats.hasOwnProperty(b)) {
+                    stats[b] = [];
+                }
+                stats[b].push({
+                    commits: authorNrCommits,
+                    impact: authorImpactSum
+                });
+            }
+        }
+        return stats;
+    };
+    var groupByAuthorsStatsVar = groupByAuthorsStats(datasrc, 'author_email');
+    console.log(groupByAuthorsStatsVar);
+
     // Create array of objects with authors and their impact
     // ------------------------------------------------------------
     var arrayAuthorImpact = function(data, author, impact) {
@@ -237,8 +273,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }, {
         height: '300px',
       //high: 1400000, // with 'dataReposSome'
-        high: 3700000, // with 'dataReposAll'
-      //high: 8000000000, // with 'dataReposAll' based on 'dataReposAllOfThemClean'
+      //high: 3700000, // with 'dataReposAll'
+        high: 8000000000, // with 'dataReposAll' based on 'dataReposAllOfThemClean'
         low: 1000,
         showArea: true,
         showLine: true,
