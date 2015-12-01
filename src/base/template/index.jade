@@ -2,33 +2,13 @@ extends layout
 
 block content
   main(class=['fg-fav-occre-light', 'text-shadow-light'])
-    section(id="id-one", class=['bg-fav-beige-light', 'gradient-topleft-beige'])
-      .content.clearfix
-        h2(class=['heading-two', 'open-sans-extrabold', 'fg-fav-orange-middle', 'uppercase']) abc-adloader - Impact
-        .ct-chart-impact
-        p.margin-bottom-default Additions &amp; Deletions #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) combined].
-    section(id="id-two", class=['bg-fav-beige-dark'])
-      .content
-        h2(class=['heading-two', 'open-sans-extrabold', 'uppercase', 'fg-fav-occre-dark']) abc-adloader - Impact Cumulative
-        .ct-chart-impact-cumulative
-        p.margin-bottom-default Total number of lines #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) throughout the repo&#39;s lifetime].
-    section(id="id-three", class=['bg-fav-beige-light', 'gradient-topleft-beige'])
-      .content
-        h2(class=['heading-two', 'open-sans-extrabold', 'fg-fav-orange-middle', 'uppercase']) startsiden-frontpage-layout - Impact
-        .ct-chart-impact-sfl
-        p.margin-bottom-default Additions &amp; Deletions #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) combined] (minus #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) 14 commits], which had corrupted data and had to be excluded).
-    section(id="id-four", class=['bg-fav-beige-dark'])
-      .content
-        h2(class=['heading-two', 'open-sans-extrabold', 'uppercase', 'fg-fav-occre-dark']) startsiden-frontpage-layout - Impact Cumulative
-        .ct-chart-impact-cumulative-sfl
-        p.margin-bottom-default Total number of lines #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) throughout the repo&#39;s lifetime] (minus #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) 14 commits], which had corrupted data and had to be excluded).
     section(id="id-five", class=['bg-fav-beige-light'])
       .content
         h2(class=['heading-two', 'open-sans-extrabold', 'uppercase', 'fg-fav-orange-light']) All repos - Impact
-        .ct-chart-impact-all
+        .ct-chart-impact
         p.margin-bottom-default Additions &amp; Deletions from all repos #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) combined] (minus #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) 4345 commits (4.4%)], which had corrupted data and had to be excluded).
     section(id="id-six", class=['bg-fav-beige-dark'])
       .content
         h2(class=['heading-two', 'open-sans-extrabold', 'uppercase', 'fg-fav-occre-dark']) All repos - Impact Cumulative
-        .ct-chart-impact-cumulative-all
+        .ct-chart-impact-cumulative
         p.margin-bottom-default Total number of lines over time #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) for all repos] (minus #[em(class=['open-sans-light-italic', 'fg-fav-purple-light']) 4345 commits (4.4%)], which had corrupted data and had to be excluded).
