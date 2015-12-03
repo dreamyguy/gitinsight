@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return stats;
     };
     var groupByAuthorsStatsVar = groupByAuthorsStats(datasrc, 'author_email');
-    console.log(groupByAuthorsStatsVar);
+    //console.log(groupByAuthorsStatsVar);
 
     // Get author stats and output it on a dedicated array
     // ------------------------------------------------------------
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return stats;
     };
     var arrayAuthorsStatsVar = arrayAuthorsStats(datasrc, 'author_email');
-    console.log(arrayAuthorsStatsVar);
+    //console.log(arrayAuthorsStatsVar);
 
     // Create array of objects with authors and their impact
     // ------------------------------------------------------------
