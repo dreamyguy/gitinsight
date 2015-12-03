@@ -227,6 +227,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var groupByAuthorsStatsVar = groupByAuthorsStats(datasrc, 'author_email');
     console.log(groupByAuthorsStatsVar);
 
+    // Get author stats and output it on a dedicated array
+    // ------------------------------------------------------------
+    var arrayAuthorsStats = function(data, author) {
+        var obja = {};
+        for (var i in data) {
+            if (!obja.hasOwnProperty(data[i][author])) {
+                obja[data[i][author]] = [];
+            }
+            obja[data[i][author]].push(data[i]);
+        }
+        // create an object to receive customised author stats
+        var stats = [];
+        // iterate through 'obja' object
+        for (var b in obja) {
+           if (obja.hasOwnProperty(b)) {
+                var objb = obja[b];
+                // calculate total impact
+                var authorImpact = arrayByKey(objb, 'impact');
+                var authorImpactSum = totalSum(authorImpact);
+                // calculate total number of commits
+                var authorNrCommits = itemsSum(objb);
+                // push new data to array
+                stats.push({
+                    author: b,
+                    commits: authorNrCommits,
+                    impact: authorImpactSum
+                });
+            }
+        }
+        return stats;
+    };
+    var arrayAuthorsStatsVar = arrayAuthorsStats(datasrc, 'author_email');
+    console.log(arrayAuthorsStatsVar);
+
     // Create array of objects with authors and their impact
     // ------------------------------------------------------------
     var arrayAuthorImpact = function(data, author, impact) {
