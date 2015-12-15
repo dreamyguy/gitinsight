@@ -229,17 +229,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Get author stats and output it on a dedicated array
     // ------------------------------------------------------------
-    var arrayAuthorsStats = function(data, author) {
+    var arrayAuthorsStats = function(data, type) {
         var obja = {};
         for (var i in data) {
-            if (!obja.hasOwnProperty(data[i][author])) {
-                obja[data[i][author]] = [];
+            if (!obja.hasOwnProperty(data[i].author_email)) {
+                obja[data[i].author_email] = [];
             }
-            obja[data[i][author]].push(data[i]);
+            obja[data[i].author_email].push(data[i]);
         }
         // create an object to receive customised author stats
         var stats = [];
         // iterate through 'obja' object
+
         for (var b in obja) {
            if (obja.hasOwnProperty(b)) {
                 var objb = obja[b];
@@ -249,17 +250,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // calculate total number of commits
                 var authorNrCommits = itemsSum(objb);
                 // push new data to array
-                stats.push({
-                    author: b,
-                    commits: authorNrCommits,
-                    impact: authorImpactSum
-                });
+                if (type == 'author') {
+                    stats.push(b);
+                } else if (type == 'commits') {
+                    stats.push(authorNrCommits);
+                } else if (type == 'impact') {
+                    stats.push(authorImpactSum);
+                } else {
+                    stats.push({
+                        author: b,
+                        commits: authorNrCommits,
+                        impact: authorImpactSum
+                    });
+                }
             }
         }
         return stats;
     };
-    var arrayAuthorsStatsVar = arrayAuthorsStats(datasrc, 'author_email');
-    //console.log(arrayAuthorsStatsVar);
+    var arrayAuthorsStatsVarAll = arrayAuthorsStats(datasrc);
+    //console.log(arrayAuthorsStatsVarAll);
+    var arrayAuthorsStatsVarAuthor = arrayAuthorsStats(datasrc, 'author');
+    //console.log(arrayAuthorsStatsVarAuthor);
+    var arrayAuthorsStatsVarCommits = arrayAuthorsStats(datasrc, 'commits');
+    //console.log(arrayAuthorsStatsVarCommits);
+    var arrayAuthorsStatsVarImpact = arrayAuthorsStats(datasrc, 'impact');
+    //console.log(arrayAuthorsStatsVarImpact);
+
+    // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
+    // console.log(arrayAuthorsStatsAuthorAndCommits);
+    // var arrayAuthorsStatsAuthorAndImpact = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarImpact);
+    // console.log(arrayAuthorsStatsAuthorAndImpact);
 
     // Create array of objects with authors and their impact
     // ------------------------------------------------------------
