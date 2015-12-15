@@ -20,6 +20,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
     };
 
+    // Get the key in array that occurs most often
+    // ------------------------------------------------------------
+    var mostOften = function(array) {
+        if(array.length === 0) {
+            return null;
+        }
+        var modeMap = {};
+        var maxEl = array[0], maxCount = 1;
+        for(var i = 0; i < array.length; i++) {
+            var el = array[i];
+            if (modeMap[el] === null) {
+                modeMap[el] = 1;
+            } else {
+                modeMap[el]++;
+            }
+            if(modeMap[el] > maxCount) {
+                maxEl = el;
+                maxCount = modeMap[el];
+            }
+        }
+        return maxEl;
+    };
+
     // Create object array based on key and its value
     // ------------------------------------------------------------
     var groupByKeyAndValue = function(data, key, val) {
@@ -52,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //console.log(arrayImpact);
     var arrayTimestamp = arrayByKey(datasrc, 'author_date_unix_timestamp');
     //console.log(arrayTimestamp);
+
+    console.log(mostOften(arrayByKey(datasrc, 'date_day_week')));
 
     // Create array based on key value, sorted
     // ------------------------------------------------------------
