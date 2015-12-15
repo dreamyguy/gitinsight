@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var arrayTimestamp = arrayByKey(datasrc, 'author_date_unix_timestamp');
     //console.log(arrayTimestamp);
 
-    console.log(mostOften(arrayByKey(datasrc, 'date_day_week')));
+    // most commited day overall
+    //console.log(mostOften(arrayByKey(datasrc, 'date_day_week')));
 
     // Create array based on key value, sorted
     // ------------------------------------------------------------
@@ -274,6 +275,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 var authorImpactSum = totalSum(authorImpact);
                 // calculate total number of commits
                 var authorNrCommits = itemsSum(objb);
+                // calculate author's most commited day
+                var authorDays = arrayByKey(objb, 'date_day_week');
+                var authorDay = mostOften(authorDays);
                 // push new data to array
                 if (type == 'author') {
                     stats.push(b);
@@ -281,11 +285,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     stats.push(authorNrCommits);
                 } else if (type == 'impact') {
                     stats.push(authorImpactSum);
+                } else if (type == 'day') {
+                    stats.push(authorDay);
                 } else {
                     stats.push({
                         author: b,
                         commits: authorNrCommits,
-                        impact: authorImpactSum
+                        impact: authorImpactSum,
+                        day : authorDay
                     });
                 }
             }
@@ -300,6 +307,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //console.log(arrayAuthorsStatsVarCommits);
     var arrayAuthorsStatsVarImpact = arrayAuthorsStats(datasrc, 'impact');
     //console.log(arrayAuthorsStatsVarImpact);
+    var arrayAuthorsStatsVarDay = arrayAuthorsStats(datasrc, 'day');
+    //console.log(arrayAuthorsStatsVarDay);
 
     // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
     // console.log(arrayAuthorsStatsAuthorAndCommits);
