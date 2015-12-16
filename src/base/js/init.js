@@ -367,13 +367,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var arrayAuthorsStatsVarDay = arrayAuthorsStats(datasrc, 'day');
     //console.log(arrayAuthorsStatsVarDay);
     var arrayAuthorsStatsVarWeekdays = arrayAuthorsStats(datasrc, 'weekdays');
-    console.log(arrayAuthorsStatsVarWeekdays);
+    // console.log(arrayAuthorsStatsVarWeekdays);
     var arrayAuthorsStatsVarDaysActive = arrayAuthorsStats(datasrc, 'daysActive');
-    console.log(arrayAuthorsStatsVarDaysActive);
+    // console.log(arrayAuthorsStatsVarDaysActive);
     var arrayAuthorsStatsVarDaysSinceFirstCommit = arrayAuthorsStats(datasrc, 'daysSinceFirstCommit');
-    console.log(arrayAuthorsStatsVarDaysSinceFirstCommit);
+    // console.log(arrayAuthorsStatsVarDaysSinceFirstCommit);
     var arrayAuthorsStatsVarDaysSinceLastCommit = arrayAuthorsStats(datasrc, 'daysSinceLastCommit');
-    console.log(arrayAuthorsStatsVarDaysSinceLastCommit);
+    // console.log(arrayAuthorsStatsVarDaysSinceLastCommit);
 
     // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
     // console.log(arrayAuthorsStatsAuthorAndCommits);
