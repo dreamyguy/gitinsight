@@ -43,6 +43,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return maxEl;
     };
 
+    // Count duplicate keys within an array
+    // ------------------------------------------------------------
+    var groupByDuplicatesInArray = function(array) {
+        if(array.length === 0) {
+            return null;
+        }
+        var counts = {};
+        array.forEach(function(x) {
+            counts[x] = (counts[x] || 0) + 1;
+        });
+        return counts;
+    };
+
     // Create object array based on key and its value
     // ------------------------------------------------------------
     var groupByKeyAndValue = function(data, key, val) {
@@ -287,12 +300,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     stats.push(authorImpactSum);
                 } else if (type == 'day') {
                     stats.push(authorDay);
+                } else if (type == 'weekdays') {
+                    stats.push({
+                        author : b,
+                        weekdays: groupByDuplicatesInArray(authorDays)
+                    });
                 } else {
                     stats.push({
                         author: b,
                         commits: authorNrCommits,
                         impact: authorImpactSum,
-                        day : authorDay
+                        day : authorDay,
+                        weekdays : groupByDuplicatesInArray(authorDays)
                     });
                 }
             }
@@ -309,6 +328,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //console.log(arrayAuthorsStatsVarImpact);
     var arrayAuthorsStatsVarDay = arrayAuthorsStats(datasrc, 'day');
     //console.log(arrayAuthorsStatsVarDay);
+    var arrayAuthorsStatsVarWeekdays = arrayAuthorsStats(datasrc, 'weekdays');
+    console.log(arrayAuthorsStatsVarWeekdays);
 
     // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
     // console.log(arrayAuthorsStatsAuthorAndCommits);
@@ -362,7 +383,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         height: '300px',
       //high: 1400000, // with 'dataReposSome'
       //high: 3700000, // with 'dataReposAll'
-        high: 8000000000, // with 'dataReposAll' based on 'dataReposAllOfThemClean'
+        high: 26000000, // with 'dataReposAll' based on 'dataReposAllOfThemClean'
+      //high: 8000000000, // with 'dataReposAll' based on 'dataReposAllOfThemClean'
         low: 1000,
         showArea: true,
         showLine: true,
