@@ -393,6 +393,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var arrayAuthorImpactVar = arrayAuthorImpact(datasrc, 'author_email', 'impact');
     //console.log(arrayAuthorImpactVar);
 
+/*
     new Chartist.Line('.ct-chart-impact', {
         labels: arrayYearChangesVar,
         series: [
@@ -445,5 +446,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
             showGrid: true
         }
     });
-
+*/
 });
