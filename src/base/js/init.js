@@ -152,6 +152,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var arrayTotal = itemsSum(datasrc);
     //console.log(arrayTotal);
 
+    // Return average value based on number of items in an object
+    // ------------------------------------------------------------
+    var itemsAverage = function(data) {
+        var sum = 0;
+        for (var i = 0; i < data.length; i++) {
+            sum += parseInt(data[i]);
+        }
+        var avg = sum/data.length;
+        return avg;
+    };
+    var arrayAverage = itemsAverage(datasrc);
+    //console.log(arrayAverage);
+
     // Create array based on key values added to themselves
     // ------------------------------------------------------------
     var sumArray = function(data) {
@@ -374,6 +387,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // console.log(arrayAuthorsStatsVarDaysSinceFirstCommit);
     var arrayAuthorsStatsVarDaysSinceLastCommit = arrayAuthorsStats(datasrc, 'daysSinceLastCommit');
     // console.log(arrayAuthorsStatsVarDaysSinceLastCommit);
+
+    // Some global stats
+    // ------------------------------------------------------------
+    var arrayAuthorsStatsVarDaysActiveAverage = itemsAverage(arrayAuthorsStatsVarDaysActive);
+    console.log('The average number of active days of a single committer is ' + arrayAuthorsStatsVarDaysActiveAverage + ', which is the equivalent to ' + arrayAuthorsStatsVarDaysActiveAverage / 365 + ' years');
+    var arrayAuthorsStatsVarCommitsAverage = itemsAverage(arrayAuthorsStatsVarCommits);
+    console.log('The average number of commits by a single committer is ' + arrayAuthorsStatsVarCommitsAverage + ', which is the equivalent to ' + arrayAuthorsStatsVarCommitsAverage / arrayAuthorsStatsVarDaysActiveAverage + ' a day');
+    var arrayAuthorsStatsVarImpactAverage = itemsAverage(arrayAuthorsStatsVarImpact);
+    console.log('The average impact by a single committer is ' + arrayAuthorsStatsVarImpactAverage + ' lines of code');
 
     // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
     // console.log(arrayAuthorsStatsAuthorAndCommits);
