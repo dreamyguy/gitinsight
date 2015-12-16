@@ -20,6 +20,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
     };
 
+    // Calculate number of days between two dates
+    // ------------------------------------------------------------
+    var daysBetween = function(timeStampA, timeStampB) {
+        var oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
+        var firstDate = new Date(timeStampA * 1000);
+        var secondDate = new Date(timeStampB * 1000);
+        var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        return diffDays;
+    };
+
+    // Calculate number of days since one date
+    // ------------------------------------------------------------
+    var daysSince = function(timeStamp) {
+        var oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
+        var sinceDate = new Date(timeStamp * 1000);
+        var now = Date.now();
+        var diffDays = Math.round(Math.abs((sinceDate.getTime() - now)/(oneDay)));
+        return diffDays;
+    };
+
     // Get the key in array that occurs most often
     // ------------------------------------------------------------
     var mostOften = function(array) {
@@ -291,6 +311,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // calculate author's most commited day
                 var authorDays = arrayByKey(objb, 'date_day_week');
                 var authorDay = mostOften(authorDays);
+                // calculate days between first and last commits
+                var commitDateFirst = objb[0].author_date_unix_timestamp;
+                var commitDateLast = objb[objb.length - 1].author_date_unix_timestamp;
+                var daysActive = daysBetween(commitDateFirst, commitDateLast);
+                // calculate days since first and last commits
+                var daysSinceFirstCommit = daysSince(commitDateFirst);
+                var daysSinceLastCommit = daysSince(commitDateLast);
                 // push new data to array
                 if (type == 'author') {
                     stats.push(b);
@@ -300,6 +327,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     stats.push(authorImpactSum);
                 } else if (type == 'day') {
                     stats.push(authorDay);
+                } else if (type == 'daysActive') {
+                    stats.push(daysActive);
+                } else if (type == 'daysSinceFirstCommit') {
+                    stats.push(daysSinceFirstCommit);
+                } else if (type == 'daysSinceLastCommit') {
+                    stats.push(daysSinceLastCommit);
                 } else if (type == 'weekdays') {
                     stats.push({
                         author : b,
@@ -311,7 +344,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
                         commits: authorNrCommits,
                         impact: authorImpactSum,
                         day : authorDay,
-                        weekdays : groupByDuplicatesInArray(authorDays)
+                        weekdays : groupByDuplicatesInArray(authorDays),
+                        daysActive : daysActive,
+                        commitDateFirst : commitDateFirst,
+                        commitDateLast : commitDateLast,
+                        daysSinceFirstCommit : daysSinceFirstCommit,
+                        daysSinceLastCommit : daysSinceLastCommit
                     });
                 }
             }
@@ -330,6 +368,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //console.log(arrayAuthorsStatsVarDay);
     var arrayAuthorsStatsVarWeekdays = arrayAuthorsStats(datasrc, 'weekdays');
     console.log(arrayAuthorsStatsVarWeekdays);
+    var arrayAuthorsStatsVarDaysActive = arrayAuthorsStats(datasrc, 'daysActive');
+    console.log(arrayAuthorsStatsVarDaysActive);
+    var arrayAuthorsStatsVarDaysSinceFirstCommit = arrayAuthorsStats(datasrc, 'daysSinceFirstCommit');
+    console.log(arrayAuthorsStatsVarDaysSinceFirstCommit);
+    var arrayAuthorsStatsVarDaysSinceLastCommit = arrayAuthorsStats(datasrc, 'daysSinceLastCommit');
+    console.log(arrayAuthorsStatsVarDaysSinceLastCommit);
 
     // var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarCommits);
     // console.log(arrayAuthorsStatsAuthorAndCommits);
