@@ -1,9 +1,7 @@
 // docready for modern browsers
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    var datasrc = dataReposAllOfThem;
-    //var datasrc = dataReposAll;
-    //var datasrc = dataReposSome;
+    var datasrc = dataRepos;
     //console.log(datasrc);
 
     // Sort datasource array by date
