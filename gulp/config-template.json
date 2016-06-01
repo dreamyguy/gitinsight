@@ -3,7 +3,7 @@
     "package.json",
     "bower.json"
   ],
-  "banner": "/**\n * <%= pkg.name %>\n * @version v<%= pkg.version %>\n * @link <%= pkg.repository.url %>\n * @copyright <%= pkg.copyright %>\n */\n",
+  "banner": "/**\n * <%= pkg.name %>\n * @version v<%= pkg.version %>\n * @home <%= pkg.author.url %>\n * @repo <%= pkg.repository.url %>\n * @copyright <%= pkg.copyright %>\n */\n",
   "html": {
     "src": [
       "<%= path.src %>base/html/**/*.html",
@@ -13,36 +13,34 @@
   },
   "data": {
     "src": [
-      "<%= path.src %>base/data/**/*.js",
-      "<%= path.src %>modules/**/data/*.js"
+      "<%= path.src %>base/data/**/*.{js,json}",
+      "<%= path.src %>modules/**/data/*.{js,json}"
     ],
     "dist": "<%= path.dist %>data/"
-  },
-  "fonts": {
-    "src": [
-      "<%= path.src %>base/fonts/**/*",
-      "<%= path.src %>modules/**/fonts/*"
-    ],
-    "dist": "<%= path.dist %>fonts/"
   },
   "scripts": {
     "src": {
       "blocking": {
         "src": [
           "<%= path.src %>base/js/blocking/*.js",
-          "<%= path.src %>modules/**/js/blocking/*.js"
+          "!<%= path.src %>base/js/blocking/*-bkup.js",
+          "<%= path.src %>modules/**/js/blocking/*.js",
+          "!<%= path.src %>modules/**/js/blocking/*-bkup.js"
         ],
         "dist": "<%= pkg.name %>-<%= pkg.version %>.blocking.min.js",
         "vendor": [
-          "<%= path.assets %>modernizr/modernizr.js"
+          "<%= path.assets %>modernizr/modernizr.js",
+          "<%= path.assets %>highlight/highlight.pack.js"
         ],
         "bower": false
       },
       "async": {
         "src": [
           "<%= path.src %>base/js/**/*.js",
+          "!<%= path.src %>base/js/**/*-bkup.js",
           "!<%= path.src %>base/js/blocking/**",
           "<%= path.src %>modules/**/js/*.js",
+          "!<%= path.src %>modules/**/js/*-bkup.js",
           "!<%= path.src %>modules/**/js/blocking/**"
         ],
         "dist": "<%= pkg.name %>-<%= pkg.version %>.async.min.js",
@@ -72,6 +70,11 @@
         "<%= path.src %>modules/**/sass/main.scss"
       ]
     },
+    "vendor": {
+      "src": [
+        "<%= path.assets %>highlight/**/*.scss"
+      ]
+    },
     "dist": "<%= path.dist %>css/",
     "distfiles": {
       "main": [
@@ -88,10 +91,51 @@
       "<%= path.bower %>/"
     ],
     "watchfiles": [
+      "<%= path.assets %>**/*.scss",
       "<%= path.bower %>**/*.scss",
       "<%= path.src %>base/sass/**/*.scss",
-      "<%= path.src %>modules/**/sass/**/*.scss"
+      "<%= path.src %>modules/**/sass/**/*.scss",
+      "!<%= path.src %>base/sass/_icons.scss"
     ]
+  },
+  "images": {
+    "src": [
+      "<%= path.src %>base/img/**/*.*",
+      "<%= path.src %>modules/**/img/**/*.*",
+      "!<%= path.src %>base/img/sprites/**/*.{png,jpg,jpeg}",
+      "!<%= path.src %>modules/**/img/sprites/**/*.{png,jpg,jpeg}",
+      "!<%= path.src %>base/img/favicons/favicons.html",
+      "!<%= path.src %>base/img/do-not-compile/*"
+    ],
+    "dist": "<%= path.dist %>img/",
+    "sprites": {
+      "src": [
+        "<%= path.src %>base/img/sprites/**/*.png",
+        "<%= path.src %>modules/**/img/sprites/**/*.png"
+      ],
+      "temp": "<%= path.temp %>img/",
+      "sass": "<%= path.src %>base/sass/"
+    }
+  },
+  "fonts": {
+    "src": [
+      "<%= path.src %>base/fonts/**/*",
+      "<%= path.src %>modules/**/fonts/*"
+    ],
+    "dist": "<%= path.dist %>fonts/",
+    "icons": {
+      "src": [
+        "<%= path.src %>base/icons/**/*.svg",
+        "<%= path.src %>modules/**/icons/**/*.svg"
+      ],
+      "dist": "<%= path.dist %>fonts/icons/",
+      "template": {
+        "src": "<%= path.src %>base/icons/template/_icons.scss",
+        "dist": "<%= path.src %>base/sass/"
+      },
+      "name": "icons",
+      "path": "../fonts/icons/"
+    }
   },
   "injects": {
     "head": {
@@ -108,10 +152,36 @@
     "flatten": {
       "src": [
         "<%= path.temp %>jade/*.jade",
-        "!<%= path.temp %>jade/layout.jade",
-        "!<%= path.temp %>jade/head.jade"
+        "!<%= path.temp %>jade/module-*.jade",
+        "!<%= path.temp %>jade/global-*.jade"
       ],
       "dist": "<%= path.temp %>jade/"
+    }
+  },
+  "favicons": {
+    "icons": {
+      "src": "<%= path.src %>base/favicons/icon.png",
+      "template": "../../favicons/favicons.html"
+    },
+    "dist": "<%= path.src %>base/img/favicons/",
+    "public": "/<%= path.dist %>img/",
+    "settings": {
+      "appName": "<%= pkg.name %>",
+      "appDescription": "<%= pkg.description %>",
+      "developer": "<%= pkg.author.name %>",
+      "developerURL": "<%= pkg.repository.url %>",
+      "version": "<%= pkg.version %>",
+      "URL": "<%= pkg.author.url %>",
+      "logging": true
+    }
+  },
+  "tests": {
+    "browser": {
+      "src": [
+        "<%= path.src %>base/tests/browser/*.js", "<%= path.src %>base/tests/browser/**/*.js",
+        "<%= path.src %>modules/**/tests/browser/*.js", "<%= path.src %>modules/**/tests/browser/**/*.js"
+      ],
+      "dist": "<%= path.tests %>browser/"
     }
   }
 }

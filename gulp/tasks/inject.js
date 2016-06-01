@@ -10,6 +10,7 @@ var asyncJS = function(filepath, file, i, length) {
 };
 
 // injects JS blocking and async as well as CSS to head-template
+
 gulp.task('inject', function() {
     return gulp.src([config.injects.head.src])
         .pipe(inject(gulp.src(config.scripts.distfiles.blocking, {

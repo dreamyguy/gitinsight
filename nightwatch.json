@@ -1,0 +1,54 @@
+{
+  "src_folders": ["tests/browser"],
+  "output_folder": "tests/browser_reports",
+  "custom_commands_path": "",
+  "custom_assertions_path": "",
+  "globals_path": "",
+  "selenium": {
+    "start_process": true,
+    "server_path": "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.52.0.jar",
+    "log_path": "",
+    "host": "127.0.0.1",
+    "port": 4444,
+    "cli_args": {
+      "webdriver.chrome.driver": "node_modules/chromedriver/lib/chromedriver/chromedriver",
+      "webdriver.ie.driver": ""
+    }
+  },
+  "test_settings": {
+    "default": {
+      "launch_url": "http://localhost:3000",
+      "selenium_port": 4444,
+      "selenium_host": "localhost",
+      "silent": true,
+      "screenshots": {
+        "enabled": false,
+        "path": ""
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "globals": {
+        "path": "http://localhost:3000",
+        "wait": {
+          "body": 1000,
+          "pause": 100,
+          "pauseAnimated": 800
+        },
+        "phone": {
+          "width": 320,
+          "height": 800
+        }
+      }
+    },
+    "chrome": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    }
+  }
+}

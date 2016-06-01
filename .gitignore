@@ -4,13 +4,16 @@
 *.DS_Store
 *.sw*
 .sass-cache
+ncp-debug.log
+npm-debug.log
+selenium-debug.log
 
 bower_components/
 components/
 node_modules/
 src/base/data/*
-tmp/
 templates/
 dist/
-ncp-debug.log
-npm-debug.log
+/tests/
+tests/browser_reports/
+tmp/

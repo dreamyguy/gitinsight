@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "icons1.0.2";
+    src: url('../fonts/icons/icons1.0.2.eot');
+    src: url('../fonts/icons/icons1.0.2.eot?#iefix') format('eot'),
+         url('../fonts/icons/icons1.0.2.woff') format('woff'),
+         url('../fonts/icons/icons1.0.2.ttf') format('truetype'),
+         url('../fonts/icons/icons1.0.2.svg#icons1.0.2') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon:before {
+    display: inline-block;
+    font-family: "icons1.0.2";
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lg {
+    font-size: 1.3333333333333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+    width: 1.2857142857142858em;
+    text-align: center;
+}
+
+.icon-fa-code-fork:before { content: "\EA01" }
+.icon-fa-code:before { content: "\EA02" }
+.icon-fa-codepen:before { content: "\EA03" }
+.icon-fa-css3:before { content: "\EA04" }
+.icon-fa-facebook-f:before { content: "\EA05" }
+.icon-fa-facebook-official:before { content: "\EA06" }
+.icon-fa-facebook-square:before { content: "\EA07" }
+.icon-fa-facebook:before { content: "\EA08" }
+.icon-fa-file-code-o:before { content: "\EA09" }
+.icon-fa-git-square:before { content: "\EA0A" }
+.icon-fa-git:before { content: "\EA0B" }
+.icon-fa-github-alt:before { content: "\EA0C" }
+.icon-fa-github-square:before { content: "\EA0D" }
+.icon-fa-github:before { content: "\EA0E" }
+.icon-fa-gittip:before { content: "\EA0F" }
+.icon-fa-google-plus-square:before { content: "\EA10" }
+.icon-fa-google-plus:before { content: "\EA11" }
+.icon-fa-html5:before { content: "\EA12" }
+.icon-fa-lastfm-square:before { content: "\EA13" }
+.icon-fa-lastfm:before { content: "\EA14" }
+.icon-fa-linkedin-square:before { content: "\EA15" }
+.icon-fa-linkedin:before { content: "\EA16" }
+.icon-fa-pinterest-p:before { content: "\EA17" }
+.icon-fa-pinterest-square:before { content: "\EA18" }
+.icon-fa-pinterest:before { content: "\EA19" }
+.icon-fa-stack-overflow:before { content: "\EA1A" }
+.icon-fa-twitch:before { content: "\EA1B" }
+.icon-fa-twitter-square:before { content: "\EA1C" }
+.icon-fa-twitter:before { content: "\EA1D" }
+.icon-fa-wordpress:before { content: "\EA1E" }
+.icon-fa-cogs:before { content: "\EA9F" }
+.icon-fa-flask:before { content: "\EB03" }

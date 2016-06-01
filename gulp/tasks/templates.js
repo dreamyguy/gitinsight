@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     symlink = require('gulp-symlink');
 
 // flatten all jade templates so that they are compiled from one place
+
 gulp.task('templates-jade-flatten', ['clean-temp-jade'], function() {
     return gulp.src(config.src)
         .pipe(flatten())
@@ -18,6 +19,7 @@ gulp.task('templates-jade-flatten', ['clean-temp-jade'], function() {
 });
 
 // compile jade templates to html
+
 gulp.task('templates-jade', ['templates-jade-flatten'], function() {
     return gulp.src(config.flatten.src)
         .pipe(flatten())
@@ -27,12 +29,14 @@ gulp.task('templates-jade', ['templates-jade-flatten'], function() {
 
 // create symlink inside templates folder to dist files
 //   so that template files can live in their own folder
+
 gulp.task('templates-symlink', ['templates-jade'], function() {
     return gulp.src(root.dist)
         .pipe(symlink(path.join(root.templates, 'dist')));
 });
 
 // watch templates
+
 gulp.task('templates-watch', function() {
     watch(
         'templates',

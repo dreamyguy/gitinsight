@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     bower = require('main-bower-files'),
     watch = require('./watch'),
     mixer = require('./mixer'),
-    clean = require('./clean'),
     lazypipe = require('lazypipe'),
     sass = require('gulp-sass'),
     header = require('gulp-header'),
@@ -21,16 +20,16 @@ var gulp = require('gulp'),
 // package bower-file.
 // Filters them for styles, as this will also return JS-files.
 //
-// NB: Will require overrides in bower.json if repo it downloads does not
+// PS: Will require overrides in bower.json if repo it downloads does not
 // supply its own bower file with `main`-attribute.
 
 var bowerFiles = _.filter(bower(), function(file) {
     return /\.(css|scss)$/.test(file);
 });
 
-// Lazypipe for SASS compilation.
+// lazypipe for SASS compilation.
 //
-// Setup a pre init pipe to handle compass compilation. Generates  sourcemaps.
+// setup a pre init pipe to handle compass compilation. Generates  sourcemaps.
 
 var process = lazypipe()
     .pipe(sass, {
@@ -46,12 +45,12 @@ var stylesBase = bowerFiles.concat(
         config.styles.base.src, config.styles.modules.src
     );
 
-// Generate imports and save them to temp path for sass handling.
+// generate imports and save them to temp path for sass handling.
 //
-// Uses `mixer()` to reference all files found in source base with imports
+// uses `mixer()` to reference all files found in source base with imports
 // in a sass-file for easy sass compiling.
 
-gulp.task('styles-generate-imports', ['clean-temp'], function() {
+gulp.task('styles-generate-imports', function() {
     return gulp.src(stylesBase, {
             read: false
         })
@@ -60,9 +59,9 @@ gulp.task('styles-generate-imports', ['clean-temp'], function() {
         .pipe(gulp.dest(config.styles.main.temp.path));
 });
 
-// Styles task.
+// styles task.
 //
-// Setup sources, sends the pipe through process, adds header and saved to
+// setup sources, sends the pipe through process, adds header and saved to
 // destination.
 
 gulp.task('styles-compile', function() {
@@ -83,16 +82,16 @@ gulp.task('styles-compile', function() {
         .pipe(gulp.dest(config.styles.dist));
 });
 
-// Styles task to run all required tasks in sequence.
+// styles task to run all required tasks in sequence.
 
 gulp.task('styles', function(cb) {
-    return run(
+    return run(['fonts-generate'],
         ['styles-generate-imports'],
         ['styles-compile'],
         cb);
 });
 
-//  Watch task for styles.
+// watch task for styles.
 
 gulp.task('styles-watch', function() {
     watch('styles', config.styles.watchfiles, false);

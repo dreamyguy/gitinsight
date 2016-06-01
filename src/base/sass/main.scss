@@ -5,6 +5,8 @@
 ::::::: resets and fixes ::::::::::::::::::::::
 ----------------------------------------------- */
 @import "reset";
+@import "foundation-settings";
+@import "foundation";
 @import "helpers";
 @import "clearfix";
 @import "mixins";
@@ -16,6 +18,7 @@
 ----------------------------------------------- */
 @import "colors";
 @import "fonts";
+@import "icons";
 @import "layout";
 
 /* --------------------------------------------

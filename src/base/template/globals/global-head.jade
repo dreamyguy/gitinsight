@@ -1,0 +1,50 @@
+head
+  meta(charset="utf-8")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(http-equiv="Content-Language", content="#{localeSite}")
+  title #{name} - #{role}
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  meta(name="description", content="#{description}")
+  meta(name="keywords", content="#{keywords}")
+  meta(name="robots", content="index, follow")
+  meta(property="og:locale", content="#{locale}")
+  meta(property="og:type", content="website")
+  meta(property="og:url", content="#{homeUrl}")
+  meta(property="og:site_name", content="#{name}")
+  meta(property="og:title", content="#{name} - #{role}")
+  meta(property="og:description", content="#{description}")
+  meta(property="og:image", content="#{image}")
+  meta(property="og:image:type", content="#{imageType}")
+  meta(property="og:image:width", content="#{imageWidth}")
+  meta(property="og:image:height", content="#{imageHeight}")
+  meta(property="og:image", content="#{image2}")
+  meta(property="og:image:type", content="#{imageType2}")
+  meta(property="og:image:width", content="#{imageWidth2}")
+  meta(property="og:image:height", content="#{imageHeight2}")
+  meta(property="og:image", content="#{image3}")
+  meta(property="og:image:type", content="#{imageType3}")
+  meta(property="og:image:width", content="#{imageWidth3}")
+  meta(property="og:image:height", content="#{imageHeight3}")
+  meta(property="twitter:site", content="#{id}")
+  meta(property="twitter:site:id", content="#{id}")
+  meta(property="twitter:creator", content="#{id}")
+  meta(property="twitter:creator:id", content="#{id}")
+  meta(property="twitter:card", content="#{twitterCard}")
+  meta(property="twitter:title", content="#{name} - #{role}")
+  meta(property="twitter:description", content="#{description}")
+  meta(property="twitter:image:src", content="#{image}")
+  meta(property="twitter:image:width", content="#{imageWidth}")
+  meta(property="twitter:image:height", content="#{imageHeight}")
+  meta(name="google-site-verification", content="#{googleSiteVerification}")
+  meta(name="google-analytics", content="#{googleAnalytics}")
+  link(rel="fluid-icon", href="#{imageFluidIcon}", title="#{name} - #{role}")
+
+  = "\n"
+  include ../../src/base/favicons/favicons.html
+  = "\n"
+  include ../injects/css.html
+  = "\n"
+  include ../injects/js-blocking.html
+  = "\n"
+  include ../injects/js-async.html
+  

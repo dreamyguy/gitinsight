@@ -5,13 +5,11 @@ var gulp = require('gulp'),
     _ = require('lodash');
 
 // watcher for files, with logging on changes
+
 module.exports = function(name, source) {
     var watcher = gulp.watch(source, function() {
-        if (name === 'templates') {
-            return runSequence(name, 'reload');
-        } else {
-            return runSequence(name, 'templates', 'reload');
-        }
+    //  return runSequence(name, 'reload');
+        return runSequence('templates', 'reload'); // templates does the trick and keeps BrowserSync rolling
     });
     gulp.start('reload-start');
     watcher.on('ready', function(watcher) {

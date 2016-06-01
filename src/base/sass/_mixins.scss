@@ -21,3 +21,12 @@ $default-prefixes: webkit moz ms o;
     -o-transition: $time -o-#{$property} $transition_type;
     transition: $time $property $transition_type;
 }
+
+// Apply the same value to all elements (last element is value)
+@mixin same($values...) {
+    $length: length($values);
+    $value: nth($values, $length);
+    @for $i from 1 to $length{
+        #{nth($values, $i)}: $value;
+    }
+}

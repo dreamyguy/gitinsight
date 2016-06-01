@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 //   'gulp serve', by itself, will reload the page.
 
 // reload livereload
+
 gulp.task('reload', function() {
     // only run livereload if arg '--live' is used
     if (argv.live !== undefined) {
@@ -18,6 +19,7 @@ gulp.task('reload', function() {
 });
 
 // start livereload server
+
 gulp.task('reload-start', function() {
     // only run livereload if arg '--live' is used
     if (argv.live !== undefined) {

@@ -14,6 +14,7 @@ var gulp = require('gulp'),
 //   'gulp serve', by itself, will reload the page.
 
 // serve the application
+
 gulp.task('serve', function() {
     // serve files from the project's root
     browserSync.init({

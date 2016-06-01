@@ -1,0 +1,10 @@
+// module about
+
+.about .section-image {
+    border: rem-calc(5) solid white;
+    background-image: url('../img/gitinsight-about.png');
+    background-size: cover;
+    border-radius: 50%;
+    width: rem-calc(200);
+    height: rem-calc(200);
+}

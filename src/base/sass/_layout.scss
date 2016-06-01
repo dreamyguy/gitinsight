@@ -1,5 +1,12 @@
 @import "variables";
 
+// typoraphy
+
+p a {
+    color: $cl-fav-blue;
+    text-decoration: none;
+}
+
 // colorful bar
 
 .bar,
@@ -25,3 +32,8 @@
     position: relative;
 }
 
+// section copyright
+
+.copyright-mit {
+    font-size: $small-font-size;
+}

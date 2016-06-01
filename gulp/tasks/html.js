@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     flatten = require('gulp-flatten');
 
-// Copy html
+// copy html
+
 gulp.task('html', function() {
     return gulp.src(config.src)
         .pipe(flatten())
@@ -19,6 +20,7 @@ gulp.task('html', function() {
 });
 
 // runs copying of html with watch
+
 gulp.task('html-watch', function() {
     watch('html', config.src, false);
 });

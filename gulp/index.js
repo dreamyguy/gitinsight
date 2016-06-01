@@ -11,20 +11,23 @@ var dir = requireDir('./tasks');
 // watch tasks merged into one
 gulp.task('watch', function(cb) {
     return  run([
-               'scripts-watch',
-               'styles-watch',
-               'inject-watch',
-               'html-watch',
-               'fonts-watch',
-               'templates-watch',
-               'data-watch'
-            ],
-            cb);
+           'scripts-watch',
+           'styles-watch',
+           'inject-watch',
+           'fonts-watch',
+           'html-watch',
+           'images-watch',
+           'templates-watch',
+           'data-watch',
+           'tests-watch'
+        ],
+        cb);
 });
 
 // run compile only once clean has completed
 gulp.task('compile', ['clean'], function(cb) {
-    return run(['scripts-blocking', 'scripts-async', 'styles', 'fonts', 'html', 'data'],
+    return run(['scripts-blocking', 'scripts-async', 'styles', 'fonts', 'html', 'data', 'tests'],
+        'images-minify',
         'inject',
         cb);
 });

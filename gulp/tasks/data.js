@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     watch = require('./watch'),
     flatten = require('gulp-flatten');
 
-// Copy data
+// copy data
+
 gulp.task('data', function() {
     return gulp.src(config.src)
         .pipe(flatten())
@@ -12,6 +13,7 @@ gulp.task('data', function() {
 });
 
 // runs copying of data with watch
+
 gulp.task('data-watch', function() {
     watch('data', config.src, false);
 });

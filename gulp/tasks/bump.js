@@ -7,7 +7,8 @@ var gulp = require('gulp'),
 
 var newVer = '0.0.0';
 
-// increment verison
+// increment version
+
 var incrementVersion = function(version, callback) {
     var releaseType = 'patch';
     if (argv.major) releaseType = 'major';
@@ -24,18 +25,16 @@ var incrementVersion = function(version, callback) {
 };
 
 // bump package version based on semver, using files from config.
-gulp.task('bump', function() {
 
+gulp.task('bump', function() {
     // Increment version, with patch as default (X.0.patch)
     incrementVersion(config.pkg.version, function(version) {
-
         util.log(
             'Current version is',
             util.colors.magenta(config.pkg.version),
             'and it will be bumped to',
             util.colors.green(version)
         )
-  
         gulp.src(config.path.version)
             .pipe(bump({
                 version: version
