@@ -1,14 +1,9 @@
-- var links = [{ repo_gitlog: "https://github.com/dreamyguy/git-log-to-json", repo_gitinsight: "https://github.com/dreamyguy/gitinsight" }];
-
-- var link = links[0];
-
 section(class=["stats", "bg-fav-beige-dark"])
   div(class=["content"])
     .row
       div(class=["small-12", "columns"])
-        h3(class=["heading-three"]) Git Stats
         p.gutter-bottom
-          | Below are some interesting stats extracted from the #[span(class="monospace") gitlog] data on repos I contribute to privately (not visible on GitHub). The data is generated with #[a(href=link.repo_gitlog) Gitlog to JSON] and crunched with (parts of) #[a(href=link.repo_gitinsight) Gitinsight] - both being my projects.<br/>
+          | Below are some interesting graphs based on #[span(class="monospace") git log] data from repos I contribute to privately (not visible on GitHub).
         h4(class=["heading-four", "centered"]) Impact (Additions + Deletions)
         .ct-chart-impact
         h4(class=["heading-four", "centered"]) Cumulative Impact

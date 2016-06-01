@@ -1,3 +1,7 @@
+- var links = [{ repo_gitlogg: "https://github.com/dreamyguy/gitlogg" }];
+
+- var link = links[0];
+
 section(class=["about"])
   div(class=["content", "text-shadow-light"])
     .row
@@ -6,10 +10,8 @@ section(class=["about"])
           h1(class=["heading-one", "open-sans-bold", "fg-fav-occre-dark", "gutter-top-half", "no-margin-bottom"]) #{name}
           h3(class=["heading-three", "fg-sb-gray"]) #{role}
           p.gutter-bottom-half
-            | Hi! I'm a web developer with strong graphic skills established in Oslo, Norway.
-            | I love to bend code to my will and create a relevant online experience.<br/>
-            | I deliver code that's version-controlled, thoroughly tested through
-            | solid CI routines and built through efficient automation.
+            | #[a(href="#{repo}" class="link-to-source-code") Gitinsight] was built to visualise #[span(class="monospace") git log] data<br/>
+            | previously parsed to #[span(class="monospace") JSON] by #[a(href=link.repo_gitlogg) Gitlogg], which is another project of mine.<br/>
+            | I hope you'll find it enlightening!
           p
-            | See for yourself by peeking at #[a(href="#{repo}" class="link-to-source-code") the source code for this page on GitHub].<br/>
-            | You're welcome to use it!
+            | #[a(href="#{repo}" class="link-to-source-code") Try it with your on data by forking or cloning Gitinsight on GitHub].

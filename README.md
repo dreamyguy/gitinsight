@@ -2,7 +2,7 @@
 
 > Visualise your git log in new and exciting ways!. Free to use according to [MIT license](LICENSE).
 
-![Gitinsight](https://raw.githubusercontent.com/dreamyguy/gitinsight/react/src/base/img/do-not-compile/gitinsight-logo-github.png "Visualise your git log in new and exciting ways")
+![Gitinsight](https://github.com/dreamyguy/gitinsight/blob/react/src/base/img/do-not-compile/gitinsight-icon-github.png "Visualise your git log in new and exciting ways")
 
 This project is a natural sequel to [Gitlogg][6], a project that parses the `git log` of multiple repositories into `JSON`. The idea is to help organizations visualize their data in ways that help them understand what lies behind their codebase.
 
