@@ -159,10 +159,7 @@
     }
   },
   "favicons": {
-    "icons": {
-      "src": "<%= path.src %>base/favicons/icon.png",
-      "template": "../../favicons/favicons.html"
-    },
+    "src": "<%= path.src %>base/favicons/icon.png",
     "dist": "<%= path.src %>base/img/favicons/",
     "public": "/<%= path.dist %>img/",
     "settings": {
@@ -170,9 +167,16 @@
       "appDescription": "<%= pkg.description %>",
       "developer": "<%= pkg.author.name %>",
       "developerURL": "<%= pkg.repository.url %>",
+      "background": "transparent",
       "version": "<%= pkg.version %>",
       "URL": "<%= pkg.author.url %>",
-      "logging": true
+      "display": "standalone",
+      "orientation": "portrait",
+      "logging": true,
+      "online": false,
+      "html": "../../favicons/favicons.html",
+      "pipeHTML": true,
+      "replace": true
     }
   },
   "tests": {
