@@ -69,6 +69,7 @@
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.7",
     "jshint-stylish": "^2.0.1",
+    "json-loader": "^0.5.4",
     "lazypipe": "^1.0.1",
     "lodash": "^3.10.1",
     "main-bower-files": "^2.9.0",

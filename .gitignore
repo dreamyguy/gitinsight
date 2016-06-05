@@ -9,7 +9,7 @@ npm-debug.log
 selenium-debug.log
 
 bower_components/
-components/
+/components/
 node_modules/
 src/base/data/*
 templates/
