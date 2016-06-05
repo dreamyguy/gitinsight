@@ -67,6 +67,12 @@ If you do use it I'd love to see it! :thumbsup:
 
 Free to use it AS IS as long as you stick to the [MIT license](LICENSE).
 
+#### Release History
+
+* 2016-06-02   [v1.0.3](https://github.com/dreamyguy/gitinsight/tree/v1.0.3)   Significant changes in every aspect, laying the ground for the React stack
+* 2015-11-30   [v1.0.2](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.2)   The first visualisation, based on local data
+* 2015-11-30   [v1.0.1](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.1)   Bare minimal Gulp setup, no functionality yet
+
 ---
 
 A BIG thanks to the node community and all those who taught me to be a better programmer. You know who you are.
