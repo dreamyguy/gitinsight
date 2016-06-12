@@ -76,6 +76,7 @@
     "merge-stream": "^1.0.0",
     "nightwatch": "^0.8.16",
     "react": "^15.1.0",
+    "react-chartist": "^0.10.2",
     "react-dom": "^15.1.0",
     "react-hot-loader": "^1.3.0",
     "require-dir": "^0.3.0",

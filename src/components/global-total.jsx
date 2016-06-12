@@ -3,7 +3,7 @@ import React from 'react'
 export default class GlobalTotal extends React.Component {
     static propTypes = {
         widgetClass: React.PropTypes.string,
-        total: React.PropTypes.string,
+    //  total: React.PropTypes.string,
         detail: React.PropTypes.string,
         color: React.PropTypes.string
     };
