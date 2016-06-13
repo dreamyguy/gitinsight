@@ -18,6 +18,24 @@
         return diffDays;
     };
 
+    // Get value of the object's first key
+    // ------------------------------------------------------------
+    exports.getValueOfFirstOrLastKey = function(obj, value, mode) {
+        // do not use this if you expect your obj to change!
+        // this was done this way because the obj was already sorted by unix timestamps
+        var v;
+        var last = obj.length - 1;
+        if (mode == 'first') {
+            v = obj[0][value];
+        } else if (mode == 'last') {
+            v = obj[last][value];
+        } else {
+            console.log('You have to specify a mode! first | last');
+        }
+        return v;
+    };
+    // var firstAuthor = getValueOfFirstOrLastKey(data, 'author_email', 'first');
+
     // Get max/min number in array: max | min
     // ------------------------------------------------------------
     exports.arrayMaxMin = function(arr, type) {

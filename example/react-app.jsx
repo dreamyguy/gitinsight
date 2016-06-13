@@ -14,7 +14,8 @@ data.sort(function(a, b) {
     return a.author_date_unix_timestamp - b.author_date_unix_timestamp;
 });
 
-// calculate some global stats and assign them to vars
+// --- calculate some global stats and assign them to vars ---/
+
 // total nr commits
 let totalNrCommits = oxo.itemsSum(data)
 // total nr contributors
@@ -61,6 +62,9 @@ let totalCommitsOnSunday = oxo.itemsSum(
   oxo.arrayByKeyFiltered(data, 'date_day_week', 'Sun')
 )
 let totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday
+// get first and last commit dates
+let commitTheFirst = oxo.getValueOfFirstOrLastKey(data, 'date_iso_8601', 'first')
+let commitTheLast = oxo.getValueOfFirstOrLastKey(data, 'date_iso_8601', 'last')
 
 // let objTimePeriodDay = oxo.groupByTimePeriod(data, 'day')
 // let objTimePeriodWeek = oxo.groupByTimePeriod(data, 'week')
