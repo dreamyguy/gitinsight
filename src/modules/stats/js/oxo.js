@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
     // Calculate number of days between two dates
     // ------------------------------------------------------------
     exports.daysBetween = function(timeStampA, timeStampB) {
@@ -120,7 +122,7 @@
             } else if (period == 'year') {
               d = d.getFullYear();
             } else {
-              console.log('groupByTimePeriod: You have to set a period! day | week | month | year')
+              console.log('groupByTimePeriod: You have to set a period! day | week | month | year');
             }
             // define object key
             objPeriod[d] = objPeriod[d] || [];
@@ -156,7 +158,7 @@
             } else if (moment == 'iso-8601') {
               t = data[i].date_iso_8601;
             } else {
-              console.log('groupByTime: You have to set a time! hour | minutes | seconds | gmt | day_week | month_day | month_name | month_number | year | iso_8601')
+              console.log('groupByTime: You have to set a time! hour | minutes | seconds | gmt | day_week | month_day | month_name | month_number | year | iso_8601');
             }
             // define object key
             objMoment[t] = objMoment[t] || [];
@@ -178,6 +180,19 @@
         return counts;
     };
 
+    // Create object array based on key and its value
+    // ------------------------------------------------------------
+    exports.arrayByKeyAndValue = function(data, key, val) {
+        var arr = [];
+        for (var i in data) {
+            if (data[i][key] == val) {
+                arr.push(data[i]);
+            }
+        }
+        return arr;
+    };
+    // var weekMonday = arrayByKeyAndValue(datasrc, 'date_day_week', 'Mon');
+
     // Create array based on values
     // ------------------------------------------------------------
     exports.arrayOfValues = function(data) {
@@ -197,6 +212,35 @@
         }
         return arr;
     };
+
+    // Create object array based on key
+    // ------------------------------------------------------------
+    exports.objByKey = function(data, key) {
+        var obj = {};
+        for (var i in data) {
+            if (!obj.hasOwnProperty(data[i][key])) {
+                obj[data[i][key]] = [];
+            }
+            obj[data[i][key]].push(data[i]);
+        }
+        return obj;
+    };
+    // var objRepository = objByKey(datasrc, 'repository');
+
+    // Create object array based on author
+    // ------------------------------------------------------------
+    exports.objByAuthors = function(data, author) {
+        var obj = {};
+        for (var i in data) {
+            var a = data[i][author].match(/[^@]*/);
+            if (!obj.hasOwnProperty(data[i][author])) {
+                obj[data[i][author]] = [];
+            }
+            obj[data[i][author]].push(data[i]);
+        }
+        return obj;
+    };
+    // var objByAuthorsVar = objByAuthors(datasrc, 'author_email');
 
     // Create array based on key value
     // ------------------------------------------------------------
@@ -219,7 +263,7 @@
         for (var i in data) {
             if (data[i][key] == value) {
               arr.push(data[i][key]);
-            };
+            }
         }
         return arr;
     };
@@ -233,7 +277,7 @@
         for (var i in data) {
             if (data[i][key] > value) {
               arr.push(data[i][key]);
-            };
+            }
         }
         return arr;
     };
@@ -247,7 +291,7 @@
         for (var i in data) {
             if (data[i][key] < value) {
               arr.push(data[i][key]);
-            };
+            }
         }
         return arr;
     };
@@ -510,3 +554,15 @@
     // //console.log(arrayAuthorsStatsAuthorAndCommits);
     // var arrayAuthorsStatsAuthorAndImpact = arraysMerge(arrayAuthorsStatsVarAuthor, arrayAuthorsStatsVarImpact);
     // //console.log(arrayAuthorsStatsAuthorAndImpact);
+
+    // Create array of objects with authors and their impact
+    // ------------------------------------------------------------
+    exports.arrayAuthorImpact = function(data, author, impact) {
+        var arr = [];
+        for (var i in data) {
+            var a = data[i][author].match(/[^@]*/);
+            arr.push('{ "author":"' + a + '", "impact":"' + data[i][impact] + '"},');
+        }
+        return arr;
+    };
+    // var arrayAuthorImpactVar = arrayAuthorImpact(datasrc, 'author_email', 'impact');
