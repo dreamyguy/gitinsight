@@ -41,6 +41,7 @@
           "!<%= path.src %>base/js/blocking/**",
           "<%= path.src %>modules/**/js/*.js",
           "!<%= path.src %>modules/**/js/*-bkup.js",
+          "!<%= path.src %>modules/**/js/oxo.js",
           "!<%= path.src %>modules/**/js/blocking/**"
         ],
         "dist": "<%= pkg.name %>-<%= pkg.version %>.async.min.js",
