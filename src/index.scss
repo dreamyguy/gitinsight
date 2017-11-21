@@ -1,0 +1,20 @@
+@import 'app/shared/sass/reset';
+@import 'app/shared/sass/typography';
+@import 'app/shared/sass/bootstrap-callouts';
+@import 'app/shared/sass/buttons';
+@import 'app/shared/sass/forms';
+@import 'app/shared/sass/images';
+@import 'app/shared/sass/main-x';
+
+html,
+body,
+#root,
+.site {
+  margin: 0;
+  height: 100%;
+}
+html,
+body,
+#root {
+  overflow-x: hidden;
+}

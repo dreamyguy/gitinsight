@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/redux/middleware/api.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">src/app/redux/middleware/</a> api.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.24% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/49</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.04% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/46</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {normalize, schema} from 'normalizr';
+&nbsp;
+const API_ROOT = 'https://localhost:7000/api';
+&nbsp;
+// Extracts the next page URL from Github API response.
+const getNextPageUrl = response =&gt; <span class="fstat-no" title="function not covered" >{</span>
+  const link = <span class="cstat-no" title="statement not covered" >response.headers.get('link');</span>
+<span class="cstat-no" title="statement not covered" >  if (!link) {</span>
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+  const nextLink = <span class="cstat-no" title="statement not covered" >link.split(',').find(s =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >s.indexOf('rel="next"') &gt; -1)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >  if (!nextLink) {</span>
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return nextLink.split(';')[0].slice(1, -1);</span>
+};
+&nbsp;
+// Fetches an API response and normalizes the result JSON according to schema.
+// This makes every API response have the same shape, regardless of how nested it was.
+const callApi = (endpoint, schema) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+  const fullUrl = <span class="cstat-no" title="statement not covered" >(endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return fetch(fullUrl)</span>
+    .then(response =&gt;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      response.json().then(json =&gt; <span class="fstat-no" title="function not covered" >{</span></span></span>
+<span class="cstat-no" title="statement not covered" >        if (!response.ok) {</span>
+<span class="cstat-no" title="statement not covered" >          return Promise.reject(json);</span>
+        }
+        const nextPageUrl = <span class="cstat-no" title="statement not covered" >getNextPageUrl(response);</span>
+<span class="cstat-no" title="statement not covered" >        return Object.assign({},</span>
+          normalize(json, schema),
+          {nextPageUrl}
+        );
+      })
+    );
+};
+&nbsp;
+// We use this Normalizr schemas to transform API responses from a nested form
+// to a flat form where repos and users are placed in `entities`, and nested
+// JSON objects are replaced with their IDs. This is very convenient for
+// consumption by reducers, because we can easily build a normalized tree
+// and keep it updated as we fetch more data.
+// Read more about Normalizr: https://github.com/paularmstrong/normalizr
+const sectorsSchema = new schema.Entity('sectors', {}, {
+  idAttribute: sectors =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >sectors.Sector</span></span>
+});
+&nbsp;
+// Schemas for Github API responses.
+export const Schemas = {
+  SECTOR: sectorsSchema,
+  SECTOR_ARRAY: [sectorsSchema]
+};
+&nbsp;
+// Action key that carries API call info interpreted by this Redux middleware.
+export const CALL_API = 'Call API';
+&nbsp;
+// A Redux middleware that interprets actions with CALL_API info specified.
+// Performs the call and promises when such actions are dispatched.
+export default store =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >next =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >action =&gt; <span class="fstat-no" title="function not covered" >{</span></span></span></span></span>
+  const callAPI = <span class="cstat-no" title="statement not covered" >action[CALL_API];</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof callAPI === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    return next(action);</span>
+  }
+  let {endpoint} = <span class="cstat-no" title="statement not covered" >callAPI;</span>
+  const {schema, types} = <span class="cstat-no" title="statement not covered" >callAPI;</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof endpoint === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >    endpoint = endpoint(store.getState());</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (typeof endpoint !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Specify a string endpoint URL.');</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (!schema) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Specify one of the exported Schemas.');</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (!Array.isArray(types) || types.length !== 3) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Expected an array of three action types.');</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (!types.every(type =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >typeof type === 'string')</span></span>) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Expected action types to be strings.');</span>
+  }
+  const actionWith = <span class="cstat-no" title="statement not covered" >data =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+    const finalAction = <span class="cstat-no" title="statement not covered" >Object.assign({}, action, data);</span>
+<span class="cstat-no" title="statement not covered" >    delete finalAction[CALL_API];</span>
+<span class="cstat-no" title="statement not covered" >    return finalAction;</span>
+  };
+  const [requestType, successType, failureType] = <span class="cstat-no" title="statement not covered" >types;</span>
+<span class="cstat-no" title="statement not covered" >  next(actionWith({type: requestType}));</span>
+<span class="cstat-no" title="statement not covered" >  return callApi(endpoint, schema).then(</span>
+    response =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >next(actionWith({</span></span>
+      response,
+      type: successType
+    })),
+    error =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >next(actionWith({</span></span>
+      type: failureType,
+      error: error.message || 'Something bad happened'
+    }))
+  );
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 11 2017 11:47:15 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

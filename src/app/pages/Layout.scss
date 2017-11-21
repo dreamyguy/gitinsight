@@ -1,0 +1,10 @@
+@import '../shared/sass/variables.scss';
+@import '../shared/sass/mixins.scss';
+
+.layout,
+.site {
+  position: relative;
+}
+.content {
+  padding: 0 $base-gutter-content;
+}

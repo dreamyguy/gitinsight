@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "icons1.0.3";
+    src: url('../fonts/icons/icons1.0.3.eot');
+    src: url('../fonts/icons/icons1.0.3.eot?#iefix') format('eot'),
+         url('../fonts/icons/icons1.0.3.woff') format('woff'),
+         url('../fonts/icons/icons1.0.3.ttf') format('truetype'),
+         url('../fonts/icons/icons1.0.3.svg#icons1.0.3') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon:before {
+    display: inline-block;
+    font-family: "icons1.0.3";
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lg {
+    font-size: 1.3333333333333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+    width: 1.2857142857142858em;
+    text-align: center;
+}
+
+.icon-fa-code:before { content: "\EA02" }
+.icon-fa-file-code-o:before { content: "\EA09" }
+.icon-fa-git:before { content: "\EA0B" }
+.icon-fa-github:before { content: "\EA0E" }
+.icon-fa-html5:before { content: "\EA12" }
+.icon-fa-archive:before { content: "\EA16" }
+.icon-fa-area-chart:before { content: "\EA17" }
+.icon-fa-arrow-circle-down:before { content: "\EA18" }
+.icon-fa-wordpress:before { content: "\EA1E" }
+.icon-fa-asterisk:before { content: "\EA28" }
+.icon-fa-balance-scale:before { content: "\EA2C" }
+.icon-fa-bar-chart-o:before { content: "\EA2F" }
+.icon-fa-bar-chart:before { content: "\EA30" }
+.icon-fa-bell:before { content: "\EA44" }
+.icon-fa-bolt:before { content: "\EA4F" }
+.icon-fa-bomb:before { content: "\EA50" }
+.icon-fa-bug:before { content: "\EA56" }
+.icon-fa-bullhorn:before { content: "\EA59" }
+.icon-fa-certificate:before { content: "\EA7B" }
+.icon-fa-check-circle:before { content: "\EA7F" }
+.icon-fa-chevron-circle-down:before { content: "\EA83" }
+.icon-fa-chevron-circle-left:before { content: "\EA84" }
+.icon-fa-chevron-circle-right:before { content: "\EA85" }
+.icon-fa-chevron-circle-up:before { content: "\EA86" }
+.icon-fa-chevron-down:before { content: "\EA87" }
+.icon-fa-chevron-left:before { content: "\EA88" }
+.icon-fa-chevron-right:before { content: "\EA89" }
+.icon-fa-chevron-up:before { content: "\EA8A" }
+.icon-fa-circle:before { content: "\EA90" }
+.icon-fa-cog:before { content: "\EA9E" }
+.icon-fa-cogs:before { content: "\EA9F" }
+.icon-fa-crosshairs:before { content: "\EAB1" }
+.icon-fa-dashboard:before { content: "\EAB7" }
+.icon-fa-diamond:before { content: "\EABE" }
+.icon-fa-exclamation-circle:before { content: "\EAD3" }
+.icon-fa-exclamation-triangle:before { content: "\EAD4" }
+.icon-fa-eye:before { content: "\EADB" }
+.icon-fa-flask:before { content: "\EB03" }
+.icon-fa-hand-pointer-o:before { content: "\EB36" }
+.icon-fa-hand-stop-o:before { content: "\EB3A" }
+.icon-fa-heartbeat:before { content: "\EB41" }
+.icon-fa-history:before { content: "\EB42" }
+.icon-fa-info-circle:before { content: "\EB56" }
+.icon-fa-magic:before { content: "\EB83" }
+.icon-fa-paper-plane:before { content: "\EBB8" }
+.icon-fa-pencil:before { content: "\EBC3" }
+.icon-fa-spinner:before { content: "\EC2E" }
+.icon-fa-stethoscope:before { content: "\EC3F" }
+.icon-fa-tag:before { content: "\EC52" }
+.icon-fa-trophy:before { content: "\EC77" }
+.icon-fa-users:before { content: "\EC92" }

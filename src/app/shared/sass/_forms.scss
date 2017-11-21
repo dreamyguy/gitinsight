@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+
+.text-input,
+.DayPickerInput input {
+  background-color: $cl-grey-misc-12;
+  color: $cl-grey-misc-03;
+  font-weight: normal;
+  border: 0.5px solid $cl-grey-misc-06;
+  width: 100%;
+  padding: 10px;
+}
+.text-area {
+  min-height: 80px;
+}

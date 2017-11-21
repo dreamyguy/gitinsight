@@ -1,3 +1,30 @@
 {
-  presets: ['es2015', 'react', 'stage-0']
+  "presets": [
+    "react",
+    "es2015"
+  ],
+  "plugins": [
+    "transform-es2015-destructuring",
+    "transform-object-rest-spread",
+    "transform-decorators-legacy"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "es2015",
+          {
+            "loose": true,
+            "modules": false
+          }
+        ],
+        "react"
+      ]
+    }
+  }
 }

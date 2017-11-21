@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/pages/sector/SectorChapter.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">src/app/pages/sector/</a> SectorChapter.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.72% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.72% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/58</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint react/jsx-no-bind: 0 */
+/* eslint react/jsx-closing-bracket-location: 0 */
+&nbsp;
+import _ from 'lodash';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+&nbsp;
+import logMessage from '../../helpers/logMessage';
+import {fetchSectors, setAnswerChapter, setChapterAsViewed} from '../../redux/actions/actionsSectors';
+import {Description} from '../../base/Description';
+import {TextReader} from '../../base/TextReader';
+import {PageTitle} from '../../base/PageTitle';
+import {ButtonNav} from '../../base/ButtonNav';
+import {ButtonBack} from '../../base/ButtonBack';
+import {ButtonComplete} from '../../base/ButtonComplete';
+import './SectorChapter.scss';
+&nbsp;
+@connect(store =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    sectors: store.sectors.sectors,
+    viewedPages: store.sectors.viewedPages,
+    currentAnswer: store.sectors.currentAnswer
+  };
+})
+export class SectorChapter extends Component {
+  constructor() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    super();</span>
+<span class="cstat-no" title="statement not covered" >    this.handleNavigate = this.navigate.bind(this);</span>
+<span class="cstat-no" title="statement not covered" >    this.handleSetAnswerChapter = this.getAndSetAnswerChapter.bind(this);</span>
+  }
+  componentWillMount() <span class="fstat-no" title="function not covered" >{</span>
+    const {sectors} = <span class="cstat-no" title="statement not covered" >this.props;</span>
+    const {sectorId, chapterId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const {pathname} = <span class="cstat-no" title="statement not covered" >this.props.router.location;</span>
+    // When accessing the page directly for the first time, the 'sectors' object
+    // is defined, but is empty. In those cases we should fetch the data. This
+    // check also prevents a new fetch in case 'sectors' already has data.
+<span class="cstat-no" title="statement not covered" >    if (sectors &amp;&amp; Object.keys(sectors).length === 0 &amp;&amp; sectors.constructor === Object) {</span>
+      // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >      this.props.dispatch(fetchSectors(pathname, sectorId, chapterId));</span>
+    }
+  }
+  navigate(path) <span class="fstat-no" title="function not covered" >{</span>
+    const {sectorId, chapterId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >    this.props.dispatch(setChapterAsViewed(path, sectorId, chapterId));</span>
+    // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >    this.props.router.push(path);</span>
+  }
+  getAndSetAnswerChapter(answer) <span class="fstat-no" title="function not covered" >{</span>
+    const {sectorId, chapterId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >    this.props.dispatch(setAnswerChapter(answer, sectorId, chapterId));</span>
+  }
+  getViewSectionSummary(propOwner) <span class="fstat-no" title="function not covered" >{</span>
+    const {chapterId, sectorId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const nextPageId = <span class="cstat-no" title="statement not covered" >parseInt(chapterId, 10) + 1;</span>
+<span class="cstat-no" title="statement not covered" >    if (!propOwner[nextPageId]) {</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;ButtonComplete url={`/bransje/${sectorId}/resultat`} title="Fullfør" router={this.props.router}/&gt;;</span>
+    }
+  }
+  getFirstSubChapter() <span class="fstat-no" title="function not covered" >{</span>
+    const {sectorId, chapterId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;ButtonNav url={`/bransje/${sectorId}/side/${chapterId}/relevant/1`} title="Fortsett" router={this.props.router} navType="dive"/&gt;;</span>
+  }
+  getNextChapter(propOwner) <span class="fstat-no" title="function not covered" >{</span>
+    const {chapterId, sectorId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const nextPageId = <span class="cstat-no" title="statement not covered" >parseInt(chapterId, 10) + 1;</span>
+<span class="cstat-no" title="statement not covered" >    if (!propOwner[nextPageId]) {</span>
+<span class="cstat-no" title="statement not covered" >      return logMessage('NO NEXT PAGE');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return &lt;ButtonNav url={`/bransje/${sectorId}/side/${nextPageId}`} title="Neste" router={this.props.router} navType="next"/&gt;;</span>
+  }
+  getPreviousChapter(propOwner) <span class="fstat-no" title="function not covered" >{</span>
+    const {chapterId, sectorId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const previousPageId = <span class="cstat-no" title="statement not covered" >parseInt(chapterId, 10) - 1;</span>
+<span class="cstat-no" title="statement not covered" >    if (!propOwner[previousPageId]) {</span>
+<span class="cstat-no" title="statement not covered" >      return logMessage('NO PREVIOUS PAGE');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return &lt;ButtonBack url={`/bransje/${sectorId}/side/${previousPageId}`} title="Forrige" router={this.props.router}/&gt;;</span>
+  }
+  renderAnswerButtons(answer) <span class="fstat-no" title="function not covered" >{</span>
+    let ansY = <span class="cstat-no" title="statement not covered" >null;</span>
+    let ansN = <span class="cstat-no" title="statement not covered" >null;</span>
+<span class="cstat-no" title="statement not covered" >    if (answer === 'Ja') {</span>
+<span class="cstat-no" title="statement not covered" >      ansY = 'answer-yes';</span>
+<span class="cstat-no" title="statement not covered" >      ansN = '';</span>
+    } else <span class="cstat-no" title="statement not covered" >if (answer === 'Nei') {</span>
+<span class="cstat-no" title="statement not covered" >      ansY = '';</span>
+<span class="cstat-no" title="statement not covered" >      ansN = 'answer-no';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className="mb-3"&gt;
+        &lt;ul className="answer-selectors"&gt;
+          &lt;li&gt;
+            &lt;button
+              className={`answer ${ansY}`} onClick={() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+                // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >                this.handleSetAnswerChapter('Ja');</span>
+              }}
+            /&gt;
+            &lt;span className="answer-label"&gt;Ja&lt;/span&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;button
+              className={`answer ${ansN}`} onClick={() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+                // eslint-disable-next-line react/prop-types
+<span class="cstat-no" title="statement not covered" >                this.handleSetAnswerChapter('Nei');</span>
+              }}
+            /&gt;
+            &lt;span className="answer-label"&gt;Nei&lt;/span&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    );
+  }
+  renderQuestionChapter(chapter) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div&gt;
+        &lt;Description description={chapter.Question.Text}/&gt;
+        {this.renderAnswerButtons(chapter.Question.Answer)}
+      &lt;/div&gt;
+    );
+  }
+  renderChapter(chapter) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div&gt;
+        &lt;PageTitle title={chapter.Title}/&gt;
+        &lt;div className="content"&gt;
+          &lt;Description description={chapter.Description}/&gt;
+          {this.renderQuestionChapter(chapter)}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+  renderNavigationChapters(chapters) <span class="fstat-no" title="function not covered" >{</span>
+    const {sectors} = <span class="cstat-no" title="statement not covered" >this.props;</span>
+    const {sectorId, chapterId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const answer = <span class="cstat-no" title="statement not covered" >sectors[sectorId].Pages[chapterId].Question.Answer;</span>
+    let nextClass;
+<span class="cstat-no" title="statement not covered" >    if (answer !== null) {</span>
+<span class="cstat-no" title="statement not covered" >      nextClass = answer.toLowerCase();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className="sector-navigation"&gt;
+        &lt;div&gt;
+          {this.getPreviousChapter(chapters)}
+        &lt;/div&gt;
+        &lt;div className={`dive-${nextClass}`}&gt;
+          {this.getNextChapter(chapters)}
+          {this.getFirstSubChapter()}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+  render() <span class="fstat-no" title="function not covered" >{</span>
+    const {chapterId, sectorId} = <span class="cstat-no" title="statement not covered" >this.props.router.params;</span>
+    const sector = <span class="cstat-no" title="statement not covered" >this.props.sectors[sectorId];</span>
+<span class="cstat-no" title="statement not covered" >    if (!sector) {</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;div&gt;Laster...&lt;/div&gt;;</span>
+    }
+    const title = <span class="cstat-no" title="statement not covered" >sector.Title;</span>
+    const chapters = <span class="cstat-no" title="statement not covered" >sector.Pages;</span>
+    const chapter = <span class="cstat-no" title="statement not covered" >chapters[chapterId];</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className="sector-page"&gt;
+        &lt;TextReader text={title}/&gt;
+        {this.renderChapter(chapter)}
+        &lt;div className="content"&gt;
+          {this.renderNavigationChapters(chapters)}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+&nbsp;
+SectorChapter.propTypes = {
+  sectors: PropTypes.array,
+  router: PropTypes.object.isRequired
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 11 2017 11:47:15 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

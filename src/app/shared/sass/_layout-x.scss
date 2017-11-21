@@ -1,0 +1,39 @@
+@import "variables-x";
+
+// typoraphy
+
+p a {
+    color: $cl-fav-blue;
+    text-decoration: none;
+}
+
+// colorful bar
+
+.bar,
+.bar-item {
+    font-size: 0;
+}
+.bar {
+    margin: 0;
+    padding: 0;
+}
+.bar-item {
+    display: inline-block;
+    height: 5px;
+    width: 10%
+}
+
+// content
+
+.content {
+    max-width: 1234px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+// section copyright
+
+.copyright-mit {
+    font-size: $small-font-size;
+}
