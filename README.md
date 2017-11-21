@@ -4,7 +4,7 @@
 
 This project is a natural sequel to [Gitlogg][6], a project that parses the `git log` of multiple repositories into `JSON`. The idea is to help organizations visualize their data in ways that help them understand what lies behind their codebase.
 
-Note that the React implementation is under development!
+**Note**: The React implementation is under development!
 
 ## Installing
 
@@ -17,51 +17,17 @@ $ npm install gulp-cli -g
 $ npm install bower -g
 ```
 
+**Note**: Bower dependencies might not be kept under the final React application, but I'm keeping it on for now since the transition from the original non-React app to the latest iteration (represented by this branch) is not yet completed.
+
 ## Running it
 
-Once installation is complete, you will have to compile the static files and start the server before you can view anything.
-
-Run this to compile static files:
+Once installation is complete, you can start the server with hot-reloading (refresh upon file save) with:
 
 ```shell
-$ gulp
+$ npm run serve
 ```
 
-To view the project's page you will have to start-up the server. The command below will start the server on `localhost:3000`:
-
-```shell
-$ gulp serve
-```
-
-You can change the port number on [serve.js](https://github.com/dreamyguy/gitinsight/blob/react/gulp/tasks/serve.js), but you'll have to check [browser-sync](https://github.com/Browsersync/browser-sync)'s documentation on how to do it.
-
-## Developing
-
-Once your server is up and running, you will want to have `gulp` run by itself whenever you make a change. That way you can enjoy the full benefit of [BrowserSync](https://www.browsersync.io/), that will refresh the page automatically for you once you've saved your change. To trigger `gulp` to run when you save changes, open a new terminal window, browse to the project's root and run:
-
-```shell
-$ gulp watch
-```
-
-You can get _BrowserSync_ to load your site on several devices. Check [their documentation](https://www.browsersync.io/docs/) out.
-
-## Testing
-
-There are a few browser tests designed to automatically test the integrity of the page. To run it, you'd have to have run `gulp` at least once, to compile the test files where [Nightwatchjs][5] expects to find them. Once you're set, run:
-
-```shell
-$ ./bin/nightwatch --test tests/browser/nightwatch.js
-```
-
-Smile!
-
-## Publishing it
-
-You only need to upload the directories `dist` and `templates` to the `public_html` folder on your server.
-
-If you have trouble to point your domain to `templates` on your server, just take the content of the `templates` folder and move it to root. At this point `templates` contains only one file: **index.html**.
-
-If you do use it I'd love to see it! :thumbsup:
+The server will be available on `localhost:3000`
 
 ## License
 
@@ -73,7 +39,9 @@ Free to use it AS IS as long as you stick to the [MIT license](LICENSE).
 * 2015-11-30   [v1.0.2](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.2)   The first visualisation, based on local data
 * 2015-11-30   [v1.0.1](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.1)   Bare minimal Gulp setup, no functionality yet
 
----
+-------------
+
+> _Brought to you by [Wallace Sidhrée][1]._
 
 A BIG thanks to the node community and all those who taught me to be a better programmer. You know who you are.
 
@@ -81,5 +49,4 @@ A BIG thanks to the node community and all those who taught me to be a better pr
   [2]: http://gulpjs.com/
   [3]: http://bower.io/
   [4]: http://nodejs.org/
-  [5]: http://nightwatchjs.org/
   [6]: https://github.com/dreamyguy/gitlogg
