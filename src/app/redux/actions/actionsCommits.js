@@ -5,7 +5,7 @@ import axios from 'axios';
 const SERVER = 'localhost:7000'; // local
 const API_ROOT = `http://${SERVER}/api`;
 
-// An object with all sectors, with their names and ids
+// An object with all commits - avoid using it as it's huge
 export function fetchCommits() {
   return dispatch => {
     dispatch({type: 'FETCH_COMMITS'});
