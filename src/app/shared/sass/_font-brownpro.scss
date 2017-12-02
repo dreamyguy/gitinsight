@@ -1,0 +1,47 @@
+@import 'variables-x';
+
+@font-face {
+  font-family: 'BrownProRegular';
+  src: url('#{$path-fonts}/lineto-brown-pro-regular.eot');
+  src: url('#{$path-fonts}/lineto-brown-pro-regular.eot') format('eot'), url('#{$path-fonts}/lineto-brown-pro-regular.woff') format('woff'), url('#{$path-fonts}/lineto-brown-pro-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+@font-face {
+  font-family: 'BrownProBold';
+  src: url('#{$path-fonts}/lineto-brown-pro-bold.eot');
+  src: url('#{$path-fonts}/lineto-brown-pro-bold.eot') format('eot'), url('#{$path-fonts}/lineto-brown-pro-bold.woff') format('woff'), url('#{$path-fonts}/lineto-brown-pro-bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+@font-face {
+  font-family: 'BrownProBoldItalic';
+  src: url('#{$path-fonts}/lineto-brown-pro-boldItalic.eot');
+  src: url('#{$path-fonts}/lineto-brown-pro-boldItalic.eot') format('eot'), url('#{$path-fonts}/lineto-brown-pro-boldItalic.woff') format('woff'), url('#{$path-fonts}/lineto-brown-pro-boldItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+@font-face {
+  font-family: 'BrownProLight';
+  src: url('#{$path-fonts}/lineto-brown-pro-light.eot');
+  src: url('#{$path-fonts}/lineto-brown-pro-light.eot') format('eot'), url('#{$path-fonts}/lineto-brown-pro-light.woff') format('woff'), url('#{$path-fonts}/lineto-brown-pro-light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brownpro-regular {
+  font-family: 'BrownProRegular', $font-fallback;
+}
+.brownpro-bold {
+  font-family: 'BrownProBold', $font-fallback;
+}
+.brownpro-bold-italic {
+  font-family: 'BrownProBoldItalic', $font-fallback;
+}
+.brownpro-light {
+  font-family: 'BrownProLight', $font-fallback;
+}
