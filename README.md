@@ -8,16 +8,13 @@ This project is a natural sequel to [Gitlogg][6], a project that parses the `git
 
 ## Installing
 
-This project requires you to run `bower install` and `npm install` from the project's root. It requires [NodeJS][4] to be previously installed in your system.
+This project requires you to run `npm install` from the project's root. It requires [NodeJS][4] to be previously installed in your system.
 
-If you're new to either [Bower][3] or [Gulp][2] you might want to install it globally:
+If you're new to [Gulp][2] you might want to install it globally:
 
 ```shell
 $ npm install gulp-cli -g
-$ npm install bower -g
 ```
-
-**Note**: Bower dependencies might not be kept under the final React application, but I'm keeping it on for now since the transition from the original non-React app to the latest iteration (represented by this branch) is not yet completed.
 
 ## Running it
 
@@ -47,6 +44,5 @@ A BIG thanks to the node community and all those who taught me to be a better pr
 
   [1]: http://sidhree.com
   [2]: http://gulpjs.com/
-  [3]: http://bower.io/
   [4]: http://nodejs.org/
   [6]: https://github.com/dreamyguy/gitlogg

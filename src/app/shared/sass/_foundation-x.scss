@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "bower_components/foundation/scss/normalize";
-@import "bower_components/foundation/scss/foundation/components/grid";
-@import "bower_components/foundation/scss/foundation/components/block-grid";
-@import "bower_components/foundation/scss/foundation/components/visibility";
+@import "./foundation/normalize";
+@import "./foundation/grid";
+@import "./foundation/block-grid";
+@import "./foundation/visibility";

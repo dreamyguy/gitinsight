@@ -1,5 +1,5 @@
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import 'bower_components/foundation/scss/foundation/functions';
+@import './foundation/functions';
 
 // Grid gutter size - moved to top because we use these variables here
 $gutter-size: rem-calc(20);
