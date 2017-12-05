@@ -84,6 +84,7 @@ header {
   background-color: #272727;
   text-shadow: #000;
 }
+.widget-global-date,
 .widget-global-total,
 .global-chart {
   padding: 0 20px;
@@ -91,8 +92,14 @@ header {
   border-left-width: 3px;
   border-left-style: solid;
 }
+.widget-global-date .date,
 .widget-global-total .total {
   margin: -6px 0 -4px;
+}
+.widget-global-date .date {
+  font-size: 26px;
+}
+.widget-global-total .total {
   font-size: 33px;
 }
 .detail {
