@@ -39,12 +39,15 @@ class GlobalStats extends Component {
   }
   render() {
     const {commits} = this.props;
+    // api/key/impact/max
     const impactCommitMax = arrayMaxMin(
       arrayByKey(commits, 'impact'), 'max'
     );
+    // api/key/impact/min
     const impactCommitMin = arrayMaxMin(
       arrayByKey(commits, 'impact'), 'min'
     );
+    // api/key/files_changed/min
     const filesChangedMax = arrayMaxMin(
       arrayByKey(commits, 'files_changed'), 'max'
     );
