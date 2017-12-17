@@ -7,9 +7,10 @@ export class GlobalTotal extends Component {
   }
   render() {
     const {color, total, detail} = this.props;
+    const result = parseFloat(total.toFixed(0)).toLocaleString('en');
     return (
       <div className={this.dynaClass()} style={{borderLeftColor: color}}>
-        <h3 className="total">{total}</h3>
+        <h3 className="total">{result}</h3>
         <p className="detail">{detail}</p>
       </div>
     );
