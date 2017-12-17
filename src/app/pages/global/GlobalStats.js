@@ -152,36 +152,43 @@ class GlobalStats extends Component {
             total={this.props.stats.commits / daysActive}
             detail="Commits per day"
             color="lime"
+            decimals
           />
           <GlobalTotal
             total={lines / daysActive}
             detail="Lines of code per day"
             color="pink"
+            decimals
           />
           <GlobalTotal
             total={commitsPerContributor}
             detail="Commits per contributor"
             color="maroon"
+            decimals
           />
           <GlobalTotal
             total={lines / contributors}
             detail="Code Weight (Lines of code per contributor)"
             color="pink"
+            decimals
           />
           <GlobalTotal
             total={this.props.stats.commits / repositories}
             detail="Commits per repository"
             color="pink"
+            decimals
           />
           <GlobalTotal
             total={contributors / repositories}
             detail="Contributors per repository"
             color="pink"
+            decimals
           />
           <GlobalTotal
             total={lines / repositories}
             detail="Lines of code per repository"
             color="pink"
+            decimals
           />
           <GlobalTotal
             total={commitsOnWeekend}
@@ -197,6 +204,7 @@ class GlobalStats extends Component {
             total={staleness}
             detail="Overall staleness"
             color="teal"
+            decimals
           />
         </div>
         <ChartCommitsByHour commits={commits}/>
