@@ -66,7 +66,7 @@ class GlobalStats extends Component {
       daysSinceFirstCommit,
       daysSinceLastCommit,
       staleness,
-      commitsPerDay,
+      // commitsPerDay,
       commitsPerContributor
     } = this.props.stats;
     return (
@@ -113,13 +113,28 @@ class GlobalStats extends Component {
             color="red"
           />
           <GlobalTotal
-            total={commitsOnWeekend}
-            detail="Commits on weekends"
+            total={daysActive}
+            detail="Active Days (Days between first and last commits)"
+            color="orange"
+          />
+          <GlobalTotal
+            total={daysSinceFirstCommit}
+            detail="Days since first commit"
             color="gold"
           />
           <GlobalTotal
-            total={filesChangedMax}
-            detail="Max. number of files changed on a single commit"
+            total={daysSinceLastCommit}
+            detail="Days since last commit"
+            color="purple"
+          />
+          <GlobalDate
+            date={commitDateFirst}
+            detail="Date of first commit"
+            color="cyan"
+          />
+          <GlobalDate
+            date={commitDateLast}
+            detail="Date of last commit"
             color="magenta"
           />
           <GlobalTotal
@@ -133,44 +148,55 @@ class GlobalStats extends Component {
             color="lime"
           />
           <GlobalTotal
-            total={daysActive}
-            detail="Number of days between first and last commits"
-            color="orange"
-          />
-          <GlobalDate
-            date={commitDateFirst}
-            detail="Date of first commit"
-            color="cyan"
-          />
-          <GlobalDate
-            date={commitDateLast}
-            detail="Date of last commit"
-            color="magenta"
+            // total={commitsPerDay} // <= wrong, must be corrected or removed at API's end
+            total={this.props.stats.commits / daysActive}
+            detail="Commits per day"
+            color="lime"
           />
           <GlobalTotal
-            total={daysSinceFirstCommit}
-            detail="Days since first commit"
+            total={lines / daysActive}
+            detail="Lines of code per day"
+            color="pink"
+          />
+          <GlobalTotal
+            total={commitsPerContributor}
+            detail="Commits per contributor"
+            color="maroon"
+          />
+          <GlobalTotal
+            total={lines / contributors}
+            detail="Code Weight (Lines of code per contributor)"
+            color="pink"
+          />
+          <GlobalTotal
+            total={this.props.stats.commits / repositories}
+            detail="Commits per repository"
+            color="pink"
+          />
+          <GlobalTotal
+            total={contributors / repositories}
+            detail="Contributors per repository"
+            color="pink"
+          />
+          <GlobalTotal
+            total={lines / repositories}
+            detail="Lines of code per repository"
+            color="pink"
+          />
+          <GlobalTotal
+            total={commitsOnWeekend}
+            detail="Commits on weekends"
             color="gold"
           />
           <GlobalTotal
-            total={daysSinceLastCommit}
-            detail="Days since last commit"
-            color="purple"
+            total={filesChangedMax}
+            detail="Max. number of files changed on a single commit"
+            color="magenta"
           />
           <GlobalTotal
             total={staleness}
             detail="Overall staleness"
             color="teal"
-          />
-          <GlobalTotal
-            total={commitsPerDay}
-            detail="Average commits per day"
-            color="lime"
-          />
-          <GlobalTotal
-            total={commitsPerContributor}
-            detail="Average commits per contributor"
-            color="maroon"
           />
         </div>
         <ChartCommitsByHour commits={commits}/>
@@ -208,7 +234,7 @@ GlobalStats.propTypes = {
   daysSinceFirstCommit: PropTypes.string,
   daysSinceLastCommit: PropTypes.string,
   staleness: PropTypes.string,
-  commitsPerDay: PropTypes.string,
+  // commitsPerDay: PropTypes.string,
   commitsPerContributor: PropTypes.string
 };
 
