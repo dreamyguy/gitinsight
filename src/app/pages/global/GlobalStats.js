@@ -66,7 +66,6 @@ class GlobalStats extends Component {
       daysSinceFirstCommit,
       daysSinceLastCommit,
       staleness,
-      // commitsPerDay,
       commitsPerContributor
     } = this.props.stats;
     return (
@@ -148,7 +147,6 @@ class GlobalStats extends Component {
             color="lime"
           />
           <GlobalTotal
-            // total={commitsPerDay} // <= wrong, must be corrected or removed at API's end
             total={this.props.stats.commits / daysActive}
             detail="Commits per day"
             color="lime"
@@ -242,7 +240,6 @@ GlobalStats.propTypes = {
   daysSinceFirstCommit: PropTypes.string,
   daysSinceLastCommit: PropTypes.string,
   staleness: PropTypes.string,
-  // commitsPerDay: PropTypes.string,
   commitsPerContributor: PropTypes.string
 };
 
