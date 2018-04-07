@@ -7,7 +7,7 @@ import {
   arrayByKey,
   arrayMaxMin,
   arrayYearChanges
-} from '../helpers/oxo';
+} from '../helpers/lib';
 
 export class ChartImpact extends Component {
   render() {

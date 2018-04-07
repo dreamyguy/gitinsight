@@ -7,7 +7,7 @@ import {
   arrayByKey,
   groupByDuplicatesInArray,
   itemsSum
-} from '../helpers/oxo';
+} from '../helpers/lib';
 import '../pages/global/Home.scss';
 
 export class TotalNrContributors extends Component {

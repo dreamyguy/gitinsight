@@ -22,7 +22,7 @@ import {ChartNrFilesChanged} from '../../charts/ChartNrFilesChanged';
 import {
   arrayByKey,
   arrayMaxMin
-} from '../../helpers/oxo';
+} from '../../helpers/lib';
 
 class GlobalStats extends Component {
   componentWillMount() {

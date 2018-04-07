@@ -8,7 +8,7 @@ import {
   arrayYearChanges,
   sumArray,
   totalSum
-} from '../helpers/oxo';
+} from '../helpers/lib';
 
 export class ChartCumulativeLinesOfCode extends Component {
   render() {

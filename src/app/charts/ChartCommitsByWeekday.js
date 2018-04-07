@@ -10,7 +10,7 @@ import {
   itemsValuesSum,
   sorterWeekday,
   sortObjByKeyWithSorter
-} from '../helpers/oxo';
+} from '../helpers/lib';
 
 export class ChartCommitsByWeekday extends Component {
   render() {

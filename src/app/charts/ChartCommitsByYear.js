@@ -9,7 +9,7 @@ import {
   groupByTime,
   itemsValuesSum,
   sortObjByKey
-} from '../helpers/oxo';
+} from '../helpers/lib';
 
 export class ChartCommitsByYear extends Component {
   render() {

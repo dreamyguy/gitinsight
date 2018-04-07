@@ -25,7 +25,7 @@ import {
   sortObjByKeyWithSorter,
   sumArray,
   totalSum
-} from '../../helpers/oxo';
+} from '../../helpers/lib';
 import './Home.scss';
 
 class Home extends Component {

@@ -10,7 +10,7 @@ import {
   itemsValuesSum,
   sorterMonthName,
   sortObjByKeyWithSorter
-} from '../helpers/oxo';
+} from '../helpers/lib';
 
 export class ChartCommitsByMonth extends Component {
   render() {
