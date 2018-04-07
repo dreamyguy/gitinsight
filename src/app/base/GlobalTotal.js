@@ -6,6 +6,9 @@ export class GlobalTotal extends Component {
     return 'widget widget-' + this.props.widgetClass + ' flexy-item open-sans-light';
   }
   renderResult(total, decimals) {
+    if (total === 0) {
+      return <h3 className="total">0</h3>;
+    }
     if (!total) {
       return <h3 className="total">Laster...</h3>;
     }

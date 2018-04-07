@@ -7,9 +7,7 @@
 @import 'app/shared/sass/main-x';
 
 html,
-body,
-#root,
-.site {
+.h-100pc {
   margin: 0;
   height: 100%;
 }
@@ -17,4 +15,16 @@ html,
 body,
 #root {
   overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 30px 30px 30px 110px;
+  &.light {
+    background-color: #F4F4F4;
+    color: #4B5159;
+  }
+  &.dark {
+    background-color: #1e1e1e;
+    color: #bababa;
+  }
 }

@@ -26,32 +26,36 @@ import {
 
 class GlobalStats extends Component {
   componentWillMount() {
-    const {commits} = this.props;
-    // When accessing the page directly for the first time, the 'commits' & 'stats'
-    // arrays are defined, but empty. In those cases we should fetch the data. This
-    // check also prevents a new fetch in case they already are defined and have data.
-    if (typeof commits !== 'undefined' && commits !== null && commits.length === 0) {
-      this.props.dispatch(fetchCommits());
+    const {commits, stats, dispatch} = this.props;
+    // -- These checks prevent new fetches in case data has already been fetched to state. -- //
+    // When accessing the page directly for the first time, 'commits' is defined,
+    // but equals 'null'. In this case We should fetch the data.
+    if (stats.commits === null) {
+      dispatch(fetchGlobalStats());
     }
-    // if (typeof stats.commits !== 'undefined' && stats.commits !== null && stats.commits.length === 0) {
-    this.props.dispatch(fetchGlobalStats());
-    // }
+    // When accessing the page directly for the first time, 'commits' is defined,
+    // but empty. In this case We should fetch the data.
+    // (Check if array is empty)
+    if (typeof commits !== 'undefined' && commits !== null && commits.length === 0) {
+      dispatch(fetchCommits());
+    }
   }
   render() {
-    const {commits} = this.props;
-    // api/key/impact/max
+    const {commits, stats} = this.props;
+    // @todo: api/key/impact/max
     const impactCommitMax = arrayMaxMin(
       arrayByKey(commits, 'impact'), 'max'
     );
-    // api/key/impact/min
+    // @todo: api/key/impact/min
     const impactCommitMin = arrayMaxMin(
       arrayByKey(commits, 'impact'), 'min'
     );
-    // api/key/files_changed/min
+    // @todo: api/key/files_changed/min
     const filesChangedMax = arrayMaxMin(
       arrayByKey(commits, 'files_changed'), 'max'
     );
     const {
+      // 'commits' here  is accesseded direcly since the name crashes with another prop
       contributors,
       repositories,
       lines,
@@ -69,10 +73,10 @@ class GlobalStats extends Component {
       commitsPerContributor
     } = this.props.stats;
     return (
-      <div className="wrapper light">
+      <div className="wrapper">
         <div className="flexy">
           <GlobalTotal
-            total={this.props.stats.commits}
+            total={stats.commits}
             detail="Commits"
             color="green"
           />
@@ -137,17 +141,7 @@ class GlobalStats extends Component {
             color="magenta"
           />
           <GlobalTotal
-            total={impactCommitMax}
-            detail="Commit with highest Impact"
-            color="maroon"
-          />
-          <GlobalTotal
-            total={impactCommitMin}
-            detail="Commit with lowest Impact"
-            color="lime"
-          />
-          <GlobalTotal
-            total={this.props.stats.commits / daysActive}
+            total={stats.commits / daysActive}
             detail="Commits per day"
             color="lime"
             decimals
@@ -171,7 +165,7 @@ class GlobalStats extends Component {
             decimals
           />
           <GlobalTotal
-            total={this.props.stats.commits / repositories}
+            total={stats.commits / repositories}
             detail="Commits per repository"
             color="pink"
             decimals
@@ -194,15 +188,25 @@ class GlobalStats extends Component {
             color="gold"
           />
           <GlobalTotal
-            total={filesChangedMax}
-            detail="Max. number of files changed on a single commit"
-            color="magenta"
-          />
-          <GlobalTotal
             total={staleness}
             detail="Overall staleness"
             color="teal"
             decimals
+            />
+          <GlobalTotal
+            total={impactCommitMax}
+            detail="Commit with highest Impact"
+            color="maroon"
+          />
+          <GlobalTotal
+            total={impactCommitMin}
+            detail="Commit with lowest Impact"
+            color="lime"
+          />
+          <GlobalTotal
+            total={filesChangedMax}
+            detail="Max. number of files changed on a single commit"
+            color="magenta"
           />
         </div>
         <ChartCommitsByHour commits={commits}/>
@@ -223,9 +227,9 @@ class GlobalStats extends Component {
 }
 
 GlobalStats.propTypes = {
-  commits: PropTypes.array,
   dispatch: PropTypes.func,
   stats: PropTypes.object,
+  commits: PropTypes.array,
   contributors: PropTypes.string,
   repositories: PropTypes.string,
   lines: PropTypes.string,
