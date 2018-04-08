@@ -42,9 +42,9 @@ Free to use it AS IS as long as you stick to the [MIT license](LICENSE).
   * Use of an API as data source (through [gitlogg-api](https://github.com/dreamyguy/gitlogg-api)) instead of accessing local data, which was costly and not scalable.
   * Unit testing
   * Travis CI
-* 2016-06-02   [v1.0.3](https://github.com/dreamyguy/gitinsight/tree/v1.0.3) - [View Changes](https://github.com/dreamyguy/gitinsight/compare/v1.0.2...v1.0.3)
+* 2016-06-02   [v1.0.3](https://github.com/dreamyguy/gitinsight/tree/v1.0.3) - [View Changes](https://github.com/dreamyguy/gitinsight/compare/gitinsight-1.0.2...v1.0.3)
   * Significant changes in every aspect, laying the ground for the React stack
-* 2015-11-30   [v1.0.2](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.2) - [View Changes](https://github.com/dreamyguy/gitinsight/compare/v1.0.1...v1.0.2)
+* 2015-11-30   [v1.0.2](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.2) - [View Changes](https://github.com/dreamyguy/gitinsight/compare/gitinsight-1.0.1...gitinsight-1.0.2)
   * The first visualisation, based on local data
 * 2015-11-30   [v1.0.1](https://github.com/dreamyguy/gitinsight/tree/gitinsight-1.0.1)
   * Bare minimal Gulp setup, no functionality yet
