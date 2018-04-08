@@ -2,6 +2,8 @@
 
 > Visualise your git log in new and exciting ways!. Free to use according to [MIT license](LICENSE).
 
+[![Build Status](https://travis-ci.org/dreamyguy/gitinsight.svg?branch=react2017)](https://travis-ci.org/dreamyguy/gitinsight) [![MIT Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dreamyguy/gitinsight/blob/master/LICENSE)
+
 This project is a natural sequel to [Gitlogg][6], a project that parses the `git log` of multiple repositories into `JSON`. The idea is to help organizations visualize their data in ways that help them understand what lies behind their codebase.
 
 **Note**: The React implementation is under development!
