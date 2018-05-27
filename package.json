@@ -101,6 +101,7 @@
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
+    "testTravis": "jest",
     "test": "jest --verbose --watch"
   },
   "eslintConfig": {
