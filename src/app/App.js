@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export class Layout extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="layout h-100pc">
@@ -15,6 +15,6 @@ export class Layout extends Component {
   }
 }
 
-Layout.propTypes = {
+App.propTypes = {
   children: PropTypes.object.isRequired
 };
