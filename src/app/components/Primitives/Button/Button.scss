@@ -1,0 +1,124 @@
+@import './../../../../../node_modules/bootstrap-4-grid/scss/grid.scss';
+@import './../../../shared/sass/2_base/variables';
+@import './../../../shared/sass/2_base/fonts';
+
+.button {
+  font-size: 18px; // this is crucial to give 'input' and 'button' the right size
+  display: block;
+  border: 2px solid $clv-primary;
+  height: 42px;
+  padding: 0;
+  text-decoration: none;
+  cursor: pointer; // important for <button/> input type
+  margin: 0 1em 5px 0;
+  @extend .font-opensans-regular;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:disabled{
+    color:lightgrey;
+    border-color:lightgrey;
+    background: none !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+  }
+  &__icon{
+    font-size: 0.7em;
+    padding-left: 15px;
+  }
+  &--primary,
+  &--download,
+  &--submit {
+    // padding: 0.5em 0.95em 0.5em 0.85em;
+    &:hover,
+    &:active {
+      background-color: $cl-silver;
+    }
+  }
+  &--primary,
+  &--download {
+    // arrow comes after!
+    .after {
+      position: relative;
+      display: inline-block;
+      top: 1px;
+      margin-left: 6px;
+    }
+  }
+  &--primary {
+    .after {
+      top: 3px;
+      width: 18px;
+      height: 17px;
+      // background: url('../images/arrow.svg') 0 0 no-repeat;
+    }
+  }
+  &--download {
+    .after {
+      top: 3px;
+      width: 15px;
+      height: 18px;
+      // background: url('../images/arrow-down.svg') 0 0 no-repeat;
+    }
+  }
+  &--secondary,
+  &--download-secondary {
+    padding: 0; // important for <button/> input type
+    background-color: transparent; // important for <button/> input type
+    transition: color $transition-time ease;
+    &:hover {
+      color: $cl-dark-gray-lighter !important;
+    }
+    // arrow comes before!
+    .before {
+      position: relative;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .txt {
+      border-bottom: 2px solid $cl-dark-gray-lighter;
+    }
+  }
+  &--secondary {
+    .before {
+      top: 2px;
+      width: 18px;
+      height: 17px;
+      // background: url('../images/arrow-cl-blue.svg') 0 0 no-repeat;
+    }
+  }
+  &--download-secondary {
+    .before {
+      top: 7px;
+      width: 15px;
+      height: 18px;
+      // background: url('../images/arrow-down-blue.svg') 0 0 no-repeat;
+    }
+  }
+  // Removes the focus ring around an element when a mouse input is detected.
+  [data-whatinput='mouse'] & {
+    outline: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &--secondary {
+      margin-right: 0;
+    }
+  }
+}

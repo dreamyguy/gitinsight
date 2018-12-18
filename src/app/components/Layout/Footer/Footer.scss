@@ -1,0 +1,17 @@
+@import './../../../shared/sass/2_base/variables';
+
+.footer {
+  position: relative;
+  padding: 0 0 75px 0;
+  background-color: $clv-footer;
+  overflow: auto;
+  * {
+    color: $cl-white;
+  }
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $cl-white;
+  }
+}

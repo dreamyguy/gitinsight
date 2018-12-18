@@ -1,0 +1,200 @@
+@import "variables";
+
+// ~ Margin & padding helper ~
+// See https://gist.github.com/dreamyguy/2fc16be42a01f21527c5a12bbb662f08
+// Usage:
+// Margin classes .m-[t|r|b|l]-[value]: margin-top [value]rem with px fallback.
+// Padding classes .p-[t|r|b|l][value]: padding-top [value]rem with px fallback.
+
+$sides: (top, bottom, left, right);
+$space-values: (5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+
+@each $side in $sides {
+  @for $i from 1 through length($space-values) {
+
+    .m-#{str-slice($side, 0, 1)}-#{nth($space-values, $i)} {
+      margin-#{$side}: #{nth($space-values, $i)}px;
+      margin-#{$side}: rem-calc(nth($space-values, $i), $base-font-size);
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{nth($space-values, $i)} {
+      padding-#{$side}: #{nth($space-values, $i)}px;
+      padding-#{$side}: rem-calc(nth($space-values, $i), $base-font-size);
+    }
+
+    // Temporarily visualise margins
+    // [class$='m-#{str-slice($side, 0, 1)}-#{nth($space-values, $i)}'] {
+    //   position: relative;
+    //   &::before {
+    //     position: absolute;
+    //     content: attr(class);
+    //     position: absolute;
+    //     font-size: 12px;;
+    //     z-index: 4;
+    //     @if $side == top {
+    //       color: green;
+    //       background-color: rgba(199, 238, 0, 0.18);
+    //       $result: rem-calc(nth($space-values, $i), $base-font-size);
+    //       #{$side}: -$result;
+    //       left: 0;
+    //       text-align: right;
+    //       height: rem-calc(nth($space-values, $i), $base-font-size);
+    //       width: 100%;
+    //     } @else if $side == bottom {
+    //       color: rgb(140, 91, 0);
+    //       background-color: rgba(238, 143, 0, 0.331);
+    //       $result: rem-calc(nth($space-values, $i), $base-font-size);
+    //       #{$side}: -$result;
+    //       left: 0;
+    //       text-align: right;
+    //       height: rem-calc(nth($space-values, $i), $base-font-size);
+    //       width: 100%;
+    //     } @else {
+    //       color: rgb(0, 128, 109);
+    //       background-color: rgba(0, 128, 109, 0.351);
+    //       #{$side}: 0;
+    //       height: 100%;
+    //       width: rem-calc(nth($space-values, $i), $base-font-size);
+    //     }
+    //   }
+    // }
+
+  }
+
+  // ~ Gutter helper ~
+  .gutter-#{nth($side, 1)} {
+    margin-#{nth($side, 1)}: $gutter-size;
+  }
+  .gutter-#{nth($side, 1)}-half {
+    margin-#{nth($side, 1)}: $gutter-size/2;
+  }
+  .gutter-#{nth($side, 1)}-double {
+    margin-#{nth($side, 1)}: $gutter-size*2;
+  }
+
+  // ~ No margin helper ~
+  .no-margin-#{nth($side, 1)} {
+    margin-#{nth($side, 1)}: 0;
+  }
+}
+
+.parent {
+  position: relative; // this is required to avoid unwanted absolute positioning behavior
+  .absolute-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+  &.row{
+    .absolute-top-right {
+      right: $gutter-size;
+    }
+  }
+}
+
+.heading-two {
+    line-height: 28px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    @media (max-width: 767px) { font-size: 24px; }
+}
+.heading-three {
+    margin-bottom: 10px;
+    font-size: 24px;
+    @media (max-width: 767px) { font-size: 20px; }
+}
+.heading-four {
+    margin-bottom: 8px;
+    font-size: 20px;
+    @media (max-width: 767px) { font-size: 18px; }
+}
+.heading-five {
+    margin-bottom: 8px;
+    font-size: 18px;
+    @media (max-width: 767px) { font-size: 16px; }
+}
+.heading-six {
+    margin-bottom: 6px;
+    font-size: 16px;
+    @media (max-width: 767px) { font-size: 14px; }
+}
+.rounded {
+    border-radius: 100%;
+}
+.pos-absolute {
+    position: absolute;
+}
+.pos-relative {
+    position: relative;
+}
+.pos-bottom {
+    position: fixed;
+    bottom: 0;
+}
+.pos-bottom-block { // for tricky elements like 'ul'
+    position: fixed;
+    bottom: 0;
+    display: block;
+    width: 100%;
+}
+.last-right {
+    margin-right: 0 !important;
+}
+.last-left {
+    margin-left: 0 !important;
+}
+.last-bottom {
+    margin-bottom: 0 !important;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.no-decor {
+    text-decoration: none;
+}
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+.centered {
+    margin: 0 auto;
+}
+.centered-text {
+  text-align: center;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.clickable {
+  cursor: pointer;
+}
+.line-top {
+  border-top: 1px solid $cl-gray;
+}
+.line-bottom {
+  border-bottom: 1px solid $cl-gray;
+}
+.text-shadow-dark {
+    text-shadow: 0 1px 1px $cl-black;
+}
+.text-shadow-light {
+    text-shadow: 0 1px 1px $cl-white;
+}
+.no-margins {
+    margin: 0;
+}
+.monospace {
+    font-family: "Courier New", courier, sans-serif;
+    font-weight: lighter;
+    background-color: $cl-silver;
+    padding: 2px 4px;
+}

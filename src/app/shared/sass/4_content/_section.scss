@@ -1,0 +1,12 @@
+@import './../2_base/variables';
+
+.section {
+  overflow: auto;
+  position: relative;
+  p {
+    margin-bottom: 0;
+  }
+  &--alt {
+    background-color: $cl-silver;
+  }
+}

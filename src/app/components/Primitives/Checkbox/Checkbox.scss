@@ -1,0 +1,16 @@
+@import './../../../shared/sass/2_base/variables';
+
+.checkbox {
+  color: $cl-black;
+  &__input{
+    float: left;
+  }
+  &__label{
+    color: $cl-black;
+    font-size: 14px;
+    font-weight: 600;
+    float: left;
+
+  }
+
+}

@@ -1,0 +1,22 @@
+@import './../../../shared/sass/2_base/variables';
+
+.badge,
+.badge__wrapper {
+  display: flex;
+}
+.badge__wrapper {
+  justify-content: left;
+}
+.badge {
+  justify-content: center;
+  // These sizes / proportions take a longer text into consideration
+  border-radius: 15px;
+  padding: 5px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 1;
+  min-width: 24px;
+  // Default colors, can be overriden at the instance level
+  background-color: $cl-red;
+  color: $cl-white;
+}

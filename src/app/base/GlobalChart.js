@@ -4,7 +4,7 @@ import ChartistGraph from 'react-chartist';
 
 export class GlobalChart extends Component {
   dynaClass() {
-    return this.props.chartClass + ' open-sans-light';
+    return this.props.chartClass + ' font-opensans-light';
   }
   labelInterpolation(value, index) {
     return index % 2 === 0 ? value : null;

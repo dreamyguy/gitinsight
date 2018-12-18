@@ -1,0 +1,46 @@
+@import './../2_base/variables';
+
+html,
+.h-100pc {
+  margin: 0;
+  height: 100%;
+}
+html,
+body,
+#root {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  &.light {
+    background-color: $cl-light-bg;
+    color: $cl-light-fg;
+  }
+  &.dark {
+    background-color: $cl-dark-bg;
+    color: $cl-dark-fg;
+  }
+}
+.page,
+.page__frame {
+  height: 100%;
+}
+.page {
+  position: relative;
+  top: $header-min-height;
+  margin-left: $sidebar-width;
+  padding: 24px 22px 74px;
+}
+.page__frame {
+  border: 2px solid $cl-black;
+}
+
+// @TODO: were should this be?
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}

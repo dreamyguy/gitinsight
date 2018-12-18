@@ -1,0 +1,46 @@
+@import 'functions';
+
+// ------------------------------------
+// Breakpoints
+// ------------------------------------
+
+// PS: this mixin hasn't been used yet, and probably won't be.
+// We're importing the default grid breakpoint helpers on our
+// 'bootstrap-grid-settings' override
+$breakpoints: (
+  // Small screen / phone
+  sm: 576,
+  // Medium screen / tablet
+  md: 768,
+  // Large screen / desktop
+  lg: 980,
+  // Extra large screen / wide desktop
+  xl: 1276
+) !default;
+
+@mixin breakpoint($label, $max: null) {
+  @if map-has-key($breakpoints, $label) {
+    $width: map-get($breakpoints, $label);
+    @if $max != null {
+      @media (max-width: rem-calc($width)) {
+        @content;
+      }
+    } @else {
+      @media (min-width: rem-calc($width)) {
+        @content;
+      }
+    }
+  } @else if type-of($label) == 'number' {
+    @if $max != null {
+      @media screen and (max-width: rem-calc($label)) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: rem-calc($label)) {
+        @content;
+      }
+    }
+  } @else {
+    @warn '`#{$label} is not a valid key in `#{$breakpoints}`.';
+  }
+}

@@ -1,0 +1,533 @@
+@import './../2_base/variables';
+
+img {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    width: auto;
+  }
+}
+
+.img {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
+}
+
+// Image scaled by aspect ratio.
+// https://css-tricks.com/aspect-ratio-boxes/
+@mixin aspect-media($breakpoint) {
+
+  $small: "(max-width: 767px) and (min-width: 0px)";
+  $medium: "(max-width: 979px) and (min-width: 768px)";
+  $large: "(max-width: 1276px) and (min-width: 980px)";
+  $xlarge: "(min-width: 1280px)";
+
+  @if $breakpoint == sm {
+    @media #{$small} { @content; }
+  }
+  @else if $breakpoint == md {
+    @media #{$medium} { @content; }
+  }
+  @else if $breakpoint == lg {
+    @media #{$large} { @content; }
+  }
+  @else if $breakpoint == xl {
+    @media #{$xlarge} { @content; }
+  }
+}
+
+@mixin aspect-sm {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin aspect-md {
+  @media (min-width: 768px) and (max-width: 979px) {
+    @content;
+  }
+}
+
+@mixin aspect-lg {
+  @media (min-width: 980) and (max-width: 1276px) {
+    @content;
+  }
+}
+
+@mixin aspect-xl {
+  @media (min-width: 1277px) {
+    @content;
+  }
+}
+
+@mixin aspect-value($padding) {
+  height: auto !important;
+  min-height: auto !important;
+  padding-top: $padding;
+}
+
+.aspect {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: auto;
+  background-size: cover;
+
+  // Square
+  &__ratio-1-1 {
+    padding-top: 100%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(100%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(100%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(100%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(100%);
+      }
+    }
+  }
+
+  // Horizontal orientation
+  &__ratio-5-4 {
+    padding-top: 80%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(80%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(80%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(80%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(80%);
+      }
+    }
+  }
+
+  &__ratio-4-3 {
+    padding-top: 75%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(75%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(75%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(75%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(75%);
+      }
+    }
+  }
+
+  &__ratio-16-10 {
+    padding-top: 62.5%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(62.5%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(62.5%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(62.5%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(62.5%);
+      }
+    }
+  }
+
+  &__ratio-5-3 {
+    padding-top: 60%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(62%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(62%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(62%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(62%);
+      }
+    }
+  }
+
+  &__ratio-16-9 {
+    padding-top: 56.25%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(56.25%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(56.25%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(56.25%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(56.25%);
+      }
+    }
+  }
+
+  &__ratio-2-1 {
+    padding-top: 50%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(50%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(50%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(50%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(50%);
+      }
+    }
+  }
+
+  &__ratio-21-9 {
+    padding-top: 42.85714286%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(42.85714286%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(42.85714286%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(42.85714286%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(42.85714286%);
+      }
+    }
+  }
+
+  // 16:18:10
+  &__ratio-golden-horizontal {
+    padding-top: 61.80469716%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(61.80469716%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(61.80469716%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(61.80469716%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(61.80469716%);
+      }
+    }
+  }
+
+  // Vertical orientation
+  &__ratio-4-5 {
+    padding-top: 125%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(125%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(125%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(125%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(125%);
+      }
+    }
+  }
+
+  &__ratio-3-4 {
+    padding-top: 133.33333333%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(133.33333333%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(133.33333333%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(133.33333333%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(133.33333333%);
+      }
+    }
+  }
+
+  &__ratio-2-3 {
+    padding-top: 150%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(150%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(150%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(150%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(150%);
+      }
+    }
+  }
+
+  &__ratio-10-16 {
+    padding-top: 160%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(160%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(160%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(160%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(160%);
+      }
+    }
+  }
+
+  &__ratio-3-5 {
+    padding-top: 166.66666667%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(166.66666667%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(166.66666667%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(166.66666667%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(166.66666667%);
+      }
+    }
+  }
+
+  &__ratio-9-16 {
+    padding-top: 177.77777778%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(177.77777778%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(177.77777778%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(177.77777778%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(177.77777778%);
+      }
+    }
+  }
+
+  &__ratio-1-2 {
+    padding-top: 200%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(200%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(200%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(200%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(200%);
+      }
+    }
+  }
+
+  &__ratio-9-21 {
+    padding-top: 233.33333333%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(233.33333333%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(233.33333333%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(233.33333333%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(233.33333333%);
+      }
+    }
+  }
+
+  // 16:18:10
+  &__ratio-golden-vertical {
+    padding-top: 161.8%;
+
+    @include aspect-media(sm) {
+      &--sm {
+        @include aspect-value(161.8%);
+      }
+    }
+    @include aspect-media(md) {
+      &--md {
+        @include aspect-value(161.8%);
+      }
+    }
+    @include aspect-media(lg) {
+      &--lg {
+        @include aspect-value(161.8%);
+      }
+    }
+    @include aspect-media(xl) {
+      &--xl {
+        @include aspect-value(161.8%);
+      }
+    }
+  }
+}

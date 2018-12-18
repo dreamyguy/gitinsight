@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export class GlobalDate extends Component {
   dynaClass() {
-    return 'widget widget-' + this.props.widgetClass + ' flexy-item open-sans-light';
+    return 'widget widget-' + this.props.widgetClass + ' flexy-item font-opensans-light';
   }
   render() {
     const {color, date, detail} = this.props;

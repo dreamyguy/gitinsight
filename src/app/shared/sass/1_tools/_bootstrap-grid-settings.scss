@@ -1,0 +1,80 @@
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 980px,
+  // Extra large screen / wide desktop
+  xl: 1276px
+) !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 980px,
+  // Extra large screen / wide desktop
+  xl: 1276px
+) !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 40px !default;
+
+// We don't want padding on our setup at this width
+// 1276 (xl) + 20 + 20 ('container' padding left + right)
+@media (min-width: 1332px) {
+  .container {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+// See https://getbootstrap.com/docs/4.0/layout/grid/#example-usage
+// for details on how to use breakpoints, like so:
+//
+// .className {
+//   @include media-breakpoint-up(sm) {
+//     // do your thing
+//   }
+// }
+@import './../../../../../node_modules/bootstrap-4-grid/scss/breakpoints/mixins/breakpoints';
+
+// Make all the stack-able columns responsive on mobile
+.col-md-6 {
+  @include media-breakpoint-between(sm, md) {
+    margin-top: $grid-gutter-width;
+    &:nth-of-type(1),
+    &:nth-of-type(2) {
+      margin-top: 0;
+    }
+  }
+}
+
+// .col-12 needs to have priority over .col-6 for correct margins.
+.col-md-6.col-12,
+.col-12 {
+  @include media-breakpoint-between(xs, sm) {
+    margin-top: $grid-gutter-width;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

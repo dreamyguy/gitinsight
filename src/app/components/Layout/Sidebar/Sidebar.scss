@@ -1,0 +1,58 @@
+@import './../../../shared/sass/2_base/variables';
+
+$margin-bottom: 24px;
+
+.sidebar {
+  &__wrapper {
+    position: fixed;
+    left: 0px;
+    top: $header-min-height;
+    bottom: 0px;
+    width: $sidebar-width;
+    height: auto;
+  }
+  min-height: 100vh;
+  background-color: $cl-dark-gray-light;
+  color: $cl-white;
+  &__section {
+    border-bottom: 1px solid $cl-dark-gray-lighter;
+    padding: $gutter-size * 1.6;
+  }
+  h4 {
+    color: $cl-silver;
+    font-size: 18px;
+    margin: 0 0 $margin-bottom 0;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+    margin-bottom: $margin-bottom;
+    font-size: 19px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .icon {
+    color: $cl-white;
+    min-width: 24px;
+    text-align: center;
+    margin-right: $gutter-size / 1.2;
+  }
+  .badge {
+    margin-left: $gutter-size / 1.2;
+  }
+  .flex-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Catalog overrides
+#catalog {
+  .sidebar {
+    min-height: auto;
+  }
+}

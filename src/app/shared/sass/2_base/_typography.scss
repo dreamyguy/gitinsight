@@ -1,0 +1,213 @@
+@import 'variables';
+@import 'fonts';
+
+html,
+body,
+#root {
+  font-size: 16px;
+  line-height: $line-height;
+}
+h1, h2, h3 {
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  color: $cl-gray;
+  max-width: 700px;
+  a {
+    color: $cl-gray;
+    &:hover {
+      color: $cl-gray;
+      text-decoration: underline;
+    }
+  }
+}
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  @extend .font-opensans-bold;
+  .widget & {
+    @extend .font-opensans-light;
+  }
+}
+h1, .h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin: 0 0 $gutter-size 0;
+  @include breakpoint(sm) {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 34px;
+    margin: 0 0 $gutter-size 0;
+  }
+}
+h2, .h2 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  @include breakpoint(sm) {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+h3, .h3 {
+  font-size: 22px;
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  @include breakpoint(sm) {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+h4, .h4 {
+  // font-family: 'BrownProBold';
+  font-size: 18px;
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  @include breakpoint(sm) {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+}
+h1.title--404 {
+  font-size: 100px;
+  margin: 50px 0 0 0;
+  line-height: 1;
+  color: $cl-red;
+}
+.ingress--404 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1;
+}
+ul.no-bullet {
+  margin-top: 0;
+  padding-left: 0;
+  li {
+    list-style: none;
+  }
+}
+li {
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 0;
+}
+hr {
+  margin: $gutter-size 0;
+}
+p {
+  color: rgba(0, 0, 0, .85);
+  margin: 0 0 $gutter-size 0;
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 700px;
+  line-height: 1.6;
+}
+p.clause-indent {
+  text-indent: 35px;
+}
+p.footnote {
+  font-size: 14px;
+  color: $cl-dark-gray-dark;
+  margin-top: $gutter-size;
+}
+.image-text p {
+  margin-top: -10px;
+  font-size: 14px;
+  color: $cl-dark-gray-dark;
+}
+b, strong {
+  // font-family: 'BrownProBold';
+}
+a {
+  color: $cl-orange;
+  // font-family: 'BrownProBold';
+  text-decoration: underline;
+  &:hover {
+    color: $cl-fav-orange-dark;
+    text-decoration: underline;
+  }
+}
+blockquote {
+  font-size: 22px;
+  line-height: 1.4;
+  position: relative;
+  margin: $gutter-size * 2 0;
+  border: 0;
+  color: $cl-black;
+  font-weight: 300;
+  font-style: italic;
+  max-width: 700px;
+  &:before {
+    font-family: 'FontAwesome';
+    content: '\f10d';
+    font-size: 22px;
+    color: $cl-black;
+    font-size: 200;
+    margin-right: 10px;
+  }
+  &:after {
+    content: '';
+    background: $cl-gray;
+    position: absolute;
+    z-index: -1;
+    left: -1000px;
+    right: -1000px;
+    top: -$gutter-size;
+    bottom: -$gutter-size;
+  }
+  @include breakpoint(sm) {
+    font-size: 16px;
+  }
+}
+
+// Page Specific styles
+
+.page--front {
+  h1, h2, h3 {
+    max-width: 100%;
+  }
+}
+
+// Content specific classes
+
+.ingress *,
+.ingress {
+  // font-family: 'BrownProBold';
+  font-size: 20px;
+  line-height: 1.4;
+  @include breakpoint(sm) {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+.page__body ul,
+.page__body ol {
+  max-width: 650px;
+  margin: 0 0 $gutter-size $gutter-size;
+  padding-left: $gutter-size;
+}
+.page__body p+ul,
+.page__body p+ol {
+  margin: -20px 0 $gutter-size $gutter-size;
+}
+.meta {
+  font-size: 13px;
+}
+
+// Modifier classes
+
+.tight {
+  margin: 5px 0;
+}
+.small {
+  font-size: 13px;
+}
+.upper {
+  text-transform: uppercase;
+}
+.border-bottom {
+  padding: 5px 0;
+  border-bottom: 2px solid $cl-green;
+}

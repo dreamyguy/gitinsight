@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class GlobalTotal extends Component {
   dynaClass() {
-    return 'widget widget-' + this.props.widgetClass + ' flexy-item open-sans-light';
+    return 'widget widget-' + this.props.widgetClass + ' flexy-item font-opensans-light';
   }
   renderResult(total, decimals) {
     if (total === 0) {

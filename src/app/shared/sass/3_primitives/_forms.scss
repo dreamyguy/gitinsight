@@ -1,0 +1,14 @@
+@import './../2_base/variables';
+
+.text-input,
+.DayPickerInput input {
+  background-color: $cl-silver;
+  color: $cl-gray;
+  font-weight: normal;
+  border: 0.5px solid $cl-gray;
+  width: 100%;
+  padding: 10px;
+}
+.text-area {
+  min-height: 80px;
+}

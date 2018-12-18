@@ -1,0 +1,35 @@
+@import "variables-colors";
+
+// Paths
+$path-fonts: "/static/fonts";
+
+// Fonts
+$base-font-size: 16px;
+$font-fallback: arial, sans-serif;
+
+// Units
+$gutter-size: 20px;
+$line-height: 1;
+$header-min-height: 80px;
+$sidebar-width: 250px;
+$transition-time: .2s;
+
+// Breakpoints
+$screen-xs: 425px;
+$screen-sm: 766px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+$screen-xl: 1520px;
+
+// Transition time
+$ts-time: .2s;
+
+// Off-page variable to make the common -9999px fix more maintainable
+$off-page: -9999px;
+
+// Grid
+// Check file '_bootstrap-grid-settings.scss'
+
+// Color variables
+$clv-footer: $cl-silver;
+$clv-primary: $cl-fav-purple-dark;

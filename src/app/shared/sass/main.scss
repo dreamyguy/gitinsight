@@ -1,0 +1,59 @@
+// this file compiles and concatenates all the CSS
+@charset"utf-8";
+
+@import '1_tools/functions';
+@import '1_tools/mixins';
+
+@import '2_base/variables';
+@import '2_base/fonts';
+
+html {
+  height: 100%;
+  font-size: $base-font-size;
+}
+
+// -------------------------------------------------------------------------- //
+// If we ever need to namespace styles (wrap it all in a class on the
+//  'html' tag, for instance), do it from this point on
+// -------------------------------------------------------------------------- //
+
+@import '1_tools/normalize';
+@import '1_tools/clearfix';
+@import '1_tools/bootstrap-grid-settings';
+
+@import '2_base/helpers';
+@import "2_base/colors";
+@import '2_base/typography';
+
+@import '3_primitives/buttons';
+@import '3_primitives/forms';
+@import '3_primitives/images';
+@import '3_primitives/svgs';
+
+@import '4_content/layout';
+@import '4_content/section';
+
+// Default bootstrap grid. This can be configured, maybe even replaced by another grid.
+@import './../../../../node_modules/bootstrap-4-grid/scss/grid';
+
+/* --------------------------------------------
+::::::: Import all components :::::::::::::::::
+----------------------------------------------- */
+
+@import './../../../app/components/Layout/Footer/Footer.scss';
+@import './../../../app/components/Layout/Header/Header.scss';
+@import './../../../app/components/Layout/Sidebar/Sidebar.scss';
+@import './../../../app/components/Primitives/Badge/Badge.scss';
+@import './../../../app/components/Primitives/Button/Button.scss';
+@import './../../../app/components/Primitives/Card/Card.scss';
+@import './../../../app/components/Primitives/Checkbox/Checkbox.scss';
+@import './../../../app/components/Primitives/Error/Error.scss';
+@import './../../../app/components/Primitives/Icon/Icon.scss';
+
+// to avoid warnings, variables should be imported into every file that needs it
+
+/* --------------------------------------------
+::::::: used for charts in chartist.js ::::::::
+----------------------------------------------- */
+
+@import '1_tools/chartist';

@@ -1,0 +1,167 @@
+@import './../2_base/variables';
+
+.button {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: none;
+  border-radius: 2px;
+  padding: 12px 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// epic - big green button with an arrow at its right end
+
+.button-epic {
+  width: 100%;
+  padding: 17px 11px 12px 15px;
+  background-color: rgba($cl-green, .4);
+  text-align: left;
+  transition: background-color $ts-time ease;
+  // Hard to simplify this as it should happen under the same hover event.
+  // 'transition' live under their respective selectors
+  &:hover {
+    background-color: rgba($cl-green, .6);
+    .button-epic-title {
+      opacity: 1;
+    }
+    .button-epic-arrow {
+      background-color: $cl-black;
+      .icon {
+        color: $cl-white;
+      }
+    }
+  }
+}
+.button-epic-grid {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.button-epic-grid-item {
+  margin-right: $gutter-size;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.button-epic-title {
+  flex: 1 1 100%;
+  font-size: 19px;
+  font-weight: bold;
+  opacity: 0.65;
+  transition: opacity $ts-time ease;
+}
+.button-epic-arrow {
+  flex: 0 0 30px;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: -2px;
+  border-radius: 50%;
+  background-color: $cl-white;
+  transition: background-color $ts-time ease;
+  .icon {
+    position: relative;
+    top: 5px;
+    left: -6px;
+    color: $cl-black;
+    transition: color $ts-time ease;
+    // @todo: eventually replace this with Font Awesome 'chevron-right'
+    transform: rotate(180deg);
+  }
+}
+
+// tron - orange button, a tad bigger than the default button
+
+.button-tron {
+  padding: 14px 40px;
+	border-radius: 4px;
+  background-color: $cl-orange;
+  transition: background-color $ts-time ease;
+  &:hover {
+    background-color: $cl-fav-orange-dark;
+    .button-tron-title {
+      color: $cl-white;
+    }
+  }
+}
+.button-tron-title {
+  font-size: 18px;
+  color: $cl-black;
+  transition: color $ts-time ease;
+}
+
+// nav - the button used on navigation (previous, next)
+// complete - a variation of 'nav' button
+
+.button-nav,
+.button-back,
+.button-login,
+.button-complete {
+	border-radius: 4px;
+}
+.button-nav,
+.button-complete {
+  padding: 10px 35px;
+  transition: background-color $ts-time ease;
+}
+.button-nav {
+  background-color: $cl-green;
+  &:hover {
+    background-color: darken($cl-green, 5%);
+  }
+}
+.button-complete {
+  background-color: $cl-orange;
+  &:hover {
+    background-color: darken($cl-orange, 5%);
+  }
+}
+.button-back,
+.button-login {
+  padding: 10px 0;
+}
+.button-nav-title,
+.button-back-title,
+.button-login-title,
+.button-complete-title {
+  color: $cl-black;
+}
+.button-nav-title,
+.button-complete-title {
+  font-size: 18px;
+}
+.button-back-title,
+.button-login-title {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+// This helps us establish if the user should 'dive' (go a level deeper into
+// the data structure) or if the user should just go to the next item in the
+// same level. 'ja' and 'nei' come directly from state, which is set according
+// to the chosen answer. We're only concerned with 'ja', which we use to
+// set navigation to 'dive' type. The 'next' type is the default navigation.
+
+.button {
+  &.dive {
+    display: none;
+  }
+  &.next {
+    display: block;
+  }
+}
+.dive-ja {
+  .button {
+    &.dive {
+      display: block;
+    }
+    &.next {
+      display: none;
+    }
+  }
+}
