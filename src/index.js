@@ -5,7 +5,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 
 import store from './app/redux/store/store';
-import {Layout} from './app/pages/Layout';
+import {App} from './app/App';
 import Home from './app/pages/global/Home';
 import StatsGlobal from './app/pages/global/StatsGlobal';
 import StatsRepo from './app/pages/global/StatsRepo';
@@ -15,7 +15,7 @@ import './index.scss';
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Layout}>
+      <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/stats-global" component={StatsGlobal}/>
         <Route path="/stats-repo/:repoName/" component={StatsRepo}/>

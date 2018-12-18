@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 // Import components
-import Header from './../components/Layout/Header/Header';
-import Sidebar from './../components/Layout/Sidebar/Sidebar';
-import Error from './../components/Primitives/Error/Error';
-export class Layout extends Component {
+import Header from './components/Layout/Header/Header';
+import Sidebar from './components/Layout/Sidebar/Sidebar';
+import Error from './components/Primitives/Error/Error';
+
+export class App extends Component {
   render() {
     return (
       <div className="site h-100pc">
@@ -30,6 +31,6 @@ export class Layout extends Component {
   }
 }
 
-Layout.propTypes = {
+App.propTypes = {
   children: PropTypes.object.isRequired
 };
