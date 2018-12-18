@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchCommits} from '../../redux/actions/actionsCommits';
-import {fetchStatsGlobal} from '../../redux/actions/actionsStats';
+import {fetchStatsContributors} from '../../redux/actions/actionsStats';
 import {GlobalTotal} from '../../base/GlobalTotal';
 import {GlobalDate} from '../../base/GlobalDate';
 import {
@@ -13,14 +13,14 @@ import {
 } from '../../helpers/lib';
 import './Home.scss';
 
-class Home extends Component {
+class StatsContributors extends Component {
   componentWillMount() {
     const {commits, stats, dispatch} = this.props;
     // -- These checks prevent new fetches in case data has already been fetched to state. -- //
     // When accessing the page directly for the first time, 'commits' is defined,
     // but equals 'null'. In this case We should fetch the data.
     if (stats.commits === null) {
-      dispatch(fetchStatsGlobal());
+      dispatch(fetchStatsContributors());
     }
     // When accessing the page directly for the first time, 'commits' is defined,
     // but empty. In this case We should fetch the data.
@@ -203,7 +203,7 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
+StatsContributors.propTypes = {
   dispatch: PropTypes.func,
   stats: PropTypes.object,
   commits: PropTypes.array,
@@ -227,6 +227,6 @@ Home.propTypes = {
 export default connect(store => {
   return {
     commits: store.commits.commits,
-    stats: store.statsGlobal.statsGlobal
+    stats: store.statsContributors.statsContributors
   };
-})(Home);
+})(StatsContributors);

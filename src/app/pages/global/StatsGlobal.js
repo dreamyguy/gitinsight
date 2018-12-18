@@ -7,13 +7,25 @@ import {fetchCommits} from '../../redux/actions/actionsCommits';
 import {fetchStatsGlobal} from '../../redux/actions/actionsStats';
 import {GlobalTotal} from '../../base/GlobalTotal';
 import {GlobalDate} from '../../base/GlobalDate';
+import {ChartCommitsByHour} from '../../charts/ChartCommitsByHour';
+import {ChartCommitsByMinute} from '../../charts/ChartCommitsByMinute';
+import {ChartCommitsBySecond} from '../../charts/ChartCommitsBySecond';
+import {ChartCommitsByTimezone} from '../../charts/ChartCommitsByTimezone';
+import {ChartCommitsByWeekday} from '../../charts/ChartCommitsByWeekday';
+import {ChartCommitsByDayInTheMonth} from '../../charts/ChartCommitsByDayInTheMonth';
+import {ChartCommitsByMonth} from '../../charts/ChartCommitsByMonth';
+import {ChartCommitsByYear} from '../../charts/ChartCommitsByYear';
+import {ChartCommitsByDay} from '../../charts/ChartCommitsByDay';
+import {ChartCumulativeLinesOfCode} from '../../charts/ChartCumulativeLinesOfCode';
+import {ChartImpact} from '../../charts/ChartImpact';
+import {ChartNrFilesChanged} from '../../charts/ChartNrFilesChanged';
 import {
   arrayByKey,
   arrayMaxMin
 } from '../../helpers/lib';
 import './Home.scss';
 
-class Home extends Component {
+class StatsGlobal extends Component {
   componentWillMount() {
     const {commits, stats, dispatch} = this.props;
     // -- These checks prevent new fetches in case data has already been fetched to state. -- //
@@ -198,12 +210,24 @@ class Home extends Component {
             color="magenta"
           />
         </div>
+        <ChartCommitsByHour commits={commits}/>
+        <ChartCommitsByMinute commits={commits}/>
+        <ChartCommitsBySecond commits={commits}/>
+        <ChartCommitsByTimezone commits={commits}/>
+        <ChartCommitsByWeekday commits={commits}/>
+        <ChartCommitsByDayInTheMonth commits={commits}/>
+        <ChartCommitsByMonth commits={commits}/>
+        <ChartCommitsByYear commits={commits}/>
+        <ChartCommitsByDay commits={commits}/>
+        <ChartCumulativeLinesOfCode commits={commits}/>
+        <ChartImpact commits={commits}/>
+        <ChartNrFilesChanged commits={commits}/>
       </div>
     );
   }
 }
 
-Home.propTypes = {
+StatsGlobal.propTypes = {
   dispatch: PropTypes.func,
   stats: PropTypes.object,
   commits: PropTypes.array,
@@ -229,4 +253,4 @@ export default connect(store => {
     commits: store.commits.commits,
     stats: store.statsGlobal.statsGlobal
   };
-})(Home);
+})(StatsGlobal);

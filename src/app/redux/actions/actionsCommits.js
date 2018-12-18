@@ -18,3 +18,17 @@ export function fetchCommits() {
       });
   };
 }
+
+// An object with all commits for a single repo
+export function fetchCommitsForRepo(repo) {
+  return dispatch => {
+    dispatch({type: 'FETCH_COMMITS_FOR_REPO'});
+    axios.get(`${API_ROOT}/repository/${repo}`)
+      .then(response => {
+        dispatch({type: 'FETCH_COMMITS_FOR_REPO_FULFILLED', payload: response.data});
+      })
+      .catch(err => {
+        dispatch({type: 'FETCH_COMMITS_FOR_REPO_REJECTED', payload: err});
+      });
+  };
+}

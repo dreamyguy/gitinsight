@@ -3,8 +3,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchCommits} from '../../redux/actions/actionsCommits';
-import {fetchStatsGlobal} from '../../redux/actions/actionsStats';
+import {fetchCommitsToRepo} from '../../redux/actions/actionsCommits';
+// import {fetchStatsForRepo} from '../../redux/actions/actionsStats';
 import {GlobalTotal} from '../../base/GlobalTotal';
 import {GlobalDate} from '../../base/GlobalDate';
 import {
@@ -13,96 +13,75 @@ import {
 } from '../../helpers/lib';
 import './Home.scss';
 
-class Home extends Component {
+class StatsRepo extends Component {
   componentWillMount() {
-    const {commits, stats, dispatch} = this.props;
-    // -- These checks prevent new fetches in case data has already been fetched to state. -- //
-    // When accessing the page directly for the first time, 'commits' is defined,
-    // but equals 'null'. In this case We should fetch the data.
-    if (stats.commits === null) {
-      dispatch(fetchStatsGlobal());
-    }
+    // const {stats, dispatch, repoCommits, match} = this.props;
+    const {dispatch, repoCommits, match} = this.props;
+    const {repoName} = match.params;
+    // // -- These checks prevent new fetches in case data has already been fetched to state. -- //
+    // // When accessing the page directly for the first time, 'commits' is defined,
+    // // but equals 'null'. In this case We should fetch the data.
+    // if (stats === null) {
+    //   dispatch(fetchStatsForRepo(repoName));
+    // }
     // When accessing the page directly for the first time, 'commits' is defined,
     // but empty. In this case We should fetch the data.
     // (Check if array is empty)
-    if (typeof commits !== 'undefined' && commits !== null && commits.length === 0) {
-      dispatch(fetchCommits());
+    if (typeof repoCommits !== 'undefined' && repoCommits !== null && repoCommits.length === 0) {
+      dispatch(fetchCommitsToRepo(repoName));
     }
   }
   render() {
-    const {commits, stats} = this.props;
+    const {repoCommits} = this.props;
     // @todo: api/key/impact/max
     const impactCommitMax = arrayMaxMin(
-      arrayByKey(commits, 'impact'), 'max'
+      arrayByKey(repoCommits, 'impact'), 'max'
     );
     // @todo: api/key/impact/min
     const impactCommitMin = arrayMaxMin(
-      arrayByKey(commits, 'impact'), 'min'
+      arrayByKey(repoCommits, 'impact'), 'min'
     );
     // @todo: api/key/files_changed/min
     const filesChangedMax = arrayMaxMin(
-      arrayByKey(commits, 'files_changed'), 'max'
+      arrayByKey(repoCommits, 'files_changed'), 'max'
     );
     const {
       // 'commits' here  is accesseded direcly since the name crashes with another prop
-      contributors,
-      repositories,
-      lines,
-      fileChanges,
-      commitsWithoutFileChanges,
-      commitsWithoutImpact,
-      commitsImpactGtThousand,
-      commitsOnWeekend,
+      repository,
+      commits,
+      impact,
+      impactRatio,
       daysActive,
       commitDateFirst,
       commitDateLast,
       daysSinceFirstCommit,
       daysSinceLastCommit,
       staleness,
-      commitsPerContributor
+      totalNrContributors
+      // commitsPerDay
     } = this.props.stats;
     return (
       <div className="wrapper">
         <div className="flexy">
           <GlobalTotal
-            total={stats.commits}
+            total={commits}
             detail="Commits"
             color="green"
           />
           <GlobalTotal
-            total={contributors}
-            detail="Contributors"
-            color="teal"
-          />
-          <GlobalTotal
-            total={repositories}
-            detail="Repositories"
+            total={repository}
+            detail="Repository"
             color="purple"
           />
           <GlobalTotal
-            total={lines}
+            total={impact}
             detail="Lines of Code"
             color="cyan"
           />
           <GlobalTotal
-            total={fileChanges}
+            total={impactRatio}
             detail="File Changes"
             color="orange"
-          />
-          <GlobalTotal
-            total={commitsWithoutFileChanges}
-            detail="Commits w/o File Changes"
-            color="violet"
-          />
-          <GlobalTotal
-            total={commitsWithoutImpact}
-            detail="Commits w/o Impact"
-            color="deepPink"
-          />
-          <GlobalTotal
-            total={commitsImpactGtThousand}
-            detail="Commits w/ Impact > 1000"
-            color="red"
           />
           <GlobalTotal
             total={daysActive}
@@ -130,58 +109,29 @@ class Home extends Component {
             color="magenta"
           />
           <GlobalTotal
-            total={stats.commits / daysActive}
+            total={commits / daysActive}
             detail="Commits per day"
             color="lime"
             decimals
           />
           <GlobalTotal
-            total={lines / daysActive}
+            total={impact / daysActive}
             detail="Lines of code per day"
             color="pink"
             decimals
           />
           <GlobalTotal
-            total={commitsPerContributor}
-            detail="Commits per contributor"
-            color="maroon"
-            decimals
-          />
-          <GlobalTotal
-            total={lines / contributors}
+            total={impact / totalNrContributors}
             detail="Code Weight (Lines of code per contributor)"
             color="pink"
             decimals
-          />
-          <GlobalTotal
-            total={stats.commits / repositories}
-            detail="Commits per repository"
-            color="pink"
-            decimals
-          />
-          <GlobalTotal
-            total={contributors / repositories}
-            detail="Contributors per repository"
-            color="pink"
-            decimals
-          />
-          <GlobalTotal
-            total={lines / repositories}
-            detail="Lines of code per repository"
-            color="pink"
-            decimals
-          />
-          <GlobalTotal
-            total={commitsOnWeekend}
-            detail="Commits on weekends"
-            color="gold"
           />
           <GlobalTotal
             total={staleness}
             detail="Overall staleness"
             color="teal"
             decimals
-            />
+          />
           <GlobalTotal
             total={impactCommitMax}
             detail="Commit with highest Impact"
@@ -203,25 +153,25 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
+StatsRepo.propTypes = {
   dispatch: PropTypes.func,
   stats: PropTypes.object,
-  commits: PropTypes.array,
-  contributors: PropTypes.string,
-  repositories: PropTypes.string,
-  lines: PropTypes.string,
-  fileChanges: PropTypes.string,
-  commitsWithoutFileChanges: PropTypes.string,
-  commitsWithoutImpact: PropTypes.string,
-  commitsImpactGtThousand: PropTypes.string,
-  commitsOnWeekend: PropTypes.string,
-  daysActive: PropTypes.string,
+  // repoName: PropTypes.string,
+  match: PropTypes.object,
+  repoCommits: PropTypes.object,
+  repository: PropTypes.string,
+  commits: PropTypes.number,
+  impact: PropTypes.number,
+  impactRatio: PropTypes.number,
+  daysActive: PropTypes.number,
+  // weekdays: PropTypes.object,
   commitDateFirst: PropTypes.string,
   commitDateLast: PropTypes.string,
-  daysSinceFirstCommit: PropTypes.string,
-  daysSinceLastCommit: PropTypes.string,
-  staleness: PropTypes.string,
-  commitsPerContributor: PropTypes.string
+  daysSinceFirstCommit: PropTypes.number,
+  daysSinceLastCommit: PropTypes.number,
+  staleness: PropTypes.number,
+  totalNrContributors: PropTypes.number
+  // commitsPerDay: PropTypes.object
 };
 
 export default connect(store => {
@@ -229,4 +179,4 @@ export default connect(store => {
     commits: store.commits.commits,
     stats: store.statsGlobal.statsGlobal
   };
-})(Home);
+})(StatsRepo);

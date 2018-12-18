@@ -1,5 +1,5 @@
 export default function reducer(state = {
-  stats: {
+  statsGlobal: {
     commits: null,
     contributors: null,
     repositories: null,
@@ -27,34 +27,34 @@ export default function reducer(state = {
     commitsPerDay: null,
     commitsPerContributor: null
   },
-  fetchingGlobalStats: false,
-  fetchedGlobalStats: false,
-  errorGlobalStats: null
+  fetchingStatsGlobal: false,
+  fetchedStatsGlobal: false,
+  errorStatsGlobal: null
 }, action) {
   switch (action.type) {
-    case 'FETCH_GLOBAL_STATS':
+    case 'FETCH_STATS_GLOBAL':
       {
         return {
           ...state,
-          fetchingGlobalStats: true
+          fetchingStatsGlobal: true
         };
       }
-    case 'FETCH_GLOBAL_STATS_REJECTED':
+    case 'FETCH_STATS_GLOBAL_REJECTED':
       {
         return {
           ...state,
-          fetchingGlobalStats: false,
-          errorGlobalStats: action.payload
+          fetchingStatsGlobal: false,
+          errorStatsGlobal: action.payload
         };
       }
-    case 'FETCH_GLOBAL_STATS_FULFILLED':
+    case 'FETCH_STATS_GLOBAL_FULFILLED':
       {
         return {
           ...state,
-          fetchingGlobalStats: false,
-          fetchedGlobalStats: true,
-          stats: {
-            ...state.stats,
+          fetchingStatsGlobal: false,
+          fetchedStatsGlobal: true,
+          statsGlobal: {
+            ...state.statsGlobal,
             commits: action.payload.commits,
             contributors: action.payload.contributors,
             repositories: action.payload.repositories,
@@ -65,7 +65,7 @@ export default function reducer(state = {
             commitsImpactGtThousand: action.payload.commitsImpactGtThousand,
             commitsOnWeekend: action.payload.commitsOnWeekend,
             weekdays: {
-              ...state.stats.weekdays,
+              ...state.statsGlobal.weekdays,
               Tue: action.payload.Tue,
               Wed: action.payload.Wed,
               Thu: action.payload.Thu,
