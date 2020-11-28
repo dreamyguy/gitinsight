@@ -1,0 +1,217 @@
+# type RepositoryName {
+#   repository: String
+# }
+# type CommitNr {
+#   commit_nr: Int
+# }
+# type CommitHash {
+#   commit_hash: String
+# }
+# type AuthorName {
+#   author_name: String
+# }
+# type Author {
+#   author_email: String
+# }
+# type Author {
+#   author_date: String
+# }
+# type RepositoryName {
+#   author_date_relative: String
+# }
+# type RepositoryName {
+#   author_date_unix_timestamp: String
+# }
+# type RepositoryName {
+#   author_date_iso_8601: String
+# }
+# type RepositoryName {
+#   subject: String
+# }
+# type RepositoryName {
+#   subject_sanitized: String
+# }
+# type RepositoryName {
+#   stats: String
+# }
+# type RepositoryName {
+#   time_hour: Int
+# }
+# type RepositoryName {
+#   time_minutes: Int
+# }
+# type RepositoryName {
+#   time_seconds: Int
+# }
+# type RepositoryName {
+#   time_gmt: String
+# }
+# type RepositoryName {
+#   date_day_week: String
+# }
+# type RepositoryName {
+#   date_month_day: Int
+# }
+# type RepositoryName {
+#   date_month_name: String
+# }
+# type RepositoryName {
+#   date_month_number: Int
+# }
+# type RepositoryName {
+#   date_year: String
+# }
+# type RepositoryName {
+#   date_iso_8601: String
+# }
+# type RepositoryName {
+#   files_changed: Int
+# }
+# type RepositoryName {
+#   insertions: Int
+# }
+# type RepositoryName {
+#   deletions: Int
+# }
+# type RepositoryName {
+#   impact: Int
+# }
+
+type Commit {
+  repository: String
+  commit_nr: Int
+  commit_hash: String
+  author_name: String
+  author_email: String
+  author_date: String
+  author_date_relative: String
+  author_date_unix_timestamp: String
+  author_date_iso_8601: String
+  subject: String
+  subject_sanitized: String
+  stats: String
+  time_hour: Int
+  time_minutes: Int
+  time_seconds: Int
+  time_gmt: String
+  date_day_week: String
+  date_month_day: Int
+  date_month_name: String
+  date_month_number: Int
+  date_year: String
+  date_iso_8601: String
+  files_changed: Int
+  insertions: Int
+  deletions: Int
+  impact: Int
+}
+
+type Query {
+  allCommits: [Commit!]
+  commitByHash(commit_hash: String!): [Commit!]
+  commitsByAuthorEmail(author_email: String!): [Commit!]
+}
+
+# mutation CreateCommit {
+#   createCommit(data: {
+#     repository: "lush"
+#     commit_nr: 234
+#     commit_hash: "asilsdkfiøsafdlkafasdf88a9sd8fas"
+#     author_name: "Wallace S"
+#     author_email: "i@dreamyguy.com"
+#     author_date: "2019.02.02"
+#     author_date_relative: "2019.02.02"
+#     author_date_unix_timestamp: "2019.02.02"
+#     author_date_iso_8601: "2019.02.02"
+#     subject: "This is it'"
+#     subject_sanitized: "this-is-it'"
+#     stats: "wow"
+#     time_hour: 999
+#     time_minutes: 999
+#     time_seconds: 999
+#     time_gmt: "2019.02.02"
+#     date_day_week: "Sunday"
+#     date_month_day: 999
+#     date_month_name: "February"
+#     date_month_number: 999
+#     date_year: "2019"
+#     date_iso_8601: "90920849032"
+#     files_changed: 999
+#     insertions: 999
+#     deletions: 999
+#     impact: 999
+#   }) {
+#     repository
+#     commit_nr
+#     commit_hash
+#     author_name
+#     author_email
+#     author_date
+#     author_date_relative
+#     author_date_unix_timestamp
+#     author_date_iso_8601
+#     subject
+#     subject_sanitized
+#     stats
+#     time_hour
+#     time_minutes
+#     time_seconds
+#     time_gmt
+#     date_day_week
+#     date_month_day
+#     date_month_name
+#     date_month_number
+#     date_year
+#     date_iso_8601
+#     files_changed
+#     insertions
+#     deletions
+#     impact
+#   }
+# }
+
+
+# type Query {
+#   commitByHash(commit_hash: Int!): Commit
+#   getCommitByHash(obj, args, context, info) {
+#     return context.db.loadHumanByID(args.id).then(
+#       userData => new Human(userData)
+#     )
+#   }
+# }
+
+# type Contributer {
+#   name: String
+#   appearsIn: [Episode]
+#   starships: [Starship]
+# }
+
+# const RootQuery = new GraphQLObjectType({
+#   name: 'RootQueryType',
+#   fields: {
+#     commitByHash: {
+#       type: CommitType,
+#       args: {
+#         commit_hash: {
+#           type: GraphQLString
+#         },
+#       },
+#       resolve(parentValue, args) {
+#         return axios.get(`${graphQLRequestRoot()}/commit_hash/${args.commit_hash}`)
+#         .then(resp => resp.data[0]); // because 'axios' returns a 'data' obj
+#       }
+#     },
+#     commitsByRepository: {
+#       type: CommitListType,
+#       args: {
+#         repository: {
+#           type: GraphQLString
+#         },
+#       },
+#       resolve(parentValue, args) {
+#         return axios.get(`${graphQLRequestRoot()}/repository/${args.repository}`)
+#         .then(resp => resp.data); // because 'axios' returns a 'data' obj
+#       }
+#     }
+#   }
+# });

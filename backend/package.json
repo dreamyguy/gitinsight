@@ -1,0 +1,25 @@
+{
+  "name": "gitinsight-ts-backend",
+  "version": "0.1.0",
+  "description": "A starter with React TS, Apollo Server GraphQL Server API",
+  "author": {
+    "name": "Wallace Sidhrée",
+    "url": "http://sidhree.com/"
+  },
+  "license": "MIT",
+  "scripts": {
+    "server:graphql": "nodemon -r esm server/graphql/server.js",
+    "server:json": "json-server --watch server/json/db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "axios": "^0.21.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.4.0",
+    "json-server": "^0.16.3",
+    "nodemon": "^2.0.6"
+  }
+}
