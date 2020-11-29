@@ -1,7 +1,64 @@
-  schema {
-    query: Query
-  }
+schema {
+  query: Query
+}
 
-  type Query {
-    greeting: String
-  }
+type Commit {
+  repository: String
+  commit_nr: Int
+  commit_hash: String
+  author_name: String
+  author_email: String
+  author_date: String
+  author_date_relative: String
+  author_date_unix_timestamp: String
+  author_date_iso_8601: String
+  subject: String
+  subject_sanitized: String
+  stats: String
+  time_hour: Int
+  time_minutes: Int
+  time_seconds: Int
+  time_gmt: String
+  date_day_week: String
+  date_month_day: Int
+  date_month_name: String
+  date_month_number: Int
+  date_year: String
+  date_iso_8601: String
+  files_changed: Int
+  insertions: Int
+  deletions: Int
+  impact: Int
+}
+
+type Query {
+  # all commits
+  commits: Commit!
+  # commits by
+  commitsByRepository(repository: String!): [Commit!]
+  commitsByCommitNr(commit_nr: Int!): [Commit!]
+  commitsByCommitHash(commit_hash: String!): [Commit!]
+  commitsByAuthorName(author_name: String!): [Commit!]
+  commitsByAuthorEmail(author_email: String!): [Commit!]
+  commitsByAuthorDate(author_date: String!): [Commit!]
+  commitsByAuthorDateRelative(author_date_relative: String!): [Commit!]
+  commitsByAuthorDateUnixtimestamp(author_date_unix_timestamp: String!): [Commit!]
+  commitsByAuthorDateIso_8601(author_date_iso_8601: String!): [Commit!]
+  commitsBySubject(subject: String!): [Commit!]
+  commitsBySubjectSanitized(subject_sanitized: String!): [Commit!]
+  commitsByStats(stats: String!): [Commit!]
+  commitsByTimeHour(time_hour: Int!): [Commit!]
+  commitsByTimeMinutes(time_minutes: Int!): [Commit!]
+  commitsByTimeSeconds(time_seconds: Int!): [Commit!]
+  commitsByTimeGmt(time_gmt: String!): [Commit!]
+  commitsByDateDayweek(date_day_week: String!): [Commit!]
+  commitsByDateMonthDay(date_month_day: Int!): [Commit!]
+  commitsByDateMonthName(date_month_name: String!): [Commit!]
+  commitsByDateMonthNumber(date_month_number: Int!): [Commit!]
+  commitsByDateYear(date_year: String!): [Commit!]
+  commitsByDateIso8601(date_iso_8601: String!): [Commit!]
+  commitsByFilesChanged(files_changed: Int!): [Commit!]
+  commitsByInsertions(insertions: Int!): [Commit!]
+  commitsByDeletions(deletions: Int!): [Commit!]
+  commitsByImpact(impact: Int!): [Commit!]
+}
