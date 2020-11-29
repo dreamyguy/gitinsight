@@ -1,41 +1,21 @@
 {
   "name": "gitinsight-ts-backend",
   "version": "0.1.0",
-  "description": "Visualise git log in new and exciting ways, with React TS, Express, MongoDB & Apollo GraphQL Server API",
-  "private": false,
-  "keywords": [
-    "git",
-    "git log",
-    "git dashboard",
-    "git stats",
-    "git visualization",
-    "dashboard",
-    "visualization"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dreamyguy/gitinsight-ts"
-  },
+  "description": "A starter with React TS, Apollo Server GraphQL Server API",
   "author": {
     "name": "Wallace Sidhrée",
     "url": "http://sidhree.com/"
   },
-  "copyright": "Copyright (c) Wallace Sidhrée - All rights reserved.",
   "license": "MIT",
   "scripts": {
-    "import:mongodb": "mongoimport --db gitlogg-api-development --drop --collection commits --type json --file data/gitlogg.json --jsonArray --stopOnError",
     "server:graphql": "nodemon -r esm server/graphql/server.js",
     "server:json": "json-server --watch server/json/db.json",
-    "server:mongodb": "node server/mongodb/server.js",
-    "server:mongodbInit": "mongod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "apicache": "^1.5.3",
     "apollo-server-express": "^2.19.0",
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "esm": "^3.2.25",
     "express": "^4.17.1",
