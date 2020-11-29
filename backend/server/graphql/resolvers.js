@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { GraphQLJSON } = require('graphql-scalars');
 const {
   PORT_JSON_SERVER,
   URL_BASE_DEV
@@ -11,6 +12,8 @@ const graphQLRequestRoot = () => {
   }
   return url;
 };
+// Import helpers
+const arrayAuthorsStats = require('./../../helpers/arrayAuthorsStats');
 
 const Query = {
   // ('res.data' because 'axios' returns a 'data' array)
@@ -95,6 +98,12 @@ const Query = {
   commitsByImpact: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
     res => res.data.filter(f => f.impact === args.impact)
   ),
+  // stats
+  statsAuthors: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
+    res => arrayAuthorsStats(res.data)
+  ),
 };
 
-module.exports = { Query };
+const JSON = GraphQLJSON;
+
+module.exports = { Query, JSON };

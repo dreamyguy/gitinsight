@@ -2,6 +2,8 @@ schema {
   query: Query
 }
 
+scalar JSON
+
 type Commit {
   repository: String
   commit_nr: Int
@@ -29,6 +31,32 @@ type Commit {
   insertions: Int
   deletions: Int
   impact: Int
+}
+
+type Weekdays {
+  Mon: Int
+  Tue: Int
+  Wed: Int
+  Thu: Int
+  Fri: Int
+  Sat: Int
+  Sun: Int
+}
+
+type statsAuthors {
+  author: String
+  commits: Int
+  impact: Int
+  impactRatio: Float
+  daysActive: Int
+  weekdays: Weekdays
+  commitDateFirst: String
+  commitDateLast: String
+  daysSinceFirstCommit: Int
+  daysSinceLastCommit: Int
+  staleness: Float
+  totalNrRepositories: Int
+  commitsPerDay: JSON
 }
 
 type Query {
@@ -61,4 +89,5 @@ type Query {
   commitsByInsertions(insertions: Int!): [Commit!]
   commitsByDeletions(deletions: Int!): [Commit!]
   commitsByImpact(impact: Int!): [Commit!]
+  statsAuthors: [statsAuthors!]
 }
