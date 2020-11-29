@@ -1,5 +1,7 @@
 const fs = require('fs');
 const express = require('express');
+const apicache = require('apicache');
+const compression = require('compression');
 const { ApolloServer, gql } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +10,15 @@ const { requestRoot, PORT_GRAPHQL_SERVER } = require('./../../../config');
 // Create 'Express' server
 const app = express();
 
-app.use(cors(), bodyParser.json());
+const cache = apicache.middleware;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(compression());
+app.use(cors());
+app.use(cache('10 minutes'));
 
 // Import 'typeDefs'
 const typeDefs = gql(fs.readFileSync('server/graphql/typeDefs.gql', { encoding: 'utf8' }));

@@ -1,11 +1,26 @@
 {
   "name": "gitinsight-ts-frontend",
   "version": "0.1.0",
-  "description": "A starter with React TS, Apollo Server GraphQL Server API",
+  "description": "Visualise git log in new and exciting ways, with React TS, Express, MongoDB & Apollo GraphQL Server API",
+  "private": false,
+  "keywords": [
+    "git",
+    "git log",
+    "git dashboard",
+    "git stats",
+    "git visualization",
+    "dashboard",
+    "visualization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamyguy/gitinsight-ts"
+  },
   "author": {
     "name": "Wallace Sidhrée",
     "url": "http://sidhree.com/"
   },
+  "copyright": "Copyright (c) Wallace Sidhrée - All rights reserved.",
   "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
