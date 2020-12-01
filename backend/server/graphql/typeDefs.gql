@@ -59,6 +59,30 @@ type statsAuthors {
   commitsPerDay: JSON
 }
 
+type statsGlobal {
+  commits: Int
+  contributors: Int
+  repositories: Int
+  lines: Int
+  fileChanges: Int
+  commitsWithoutFileChanges: Int
+  commitsWithoutImpact: Int
+  commitsImpactGtThousand: Int
+  commitsOnWeekend: Int
+  weekdays: Weekdays
+  daysActive: Int
+  commitDateFirst: String
+  commitDateLast: String
+  daysSinceFirstCommit: Int
+  daysSinceLastCommit: Int
+  staleness: Float
+  commitsPerDay: JSON
+  commitsPerContributor: JSON
+  commitsByContributor: JSON
+  impactByContributor: JSON
+  commitsByDay: JSON
+}
+
 type statsRepositories {
   repository: String
   commits: Int
@@ -107,5 +131,6 @@ type Query {
   commitsByImpact(impact: Int!): [Commit!]
   # stats
   statsAuthors: [statsAuthors!]
+  statsGlobal: [statsGlobal!]
   statsRepositories: [statsRepositories!]
 }
