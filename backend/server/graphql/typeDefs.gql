@@ -45,18 +45,21 @@ type Weekdays {
 
 type statsAuthors {
   author: String
-  commits: Int
-  impact: Int
-  impactRatio: Float
-  daysActive: Int
-  weekdays: Weekdays
   commitDateFirst: String
   commitDateLast: String
+  commits: Int
+  commitsPerDay: JSON
+  commitsPerMonthDay: JSON
+  commitsPerMonthNr: JSON
+  commitsPerYear: JSON
+  daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
+  impact: Int
+  impactRatio: Float
   staleness: Float
   totalNrRepositories: Int
-  commitsPerDay: JSON
+  weekdays: Weekdays
 }
 
 type statsGlobal {
@@ -131,6 +134,6 @@ type Query {
   commitsByImpact(impact: Int!): [Commit!]
   # stats
   statsAuthors: [statsAuthors!]
-  statsGlobal: [statsGlobal!]
+  statsGlobal: statsGlobal!
   statsRepositories: [statsRepositories!]
 }

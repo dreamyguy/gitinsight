@@ -1,4 +1,4 @@
-var arrayAuthorsStats = require('./arrayAuthorsStats');
+var { arrayAuthorsStats } = require('./arrayAuthorsStats');
 var arrayByKey = require('./arrayByKey');
 var arrayByKeyFiltered = require('./arrayByKeyFiltered');
 var arrayByKeyFilteredGreaterThan = require('./arrayByKeyFilteredGreaterThan');
@@ -11,9 +11,7 @@ var totalSum = require('./totalSum');
 
 // Get global stats and output it on a dedicated array, with options
 // ------------------------------------------------------------
-module.exports = function(data, type) {
-  var stats = [];
-  // var data = data;
+module.exports = function({ data }) {
 
   // sort datasource array by date
   data.sort(function(a, b) {
@@ -90,7 +88,7 @@ module.exports = function(data, type) {
   // contributor + impact
   var arrayAuthorsStatsAuthorAndImpact = arraysMerge(arrayAuthorsStats(data, 'author'), arrayAuthorsStats(data, 'impact'));
 
-  stats.push({
+  return {
     commits: totalNrCommits,
     contributors: totalNrContributors,
     repositories: totalNrRepositories,
@@ -112,7 +110,5 @@ module.exports = function(data, type) {
     commitsByContributor: arrayAuthorsStatsAuthorAndCommits,
     impactByContributor: arrayAuthorsStatsAuthorAndImpact,
     commitsByDay: groupByDuplicatesInArray(commitsByDay)
-  });
-
-  return stats;
+  };
 };

@@ -13,7 +13,7 @@ const graphQLRequestRoot = () => {
   return url;
 };
 // Import helpers
-const arrayAuthorsStats = require('./../../helpers/arrayAuthorsStats');
+const { arrayAuthorsStats } = require('./../../helpers/arrayAuthorsStats');
 const arrayGlobalStats = require('./../../helpers/arrayGlobalStats');
 const arrayRepositoriesStats = require('./../../helpers/arrayRepositoriesStats');
 
@@ -102,13 +102,13 @@ const Query = {
   ),
   // stats
   statsAuthors: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayAuthorsStats(res.data)
+    res => arrayAuthorsStats({ data: res.data, sortBy: args.sortyBy, sortDirection: args.sortDirection, count: args.count })
   ),
   statsGlobal: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayGlobalStats(res.data)
+    res => arrayGlobalStats({ data: res.data })
   ),
   statsRepositories: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayRepositoriesStats(res.data)
+    res => arrayRepositoriesStats({ data: res.data, sortBy: args.sortyBy, sortDirection: args.sortDirection, count: args.count })
   ),
 };
 
