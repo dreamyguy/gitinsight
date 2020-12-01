@@ -59,6 +59,22 @@ type statsAuthors {
   commitsPerDay: JSON
 }
 
+type statsRepositories {
+  repository: String
+  commits: Int
+  impact: Int
+  impactRatio: Float
+  daysActive: Int
+  weekdays: Weekdays
+  commitDateFirst: String
+  commitDateLast: String
+  daysSinceFirstCommit: Int
+  daysSinceLastCommit: Int
+  staleness: Float
+  totalNrContributors: Int
+  commitsPerDay: JSON
+}
+
 type Query {
   # all commits
   commits: Commit!
@@ -89,5 +105,7 @@ type Query {
   commitsByInsertions(insertions: Int!): [Commit!]
   commitsByDeletions(deletions: Int!): [Commit!]
   commitsByImpact(impact: Int!): [Commit!]
+  # stats
   statsAuthors: [statsAuthors!]
+  statsRepositories: [statsRepositories!]
 }
