@@ -102,7 +102,7 @@ const Query = {
   ),
   // stats
   statsAuthors: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayAuthorsStats({ data: res.data, sortBy: args.sortyBy, sortDirection: args.sortDirection, count: args.count })
+    res => arrayAuthorsStats({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
   statsGlobal: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
     res => arrayGlobalStats({ data: res.data })

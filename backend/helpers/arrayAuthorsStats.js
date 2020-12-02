@@ -79,7 +79,7 @@ export const arrayAuthorsStats = ({ data, sortBy, sortDirection, count }) => {
     }
     obja[data[i].author_email].push(data[i]);
   }
-  // Create an object to receive customised author stats
+  // Create an array to receive customised author stats
   var stats = [];
   // Iterate through 'obja' object
   for (var b in obja) {
@@ -97,7 +97,7 @@ export const arrayAuthorsStats = ({ data, sortBy, sortDirection, count }) => {
     output = stats;
   }
   if (count) {
-    output.slice(0, count);
+    output = output.slice(0, count);
   }
   return output;
 };

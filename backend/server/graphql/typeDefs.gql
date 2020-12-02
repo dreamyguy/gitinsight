@@ -102,6 +102,27 @@ type statsRepositories {
   commitsPerDay: JSON
 }
 
+# 'sortBy' argument type for 'statsAuthors'
+enum SortAuthorsBy {
+  author
+  commitDateFirst
+  commitDateLast
+  commits
+  daysActive
+  daysSinceFirstCommit
+  daysSinceLastCommit
+  impact
+  impactRatio
+  staleness
+  totalNrRepositories
+}
+
+# 'sortDirection' argument type
+enum SortDirection {
+  asc
+  desc
+}
+
 type Query {
   # all commits
   commits: Commit!
@@ -133,7 +154,7 @@ type Query {
   commitsByDeletions(deletions: Int!): [Commit!]
   commitsByImpact(impact: Int!): [Commit!]
   # stats
-  statsAuthors: [statsAuthors!]
+  statsAuthors(sortBy: SortAuthorsBy, sortDirection: SortDirection, count: Int): [statsAuthors!]
   statsGlobal: statsGlobal!
   statsRepositories: [statsRepositories!]
 }
