@@ -7,9 +7,9 @@ import sortArrayByKey from './sortArrayByKey';
 import totalSum from './totalSum';
 
 // Create repository stats object
-const repoStats = ({ repo, objData }) => {
-  // clean-up repository name
-  repo = repo.replace(/.git/g, '');
+const repositoryStats = ({ repository, objData }) => {
+  // clean-up repositorysitory name
+  repository = repository.replace(/.git/g, '');
   // calculate total number of commits
   const totalNrCommits = itemsSum(objData);
   // calculate total impact
@@ -21,7 +21,7 @@ const repoStats = ({ repo, objData }) => {
   const commits = totalNrCommits;
   const impact = totalImpactSum;
   const impactRatio = totalImpactRatio;
-  // calculate repo's commits on a given week day
+  // calculate repository's commits on a given week day
   const daysWeek = arrayByKey(objData, 'date_day_week');
   const weekdays = groupByDuplicatesInArray(daysWeek);
   // calculate days between first and last commits
@@ -51,7 +51,7 @@ const repoStats = ({ repo, objData }) => {
     )
   );
   return {
-    repo,
+    repository,
     commitDateFirst,
     commitDateLast,
     commits,
@@ -88,7 +88,7 @@ export const arrayRepositoriesStats = ({ data, sortBy, sortDirection, count }) =
     if (obja.hasOwnProperty(b)) {
       var objb = obja[b];
       // Push new data to array
-      stats.push(repoStats({ repo: b, objData: objb }));
+      stats.push(repositoryStats({ repository: b, objData: objb }));
     }
   }
   if (sortBy && sortDirection) {

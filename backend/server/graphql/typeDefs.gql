@@ -87,7 +87,7 @@ type statsGlobal {
 }
 
 type statsRepos {
-  repo: String
+  repository: String
   commitDateFirst: String
   commitDateLast: String
   commits: Int
@@ -122,7 +122,7 @@ enum SortAuthorsBy {
 
 # 'sortBy' argument type for 'statsRepos'
 enum SortReposBy {
-  repo
+  repository
   commitDateFirst
   commitDateLast
   commits
