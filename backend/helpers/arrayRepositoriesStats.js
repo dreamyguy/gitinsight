@@ -8,8 +8,6 @@ import totalSum from './totalSum';
 
 // Create repository stats object
 const repositoryStats = ({ repository, objData }) => {
-  // clean-up repositorysitory name
-  repository = repository.replace(/.git/g, '');
   // calculate total number of commits
   const totalNrCommits = itemsSum(objData);
   // calculate total impact
