@@ -7,24 +7,24 @@ import sortArrayByKey from './sortArrayByKey';
 import totalSum from './totalSum';
 
 // Create author stats object
-const authorStats = ({ author, authorData }) => {
+const authorStats = ({ author, objData }) => {
   // calculate total number of commits
-  const authorNrCommits = itemsSum(authorData);
+  const totalNrCommits = itemsSum(objData);
   // calculate total impact
-  const authorImpact = arrayByKey(authorData, 'impact');
-  const authorImpactSum = totalSum(authorImpact);
+  const totalImpact = arrayByKey(objData, 'impact');
+  const totalImpactSum = totalSum(totalImpact);
   // calculate the ratio of impact per commit
-  const authorImpactRatio = authorImpactSum / authorNrCommits;
+  const totalImpactRatio = totalImpactSum / totalNrCommits;
   // variables to pass to final object
-  const commits = authorNrCommits;
-  const impact = authorImpactSum;
-  const impactRatio = authorImpactRatio;
+  const commits = totalNrCommits;
+  const impact = totalImpactSum;
+  const impactRatio = totalImpactRatio;
   // calculate author's commits on a given week day
-  const daysWeek = arrayByKey(authorData, 'date_day_week');
+  const daysWeek = arrayByKey(objData, 'date_day_week');
   const weekdays = groupByDuplicatesInArray(daysWeek);
   // calculate days between first and last commits
-  const commitDateFirst = authorData[0].author_date_unix_timestamp;
-  const commitDateLast = authorData[authorData.length - 1].author_date_unix_timestamp;
+  const commitDateFirst = objData[0].author_date_unix_timestamp;
+  const commitDateLast = objData[objData.length - 1].author_date_unix_timestamp;
   const daysActive = daysBetween(commitDateFirst, commitDateLast);
   // calculate days since first and last commits
   const daysSinceFirstCommit = daysSince(commitDateFirst);
@@ -32,10 +32,10 @@ const authorStats = ({ author, authorData }) => {
   // calculate staleness
   const staleness = daysSinceLastCommit / 365;
   // calculate commits per time unit
-  const commitsByDaysCalendar = arrayByKey(authorData, 'date_iso_8601');
-  const commitsByMonthDay = arrayByKey(authorData, 'date_month_day');
-  const commitsByMonthNr = arrayByKey(authorData, 'date_month_number');
-  const commitsByYear = arrayByKey(authorData, 'date_year');
+  const commitsByDaysCalendar = arrayByKey(objData, 'date_iso_8601');
+  const commitsByMonthDay = arrayByKey(objData, 'date_month_day');
+  const commitsByMonthNr = arrayByKey(objData, 'date_month_number');
+  const commitsByYear = arrayByKey(objData, 'date_year');
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
@@ -44,7 +44,7 @@ const authorStats = ({ author, authorData }) => {
   const totalNrRepositories = itemsSum(
     Object.keys(
       groupByDuplicatesInArray(
-        arrayByKey(authorData, 'repository')
+        arrayByKey(objData, 'repository')
       )
     )
   );
@@ -79,14 +79,14 @@ export const arrayAuthorsStats = ({ data, sortBy, sortDirection, count }) => {
     }
     obja[data[i].author_email].push(data[i]);
   }
-  // Create an array to receive customised author stats
+  // Create an array to receive customised stats
   var stats = [];
   // Iterate through 'obja' object
   for (var b in obja) {
-     if (obja.hasOwnProperty(b)) {
+    if (obja.hasOwnProperty(b)) {
       var objb = obja[b];
       // Push new data to array
-      stats.push(authorStats({ author: b, authorData: objb }));
+      stats.push(authorStats({ author: b, objData: objb }));
     }
   }
   if (sortBy && sortDirection) {

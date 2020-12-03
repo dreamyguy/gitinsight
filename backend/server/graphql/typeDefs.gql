@@ -86,20 +86,23 @@ type statsGlobal {
   commitsByDay: JSON
 }
 
-type statsRepositories {
-  repository: String
-  commits: Int
-  impact: Int
-  impactRatio: Float
-  daysActive: Int
-  weekdays: Weekdays
+type statsRepos {
+  repo: String
   commitDateFirst: String
   commitDateLast: String
+  commits: Int
+  commitsPerDay: JSON
+  commitsPerMonthDay: JSON
+  commitsPerMonthNr: JSON
+  commitsPerYear: JSON
+  daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
+  impact: Int
+  impactRatio: Float
   staleness: Float
   totalNrContributors: Int
-  commitsPerDay: JSON
+  weekdays: Weekdays
 }
 
 # 'sortBy' argument type for 'statsAuthors'
@@ -115,6 +118,21 @@ enum SortAuthorsBy {
   impactRatio
   staleness
   totalNrRepositories
+}
+
+# 'sortBy' argument type for 'statsRepos'
+enum SortReposBy {
+  repo
+  commitDateFirst
+  commitDateLast
+  commits
+  daysActive
+  daysSinceFirstCommit
+  daysSinceLastCommit
+  impact
+  impactRatio
+  staleness
+  totalNrContributors
 }
 
 # 'sortDirection' argument type
@@ -156,5 +174,5 @@ type Query {
   # stats
   statsAuthors(sortBy: SortAuthorsBy, sortDirection: SortDirection, count: Int): [statsAuthors!]
   statsGlobal: statsGlobal!
-  statsRepositories: [statsRepositories!]
+  statsRepos(sortBy: SortReposBy, sortDirection: SortDirection, count: Int): [statsRepos!]
 }
