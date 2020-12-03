@@ -41,13 +41,19 @@ const authorStats = ({ author, objData }) => {
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
   // total nr repositories
-  const totalNrRepositories = itemsSum(
+  const repositories = itemsSum(
     Object.keys(
       groupByDuplicatesInArray(
         arrayByKey(objData, 'repository')
       )
     )
   );
+  // repositories list
+  const repositoriesList = Object.keys(
+    groupByDuplicatesInArray(
+      arrayByKey(objData, 'repository')
+    )
+  ).sort();
   return {
     author,
     commitDateFirst,
@@ -62,8 +68,9 @@ const authorStats = ({ author, objData }) => {
     daysSinceLastCommit,
     impact,
     impactRatio,
+    repositories,
+    repositoriesList,
     staleness,
-    totalNrRepositories,
     weekdays,
   }
 };

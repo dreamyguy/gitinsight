@@ -41,15 +41,23 @@ const repositoryStats = ({ repository, objData }) => {
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
   // total nr contributors
-  var totalNrContributors = itemsSum(
+  var contributors = itemsSum(
     Object.keys(
       groupByDuplicatesInArray(
         arrayByKey(objData, 'author_email')
       )
     )
   );
+  // contributors list
+  var contributorsList = Object.keys(
+    groupByDuplicatesInArray(
+      arrayByKey(objData, 'author_email')
+    )
+  ).sort();
   return {
     repository,
+    contributors,
+    contributorsList,
     commitDateFirst,
     commitDateLast,
     commits,
@@ -63,7 +71,6 @@ const repositoryStats = ({ repository, objData }) => {
     impact,
     impactRatio,
     staleness,
-    totalNrContributors,
     weekdays,
   };
 };

@@ -37,7 +37,7 @@ module.exports = function({ data }) {
     )
   ).sort();
   // total nr repositories
-  var totalNrRepositories = itemsSum(
+  var repositories = itemsSum(
     Object.keys(
       groupByDuplicatesInArray(
         arrayByKey(data, 'repository')
@@ -104,7 +104,7 @@ module.exports = function({ data }) {
     commits: totalNrCommits,
     contributors: totalNrContributors,
     contributorsList: contributorsList,
-    repositories: totalNrRepositories,
+    repositories: repositories,
     repositoriesList: repositoriesList,
     lines: totalLinesOfCode,
     fileChanges: totalFileChanges,

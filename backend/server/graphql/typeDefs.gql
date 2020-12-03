@@ -57,39 +57,39 @@ type statsAuthors {
   daysSinceLastCommit: Int
   impact: Int
   impactRatio: Float
+  repositories: Int
+  repositoriesList: [String]
   staleness: Float
-  totalNrRepositories: Int
   weekdays: Weekdays
 }
 
 type statsGlobal {
-  commits: Int
-  contributors: Int
-  contributorsList: [String]
-  repositories: Int
-  repositoriesList: [String]
-  lines: Int
-  fileChanges: Int
-  commitsWithoutFileChanges: Int
-  commitsWithoutImpact: Int
-  commitsImpactGtThousand: Int
-  commitsOnWeekend: Int
-  weekdays: Weekdays
-  daysActive: Int
   commitDateFirst: String
   commitDateLast: String
+  commits: Int
+  commitsByContributor: JSON
+  commitsByDay: JSON
+  commitsImpactGtThousand: Int
+  commitsOnWeekend: Int
+  commitsPerContributor: JSON
+  commitsPerDay: JSON
+  commitsWithoutFileChanges: Int
+  commitsWithoutImpact: Int
+  contributors: Int
+  contributorsList: [String]
+  daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
-  staleness: Float
-  commitsPerDay: JSON
-  commitsPerContributor: JSON
-  commitsByContributor: JSON
+  fileChanges: Int
   impactByContributor: JSON
-  commitsByDay: JSON
+  lines: Int
+  repositories: Int
+  repositoriesList: [String]
+  staleness: Float
+  weekdays: Weekdays
 }
 
 type statsRepos {
-  repository: String
   commitDateFirst: String
   commitDateLast: String
   commits: Int
@@ -97,19 +97,22 @@ type statsRepos {
   commitsPerMonthDay: JSON
   commitsPerMonthNr: JSON
   commitsPerYear: JSON
+  contributors: Int
+  contributorsList: [String]
   daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
   impact: Int
   impactRatio: Float
+  repository: String
   staleness: Float
-  totalNrContributors: Int
   weekdays: Weekdays
 }
 
 # 'sortBy' argument type for 'statsAuthors'
 enum SortAuthorsBy {
   author
+  repositories
   commitDateFirst
   commitDateLast
   commits
@@ -119,12 +122,12 @@ enum SortAuthorsBy {
   impact
   impactRatio
   staleness
-  totalNrRepositories
 }
 
 # 'sortBy' argument type for 'statsRepos'
 enum SortReposBy {
   repository
+  contributors
   commitDateFirst
   commitDateLast
   commits
@@ -134,7 +137,6 @@ enum SortReposBy {
   impact
   impactRatio
   staleness
-  totalNrContributors
 }
 
 # 'sortDirection' argument type
