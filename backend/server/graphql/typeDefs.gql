@@ -65,7 +65,9 @@ type statsAuthors {
 type statsGlobal {
   commits: Int
   contributors: Int
+  contributorsList: [String]
   repositories: Int
+  repositoriesList: [String]
   lines: Int
   fileChanges: Int
   commitsWithoutFileChanges: Int

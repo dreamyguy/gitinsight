@@ -30,6 +30,12 @@ module.exports = function({ data }) {
       )
     )
   );
+  // contributors list
+  var contributorsList = Object.keys(
+    groupByDuplicatesInArray(
+      arrayByKey(data, 'author_email')
+    )
+  ).sort();
   // total nr repositories
   var totalNrRepositories = itemsSum(
     Object.keys(
@@ -38,6 +44,12 @@ module.exports = function({ data }) {
       )
     )
   );
+  // repositories list
+  var repositoriesList = Object.keys(
+    groupByDuplicatesInArray(
+      arrayByKey(data, 'repository')
+    )
+  ).sort();
   // total lines of code
   var totalLinesOfCode = totalSum(
     arrayByKey(data, 'impact')
@@ -91,7 +103,9 @@ module.exports = function({ data }) {
   return {
     commits: totalNrCommits,
     contributors: totalNrContributors,
+    contributorsList: contributorsList,
     repositories: totalNrRepositories,
+    repositoriesList: repositoriesList,
     lines: totalLinesOfCode,
     fileChanges: totalFileChanges,
     commitsWithoutFileChanges: totalCommitsWithoutFileChanges,
