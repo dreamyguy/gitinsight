@@ -67,12 +67,14 @@ type statsGlobal {
   commitDateFirst: String
   commitDateLast: String
   commits: Int
-  commitsByContributor: JSON
-  commitsByDay: JSON
   commitsImpactGtThousand: Int
   commitsOnWeekend: Int
-  commitsPerContributor: JSON
+  commitsPerContributorAverage: Float
   commitsPerDay: JSON
+  commitsPerDayAverage: Float
+  commitsPerMonthDay: JSON
+  commitsPerMonthNr: JSON
+  commitsPerYear: JSON
   commitsWithoutFileChanges: Int
   commitsWithoutImpact: Int
   contributors: Int
@@ -81,7 +83,6 @@ type statsGlobal {
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
   fileChanges: Int
-  impactByContributor: JSON
   lines: Int
   repositories: Int
   repositoriesList: [String]

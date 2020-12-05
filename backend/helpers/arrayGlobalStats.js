@@ -1,8 +1,6 @@
-var { arrayAuthorsStats } = require('./arrayAuthorsStats');
 var arrayByKey = require('./arrayByKey');
 var arrayByKeyFiltered = require('./arrayByKeyFiltered');
 var arrayByKeyFilteredGreaterThan = require('./arrayByKeyFilteredGreaterThan');
-var arraysMerge = require('./arraysMerge');
 var daysBetween = require('./daysBetween');
 var daysSince = require('./daysSince');
 var groupByDuplicatesInArray = require('./groupByDuplicatesInArray');
@@ -79,7 +77,8 @@ module.exports = function({ data }) {
   );
   var totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   // calculate commits on a given week day
-  var weekdays = arrayByKey(data, 'date_day_week');
+  const daysWeek = arrayByKey(data, 'date_day_week');
+  const weekdays = groupByDuplicatesInArray(daysWeek);
   // calculate days between first and last commits
   var commitDateFirst = data[0].author_date_unix_timestamp;
   var commitDateLast = data[data.length - 1].author_date_unix_timestamp;
@@ -89,16 +88,19 @@ module.exports = function({ data }) {
   var daysSinceLastCommit = daysSince(commitDateLast);
   // calculate staleness
   var staleness = daysSinceLastCommit / 365;
-  // calculate commits per day
-  var commitsPerContributor = (totalNrCommits / totalNrContributors);
-  // calculate commits per day
-  var commitsPerDay = (daysActive / totalNrCommits);
-  // calculate commits by day
-  var commitsByDay = arrayByKey(data, 'date_iso_8601');
-  // contributor + commits
-  var arrayAuthorsStatsAuthorAndCommits = arraysMerge(arrayAuthorsStats(data, 'author'), arrayAuthorsStats(data, 'commits'));
-  // contributor + impact
-  var arrayAuthorsStatsAuthorAndImpact = arraysMerge(arrayAuthorsStats(data, 'author'), arrayAuthorsStats(data, 'impact'));
+  // calculate commits per contributor, average
+  var commitsPerContributorAverage = (totalNrCommits / totalNrContributors);
+  // calculate commits per day, average
+  var commitsPerDayAverage = (daysActive / totalNrCommits);
+  // calculate commits per time unit
+  const commitsByDaysCalendar = arrayByKey(data, 'date_iso_8601');
+  const commitsByMonthDay = arrayByKey(data, 'date_month_day');
+  const commitsByMonthNr = arrayByKey(data, 'date_month_number');
+  const commitsByYear = arrayByKey(data, 'date_year');
+  const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
+  const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
+  const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
+  const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
 
   return {
     commits: totalNrCommits,
@@ -112,7 +114,7 @@ module.exports = function({ data }) {
     commitsWithoutImpact: totalCommitsWithoutImpact,
     commitsImpactGtThousand: totalCommitsImpactGreaterThan,
     commitsOnWeekend: totalCommitsOnWeekends,
-    weekdays: groupByDuplicatesInArray(weekdays),
+    weekdays: weekdays,
     daysActive: daysActive,
     commitDateFirst: commitDateFirst,
     commitDateLast: commitDateLast,
@@ -120,9 +122,10 @@ module.exports = function({ data }) {
     daysSinceLastCommit: daysSinceLastCommit,
     staleness: staleness,
     commitsPerDay: commitsPerDay,
-    commitsPerContributor: commitsPerContributor,
-    commitsByContributor: arrayAuthorsStatsAuthorAndCommits,
-    impactByContributor: arrayAuthorsStatsAuthorAndImpact,
-    commitsByDay: groupByDuplicatesInArray(commitsByDay)
+    commitsPerMonthDay: commitsPerMonthDay,
+    commitsPerMonthNr: commitsPerMonthNr,
+    commitsPerYear: commitsPerYear,
+    commitsPerDayAverage: commitsPerDayAverage,
+    commitsPerContributorAverage: commitsPerContributorAverage,
   };
 };
