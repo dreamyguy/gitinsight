@@ -77,7 +77,7 @@ const repositoryStats = ({ repository, objData }) => {
 
 // Get repositories stats and output it on a dedicated array, with options
 // ------------------------------------------------------------
-export const arrayRepositoriesStats = ({ data, sortBy, sortDirection, count }) => {
+export const statsRepos = ({ data, sortBy, sortDirection, count }) => {
   let output = null;
   var obja = {};
   for (var i in data) {

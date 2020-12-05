@@ -13,9 +13,9 @@ const graphQLRequestRoot = () => {
   return url;
 };
 // Import helpers
-const { arrayAuthorsStats } = require('./../../helpers/arrayAuthorsStats');
+const { statsAuthors } = require('./../../helpers/statsAuthors');
 const { statsGlobal } = require('./../../helpers/statsGlobal');
-const { arrayRepositoriesStats } = require('./../../helpers/arrayRepositoriesStats');
+const { statsRepos } = require('./../../helpers/statsRepos');
 
 const Query = {
   // ('res.data' because 'axios' returns a 'data' array)
@@ -102,13 +102,13 @@ const Query = {
   ),
   // stats
   statsAuthors: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayAuthorsStats({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
+    res => statsAuthors({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
   statsGlobal: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
     res => statsGlobal({ data: res.data })
   ),
   statsRepos: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => arrayRepositoriesStats({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
+    res => statsRepos({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
 };
 

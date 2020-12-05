@@ -77,7 +77,7 @@ const authorStats = ({ author, objData }) => {
 
 // Get author stats and output it on a dedicated array, with options
 // ------------------------------------------------------------
-export const arrayAuthorsStats = ({ data, sortBy, sortDirection, count }) => {
+export const statsAuthors = ({ data, sortBy, sortDirection, count }) => {
   let output = null;
   var obja = {};
   for (var i in data) {
