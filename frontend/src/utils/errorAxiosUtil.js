@@ -35,3 +35,23 @@ export const mergeErrors = ({ error, errorArray, log }) => {
   }
   return output;
 };
+
+export const handleErrorAxios = err => {
+  // See: https://github.com/axios/axios#handling-errors
+  let explanation = 'The error was not even handled';
+  if (err.response) {
+    explanation =
+      'The request was made and the server responded with a status code that falls out of the range of 2xx';
+  } else if (err.request) {
+    // `err.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    explanation = 'The request was made but no response was received';
+  } else {
+    explanation =
+      'The data is invalid, empty or null - or something happened while setting up the request.';
+  }
+  return {
+    err,
+    explanation,
+  };
+};
