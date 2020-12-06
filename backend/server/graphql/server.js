@@ -3,7 +3,7 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { requestRoot, PORT_GRAPHQL_SERVER } = require('./../../../config');
+const { requestRoot, PORT_GRAPHQL_SERVER } = require('./../../../frontend/src/config');
 
 // Create 'Express' server
 const app = express();

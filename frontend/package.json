@@ -1,31 +1,68 @@
 {
-  "name": "gitinsight-ts-frontend",
-  "version": "0.1.0",
-  "description": "A starter with React TS, Apollo Server GraphQL Server API",
+  "name": "gitinsight-frontend",
+  "version": "0.0.1",
+  "description": "👁 Visualise git log in new and exciting ways, with React & Apollo Server GraphQL Server API",
+  "private": false,
+  "keywords": [
+    "git",
+    "git log",
+    "git dashboard",
+    "git stats",
+    "git visualization",
+    "dashboard",
+    "visualization"
+  ],
   "author": {
     "name": "Wallace Sidhrée",
     "url": "http://sidhree.com/"
   },
+  "copyright": "Copyright (c) Wallace Sidhrée - All rights reserved.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamyguy/gitinsight-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/dreamyguy/gitinsight-ts"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.2.2",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.19.7",
-    "@types/react": "^16.14.2",
-    "@types/react-dom": "^16.9.10",
+    "@testing-library/user-event": "^12.5.0",
+    "axios": "^0.21.0",
+    "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "typescript": "^4.1.2",
-    "web-vitals": "^0.2.4"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "autoprefixer": "^10.0.4",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.1.14",
+    "postcss-cli": "^8.3.0",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^2.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write '**/*.{js,css,scss,html,json,md}'",
+    "start": "npm run build:style && react-scripts start",
+    "test": "react-scripts test --verbose",
+    "test:travis": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +81,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "^v14.12.0"
+  },
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/react@1.0.21"
+    },
+    "overrides": {
+      "*": {
+        "exclude": [
+          "components/*-util"
+        ],
+        "peerDependencies": {
+          "react": "^17.0.1",
+          "react-dom": "^17.0.1"
+        }
+      },
+      "components/*-util": {
+        "env": {
+          "compiler": "bit.envs/compilers/babel@7.0.4"
+        }
+      }
+    },
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
   }
 }

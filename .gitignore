@@ -13,6 +13,11 @@ frontend/coverage
 # production
 frontend/build
 
+# backend
+
+# frontend
+frontend/src/styles/tailwind.css
+
 # logs
 npm-debug.log*
 backend/npm-debug.log*

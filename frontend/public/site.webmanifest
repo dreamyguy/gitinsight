@@ -1,0 +1,7 @@
+{
+  "name": "Gitinsight",
+  "short_name": "Gitinsight",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

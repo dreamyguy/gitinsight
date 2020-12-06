@@ -3,7 +3,7 @@ const { GraphQLJSON } = require('graphql-scalars');
 const {
   PORT_JSON_SERVER,
   URL_BASE_DEV
-} = require('./../../../config');
+} = require('./../../../frontend/src/config');
 const serverMode = 'json'; // json | something else, eventually
 const graphQLRequestRoot = () => {
   let url = '';
