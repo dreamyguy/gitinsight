@@ -34,17 +34,13 @@ describe('Test config', () => {
   });
   describe('apiUrl', () => {
     it('prod', () => {
-      expect(config.apiUrl.prod).toEqual(
-        'https://yolo.io/api',
-      );
+      expect(config.apiUrl.prod).toEqual('https://yolo.io/api');
     });
     it('qa', () => {
       expect(config.apiUrl.qa).toEqual('https://qa.yolo.io/api');
     });
     it('test', () => {
-      expect(config.apiUrl.test).toEqual(
-        'https://test.yolo.io/api',
-      );
+      expect(config.apiUrl.test).toEqual('https://test.yolo.io/api');
     });
     describe('dev', () => {
       it(`server is set to ${serverMode}`, () => {

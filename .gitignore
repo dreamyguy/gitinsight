@@ -17,6 +17,7 @@ frontend/build
 
 # frontend
 frontend/src/styles/tailwind.css
+frontend/.eslintcache
 
 # logs
 npm-debug.log*

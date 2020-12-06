@@ -71,7 +71,7 @@ describe('isUtil', () => {
     });
     it('should return false if what is passed to the util is an non-empty object', () => {
       const testArray = {
-        key: 'value'
+        key: 'value',
       };
       expect(isArray(testArray)).toEqual(false);
     });

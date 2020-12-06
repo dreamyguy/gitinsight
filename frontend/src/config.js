@@ -1,6 +1,6 @@
 // Environments
 const hostname =
-typeof window === 'object' && window.location.hostname !== ''
+  typeof window === 'object' && window.location.hostname !== ''
     ? window.location.hostname
     : 'localhost';
 const currentEnv = process.env.NODE_ENV;
