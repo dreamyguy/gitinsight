@@ -71,11 +71,11 @@ export const requestRoot = mode => {
 };
 
 // Resolver: set root request URL according to environment
-const setApiUrl = hostname => {
+const setApiUrl = host => {
   let envApiUrl = apiUrl.prod;
   let environment = 'development';
   try {
-    switch (hostname) {
+    switch (host) {
       case hostnames.test:
         console.warn('Setting environment to Test');
         envApiUrl = apiUrl.test;

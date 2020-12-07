@@ -4,9 +4,7 @@ import classnames from 'classnames';
 
 function Main({ children, pageType }) {
   return (
-    <main
-      className={classnames('relative', 'flex flex-wrap', pageType === 'home' && 'pt-4 md:pt-8')}
-    >
+    <main className={classnames('relative', pageType === 'home' && 'pt-4 md:pt-8')}>
       {children}
     </main>
   );
