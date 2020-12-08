@@ -140,7 +140,7 @@ const HomePage = () => {
   } = useQuery(statsGlobalQuery);
   return (
     <Wrapper pageType="home">
-      <h1 className="text-xl leading-1 font-medium text-gray-900">Global Stats</h1>
+      <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
       {statsGlobal && (
         <>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
