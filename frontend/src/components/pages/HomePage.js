@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { thousandify } from './../../utils/thousandifyUtil';
 import { statsGlobalQuery } from './../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
@@ -143,30 +144,46 @@ const HomePage = () => {
       {statsGlobal && (
         <>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <StatsItem icon={<HeroIconUsers />} heading="Contributors" stat={contributors} />
-            <StatsItem icon={<HeroIconCursorClick />} heading="Commits" stat={commits} />
-            <StatsItem icon={<HeroIconMailOpen />} heading="Repositories" stat={repositories} />
-            <StatsItem icon={<HeroIconUsers />} heading="Lines of code" stat={lines} />
-            <StatsItem icon={<HeroIconMailOpen />} heading="File chamges" stat={fileChanges} />
+            <StatsItem
+              icon={<HeroIconUsers />}
+              heading="Contributors"
+              stat={thousandify(contributors)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Commits"
+              stat={thousandify(commits)}
+            />
+            <StatsItem
+              icon={<HeroIconMailOpen />}
+              heading="Repositories"
+              stat={thousandify(repositories)}
+            />
+            <StatsItem icon={<HeroIconUsers />} heading="Lines of code" stat={thousandify(lines)} />
+            <StatsItem
+              icon={<HeroIconMailOpen />}
+              heading="File chamges"
+              stat={thousandify(fileChanges)}
+            />
             <StatsItem
               icon={<HeroIconCursorClick />}
               heading="Commits without file changes"
-              stat={commitsWithoutFileChanges}
+              stat={thousandify(commitsWithoutFileChanges)}
             />
             <StatsItem
               icon={<HeroIconUsers />}
               heading="Commits without impact"
-              stat={commitsWithoutImpact}
+              stat={thousandify(commitsWithoutImpact)}
             />
             <StatsItem
               icon={<HeroIconMailOpen />}
               heading="Commits impact > thousand"
-              stat={commitsImpactGtThousand}
+              stat={thousandify(commitsImpactGtThousand)}
             />
             <StatsItem
               icon={<HeroIconCursorClick />}
               heading="Commits on weekends"
-              stat={commitsOnWeekend}
+              stat={thousandify(commitsOnWeekend)}
             />
           </dl>
         </>

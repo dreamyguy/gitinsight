@@ -2,10 +2,13 @@
 // - Norwegian: ' '
 // - English: ','
 export const thousandify = (number, language) => {
-  if ((number || number === 0) && language) {
-    return language.toLowerCase() === 'no'
-      ? Number(number).toLocaleString('nb-NO').replace(/\s/g, ' ')
-      : Number(number).toLocaleString('en-GB');
+  if (number || number === 0) {
+    if (language) {
+      return language.toLowerCase() === 'no'
+        ? Number(number).toLocaleString('nb-NO').replace(/\s/g, ' ')
+        : Number(number).toLocaleString('en-GB');
+    }
+    return Number(number).toLocaleString('en-GB');
   }
   if (process.env.NODE_ENV !== 'test') {
     // eslint-disable-next-line
