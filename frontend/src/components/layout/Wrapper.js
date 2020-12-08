@@ -10,7 +10,7 @@ import Main from './Main';
 import Footer from './Footer';
 
 const Wrapper = ({ pageType, children }) => (
-  <div id="wrapper-outer">
+  <div id="wrapper-outer" className="antialiased font-sans bg-gray-200 h-screen">
     <>
       {pageType !== 'fullscreen' ? (
         <>
