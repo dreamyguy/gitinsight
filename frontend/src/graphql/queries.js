@@ -6,15 +6,29 @@ import gql from 'graphql-tag';
 export const statsGlobalQuery = gql`
   query StatsGlobalQuery {
     statsGlobal {
+      commitDateFirst
+      commitDateLast
       commits
-      contributors
-      repositories
-      lines
-      fileChanges
-      commitsWithoutFileChanges
-      commitsWithoutImpact
       commitsImpactGtThousand
       commitsOnWeekend
+      commitsPerContributorAverage
+      commitsPerDay
+      commitsPerDayAverage
+      commitsPerMonthDay
+      commitsPerMonthNr
+      commitsPerYear
+      commitsWithoutFileChanges
+      commitsWithoutImpact
+      contributors
+      contributorsList
+      daysActive
+      daysSinceFirstCommit
+      daysSinceLastCommit
+      fileChanges
+      lines
+      repositories
+      repositoriesList
+      staleness
       weekdays {
         Mon
         Tue
@@ -23,13 +37,6 @@ export const statsGlobalQuery = gql`
         Sat
         Sun
       }
-      daysActive
-      commitDateFirst
-      commitDateLast
-      daysSinceFirstCommit
-      daysSinceLastCommit
-      staleness
-      commitsPerDay
     }
   }
 `;

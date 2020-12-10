@@ -2,46 +2,47 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { thousandify } from './../../utils/thousandifyUtil';
+import { getDate } from './../../utils/getDateUtil';
 import { statsGlobalQuery } from './../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
-const HeroIconUsers = () => (
-  <svg
-    className="h-6 w-6 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    aria-hidden="true"
-  >
-    {/* <!-- Heroicon name: users --> */}
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-    />
-  </svg>
-);
+// const HeroIconUsers = () => (
+//   <svg
+//     className="h-6 w-6 text-white"
+//     xmlns="http://www.w3.org/2000/svg"
+//     fill="none"
+//     viewBox="0 0 24 24"
+//     stroke="currentColor"
+//     aria-hidden="true"
+//   >
+//     {/* <!-- Heroicon name: users --> */}
+//     <path
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       strokeWidth="2"
+//       d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+//     />
+//   </svg>
+// );
 
-const HeroIconMailOpen = () => (
-  <svg
-    className="h-6 w-6 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    aria-hidden="true"
-  >
-    {/* <!-- Heroicon name: mail-open --> */}
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
-    />
-  </svg>
-);
+// const HeroIconMailOpen = () => (
+//   <svg
+//     className="h-6 w-6 text-white"
+//     xmlns="http://www.w3.org/2000/svg"
+//     fill="none"
+//     viewBox="0 0 24 24"
+//     stroke="currentColor"
+//     aria-hidden="true"
+//   >
+//     {/* <!-- Heroicon name: mail-open --> */}
+//     <path
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       strokeWidth="2"
+//       d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
+//     />
+//   </svg>
+// );
 
 const HeroIconCursorClick = () => (
   <svg
@@ -122,62 +123,60 @@ const StatsItem = ({ icon, heading, stat, statIncreasedBy, statDecreasedBy }) =>
   </div>
 );
 
+const DatesFromUntil = ({ from, until }) => (
+  <div>
+    <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
+  </div>
+);
+
 const HomePage = () => {
   const {
     data: {
       statsGlobal,
       statsGlobal: {
+        commitDateFirst,
+        commitDateLast,
         commits,
-        contributors,
-        repositories,
-        lines,
-        fileChanges,
-        commitsWithoutFileChanges,
-        commitsWithoutImpact,
         commitsImpactGtThousand,
         commitsOnWeekend,
+        commitsPerContributorAverage,
+        // commitsPerDay,
+        commitsPerDayAverage,
+        // commitsPerMonthDay,
+        // commitsPerMonthNr,
+        // commitsPerYear,
+        commitsWithoutFileChanges,
+        commitsWithoutImpact,
+        contributors,
+        // contributorsList,
+        daysActive,
+        daysSinceFirstCommit,
+        daysSinceLastCommit,
+        fileChanges,
+        lines,
+        repositories,
+        // repositoriesList,
+        staleness,
+        // weekdays,
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
   return (
     <Wrapper pageType="home">
-      <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+      <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
+        <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+        <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
+      </dl>
       {statsGlobal && (
         <>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <StatsItem
-              icon={<HeroIconUsers />}
-              heading="Contributors"
-              stat={thousandify(contributors)}
-            />
             <StatsItem
               icon={<HeroIconCursorClick />}
               heading="Commits"
               stat={thousandify(commits)}
             />
             <StatsItem
-              icon={<HeroIconMailOpen />}
-              heading="Repositories"
-              stat={thousandify(repositories)}
-            />
-            <StatsItem icon={<HeroIconUsers />} heading="Lines of code" stat={thousandify(lines)} />
-            <StatsItem
-              icon={<HeroIconMailOpen />}
-              heading="File chamges"
-              stat={thousandify(fileChanges)}
-            />
-            <StatsItem
               icon={<HeroIconCursorClick />}
-              heading="Commits without file changes"
-              stat={thousandify(commitsWithoutFileChanges)}
-            />
-            <StatsItem
-              icon={<HeroIconUsers />}
-              heading="Commits without impact"
-              stat={thousandify(commitsWithoutImpact)}
-            />
-            <StatsItem
-              icon={<HeroIconMailOpen />}
               heading="Commits impact > thousand"
               stat={thousandify(commitsImpactGtThousand)}
             />
@@ -186,6 +185,97 @@ const HomePage = () => {
               heading="Commits on weekends"
               stat={thousandify(commitsOnWeekend)}
             />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Average commits / contributor"
+              stat={commitsPerContributorAverage.toFixed(2)}
+            />
+            {/* <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="commitsPerDay"
+              stat={commitsPerDay}
+            /> */}
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Average commits / day"
+              stat={commitsPerDayAverage.toFixed(2)}
+            />
+            {/* <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="commitsPerMonthDay"
+              stat={commitsPerMonthDay}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="commitsPerMonthNr"
+              stat={commitsPerMonthNr}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="commitsPerYear"
+              stat={commitsPerYear}
+            /> */}
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Commits without file changes"
+              stat={thousandify(commitsWithoutFileChanges)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Commits without impact"
+              stat={thousandify(commitsWithoutImpact)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Contributors"
+              stat={thousandify(contributors)}
+            />
+            {/* <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="contributorsList"
+              stat={contributorsList}
+            /> */}
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Days between first and last commit"
+              stat={thousandify(daysActive)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Days since first commit"
+              stat={daysSinceFirstCommit}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Days since last commit"
+              stat={daysSinceLastCommit}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="File changes"
+              stat={thousandify(fileChanges)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Lines of code"
+              stat={thousandify(lines)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Repositories"
+              stat={thousandify(repositories)}
+            />
+            {/* <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="repositoriesList"
+              stat={repositoriesList}
+            /> */}
+            <StatsItem
+              icon={<HeroIconCursorClick />}
+              heading="Staleness"
+              stat={staleness.toFixed(2)}
+            />
+            {/* <StatsItem icon={<HeroIconCursorClick />} heading="weekdays" stat={weekdays} /> */}
           </dl>
         </>
       )}
