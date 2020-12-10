@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { thousandify } from './../../utils/thousandifyUtil';
@@ -112,10 +113,10 @@ const StatsItem = ({ icon, heading, stat, statIncreasedBy, statDecreasedBy }) =>
     </div>
     {/* <div className="bg-gray-50 px-4 py-4 sm:px-6">
       <div className="text-sm">
-        <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
           {' '}
           View all<span className="sr-only"> {heading} stats</span>
-        </Link>
+        </a>
       </div>
     </div> */}
   </div>
