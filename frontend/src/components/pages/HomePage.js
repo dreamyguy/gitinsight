@@ -124,9 +124,13 @@ const StatsItem = ({ icon, heading, stat, statIncreasedBy, statDecreasedBy }) =>
 );
 
 const DatesFromUntil = ({ from, until }) => (
-  <div>
-    <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
-  </div>
+  <>
+    {from && until ? (
+      <div>
+        <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
+      </div>
+    ) : null}
+  </>
 );
 
 const HomePage = () => {
