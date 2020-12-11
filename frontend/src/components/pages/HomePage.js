@@ -1,8 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import Calendar from 'react-github-contribution-calendar';
+import CalendarGH from './../primitives/Calendar/CalendarGH';
+import GitHubCalendar from './../primitives/Calendar/CalendarContributions';
 import { thousandify } from './../../utils/thousandifyUtil';
 import { getDate } from './../../utils/getDateUtil';
+import { isNotEmptyObject } from './../../utils/isEmptyUtil';
 import { statsGlobalQuery } from './../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
@@ -144,7 +148,7 @@ const HomePage = () => {
         commitsImpactGtThousand,
         commitsOnWeekend,
         commitsPerContributorAverage,
-        // commitsPerDay,
+        commitsPerDay,
         commitsPerDayAverage,
         // commitsPerMonthDay,
         // commitsPerMonthNr,
@@ -206,7 +210,7 @@ const HomePage = () => {
             />
             {/* <StatsItem
               icon={<HeroIconCursorClick />}
-              heading="commitsPerDay"
+              heading="Commits per day"
               stat={commitsPerDay}
             /> */}
             <StatsItem
@@ -279,8 +283,32 @@ const HomePage = () => {
               heading="Staleness"
               stat={staleness.toFixed(2)}
             />
-            {/* <StatsItem icon={<HeroIconCursorClick />} heading="weekdays" stat={weekdays} /> */}
           </dl>
+          {/* <StatsItem icon={<HeroIconCursorClick />} heading="weekdays" stat={weekdays} /> */}
+          <dt className="text-sm font-medium text-gray-500 truncate">Commits per day</dt>
+          <div>
+            {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
+              <>
+                <Calendar
+                  // dateFormat
+                  // monthNames
+                  // panelColors
+                  until={Object.keys(commitsPerDay).pop()}
+                  values={commitsPerDay}
+                  // weekNames
+                />
+                <GitHubCalendar
+                  // dateFormat
+                  // monthNames
+                  // panelColors
+                  until={Object.keys(commitsPerDay).pop()}
+                  values={commitsPerDay}
+                  // weekNames
+                />
+              </>
+            )}
+            <CalendarGH />
+          </div>
         </>
       )}
     </Wrapper>
