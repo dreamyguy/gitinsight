@@ -6,24 +6,24 @@ import { getDate } from './../../utils/getDateUtil';
 import { statsGlobalQuery } from './../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
-// const HeroIconUsers = () => (
-//   <svg
-//     className="h-6 w-6 text-white"
-//     xmlns="http://www.w3.org/2000/svg"
-//     fill="none"
-//     viewBox="0 0 24 24"
-//     stroke="currentColor"
-//     aria-hidden="true"
-//   >
-//     {/* <!-- Heroicon name: users --> */}
-//     <path
-//       strokeLinecap="round"
-//       strokeLinejoin="round"
-//       strokeWidth="2"
-//       d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-//     />
-//   </svg>
-// );
+const HeroIconUsers = () => (
+  <svg
+    className="h-6 w-6 text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    aria-hidden="true"
+  >
+    {/* <!-- Heroicon name: users --> */}
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+    />
+  </svg>
+);
 
 // const HeroIconMailOpen = () => (
 //   <svg
@@ -172,6 +172,16 @@ const HomePage = () => {
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <StatsItem
               icon={<HeroIconCursorClick />}
+              heading="Repositories"
+              stat={thousandify(repositories)}
+            />
+            <StatsItem
+              icon={<HeroIconUsers />}
+              heading="Contributors"
+              stat={thousandify(contributors)}
+            />
+            <StatsItem
+              icon={<HeroIconCursorClick />}
               heading="Commits"
               stat={thousandify(commits)}
             />
@@ -225,11 +235,6 @@ const HomePage = () => {
               heading="Commits without impact"
               stat={thousandify(commitsWithoutImpact)}
             />
-            <StatsItem
-              icon={<HeroIconCursorClick />}
-              heading="Contributors"
-              stat={thousandify(contributors)}
-            />
             {/* <StatsItem
               icon={<HeroIconCursorClick />}
               heading="contributorsList"
@@ -243,12 +248,12 @@ const HomePage = () => {
             <StatsItem
               icon={<HeroIconCursorClick />}
               heading="Days since first commit"
-              stat={daysSinceFirstCommit}
+              stat={thousandify(daysSinceFirstCommit)}
             />
             <StatsItem
               icon={<HeroIconCursorClick />}
               heading="Days since last commit"
-              stat={daysSinceLastCommit}
+              stat={thousandify(daysSinceLastCommit)}
             />
             <StatsItem
               icon={<HeroIconCursorClick />}
@@ -259,11 +264,6 @@ const HomePage = () => {
               icon={<HeroIconCursorClick />}
               heading="Lines of code"
               stat={thousandify(lines)}
-            />
-            <StatsItem
-              icon={<HeroIconCursorClick />}
-              heading="Repositories"
-              stat={thousandify(repositories)}
             />
             {/* <StatsItem
               icon={<HeroIconCursorClick />}
