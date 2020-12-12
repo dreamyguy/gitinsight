@@ -338,6 +338,16 @@ const HomePage = () => {
               <CalendarContributions
                 until={Object.keys(commitsPerDay).pop()}
                 values={commitsPerDay}
+                theme="confetti"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="pride"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
                 panelColors={['yellow', 'orange', 'red', 'purple']}
                 baseColor="limeGreen"
               />
