@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import App from './components/hoc/App';
 import HomePage from './components/pages/HomePage';
-import './styles/tailwind.css';
+import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
