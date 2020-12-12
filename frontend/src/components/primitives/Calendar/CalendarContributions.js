@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { withContentRect } from 'react-measure';
+import { arrayMaxMin } from './../../../utils/arrayMaxMinUtil';
 import './CalendarContributions.css';
 
 const CalendarContributions = ({
   weekNames = [],
   monthNames = [],
+  baseColor = '#ebedf0',
   panelColors = [],
   values = {},
   until = '',
@@ -35,24 +37,24 @@ const CalendarContributions = ({
   };
 
   const resolveColor = level => {
-    let color = panelColors[0];
-    if (level > 0 && level < 10) {
+    let color = baseColor;
+    const arrayOfValues = Object.values(values);
+    const maxValue = arrayMaxMin(arrayOfValues, 'max');
+    // * Only support 4 levels of colors, as on GitHub
+    // We divide by 16 insted of 4 because peak days create noise that tend
+    //  to flatten out the color distribution
+    const gap = maxValue / 16;
+    if (level > 0 && level < gap) {
+      color = panelColors[0];
+    }
+    if (level >= gap && level < gap * 2) {
       color = panelColors[1];
     }
-    if (level >= 10 && level < 30) {
+    if (level >= gap * 2 && level < gap * 3) {
       color = panelColors[2];
     }
-    if (level >= 30 && level < 60) {
+    if (level >= gap * 3) {
       color = panelColors[3];
-    }
-    if (level >= 60 && level < 80) {
-      color = panelColors[4];
-    }
-    if (level >= 80 && level < 120) {
-      color = panelColors[5];
-    }
-    if (level >= 120) {
-      color = panelColors[6];
     }
     return color;
   };
@@ -178,7 +180,7 @@ const CalendarContributions = ({
 CalendarContributions.defaultProps = {
   weekNames: ['', 'M', '', 'W', '', 'F', ''],
   monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  panelColors: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39', '#0b5021', '#023a14'],
+  panelColors: ['#9be9a8', '#40c463', '#30a14e', '#216e39'],
   dateFormat: 'YYYY-MM-DD',
 };
 
