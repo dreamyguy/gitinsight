@@ -169,12 +169,12 @@ const HomePage = () => {
   } = useQuery(statsGlobalQuery);
   return (
     <Wrapper pageType="home">
-      <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
-        <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
-      </dl>
       {statsGlobal && (
         <>
+          <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
+            <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+            <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
+          </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <StatsItem
               icon={<HeroIconCursorClick />}
@@ -289,67 +289,7 @@ const HomePage = () => {
               <CalendarContributions
                 until={Object.keys(commitsPerDay).pop()}
                 values={commitsPerDay}
-                theme="red"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="orange"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="yellow"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="blue"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="purple"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="pink"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="gray"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="halloween"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
                 theme="random"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="confetti"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                theme="pride"
-              />
-              <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
-                panelColors={['yellow', 'orange', 'red', 'purple']}
-                baseColor="limeGreen"
               />
             </div>
           )}
