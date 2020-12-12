@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { withContentRect } from 'react-measure';
+import './CalendarContributions.css';
 
-const GitHubCalendar = ({
+const CalendarContributions = ({
   weekNames = [],
   monthNames = [],
   panelColors = [],
@@ -31,6 +32,26 @@ const GitHubCalendar = ({
       x: weekLabelWidth + bounds * row,
       y: monthLabelHeight + bounds * col,
     };
+  };
+
+  const resolveColor = level => {
+    let color = panelColors[0];
+    if (level > 0 && level < 10) {
+      color = panelColors[1];
+    }
+    if (level >= 10 && level < 50) {
+      color = panelColors[2];
+    }
+    if (level >= 50 && level < 100) {
+      color = panelColors[3];
+    }
+    if (level >= 100 && level < 200) {
+      color = panelColors[4];
+    }
+    if (level >= 200) {
+      color = panelColors[5];
+    }
+    return color;
   };
 
   const makeCalendarData = (history, lastDay) => {
@@ -66,10 +87,11 @@ const GitHubCalendar = ({
         // eslint-disable-next-line no-continue
         if (contribution === null) continue;
         const pos = getPanelPosition(i, j);
-        const color = panelColors[contribution.value];
+        const color = resolveColor(contribution.value);
         const dom = (
           <rect
             key={`panel_key_${i}_${j}`}
+            className="day"
             x={pos.x}
             y={pos.y}
             width={panelSize}
@@ -133,7 +155,7 @@ const GitHubCalendar = ({
   };
 
   const MeasureForResize = withContentRect('bounds')(({ measureRef }) => (
-    <div ref={measureRef} style={{ width: '100%' }}>
+    <div ref={measureRef} style={{ width: '100%' }} className="calendar-graph">
       <svg
         style={{
           fontFamily: 'Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif',
@@ -150,18 +172,18 @@ const GitHubCalendar = ({
   return <MeasureForResize onResize={rect => handleUpdateSize(rect.bounds)} />;
 };
 
-GitHubCalendar.defaultProps = {
+CalendarContributions.defaultProps = {
   weekNames: ['', 'M', '', 'W', '', 'F', ''],
   monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  panelColors: ['#EEE', '#DDD', '#AAA', '#444'],
+  panelColors: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39', '#063f18'],
   dateFormat: 'YYYY-MM-DD',
 };
 
-GitHubCalendar.propTypes = {
+CalendarContributions.propTypes = {
   weekNames: PropTypes.array,
   monthNames: PropTypes.array,
   panelColors: PropTypes.array,
   dateFormat: PropTypes.string,
 };
 
-export default GitHubCalendar;
+export default CalendarContributions;

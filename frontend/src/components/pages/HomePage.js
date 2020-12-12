@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Calendar from 'react-github-contribution-calendar';
 import CalendarGH from './../primitives/Calendar/CalendarGH';
-import GitHubCalendar from './../primitives/Calendar/CalendarContributions';
+import CalendarContributions from './../primitives/Calendar/CalendarContributions';
 import { thousandify } from './../../utils/thousandifyUtil';
 import { getDate } from './../../utils/getDateUtil';
 import { isNotEmptyObject } from './../../utils/isEmptyUtil';
@@ -285,30 +285,19 @@ const HomePage = () => {
             />
           </dl>
           {/* <StatsItem icon={<HeroIconCursorClick />} heading="weekdays" stat={weekdays} /> */}
-          <dt className="text-sm font-medium text-gray-500 truncate">Commits per day</dt>
-          <div>
-            {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
-              <>
-                <Calendar
-                  // dateFormat
-                  // monthNames
-                  // panelColors
-                  until={Object.keys(commitsPerDay).pop()}
-                  values={commitsPerDay}
-                  // weekNames
-                />
-                <GitHubCalendar
-                  // dateFormat
-                  // monthNames
-                  // panelColors
-                  until={Object.keys(commitsPerDay).pop()}
-                  values={commitsPerDay}
-                  // weekNames
-                />
-              </>
-            )}
-            <CalendarGH />
-          </div>
+          {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
+            <div className="mt-5">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
+              <CalendarContributions
+                // dateFormat
+                // monthNames
+                // panelColors
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                // weekNames
+              />
+            </div>
+          )}
         </>
       )}
     </Wrapper>
