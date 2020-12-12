@@ -39,17 +39,20 @@ const CalendarContributions = ({
     if (level > 0 && level < 10) {
       color = panelColors[1];
     }
-    if (level >= 10 && level < 50) {
+    if (level >= 10 && level < 30) {
       color = panelColors[2];
     }
-    if (level >= 50 && level < 100) {
+    if (level >= 30 && level < 60) {
       color = panelColors[3];
     }
-    if (level >= 100 && level < 200) {
+    if (level >= 60 && level < 80) {
       color = panelColors[4];
     }
-    if (level >= 200) {
+    if (level >= 80 && level < 120) {
       color = panelColors[5];
+    }
+    if (level >= 120) {
+      color = panelColors[6];
     }
     return color;
   };
@@ -175,7 +178,7 @@ const CalendarContributions = ({
 CalendarContributions.defaultProps = {
   weekNames: ['', 'M', '', 'W', '', 'F', ''],
   monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  panelColors: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39', '#063f18'],
+  panelColors: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39', '#0b5021', '#023a14'],
   dateFormat: 'YYYY-MM-DD',
 };
 
