@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { withContentRect } from 'react-measure';
+import { isNotEmptyArray } from './../../../utils/isEmptyUtil';
 import { arrayMaxMin } from './../../../utils/arrayMaxMinUtil';
 import './CalendarContributions.css';
 
@@ -11,6 +12,7 @@ const CalendarContributions = ({
   monthNames = [],
   baseColor = '#ebedf0',
   panelColors = [],
+  theme = 'default',
   values = {},
   until = '',
   dateFormat = '',
@@ -36,6 +38,62 @@ const CalendarContributions = ({
     };
   };
 
+  const themeGreen = ['#9be9a8', '#40c463', '#30a14e', '#216e39']; // default
+  const themeGray = ['#959da5', '#586069', '#2f363d', '#24292e'];
+  const themePink = ['#f9b3dd', '#ec6cb9', '#ea4aaa', '#99306f'];
+  const themePurple = ['#d1bcf9', '#8a63d2', '#5a32a3', '#3a1d6e'];
+  const themeBlue = ['#79b8ff', '#0366d6', '#044289', '#032f62'];
+  const themeYellow = ['#fff5b1', '#ffdf5d', '#f9c513', '#b08800'];
+  const themeOrange = ['#ffd1ac', '#ffab70', '#fb8532', '#c24e00'];
+  const themeRed = ['#fdaeb7', '#ea4a5a', '#b31d28', '#86181d'];
+  const themeHalloween = ['#ffee4a', '#ffc501', '#fe9600', '#03001c'];
+
+  const resolveTheme = th => {
+    let output = themeGreen; // default (green)
+    if (th === 'default' || th === 'green') {
+      return output; // syntax sugar
+    }
+    if (th === 'gray') {
+      output = themeGray;
+    }
+    if (th === 'pink') {
+      output = themePink;
+    }
+    if (th === 'purple') {
+      output = themePurple;
+    }
+    if (th === 'blue') {
+      output = themeBlue;
+    }
+    if (th === 'yellow') {
+      output = themeYellow;
+    }
+    if (th === 'orange') {
+      output = themeOrange;
+    }
+    if (th === 'red') {
+      output = themeRed;
+    }
+    if (th === 'halloween') {
+      output = themeHalloween;
+    }
+    if (th === 'random') {
+      const themeRandom = [
+        themeGreen,
+        themeGray,
+        themePink,
+        themePurple,
+        themeBlue,
+        themeYellow,
+        themeOrange,
+        themeRed,
+        themeHalloween,
+      ];
+      output = themeRandom[Math.floor(Math.random() * themeRandom.length)];
+    }
+    return output;
+  };
+
   const resolveColor = level => {
     let color = baseColor;
     const arrayOfValues = Object.values(values);
@@ -45,16 +103,16 @@ const CalendarContributions = ({
     //  to flatten out the color distribution
     const gap = maxValue / 16;
     if (level > 0 && level < gap) {
-      color = panelColors[0];
+      color = panelColors && isNotEmptyArray(panelColors) ? panelColors[0] : resolveTheme(theme)[0];
     }
     if (level >= gap && level < gap * 2) {
-      color = panelColors[1];
+      color = panelColors && isNotEmptyArray(panelColors) ? panelColors[1] : resolveTheme(theme)[1];
     }
     if (level >= gap * 2 && level < gap * 3) {
-      color = panelColors[2];
+      color = panelColors && isNotEmptyArray(panelColors) ? panelColors[2] : resolveTheme(theme)[2];
     }
     if (level >= gap * 3) {
-      color = panelColors[3];
+      color = panelColors && isNotEmptyArray(panelColors) ? panelColors[3] : resolveTheme(theme)[3];
     }
     return color;
   };
@@ -180,7 +238,7 @@ const CalendarContributions = ({
 CalendarContributions.defaultProps = {
   weekNames: ['', 'M', '', 'W', '', 'F', ''],
   monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  panelColors: ['#9be9a8', '#40c463', '#30a14e', '#216e39'],
+  panelColors: [],
   dateFormat: 'YYYY-MM-DD',
 };
 

@@ -287,12 +287,59 @@ const HomePage = () => {
             <div className="mt-5">
               <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
               <CalendarContributions
-                // dateFormat
-                // monthNames
-                // panelColors
                 until={Object.keys(commitsPerDay).pop()}
                 values={commitsPerDay}
-                // weekNames
+                theme="red"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="orange"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="yellow"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="blue"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="purple"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="pink"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="gray"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="halloween"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                theme="random"
+              />
+              <CalendarContributions
+                until={Object.keys(commitsPerDay).pop()}
+                values={commitsPerDay}
+                panelColors={['yellow', 'orange', 'red', 'purple']}
+                baseColor="limeGreen"
               />
             </div>
           )}
