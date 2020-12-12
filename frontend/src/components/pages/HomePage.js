@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import Calendar from 'react-github-contribution-calendar';
-import CalendarGH from './../primitives/Calendar/CalendarGH';
 import CalendarContributions from './../primitives/Calendar/CalendarContributions';
 import { thousandify } from './../../utils/thousandifyUtil';
 import { getDate } from './../../utils/getDateUtil';
