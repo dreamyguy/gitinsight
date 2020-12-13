@@ -270,7 +270,6 @@ const HomePage = () => {
               <CalendarContributions
                 until={Object.keys(commitsPerDay).pop()}
                 values={commitsPerDay}
-                theme="random"
               />
             </div>
           )}
