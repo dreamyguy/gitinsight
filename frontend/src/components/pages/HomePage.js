@@ -1,75 +1,30 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import classnames from 'classnames';
 import CalendarContributions from './../primitives/Calendar/CalendarContributions';
+import {
+  Calendar,
+  Code,
+  Flag,
+  Folder,
+  Sparkles,
+  TrendingUp,
+  UserGroup,
+} from './../primitives/Icon';
 import { thousandify } from './../../utils/thousandifyUtil';
 import { getDate } from './../../utils/getDateUtil';
 import { isNotEmptyObject } from './../../utils/isEmptyUtil';
 import { statsGlobalQuery } from './../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
-const HeroIconUsers = () => (
-  <svg
-    className="h-6 w-6 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    aria-hidden="true"
-  >
-    {/* <!-- Heroicon name: users --> */}
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-    />
-  </svg>
-);
-
-// const HeroIconMailOpen = () => (
-//   <svg
-//     className="h-6 w-6 text-white"
-//     xmlns="http://www.w3.org/2000/svg"
-//     fill="none"
-//     viewBox="0 0 24 24"
-//     stroke="currentColor"
-//     aria-hidden="true"
-//   >
-//     {/* <!-- Heroicon name: mail-open --> */}
-//     <path
-//       strokeLinecap="round"
-//       strokeLinejoin="round"
-//       strokeWidth="2"
-//       d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
-//     />
-//   </svg>
-// );
-
-const HeroIconCursorClick = () => (
-  <svg
-    className="h-6 w-6 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    aria-hidden="true"
-  >
-    {/* <!-- Heroicon name: cursor-click --> */}
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-    />
-  </svg>
-);
-
-const StatsItem = ({ icon, heading, stat, statIncreasedBy, statDecreasedBy }) => (
+const StatsItem = ({ bgColor, icon, heading, stat, statIncreasedBy, statDecreasedBy }) => (
   <div className="bg-white overflow-hidden shadow rounded-lg">
     <div className="px-4 py-5 sm:p-6">
       <div className="flex items-center">
-        <div className="flex-shrink-0 bg-indigo-500 rounded-md p-3">{icon}</div>
+        <div className={classnames('flex-shrink-0', 'rounded-md p-3', bgColor || 'bg-indigo-500')}>
+          {icon}
+        </div>
         <div className="ml-5 w-0 flex-1">
           <dt className="text-sm font-medium text-gray-500 truncate">{heading}</dt>
           <dd className="flex items-baseline">
@@ -177,112 +132,138 @@ const HomePage = () => {
           </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="Repositories"
               stat={thousandify(repositories)}
             />
             <StatsItem
-              icon={<HeroIconUsers />}
+              bgColor="bg-fav-orange-dark"
+              icon={<UserGroup className="h-6 w-6 text-white" />}
               heading="Contributors"
               stat={thousandify(contributors)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-dark"
+              icon={<Code className="h-6 w-6 text-white" />}
               heading="Commits"
               stat={thousandify(commits)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-yellow"
+              icon={<Sparkles className="h-6 w-6 text-white" />}
               heading="Commits impact > thousand"
               stat={thousandify(commitsImpactGtThousand)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-light"
+              icon={<Calendar className="h-6 w-6 text-white" />}
               heading="Commits on weekends"
               stat={thousandify(commitsOnWeekend)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-turquoise"
+              icon={<TrendingUp className="h-6 w-6 text-white" />}
               heading="Average commits / contributor"
               stat={commitsPerContributorAverage.toFixed(2)}
             />
             {/* <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="Commits per day"
               stat={commitsPerDay}
             /> */}
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-turquoise"
+              icon={<TrendingUp className="h-6 w-6 text-white" />}
               heading="Average commits / day"
               stat={commitsPerDayAverage.toFixed(2)}
             />
             {/* <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="commitsPerMonthDay"
               stat={commitsPerMonthDay}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="commitsPerMonthNr"
               stat={commitsPerMonthNr}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="commitsPerYear"
               stat={commitsPerYear}
             /> */}
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-dark"
+              icon={<Code className="h-6 w-6 text-white" />}
               heading="Commits without file changes"
               stat={thousandify(commitsWithoutFileChanges)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-yellow"
+              icon={<Sparkles className="h-6 w-6 text-white" />}
               heading="Commits without impact"
               stat={thousandify(commitsWithoutImpact)}
             />
             {/* <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="contributorsList"
               stat={contributorsList}
             /> */}
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-light"
+              icon={<Calendar className="h-6 w-6 text-white" />}
               heading="Days between first and last commit"
               stat={thousandify(daysActive)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-light"
+              icon={<Calendar className="h-6 w-6 text-white" />}
               heading="Days since first commit"
               stat={thousandify(daysSinceFirstCommit)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-light"
+              icon={<Calendar className="h-6 w-6 text-white" />}
               heading="Days since last commit"
               stat={thousandify(daysSinceLastCommit)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-dark"
+              icon={<Code className="h-6 w-6 text-white" />}
               heading="File changes"
               stat={thousandify(fileChanges)}
             />
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-green-dark"
+              icon={<Code className="h-6 w-6 text-white" />}
               heading="Lines of code"
               stat={thousandify(lines)}
             />
             {/* <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-purple-middle"
+              icon={<Folder className="h-6 w-6 text-white" />}
               heading="repositoriesList"
               stat={repositoriesList}
             /> */}
             <StatsItem
-              icon={<HeroIconCursorClick />}
+              bgColor="bg-fav-pink-shock"
+              icon={<Flag className="h-6 w-6 text-white" />}
               heading="Staleness"
               stat={staleness.toFixed(2)}
             />
           </dl>
-          {/* <StatsItem icon={<HeroIconCursorClick />} heading="weekdays" stat={weekdays} /> */}
+          {/* <StatsItem
+            bgColor="bg-fav-green-light"
+            icon={<Calendar className="h-6 w-6 text-white" />}
+            heading="Weekdays"
+            stat={weekdays}
+          /> */}
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
             <div className="mt-5">
               <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
