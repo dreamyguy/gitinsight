@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -23,6 +25,9 @@ module.exports = {
         'fav-coffee': '#4c3000',
         'fav-turquoise': '#75fcfd', // color 6 of gitinsight - new
         'fav-yellow': '#fbf050', // color 8 of gitinsight - new
+      },
+      fontFamily: {
+        sans: ['Ubuntu', ...defaultTheme.fontFamily.sans],
       },
     },
   },
