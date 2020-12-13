@@ -3,6 +3,16 @@
 
 import gql from 'graphql-tag';
 
+export const sidebarQuery = gql`
+  query SidebarQuery {
+    statsGlobal {
+      commits
+      contributors
+      repositories
+    }
+  }
+`;
+
 export const statsGlobalQuery = gql`
   query StatsGlobalQuery {
     statsGlobal {

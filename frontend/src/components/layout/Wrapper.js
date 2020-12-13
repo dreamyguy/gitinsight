@@ -6,6 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
+import { sidebarQuery } from './../../graphql/queries';
+import { thousandify } from './../../utils/thousandifyUtil';
 import Main from './Main';
 
 // const Notifications = () => (
@@ -87,7 +90,7 @@ import Main from './Main';
 //   </div>
 // );
 
-const SidebarDesktop = () => (
+const SidebarDesktop = ({ commits, contributors, repositories, stats }) => (
   <div className="hidden md:flex md:flex-shrink-0">
     {/* <!-- Static sidebar for desktop --> */}
     <div className="flex flex-col w-64">
@@ -102,184 +105,200 @@ const SidebarDesktop = () => (
         </div>
         <div className="flex-1 flex flex-col overflow-y-auto">
           <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
-            {/* <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" --> */}
-            <a
-              href="#"
-              className="bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300" --> */}
-              {/* <!-- Heroicon name: home --> */}
-              <svg
-                className="text-fav-orange-middle mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-              Dashboard
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: users --> */}
-              <svg
-                className="text-fav-orange-dark group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-              Contributors
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: folder --> */}
-              <svg
-                className="text-fav-purple-middle group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                />
-              </svg>
-              Repositories
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: inbox --> */}
-              <svg
-                className="text-fav-green-dark group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                />
-              </svg>
-              Commits
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: calendar --> */}
-              <svg
-                className="text-fav-green-light group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              Calendar
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: chart-bar --> */}
-              <svg
-                className="text-fav-turquoise group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-              Trends
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: chart-bar --> */}
-              <svg
-                className="text-fav-pink-shock group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-              Staleness
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            >
-              {/* <!-- Heroicon name: chart-bar --> */}
-              <svg
-                className="text-fav-yellow group-hover:text-gray-300 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-              Curiosa
-            </a>
+            {stats && (
+              <>
+                {/* <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" --> */}
+                <a
+                  href="#"
+                  className="bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300" --> */}
+                  {/* <!-- Heroicon name: home --> */}
+                  <svg
+                    className="text-fav-orange-middle mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
+                  </svg>
+                  Dashboard
+                  {/* <span className="bg-gray-800 group-hover:bg-gray-700 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                    000
+                  </span> */}
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: users --> */}
+                  <svg
+                    className="text-fav-orange-dark group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                  Contributors
+                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                    {thousandify(contributors)}
+                  </span>
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: folder --> */}
+                  <svg
+                    className="text-fav-purple-middle group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                    />
+                  </svg>
+                  Repositories
+                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                    {thousandify(repositories)}
+                  </span>
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: inbox --> */}
+                  <svg
+                    className="text-fav-green-dark group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    />
+                  </svg>
+                  Commits
+                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                    {thousandify(commits)}
+                  </span>
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: calendar --> */}
+                  <svg
+                    className="text-fav-green-light group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Calendar
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: chart-bar --> */}
+                  <svg
+                    className="text-fav-turquoise group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    />
+                  </svg>
+                  Trends
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: chart-bar --> */}
+                  <svg
+                    className="text-fav-pink-shock group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    />
+                  </svg>
+                  Staleness
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                >
+                  {/* <!-- Heroicon name: chart-bar --> */}
+                  <svg
+                    className="text-fav-yellow group-hover:text-gray-300 mr-3 h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    />
+                  </svg>
+                  Curiosa
+                </a>
+              </>
+            )}
           </nav>
         </div>
       </div>
@@ -551,26 +570,36 @@ const TopSection = () => (
   </div>
 );
 
-const Wrapper = ({ pageType, children }) => (
-  <div className="antialiased font-sans bg-gray-200 h-screen">
+const Wrapper = ({ pageType, children }) => {
+  const {
+    data: { statsGlobal, statsGlobal: { commits, contributors, repositories } = {} } = {},
+  } = useQuery(sidebarQuery);
+  return (
     <>
-      {pageType !== 'fullscreen' ? (
-        <>
-          <div className="h-screen flex overflow-hidden bg-gray-100">
-            <OffCanvasMenuMobile />
-            <SidebarDesktop />
-            <div className="flex flex-col w-0 flex-1 overflow-hidden">
-              <TopSection />
-              <Main pageType={pageType}>{children}</Main>
+      <div className="antialiased font-sans bg-gray-200 h-screen">
+        {pageType !== 'fullscreen' ? (
+          <>
+            <div className="h-screen flex overflow-hidden bg-gray-100">
+              <OffCanvasMenuMobile stats={statsGlobal} />
+              <SidebarDesktop
+                stats={statsGlobal}
+                commits={commits}
+                contributors={contributors}
+                repositories={repositories}
+              />
+              <div className="flex flex-col w-0 flex-1 overflow-hidden">
+                <TopSection />
+                <Main pageType={pageType}>{children}</Main>
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        children
-      )}
+          </>
+        ) : (
+          children
+        )}
+      </div>
     </>
-  </div>
-);
+  );
+};
 
 Wrapper.propTypes = {
   children: PropTypes.node,
