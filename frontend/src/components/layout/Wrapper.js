@@ -24,6 +24,7 @@ import {
   X,
 } from './../primitives/Icon';
 import Main from './Main';
+import logo from './../../images/logo.png';
 
 // const Notifications = () => (
 //   <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -96,11 +97,8 @@ const SidebarDesktop = ({ commits, contributors, repositories, stats }) => (
       {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
       <div className="flex flex-col h-0 flex-1">
         <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-          <img
-            className="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-            alt="Workflow"
-          />
+          <img className="h-8 w-auto" src={logo} alt="Workflow" />
+          <span className="text-white px-2 py-2 text-2xl font-semibold">Gitinsight</span>
         </div>
         <div className="flex-1 flex flex-col overflow-y-auto">
           <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
