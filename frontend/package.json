@@ -40,6 +40,8 @@
     "dotenv": "^8.2.0",
     "fontsource-ubuntu": "^3.1.5",
     "graphql": "^15.4.0",
+    "highcharts": "^8.2.2",
+    "highcharts-react-official": "^3.0.0",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
