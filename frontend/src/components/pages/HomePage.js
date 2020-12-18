@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import classnames from 'classnames';
 import CalendarContributions from './../primitives/Calendar/CalendarContributions';
+import Chart from './../primitives/Chart/Chart';
 import {
   Calendar,
   Code,
@@ -103,22 +104,22 @@ const HomePage = () => {
         commitsPerContributorAverage,
         commitsPerDay,
         commitsPerDayAverage,
-        // commitsPerMonthDay,
-        // commitsPerMonthNr,
-        // commitsPerYear,
+        commitsPerMonthDay, // obj with single key-value pair
+        commitsPerMonthNr, // obj with single key-value pair
+        commitsPerYear, // obj with single key-value pair
         commitsWithoutFileChanges,
         commitsWithoutImpact,
         contributors,
-        // contributorsList,
+        // contributorsList, // array list
         daysActive,
         daysSinceFirstCommit,
         daysSinceLastCommit,
         fileChanges,
         lines,
         repositories,
-        // repositoriesList,
+        // repositoriesList, // array list
         staleness,
-        // weekdays,
+        // weekdays, // obj with single key-value pair
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
@@ -273,6 +274,24 @@ const HomePage = () => {
               />
             </div>
           )}
+          <Chart
+            categories={Object.keys(commitsPerYear)}
+            data={Object.values(commitsPerYear)}
+            title="Commits per year"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(commitsPerMonthNr)}
+            data={Object.values(commitsPerMonthNr)}
+            title="Commits per month"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(commitsPerMonthDay)}
+            data={Object.values(commitsPerMonthDay)}
+            title="Commits per day in a month"
+            type="spline"
+          />
         </>
       )}
     </Wrapper>
