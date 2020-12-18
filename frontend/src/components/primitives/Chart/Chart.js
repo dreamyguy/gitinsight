@@ -193,7 +193,7 @@ const Chart = ({ categories, data, title, type }) => {
       {categories && isNotEmptyArray(categories) && data && isNotEmptyArray(data) ? (
         <div className="mt-5">
           <h2 className="text-2xl font-semibold text-gray-900 mb-5">{title}</h2>
-          <div className="bg-white overflow-hidden shadow rounded-lg mb-2">
+          <div className="bg-white overflow-hidden shadow rounded-lg mb-2 px-2 py-2">
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
           </div>
         </div>
