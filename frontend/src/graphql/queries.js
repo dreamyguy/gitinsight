@@ -22,6 +22,9 @@ export const statsGlobalQuery = gql`
       commitsImpactGtThousand
       commitsOnWeekend
       commitsPerContributorAverage
+      commitsPerSecond
+      commitsPerMinute
+      commitsPerHour
       commitsPerDay
       commitsPerDayAverage
       commitsPerMonthDay

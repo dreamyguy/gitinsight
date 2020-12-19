@@ -31,6 +31,9 @@ const HomePage = () => {
         commitsImpactGtThousand,
         commitsOnWeekend,
         commitsPerContributorAverage,
+        commitsPerSecond, // obj with single key-value pair
+        commitsPerMinute, // obj with single key-value pair
+        commitsPerHour, // obj with single key-value pair
         commitsPerDay,
         commitsPerDayAverage,
         commitsPerMonthDay, // obj with single key-value pair
@@ -168,6 +171,24 @@ const HomePage = () => {
             categories={Object.keys(commitsPerMonthDay)}
             data={Object.values(commitsPerMonthDay)}
             title="Commits per day in a month"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(commitsPerHour)}
+            data={Object.values(commitsPerHour)}
+            title="Commits per hour"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(commitsPerMinute)}
+            data={Object.values(commitsPerMinute)}
+            title="Commits per minute"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(commitsPerSecond)}
+            data={Object.values(commitsPerSecond)}
+            title="Commits per second"
             type="spline"
           />
         </>
