@@ -124,13 +124,13 @@ const HomePage = () => {
             /> */}
             <Card
               type="calendar"
-              heading="Days between first and last commit"
-              stat={thousandify(daysActive)}
+              heading="Days since first commit"
+              stat={thousandify(daysSinceFirstCommit)}
             />
             <Card
               type="calendar"
-              heading="Days since first commit"
-              stat={thousandify(daysSinceFirstCommit)}
+              heading="Days between first and last commit"
+              stat={thousandify(daysActive)}
             />
             <Card
               type="calendar"
