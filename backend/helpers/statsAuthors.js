@@ -32,12 +32,21 @@ const authorStats = ({ author, objData }) => {
   // calculate staleness
   const staleness = daysSinceLastCommit / 365;
   // calculate commits per time unit
+  const commitsBySecondsCalendar = arrayByKey(objData, 'time_seconds');
+  const commitsByMinutesCalendar = arrayByKey(objData, 'time_minutes');
+  const commitsByHoursCalendar = arrayByKey(objData, 'time_hour');
   const commitsByDaysCalendar = arrayByKey(objData, 'date_iso_8601');
   const commitsByMonthDay = arrayByKey(objData, 'date_month_day');
+  const commitsByMonthName = arrayByKey(objData, 'date_month_name');
   const commitsByMonthNr = arrayByKey(objData, 'date_month_number');
   const commitsByYear = arrayByKey(objData, 'date_year');
+  const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
+  const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
+  const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
+  const commitsPerDayAverage = daysActive / totalNrCommits;
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
+  const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
   // total nr repositories
@@ -59,8 +68,13 @@ const authorStats = ({ author, objData }) => {
     commitDateFirst,
     commitDateLast,
     commits,
+    commitsPerSecond,
+    commitsPerMinute,
+    commitsPerHour,
     commitsPerDay,
+    commitsPerDayAverage,
     commitsPerMonthDay,
+    commitsPerMonthName,
     commitsPerMonthNr,
     commitsPerYear,
     daysActive,

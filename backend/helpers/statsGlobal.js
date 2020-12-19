@@ -95,17 +95,23 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const daysSinceLastCommit = daysSince(commitDateLast);
   // calculate staleness
   const staleness = daysSinceLastCommit / 365;
-  // calculate commits per contributor, average
-  const commitsPerContributorAverage = (totalNrCommits / totalNrContributors);
-  // calculate commits per day, average
-  const commitsPerDayAverage = (daysActive / totalNrCommits);
   // calculate commits per time unit
+  const commitsBySecondsCalendar = arrayByKey(data, 'time_seconds');
+  const commitsByMinutesCalendar = arrayByKey(data, 'time_minutes');
+  const commitsByHoursCalendar = arrayByKey(data, 'time_hour');
   const commitsByDaysCalendar = arrayByKey(data, 'date_iso_8601');
   const commitsByMonthDay = arrayByKey(data, 'date_month_day');
+  const commitsByMonthName = arrayByKey(data, 'date_month_name');
   const commitsByMonthNr = arrayByKey(data, 'date_month_number');
   const commitsByYear = arrayByKey(data, 'date_year');
+  const commitsPerContributorAverage = totalNrCommits / totalNrContributors;
+  const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
+  const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
+  const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
+  const commitsPerDayAverage = daysActive / totalNrCommits;
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
+  const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
   return {
@@ -115,9 +121,13 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
     commitsImpactGtThousand,
     commitsOnWeekend,
     commitsPerContributorAverage,
+    commitsPerSecond,
+    commitsPerMinute,
+    commitsPerHour,
     commitsPerDay,
     commitsPerDayAverage,
     commitsPerMonthDay,
+    commitsPerMonthName,
     commitsPerMonthNr,
     commitsPerYear,
     commitsWithoutFileChanges,

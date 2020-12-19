@@ -49,8 +49,13 @@ type statsAuthors {
   commitDateLast: String
   commits: Int
   commitsPerDay: JSON
+  commitsPerDayAverage: Float
+  commitsPerHour: JSON
+  commitsPerMinute: JSON
   commitsPerMonthDay: JSON
+  commitsPerMonthName: JSON
   commitsPerMonthNr: JSON
+  commitsPerSecond: JSON
   commitsPerYear: JSON
   daysActive: Int
   daysSinceFirstCommit: Int
@@ -72,8 +77,12 @@ type statsGlobal {
   commitsPerContributorAverage: Float
   commitsPerDay: JSON
   commitsPerDayAverage: Float
+  commitsPerHour: JSON
+  commitsPerMinute: JSON
   commitsPerMonthDay: JSON
+  commitsPerMonthName: JSON
   commitsPerMonthNr: JSON
+  commitsPerSecond: JSON
   commitsPerYear: JSON
   commitsWithoutFileChanges: Int
   commitsWithoutImpact: Int
@@ -94,9 +103,15 @@ type statsRepos {
   commitDateFirst: String
   commitDateLast: String
   commits: Int
+  commitsPerContributorAverage: Float
   commitsPerDay: JSON
+  commitsPerDayAverage: Float
+  commitsPerHour: JSON
+  commitsPerMinute: JSON
   commitsPerMonthDay: JSON
+  commitsPerMonthName: JSON
   commitsPerMonthNr: JSON
+  commitsPerSecond: JSON
   commitsPerYear: JSON
   contributors: Int
   contributorsList: [String]
