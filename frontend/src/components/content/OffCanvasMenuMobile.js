@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Calendar,
   Code,
@@ -13,7 +14,7 @@ import {
   X,
 } from './../primitives/Icon';
 
-const OffCanvasMenuMobile = () => (
+const OffCanvasMenuMobile = ({ pageType }) => (
   <div className="md:hidden">
     {/* <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. --> */}
     <div className="fixed inset-0 flex z-40">
@@ -123,5 +124,21 @@ const OffCanvasMenuMobile = () => (
     </div>
   </div>
 );
+
+OffCanvasMenuMobile.propTypes = {
+  pageType: PropTypes.oneOf([
+    'calendar',
+    'code',
+    'contributors',
+    'curiosa',
+    'repositories',
+    'staleness',
+    'trends',
+    // 'home'
+    'dashboard',
+    // This page type strips the wrapper, good for modal-like pages
+    'fullscreen',
+  ]),
+};
 
 export default OffCanvasMenuMobile;

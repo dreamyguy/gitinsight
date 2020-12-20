@@ -15,7 +15,7 @@ import {
 } from './../primitives/Icon';
 import logo from './../../images/logo.png';
 
-const SidebarDesktop = ({ commits, contributors, repositories, stats }) => (
+const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }) => (
   <div className="hidden md:flex md:flex-shrink-0">
     {/* <!-- Static sidebar for desktop --> */}
     <div className="flex flex-col w-64">
@@ -112,6 +112,19 @@ SidebarDesktop.propTypes = {
   stats: PropTypes.object,
   commits: PropTypes.number,
   contributors: PropTypes.number,
+  pageType: PropTypes.oneOf([
+    'calendar',
+    'code',
+    'contributors',
+    'curiosa',
+    'repositories',
+    'staleness',
+    'trends',
+    // 'home'
+    'dashboard',
+    // This page type strips the wrapper, good for modal-like pages
+    'fullscreen',
+  ]),
   repositories: PropTypes.number,
 };
 

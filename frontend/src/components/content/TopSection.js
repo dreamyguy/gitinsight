@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MenuAlt2, Search } from './../primitives/Icon';
 // import Notifications from './Notifications';
 // import ProfileDropdown from './ProfileDropdown';
 
-const TopSection = () => (
+const TopSection = ({ pageType }) => (
   <div className="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
     <button className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
       <span className="sr-only">Open sidebar</span>
@@ -13,7 +14,7 @@ const TopSection = () => (
       <div className="flex-1 flex">
         <form className="w-full flex md:ml-0" action="#" method="GET">
           <label htmlFor="search_field" className="sr-only">
-            Search
+            Search{pageType !== 'dashboard' ? ` for ${pageType}` : ''}
           </label>
           <div className="relative w-full text-gray-400 focus-within:text-gray-600">
             <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
@@ -36,5 +37,21 @@ const TopSection = () => (
     </div>
   </div>
 );
+
+TopSection.propTypes = {
+  pageType: PropTypes.oneOf([
+    'calendar',
+    'code',
+    'contributors',
+    'curiosa',
+    'repositories',
+    'staleness',
+    'trends',
+    // 'home'
+    'dashboard',
+    // This page type strips the wrapper, good for modal-like pages
+    'fullscreen',
+  ]),
+};
 
 export default TopSection;

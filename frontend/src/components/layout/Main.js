@@ -7,7 +7,7 @@ function Main({ children, pageType }) {
     <main
       className={classnames(
         'flex-1 relative overflow-y-auto focus:outline-none',
-        pageType === 'home' && '', // TODO: eventually replace it with something
+        pageType === 'dashboard' && '', // TODO: eventually replace it with something
       )}
     >
       <div className="py-6">
@@ -19,7 +19,19 @@ function Main({ children, pageType }) {
 
 Main.propTypes = {
   children: PropTypes.node,
-  pageType: PropTypes.oneOf(['fullscreen', 'home', 'stats-authors', 'stats-global', 'stats-repos']),
+  pageType: PropTypes.oneOf([
+    'calendar',
+    'code',
+    'contributors',
+    'curiosa',
+    'repositories',
+    'staleness',
+    'trends',
+    // 'home'
+    'dashboard',
+    // This page type strips the wrapper, good for modal-like pages
+    'fullscreen',
+  ]),
 };
 
 export default Main;

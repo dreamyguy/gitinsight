@@ -56,7 +56,7 @@ const HomePage = () => {
     } = {},
   } = useQuery(statsGlobalQuery);
   return (
-    <Wrapper pageType="home">
+    <Wrapper pageType="dashboard">
       {statsGlobal && (
         <>
           <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">

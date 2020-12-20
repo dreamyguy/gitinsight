@@ -25,15 +25,16 @@ const Wrapper = ({ pageType, children }) => {
         {pageType !== 'fullscreen' ? (
           <>
             <div className="h-screen flex overflow-hidden bg-gray-100">
-              <OffCanvasMenuMobile stats={statsGlobal} />
+              <OffCanvasMenuMobile stats={statsGlobal} pageType={pageType} />
               <SidebarDesktop
                 stats={statsGlobal}
                 commits={commits}
                 contributors={contributors}
                 repositories={repositories}
+                pageType={pageType}
               />
               <div className="flex flex-col w-0 flex-1 overflow-hidden">
-                <TopSection />
+                <TopSection pageType={pageType} />
                 <Main pageType={pageType}>{children}</Main>
               </div>
             </div>
@@ -48,7 +49,19 @@ const Wrapper = ({ pageType, children }) => {
 
 Wrapper.propTypes = {
   children: PropTypes.node,
-  pageType: PropTypes.oneOf(['fullscreen', 'home', 'stats-authors', 'stats-global', 'stats-repos']),
+  pageType: PropTypes.oneOf([
+    'calendar',
+    'code',
+    'contributors',
+    'curiosa',
+    'repositories',
+    'staleness',
+    'trends',
+    // 'home'
+    'dashboard',
+    // This page type strips the wrapper, good for modal-like pages
+    'fullscreen',
+  ]),
 };
 
 export default Wrapper;
