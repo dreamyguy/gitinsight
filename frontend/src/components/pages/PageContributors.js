@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from '@apollo/react-hooks';
 import { statsAuthorsQueryTop30, statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
-import { ChevronRight, Code, Flag, Folder, Mail } from './../primitives/Icon';
+import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getDate } from '../../utils/getDateUtil';
@@ -29,10 +29,10 @@ const renderContributors = ({ statsAuthors }) => {
         author,
         commitDateLast: commitDateLastAuthor,
         commits: commitsAuthor,
-        // daysActive,
+        daysActive,
         // daysSinceLastCommit,
         // impact,
-        // impactRatio,
+        impactRatio,
         repositories: repositoriesAuthor,
         staleness,
       } = sa;
@@ -73,8 +73,12 @@ const renderContributors = ({ statsAuthors }) => {
                         <span className="mr-3">{commitsAuthor}</span>
                         <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-purple-middle" />
                         <span className="mr-3">{repositoriesAuthor}</span>
+                        <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
+                        <span className="mr-3">{daysActive}</span>
+                        <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
+                        <span className="mr-3">{impactRatio.toFixed(0)}</span>
                         <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
-                        {staleness.toFixed(2)}
+                        <span className="mr-3">{staleness.toFixed(2)}</span>
                       </p>
                     </div>
                   </div>
