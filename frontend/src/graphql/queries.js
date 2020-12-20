@@ -47,6 +47,7 @@ export const statsGlobalQuery = gql`
         Tue
         Wed
         Thu
+        Fri
         Sat
         Sun
       }

@@ -51,7 +51,7 @@ const HomePage = () => {
         repositories,
         // repositoriesList, // array list
         staleness,
-        // weekdays, // obj with single key-value pair
+        weekdays, // obj with single key-value pair
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
@@ -171,6 +171,12 @@ const HomePage = () => {
             categories={Object.keys(commitsPerMonthDay)}
             data={Object.values(commitsPerMonthDay)}
             title="Commits per day in a month"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(weekdays)}
+            data={Object.values(weekdays)}
+            title="Commits per weekday"
             type="spline"
           />
           <Chart
