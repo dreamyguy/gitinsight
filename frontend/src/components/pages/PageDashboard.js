@@ -60,12 +60,12 @@ const PageDashboard = () => {
       {statsGlobal && (
         <>
           <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
             <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
           </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
             <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />
+            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
             <Card type="code" heading="Commits" stat={thousandify(commits)} />
             <Card
               type="curiosa"

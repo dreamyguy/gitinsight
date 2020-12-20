@@ -33,14 +33,14 @@ export const statsGlobalQuery = gql`
       commitsWithoutFileChanges
       commitsWithoutImpact
       contributors
-      contributorsList
+      # contributorsList
       daysActive
       daysSinceFirstCommit
       daysSinceLastCommit
       fileChanges
       lines
       repositories
-      repositoriesList
+      # repositoriesList
       staleness
       weekdays {
         Mon
@@ -51,6 +51,43 @@ export const statsGlobalQuery = gql`
         Sat
         Sun
       }
+    }
+  }
+`;
+
+export const statsAuthorsQueryTop30 = gql`
+  query StatsAuthorsQueryTop30 {
+    statsAuthors(sortBy: commits, sortDirection: desc, count: 30) {
+      author
+      # commitDateFirst
+      commitDateLast
+      commits
+      # commitsPerSecond
+      # commitsPerMinute
+      # commitsPerHour
+      # commitsPerDay
+      # commitsPerDayAverage
+      # commitsPerMonthDay
+      # commitsPerMonthName
+      # commitsPerMonthNr
+      # commitsPerYear
+      daysActive
+      # daysSinceFirstCommit
+      daysSinceLastCommit
+      impact
+      impactRatio
+      repositories
+      # repositoriesList
+      staleness
+      # weekdays {
+      #   Mon
+      #   Tue
+      #   Wed
+      #   Thu
+      #   Fri
+      #   Sat
+      #   Sun
+      # }
     }
   }
 `;
