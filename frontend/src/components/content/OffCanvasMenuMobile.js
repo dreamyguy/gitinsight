@@ -128,7 +128,7 @@ const OffCanvasMenuMobile = ({ pageType }) => (
 OffCanvasMenuMobile.propTypes = {
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',

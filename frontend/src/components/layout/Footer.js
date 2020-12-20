@@ -11,7 +11,7 @@ const Footer = ({ pageType }) => (
 Footer.propTypes = {
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',

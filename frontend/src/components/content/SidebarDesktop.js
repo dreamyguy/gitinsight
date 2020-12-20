@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { thousandify } from './../../utils/thousandifyUtil';
 import {
   Calendar,
@@ -14,6 +14,139 @@ import {
   UserGroup,
 } from './../primitives/Icon';
 import logo from './../../images/logo.png';
+
+const NavItem = ({ badge, name, pageType, type, url }) => {
+  const resolveIcon = () => {
+    let output = null;
+    switch (type) {
+      case 'dashboard':
+        output = (
+          <Home
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-orange-middle',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'calendar':
+        output = (
+          <Calendar
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-green-light',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'commits':
+        output = (
+          <Code
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-green-dark',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'staleness':
+        output = (
+          <Flag
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-pink-shock',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'repositories':
+        output = (
+          <Folder
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-purple-middle',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'curiosa':
+        output = (
+          <Sparkles
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-yellow',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'trends':
+        output = (
+          <TrendingUp
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-turquoise',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      case 'contributors':
+        output = (
+          <UserGroup
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-orange-dark',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+      default:
+        // Syntax sugar, we default to 'commits'
+        output = (
+          <Code
+            className={classnames(
+              pageType === type ? '' : 'group-hover:text-gray-300',
+              'text-fav-green-dark',
+              'mr-3 h-6 w-6',
+            )}
+          />
+        );
+        break;
+    }
+    return output;
+  };
+  return (
+    <Link
+      to={url}
+      className={classnames(
+        pageType === type
+          ? 'bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+          : 'text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+      )}
+    >
+      {resolveIcon(type)}
+      {name}
+      {badge && (
+        <span
+          className={classnames(
+            pageType === type
+              ? 'bg-gray-800 group-hover:bg-gray-700 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full'
+              : 'bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full',
+          )}
+        >
+          {badge}
+        </span>
+      )}
+    </Link>
+  );
+};
 
 const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }) => (
   <div className="hidden md:flex md:flex-shrink-0">
@@ -29,76 +162,32 @@ const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }
           <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
             {stats && (
               <>
-                {/* <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" --> */}
-                <a
-                  href="#"
-                  className="bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  {/* <!-- Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300" --> */}
-                  <Home className="text-fav-orange-middle mr-3 h-6 w-6" />
-                  Dashboard
-                  {/* <span className="bg-gray-800 group-hover:bg-gray-700 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
-                    000
-                  </span> */}
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <UserGroup className="text-fav-orange-dark group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Contributors
-                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
-                    {thousandify(contributors)}
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <Folder className="text-fav-purple-middle group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Repositories
-                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
-                    {thousandify(repositories)}
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <Code className="text-fav-green-dark group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Commits
-                  <span className="bg-gray-900 group-hover:bg-gray-800 ml-auto inline-block py-0.5 px-3 text-xs font-medium rounded-full">
-                    {thousandify(commits)}
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <Calendar className="text-fav-green-light group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Calendar
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <TrendingUp className="text-fav-turquoise group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Trends
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <Flag className="text-fav-pink-shock group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Staleness
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <Sparkles className="text-fav-yellow group-hover:text-gray-300 mr-3 h-6 w-6" />
-                  Curiosa
-                </a>
+                <NavItem name="Dashboard" pageType={pageType} type="dashboard" url="/" />
+                <NavItem
+                  badge={thousandify(contributors)}
+                  name="Contributors"
+                  pageType={pageType}
+                  type="contributors"
+                  url="/contributors"
+                />
+                <NavItem
+                  badge={thousandify(repositories)}
+                  name="Repositories"
+                  pageType={pageType}
+                  type="repositories"
+                  url="/repositories"
+                />
+                <NavItem
+                  badge={thousandify(commits)}
+                  name="Commits"
+                  pageType={pageType}
+                  type="commits"
+                  url="/commits"
+                />
+                <NavItem name="Calendar" pageType={pageType} type="calendar" url="/calendar" />
+                <NavItem name="Trends" pageType={pageType} type="trends" url="/trends" />
+                <NavItem name="Staleness" pageType={pageType} type="staleness" url="/staleness" />
+                <NavItem name="Curiosa" pageType={pageType} type="curiosa" url="/curiosa" />
               </>
             )}
           </nav>
@@ -114,7 +203,7 @@ SidebarDesktop.propTypes = {
   contributors: PropTypes.number,
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',

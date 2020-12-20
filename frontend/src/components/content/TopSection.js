@@ -41,7 +41,7 @@ const TopSection = ({ pageType }) => (
 TopSection.propTypes = {
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',

@@ -11,7 +11,7 @@ const Header = ({ pageType }) => (
 Header.propTypes = {
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',

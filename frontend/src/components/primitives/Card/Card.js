@@ -11,7 +11,7 @@ const resolveIcon = (type, mode) => {
     case 'calendar':
       output = [<Calendar className={classesIcon} />, 'bg-fav-green-light'];
       break;
-    case 'code':
+    case 'commits':
       output = [<Code className={classesIcon} />, 'bg-fav-green-dark'];
       break;
     case 'staleness':
@@ -30,7 +30,7 @@ const resolveIcon = (type, mode) => {
       output = [<UserGroup className={classesIcon} />, 'bg-fav-orange-dark'];
       break;
     default:
-      // Syntax sugar, we default to 'code'
+      // Syntax sugar, we default to 'commits'
       output = [<Code className={classesIcon} />, 'bg-fav-green-dark'];
       break;
   }

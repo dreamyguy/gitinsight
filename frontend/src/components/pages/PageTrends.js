@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import CalendarContributions from './../primitives/Calendar/CalendarContributions';
-import Card from './../primitives/Card/Card';
-import Chart from './../primitives/Chart/Chart';
-import { thousandify } from './../../utils/thousandifyUtil';
-import { getDate } from './../../utils/getDateUtil';
-import { isNotEmptyObject } from './../../utils/isEmptyUtil';
-import { statsGlobalQuery } from './../../graphql/queries';
+import CalendarContributions from '../primitives/Calendar/CalendarContributions';
+import Card from '../primitives/Card/Card';
+import Chart from '../primitives/Chart/Chart';
+import { thousandify } from '../../utils/thousandifyUtil';
+import { getDate } from '../../utils/getDateUtil';
+import { isNotEmptyObject } from '../../utils/isEmptyUtil';
+import { statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 
 const DatesFromUntil = ({ from, until }) => (
@@ -20,7 +20,7 @@ const DatesFromUntil = ({ from, until }) => (
   </>
 );
 
-const HomePage = () => {
+const PageTrends = () => {
   const {
     data: {
       statsGlobal,
@@ -56,7 +56,7 @@ const HomePage = () => {
     } = {},
   } = useQuery(statsGlobalQuery);
   return (
-    <Wrapper pageType="dashboard">
+    <Wrapper pageType="trends">
       {statsGlobal && (
         <>
           <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
@@ -202,4 +202,4 @@ const HomePage = () => {
     </Wrapper>
   );
 };
-export default HomePage;
+export default PageTrends;

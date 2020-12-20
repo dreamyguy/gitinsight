@@ -21,7 +21,7 @@ Main.propTypes = {
   children: PropTypes.node,
   pageType: PropTypes.oneOf([
     'calendar',
-    'code',
+    'commits',
     'contributors',
     'curiosa',
     'repositories',
