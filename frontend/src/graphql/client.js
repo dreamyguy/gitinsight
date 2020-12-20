@@ -3,7 +3,9 @@ import { requestRoot } from '../config';
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: requestRoot('graphql') }),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false,
+  }),
   // Use 'no-cache' to avoid caching, 'cache-first' is default
   defaultOptions: { query: { fetchPolicy: 'no-cache' } },
 });
