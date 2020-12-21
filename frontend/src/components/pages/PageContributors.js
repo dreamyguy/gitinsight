@@ -7,6 +7,7 @@ import Wrapper from '../layout/Wrapper';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
+import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
@@ -44,8 +45,8 @@ const renderContributors = ({ statsAuthors }) => {
                 <div className="flex-shrink-0">
                   <img
                     className="h-12 w-12 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
+                    src={getAvatarFromEmail(author)}
+                    alt={getNameFromEmail(author)}
                   />
                 </div>
                 <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
