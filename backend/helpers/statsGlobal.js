@@ -1,6 +1,7 @@
 import arrayByKey from './arrayByKey';
 import arrayByKeyFiltered from './arrayByKeyFiltered';
 import arrayByKeyFilteredGreaterThan from './arrayByKeyFilteredGreaterThan';
+import arrayMaxMin from './arrayMaxMin';
 import daysBetween from './daysBetween';
 import daysSince from './daysSince';
 import groupByDuplicatesInArray from './groupByDuplicatesInArray';
@@ -87,8 +88,12 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const daysWeek = arrayByKey(data, 'date_day_week');
   const weekdays = groupByDuplicatesInArray(daysWeek);
   // calculate days between first and last commits
-  const commitDateFirst = data[0].author_date_unix_timestamp;
-  const commitDateLast = data[data.length - 1].author_date_unix_timestamp;
+  const commitsByAuthorDateUnixtimestamp = arrayByKey(
+    objData,
+    'author_date_unix_timestamp'
+  );
+  const commitDateFirst = arrayMaxMin(commitsByAuthorDateUnixtimestamp, 'min');
+  const commitDateLast = arrayMaxMin(commitsByAuthorDateUnixtimestamp, 'max');
   const daysActive = daysBetween(commitDateFirst, commitDateLast);
   // calculate days since first and last commits
   const daysSinceFirstCommit = daysSince(commitDateFirst);
