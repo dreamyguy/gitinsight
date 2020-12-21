@@ -69,18 +69,28 @@ const renderContributors = ({ statsAuthors }) => {
                         <CheckCircle className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
                         Completed phone screening
                       </p> */}
-                      <p className="mt-2 flex items-center text-sm text-gray-500">
-                        <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
-                        <span className="mr-3">{commitsAuthor}</span>
-                        <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-purple-middle" />
-                        <span className="mr-3">{repositoriesAuthor}</span>
-                        <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
-                        <span className="mr-3">{daysActive}</span>
-                        <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
-                        <span className="mr-3">{impactRatio.toFixed(0)}</span>
-                        <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
-                        <span className="mr-3">{staleness.toFixed(2)}</span>
-                      </p>
+                      <div className="min-w-0 flex-1 md:grid md:grid-cols-3 xl:grid-cols-5 md:gap-4 flex items-center text-sm text-gray-500 mt-2">
+                        <div className="flex items-center">
+                          <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
+                          <span className="mr-3">{thousandify(commitsAuthor)}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-purple-middle" />
+                          <span className="mr-3">{thousandify(repositoriesAuthor)}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
+                          <span className="mr-3">{thousandify(daysActive)}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
+                          <span className="mr-3">{thousandify(impactRatio.toFixed(0))}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
+                          <span className="mr-3">{staleness.toFixed(2)}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
