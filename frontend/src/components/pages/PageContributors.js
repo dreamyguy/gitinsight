@@ -88,7 +88,7 @@ const renderContributors = ({ statsAuthors }) => {
                         </div>
                         <div className="flex items-center">
                           <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
-                          <span className="mr-3">{thousandify(daysActive)}</span>
+                          <span className="mr-3">{thousandify((daysActive / 365).toFixed(1))}</span>
                         </div>
                         <div className="flex items-center">
                           <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
