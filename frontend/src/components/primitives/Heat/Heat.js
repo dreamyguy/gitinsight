@@ -56,7 +56,7 @@ const HeatIntensityLegend = ({ list }) => {
     theList.map((l, i) => {
       const { bgColor, legend } = l;
       output.push(
-        <div className="flex items-center mr-2">
+        <div key={uuidv4()} className="flex items-center mr-2">
           <span
             className={classnames(
               'flex-shrink-0 h-3 w-3 rounded-full ring-2 ring-white mr-1',
