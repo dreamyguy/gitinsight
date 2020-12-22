@@ -89,7 +89,7 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const weekdays = groupByDuplicatesInArray(daysWeek);
   // calculate days between first and last commits
   const commitsByAuthorDateUnixtimestamp = arrayByKey(
-    objData,
+    data,
     'author_date_unix_timestamp'
   );
   const commitDateFirst = arrayMaxMin(commitsByAuthorDateUnixtimestamp, 'min');

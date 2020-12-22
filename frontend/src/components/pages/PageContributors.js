@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import { statsAuthorsQueryTop30, statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
@@ -10,6 +11,7 @@ import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
+import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
 
 const DatesFromUntil = ({ from, until }) => (
@@ -42,13 +44,19 @@ const renderContributors = ({ statsAuthors }) => {
           <a href="#" className="block hover:bg-gray-50">
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
-                <div className="flex-shrink-0">
+                <span className="inline-block relative">
                   <img
                     className="h-12 w-12 rounded-full"
                     src={getAvatarFromEmail(author)}
                     alt={getNameFromEmail(author)}
                   />
-                </div>
+                  <span
+                    className={classnames(
+                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white',
+                      staleness ? stalenessStatus(staleness) : '',
+                    )}
+                  />
+                </span>
                 <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                   <div>
                     <p className="text-sm font-medium text-indigo-600 truncate">
