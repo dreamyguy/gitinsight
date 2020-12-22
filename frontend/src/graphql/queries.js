@@ -99,3 +99,48 @@ export const statsAuthorsQueryStaleness = gql`
     }
   }
 `;
+
+export const statsReposQueryTop30 = gql`
+  query StatsReposQueryTop30 {
+    statsRepos(sortBy: staleness, sortDirection: asc, count: 30) {
+      repository
+      # commitDateFirst
+      commitDateLast
+      commits
+      # commitsPerSecond
+      # commitsPerMinute
+      # commitsPerHour
+      # commitsPerDay
+      # commitsPerDayAverage
+      # commitsPerMonthDay
+      # commitsPerMonthName
+      # commitsPerMonthNr
+      # commitsPerYear
+      contributors
+      # contributorsList
+      daysActive
+      # daysSinceFirstCommit
+      daysSinceLastCommit
+      impact
+      impactRatio
+      staleness
+      # weekdays {
+      #   Mon
+      #   Tue
+      #   Wed
+      #   Thu
+      #   Fri
+      #   Sat
+      #   Sun
+      # }
+    }
+  }
+`;
+
+export const statsReposQueryStaleness = gql`
+  query StatsReposQueryStaleness {
+    statsRepos(sortBy: staleness, sortDirection: asc) {
+      staleness
+    }
+  }
+`;
