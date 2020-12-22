@@ -3,10 +3,15 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
-import { statsAuthorsQueryTop30, statsGlobalQuery } from '../../graphql/queries';
+import {
+  statsAuthorsQueryStaleness,
+  statsAuthorsQueryTop30,
+  statsGlobalQuery,
+} from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
+import Heat from '../primitives/Heat/Heat';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
@@ -53,7 +58,7 @@ const renderContributors = ({ statsAuthors }) => {
                   <span
                     className={classnames(
                       'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white',
-                      staleness ? stalenessStatus(staleness) : '',
+                      staleness ? stalenessStatus(staleness, 'color') : '',
                     )}
                   />
                 </span>
@@ -141,6 +146,9 @@ const PageContributors = () => {
     } = {},
   } = useQuery(statsGlobalQuery);
   const { data: { statsAuthors } = {} } = useQuery(statsAuthorsQueryTop30);
+  const { data: { statsAuthors: statsAuthorsStaleness } = {} } = useQuery(
+    statsAuthorsQueryStaleness,
+  );
   return (
     <Wrapper pageType="contributors">
       {statsGlobal && (
@@ -154,6 +162,7 @@ const PageContributors = () => {
             <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
             <Card type="code" heading="Commits" stat={thousandify(commits)} />
           </dl>
+          <Heat statuses={statsAuthorsStaleness} />
           <Contributors statsAuthors={statsAuthors} />
         </>
       )}

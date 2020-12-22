@@ -57,7 +57,7 @@ export const statsGlobalQuery = gql`
 
 export const statsAuthorsQueryTop30 = gql`
   query StatsAuthorsQueryTop30 {
-    statsAuthors(sortBy: commits, sortDirection: desc, count: 30) {
+    statsAuthors(sortBy: staleness, sortDirection: asc, count: 30) {
       author
       # commitDateFirst
       commitDateLast
@@ -88,6 +88,14 @@ export const statsAuthorsQueryTop30 = gql`
       #   Sat
       #   Sun
       # }
+    }
+  }
+`;
+
+export const statsAuthorsQueryStaleness = gql`
+  query StatsAuthorsQueryStaleness {
+    statsAuthors(sortBy: staleness, sortDirection: asc) {
+      staleness
     }
   }
 `;

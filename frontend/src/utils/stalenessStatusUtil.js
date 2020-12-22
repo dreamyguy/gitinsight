@@ -1,46 +1,88 @@
-// Set staleness color based on 'staleness' value
+// Set staleness output based on 'staleness' value
 // ------------------------------------------------------------
-export const stalenessStatus = staleness => {
+export const stalenessStatus = (staleness, mode) => {
   const unit = 5 / 14;
-  let color = 'bg-lime-400';
+  let output = {
+    bgColor: 'bg-lime-400',
+    staleness: unit,
+  };
   if (staleness > unit && staleness <= unit * 2) {
-    color = 'bg-lime-500';
+    output = {
+      bgColor: 'bg-lime-500',
+      staleness: unit * 1.001,
+    };
   }
   if (staleness > unit * 2 && staleness <= unit * 3) {
-    color = 'bg-yellow-300';
+    output = {
+      bgColor: 'bg-yellow-300',
+      staleness: unit * 2.001,
+    };
   }
   if (staleness > unit * 3 && staleness <= unit * 4) {
-    color = 'bg-amber-400';
+    output = {
+      bgColor: 'bg-amber-400',
+      staleness: unit * 3.001,
+    };
   }
   if (staleness > unit * 4 && staleness <= unit * 5) {
-    color = 'bg-amber-500';
+    output = {
+      bgColor: 'bg-amber-500',
+      staleness: unit * 4.001,
+    };
   }
   if (staleness > unit * 5 && staleness <= unit * 6) {
-    color = 'bg-orange-400';
+    output = {
+      bgColor: 'bg-orange-400',
+      staleness: unit * 5.001,
+    };
   }
   if (staleness > unit * 6 && staleness <= unit * 7) {
-    color = 'bg-orange-500';
+    output = {
+      bgColor: 'bg-orange-500',
+      staleness: unit * 6.001,
+    };
   }
   if (staleness > unit * 7 && staleness <= unit * 8) {
-    color = 'bg-orange-600';
+    output = {
+      bgColor: 'bg-orange-600',
+      staleness: unit * 7.001,
+    };
   }
   if (staleness > unit * 8 && staleness <= unit * 9) {
-    color = 'bg-red-600';
+    output = {
+      bgColor: 'bg-red-600',
+      staleness: unit * 8.001,
+    };
   }
   if (staleness > unit * 9 && staleness <= unit * 10) {
-    color = 'bg-red-700';
+    output = {
+      bgColor: 'bg-red-700',
+      staleness: unit * 9.001,
+    };
   }
   if (staleness > unit * 10 && staleness <= unit * 11) {
-    color = 'bg-red-800';
+    output = {
+      bgColor: 'bg-red-800',
+      staleness: unit * 10.001,
+    };
   }
   if (staleness > unit * 11 && staleness <= unit * 12) {
-    color = 'bg-red-900';
+    output = {
+      bgColor: 'bg-red-900',
+      staleness: unit * 11.001,
+    };
   }
   if (staleness > unit * 12 && staleness <= unit * 13) {
-    color = 'bg-amber-900';
+    output = {
+      bgColor: 'bg-amber-900',
+      staleness: unit * 12.001,
+    };
   }
   if (staleness > unit * 13) {
-    color = 'bg-gray-900';
+    output = {
+      bgColor: 'bg-gray-900',
+      staleness: unit * 13.001,
+    };
   }
-  return color;
+  return mode === 'color' ? output.bgColor : output.staleness;
 };
