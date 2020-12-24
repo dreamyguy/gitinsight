@@ -29,7 +29,6 @@ const PageCommits = () => {
         commitDateLast,
         commits,
         commitsImpactGtThousand,
-        commitsOnWeekend,
         commitsPerContributorAverage,
         commitsPerSecond, // obj with single key-value pair
         commitsPerMinute, // obj with single key-value pair
@@ -41,16 +40,9 @@ const PageCommits = () => {
         commitsPerYear, // obj with single key-value pair
         commitsWithoutFileChanges,
         commitsWithoutImpact,
-        contributors,
-        // contributorsList, // array list
         daysActive,
-        daysSinceFirstCommit,
-        daysSinceLastCommit,
         fileChanges,
         lines,
-        repositories,
-        // repositoriesList, // array list
-        staleness,
         weekdays, // obj with single key-value pair
       } = {},
     } = {},
@@ -64,87 +56,39 @@ const PageCommits = () => {
             <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
           </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
-            <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />
             <Card type="commits" heading="Commits" stat={thousandify(commits)} />
-            <Card
-              type="curiosa"
-              heading="Commits impact > thousand"
-              stat={thousandify(commitsImpactGtThousand)}
-            />
-            <Card
-              type="calendar"
-              heading="Commits on weekends"
-              stat={thousandify(commitsOnWeekend)}
-            />
-            <Card
-              type="trends"
-              heading="Average commits / contributor"
-              stat={commitsPerContributorAverage.toFixed(2)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="Commits per day"
-              stat={commitsPerDay}
-            /> */}
-            <Card
-              type="trends"
-              heading="Average commits / day"
-              stat={commitsPerDayAverage.toFixed(2)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="commitsPerMonthDay"
-              stat={commitsPerMonthDay}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerMonthNr"
-              stat={commitsPerMonthNr}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerYear"
-              stat={commitsPerYear}
-            /> */}
-            <Card
-              type="code"
-              heading="Commits without file changes"
-              stat={thousandify(commitsWithoutFileChanges)}
-            />
-            <Card
-              type="curiosa"
-              heading="Commits without impact"
-              stat={thousandify(commitsWithoutImpact)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="contributorsList"
-              stat={contributorsList}
-            /> */}
-            <Card
-              type="calendar"
-              heading="Days since first commit"
-              stat={thousandify(daysSinceFirstCommit)}
-            />
+            <Card type="code" heading="Lines of code" stat={thousandify(lines)} />
             <Card
               type="calendar"
               heading="Days between first and last commit"
               stat={thousandify(daysActive)}
             />
             <Card
-              type="calendar"
-              heading="Days since last commit"
-              stat={thousandify(daysSinceLastCommit)}
+              type="curiosa"
+              heading="Commits impact > thousand"
+              stat={thousandify(commitsImpactGtThousand)}
             />
             <Card type="code" heading="File changes" stat={thousandify(fileChanges)} />
-            <Card type="code" heading="Lines of code" stat={thousandify(lines)} />
-            {/* <Card
-              type="repositories"
-              heading="repositoriesList"
-              stat={repositoriesList}
-            /> */}
-            <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
+            <Card
+              type="trends"
+              heading="Average commits / contributor"
+              stat={commitsPerContributorAverage.toFixed(2)}
+            />
+            <Card
+              type="curiosa"
+              heading="Commits without impact"
+              stat={thousandify(commitsWithoutImpact)}
+            />
+            <Card
+              type="code"
+              heading="Commits without file changes"
+              stat={thousandify(commitsWithoutFileChanges)}
+            />
+            <Card
+              type="trends"
+              heading="Average commits / day"
+              stat={commitsPerDayAverage.toFixed(2)}
+            />
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
             <div className="mt-5">
