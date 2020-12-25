@@ -50,6 +50,7 @@ export const addEmptyDays = ({ dayList }) => {
       ...finalObj,
     };
     // 'Sort' object by key
+    // This logic is available at 'backend/helpers/' as 'sortObjByOnlyKey'
     finalObj = Object.keys(finalObj)
       .sort()
       .reduce((acc, cur) => {
