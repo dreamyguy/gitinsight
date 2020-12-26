@@ -1,3 +1,4 @@
+import { addEmptyDays } from './../../frontend/src/utils/getDateUtil';
 import arrayByKey from './arrayByKey';
 import arrayByKeyFiltered from './arrayByKeyFiltered';
 import arrayByKeyFilteredGreaterThan from './arrayByKeyFilteredGreaterThan';
@@ -5,6 +6,7 @@ import arrayMaxMin from './arrayMaxMin';
 import daysBetween from './daysBetween';
 import daysSince from './daysSince';
 import groupByDuplicatesInArray from './groupByDuplicatesInArray';
+import impactBy from './impactBy';
 import itemsSum from './itemsSum';
 import totalSum from './totalSum';
 
@@ -109,6 +111,7 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const commitsByMonthName = arrayByKey(data, 'date_month_name');
   const commitsByMonthNr = arrayByKey(data, 'date_month_number');
   const commitsByYear = arrayByKey(data, 'date_year');
+  const impactByDay = addEmptyDays({ dayList: impactBy(data, "date_iso_8601") });
   const commitsPerContributorAverage = totalNrCommits / totalNrContributors;
   const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
   const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
@@ -135,6 +138,7 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
     commitsPerMonthName,
     commitsPerMonthNr,
     commitsPerYear,
+    impactByDay,
     commitsWithoutFileChanges,
     commitsWithoutImpact,
     contributors,

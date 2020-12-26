@@ -38,6 +38,7 @@ const PageCommits = () => {
         commitsPerMonthDay, // obj with single key-value pair
         commitsPerMonthNr, // obj with single key-value pair
         commitsPerYear, // obj with single key-value pair
+        impactByDay, // obj with single key-value pair
         commitsWithoutFileChanges,
         commitsWithoutImpact,
         daysActive,
@@ -99,6 +100,12 @@ const PageCommits = () => {
               />
             </div>
           )}
+          <Chart
+            categories={Object.keys(impactByDay)}
+            data={Object.values(impactByDay)}
+            title="Impact by day"
+            type="spline"
+          />
           <Chart
             categories={Object.keys(commitsPerYear)}
             data={Object.values(commitsPerYear)}
