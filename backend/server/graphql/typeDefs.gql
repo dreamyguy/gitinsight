@@ -76,6 +76,7 @@ type statsGlobal {
   commitsOnWeekend: Int
   commitsPerContributorAverage: Float
   commitsPerDay: JSON
+  commitsPerDayCummulative: JSON
   commitsPerDayAverage: Float
   commitsPerHour: JSON
   commitsPerMinute: JSON
@@ -85,6 +86,7 @@ type statsGlobal {
   commitsPerSecond: JSON
   commitsPerYear: JSON
   impactByDay: JSON
+  impactByDayCummulative: JSON
   commitsWithoutFileChanges: Int
   commitsWithoutImpact: Int
   contributors: Int

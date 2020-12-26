@@ -1,4 +1,5 @@
 import { addEmptyDays } from './../../frontend/src/utils/getDateUtil';
+import { cummulative } from './../../frontend/src/utils/cummulativeUtil';
 import arrayByKey from './arrayByKey';
 import arrayByKeyFiltered from './arrayByKeyFiltered';
 import arrayByKeyFilteredGreaterThan from './arrayByKeyFilteredGreaterThan';
@@ -112,11 +113,13 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const commitsByMonthNr = arrayByKey(data, 'date_month_number');
   const commitsByYear = arrayByKey(data, 'date_year');
   const impactByDay = addEmptyDays({ dayList: impactBy(data, "date_iso_8601") });
+  const impactByDayCummulative = cummulative(addEmptyDays({ dayList: impactBy(data, "date_iso_8601") }));
   const commitsPerContributorAverage = totalNrCommits / totalNrContributors;
   const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
   const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
+  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: groupByDuplicatesInArray(commitsByDaysCalendar) }));
   const commitsPerDayAverage = daysActive / totalNrCommits;
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
@@ -133,12 +136,14 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
     commitsPerMinute,
     commitsPerHour,
     commitsPerDay,
+    commitsPerDayCummulative,
     commitsPerDayAverage,
     commitsPerMonthDay,
     commitsPerMonthName,
     commitsPerMonthNr,
     commitsPerYear,
     impactByDay,
+    impactByDayCummulative,
     commitsWithoutFileChanges,
     commitsWithoutImpact,
     contributors,

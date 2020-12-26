@@ -26,11 +26,13 @@ export const statsGlobalQuery = gql`
       commitsPerMinute
       commitsPerHour
       commitsPerDay
+      commitsPerDayCummulative
       commitsPerDayAverage
       commitsPerMonthDay
       commitsPerMonthNr
       commitsPerYear
       impactByDay
+      impactByDayCummulative
       commitsWithoutFileChanges
       commitsWithoutImpact
       contributors

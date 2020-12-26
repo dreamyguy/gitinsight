@@ -34,11 +34,13 @@ const PageCommits = () => {
         commitsPerMinute, // obj with single key-value pair
         commitsPerHour, // obj with single key-value pair
         commitsPerDay,
+        commitsPerDayCummulative,
         commitsPerDayAverage,
         commitsPerMonthDay, // obj with single key-value pair
         commitsPerMonthNr, // obj with single key-value pair
         commitsPerYear, // obj with single key-value pair
         impactByDay, // obj with single key-value pair
+        impactByDayCummulative, // obj with single key-value pair
         commitsWithoutFileChanges,
         commitsWithoutImpact,
         daysActive,
@@ -101,9 +103,21 @@ const PageCommits = () => {
             </div>
           )}
           <Chart
+            categories={Object.keys(commitsPerDayCummulative)}
+            data={Object.values(commitsPerDayCummulative)}
+            title="Commits, over time"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(impactByDayCummulative)}
+            data={Object.values(impactByDayCummulative)}
+            title="Lines of code, over time"
+            type="spline"
+          />
+          <Chart
             categories={Object.keys(impactByDay)}
             data={Object.values(impactByDay)}
-            title="Impact by day"
+            title="Impact per day"
             type="spline"
           />
           <Chart
