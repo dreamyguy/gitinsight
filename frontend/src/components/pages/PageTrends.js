@@ -108,7 +108,7 @@ const PageTrends = () => {
               stat={commitsPerYear}
             /> */}
             <Card
-              type="code"
+              type="curiosa"
               heading="Commits without file changes"
               stat={thousandify(commitsWithoutFileChanges)}
             />

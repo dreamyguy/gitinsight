@@ -66,26 +66,11 @@ const PageCommits = () => {
               heading="Days between first and last commit"
               stat={thousandify(daysActive)}
             />
-            <Card
-              type="curiosa"
-              heading="Commits impact > thousand"
-              stat={thousandify(commitsImpactGtThousand)}
-            />
             <Card type="code" heading="File changes" stat={thousandify(fileChanges)} />
             <Card
               type="trends"
               heading="Average commits / contributor"
               stat={commitsPerContributorAverage.toFixed(2)}
-            />
-            <Card
-              type="curiosa"
-              heading="Commits without impact"
-              stat={thousandify(commitsWithoutImpact)}
-            />
-            <Card
-              type="code"
-              heading="Commits without file changes"
-              stat={thousandify(commitsWithoutFileChanges)}
             />
             <Card
               type="trends"
