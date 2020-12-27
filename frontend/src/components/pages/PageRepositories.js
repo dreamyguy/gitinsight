@@ -143,14 +143,7 @@ const PageRepositories = () => {
   const {
     data: {
       statsGlobal,
-      statsGlobal: {
-        commitDateFirst,
-        commitDateLast,
-        commits,
-        contributors,
-        // contributorsList, // array list
-        repositories,
-      } = {},
+      statsGlobal: { commitDateFirst, commitDateLast, commits, contributors, repositories } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
   const { data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);

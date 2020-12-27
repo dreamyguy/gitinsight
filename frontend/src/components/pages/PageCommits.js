@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
@@ -28,7 +27,6 @@ const PageCommits = () => {
         commitDateFirst,
         commitDateLast,
         commits,
-        commitsImpactGtThousand,
         commitsPerContributorAverage,
         commitsPerSecond, // obj with single key-value pair
         commitsPerMinute, // obj with single key-value pair
@@ -41,8 +39,6 @@ const PageCommits = () => {
         commitsPerYear, // obj with single key-value pair
         impactByDay, // obj with single key-value pair
         impactByDayCummulative, // obj with single key-value pair
-        commitsWithoutFileChanges,
-        commitsWithoutImpact,
         daysActive,
         fileChanges,
         lines,
@@ -55,7 +51,7 @@ const PageCommits = () => {
       {statsGlobal && (
         <>
           <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">Commits</h1>
             <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
           </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
