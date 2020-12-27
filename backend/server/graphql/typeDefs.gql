@@ -85,6 +85,7 @@ type statsGlobal {
   commitsPerMonthNr: JSON
   commitsPerSecond: JSON
   commitsPerYear: JSON
+  impactPerSecond: Float
   impactByDay: JSON
   impactByDayCummulative: JSON
   commitsWithoutFileChanges: Int

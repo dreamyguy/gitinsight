@@ -98,6 +98,7 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const commitDateFirst = arrayMaxMin(commitsByAuthorDateUnixtimestamp, 'min');
   const commitDateLast = arrayMaxMin(commitsByAuthorDateUnixtimestamp, 'max');
   const daysActive = daysBetween(commitDateFirst, commitDateLast);
+  const secondsInActivity = daysActive * 86400; // 86400 = seconds in a day
   // calculate days since first and last commits
   const daysSinceFirstCommit = daysSince(commitDateFirst);
   const daysSinceLastCommit = daysSince(commitDateLast);
@@ -120,11 +121,12 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
   const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: groupByDuplicatesInArray(commitsByDaysCalendar) }));
-  const commitsPerDayAverage = daysActive / totalNrCommits;
+  const commitsPerDayAverage = totalNrCommits / daysActive;
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
+  const impactPerSecond = totalLinesOfCode / secondsInActivity;
   return {
     commitDateFirst,
     commitDateLast,
@@ -142,6 +144,7 @@ const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
     commitsPerMonthName,
     commitsPerMonthNr,
     commitsPerYear,
+    impactPerSecond,
     impactByDay,
     impactByDayCummulative,
     commitsWithoutFileChanges,

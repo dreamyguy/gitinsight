@@ -31,6 +31,7 @@ export const statsGlobalQuery = gql`
       commitsPerMonthDay
       commitsPerMonthNr
       commitsPerYear
+      impactPerSecond
       impactByDay
       impactByDayCummulative
       commitsWithoutFileChanges

@@ -27,10 +27,7 @@ const PageCalendar = () => {
       statsGlobal: {
         commitDateFirst,
         commitDateLast,
-        commits,
-        commitsImpactGtThousand,
         commitsOnWeekend,
-        commitsPerContributorAverage,
         commitsPerSecond, // obj with single key-value pair
         commitsPerMinute, // obj with single key-value pair
         commitsPerHour, // obj with single key-value pair
@@ -39,17 +36,10 @@ const PageCalendar = () => {
         commitsPerMonthDay, // obj with single key-value pair
         commitsPerMonthNr, // obj with single key-value pair
         commitsPerYear, // obj with single key-value pair
-        commitsWithoutFileChanges,
-        commitsWithoutImpact,
-        contributors,
-        // contributorsList, // array list
+        impactPerSecond,
         daysActive,
         daysSinceFirstCommit,
         daysSinceLastCommit,
-        fileChanges,
-        lines,
-        repositories,
-        // repositoriesList, // array list
         staleness,
         weekdays, // obj with single key-value pair
       } = {},
@@ -60,68 +50,10 @@ const PageCalendar = () => {
       {statsGlobal && (
         <>
           <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Global Stats</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">Calendar</h1>
             <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
           </dl>
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />
-            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
-            <Card type="code" heading="Commits" stat={thousandify(commits)} />
-            <Card
-              type="curiosa"
-              heading="Commits impact > thousand"
-              stat={thousandify(commitsImpactGtThousand)}
-            />
-            <Card
-              type="calendar"
-              heading="Commits on weekends"
-              stat={thousandify(commitsOnWeekend)}
-            />
-            <Card
-              type="trends"
-              heading="Average commits / contributor"
-              stat={commitsPerContributorAverage.toFixed(2)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="Commits per day"
-              stat={commitsPerDay}
-            /> */}
-            <Card
-              type="trends"
-              heading="Average commits / day"
-              stat={commitsPerDayAverage.toFixed(2)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="commitsPerMonthDay"
-              stat={commitsPerMonthDay}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerMonthNr"
-              stat={commitsPerMonthNr}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerYear"
-              stat={commitsPerYear}
-            /> */}
-            <Card
-              type="curiosa"
-              heading="Commits without file changes"
-              stat={thousandify(commitsWithoutFileChanges)}
-            />
-            <Card
-              type="curiosa"
-              heading="Commits without impact"
-              stat={thousandify(commitsWithoutImpact)}
-            />
-            {/* <Card
-              type="repositories"
-              heading="contributorsList"
-              stat={contributorsList}
-            /> */}
             <Card
               type="calendar"
               heading="Days since first commit"
@@ -137,14 +69,22 @@ const PageCalendar = () => {
               heading="Days since last commit"
               stat={thousandify(daysSinceLastCommit)}
             />
-            <Card type="code" heading="File changes" stat={thousandify(fileChanges)} />
-            <Card type="code" heading="Lines of code" stat={thousandify(lines)} />
-            {/* <Card
-              type="repositories"
-              heading="repositoriesList"
-              stat={repositoriesList}
-            /> */}
+            <Card
+              type="calendar"
+              heading="Commits on weekends"
+              stat={thousandify(commitsOnWeekend)}
+            />
+            <Card
+              type="trends"
+              heading="Average commits / day"
+              stat={commitsPerDayAverage.toFixed(2)}
+            />
             <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
+            <Card
+              type="calendar"
+              heading="Lines of code per second"
+              stat={impactPerSecond.toFixed(2)}
+            />
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
             <div className="mt-5">
