@@ -81,7 +81,7 @@ const renderRepositories = ({ statsRepos }) => {
                         <CheckCircle className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
                         Completed phone screening
                       </p> */}
-                      <div className="min-w-0 flex-1 md:grid md:grid-cols-3 xl:grid-cols-5 md:gap-4 flex items-center text-sm text-gray-500 mt-2">
+                      <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 mt-2">
                         <div className="flex items-center">
                           <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
                           <span className="mr-3">{thousandify(commitsRepo)}</span>
