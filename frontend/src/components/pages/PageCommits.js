@@ -18,21 +18,12 @@ const PageCommits = () => {
         commitDateLast,
         commits,
         commitsPerContributorAverage,
-        commitsPerSecond, // obj with single key-value pair
-        commitsPerMinute, // obj with single key-value pair
-        commitsPerHour, // obj with single key-value pair
         commitsPerDay,
         commitsPerDayCummulative,
         commitsPerDayAverage,
-        commitsPerMonthDay, // obj with single key-value pair
-        commitsPerMonthNr, // obj with single key-value pair
-        commitsPerYear, // obj with single key-value pair
-        impactByDay, // obj with single key-value pair
-        impactByDayCummulative, // obj with single key-value pair
         daysActive,
         fileChanges,
         lines,
-        weekdays, // obj with single key-value pair
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
@@ -74,60 +65,6 @@ const PageCommits = () => {
             categories={Object.keys(commitsPerDayCummulative)}
             data={Object.values(commitsPerDayCummulative)}
             title="Commits, over time"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(impactByDayCummulative)}
-            data={Object.values(impactByDayCummulative)}
-            title="Lines of code, over time"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(impactByDay)}
-            data={Object.values(impactByDay)}
-            title="Impact per day"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
-            title="Commits per year"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMonthNr)}
-            data={Object.values(commitsPerMonthNr)}
-            title="Commits per month"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMonthDay)}
-            data={Object.values(commitsPerMonthDay)}
-            title="Commits per day in a month"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(weekdays)}
-            data={Object.values(weekdays)}
-            title="Commits per weekday"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerHour)}
-            data={Object.values(commitsPerHour)}
-            title="Commits per hour"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMinute)}
-            data={Object.values(commitsPerMinute)}
-            title="Commits per minute"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerSecond)}
-            data={Object.values(commitsPerSecond)}
-            title="Commits per second"
             type="spline"
           />
         </>

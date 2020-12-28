@@ -15,7 +15,8 @@ const PageTrends = () => {
         commitDateLast,
         commitsPerContributorAverage,
         commitsPerDayAverage,
-        commitsPerYear, // obj with single key-value pair
+        impactByDay, // obj with single key-value pair
+        impactByDayCummulative, // obj with single key-value pair
         impactPerSecond,
       } = {},
     } = {},
@@ -43,9 +44,15 @@ const PageTrends = () => {
             />
           </dl>
           <Chart
-            categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
-            title="Commits per year"
+            categories={Object.keys(impactByDayCummulative)}
+            data={Object.values(impactByDayCummulative)}
+            title="Lines of code, over time"
+            type="spline"
+          />
+          <Chart
+            categories={Object.keys(impactByDay)}
+            data={Object.values(impactByDay)}
+            title="Impact per day"
             type="spline"
           />
         </>
