@@ -1,22 +1,13 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-  Calendar,
-  Code,
-  Flag,
-  Folder,
-  Home,
-  Sparkles,
-  TrendingUp,
-  UserGroup,
-  X,
-} from './../primitives/Icon';
+import { X } from './../primitives/Icon';
+import logo from './../../images/logo.png';
 import { MenuContext } from './../../contexts';
+import SidebarItem from './SidebarItem';
+import { thousandify } from './../../utils/thousandifyUtil';
 
-const OffCanvasMenuMobile = ({ pageType }) => {
+const OffCanvasMenuMobile = ({ commits, contributors, pageType, repositories, stats }) => {
   const { menuIsExpanded, setMenuIsExpanded } = useContext(MenuContext);
   const handleClick = () => {
     setMenuIsExpanded(!menuIsExpanded);
@@ -50,7 +41,7 @@ const OffCanvasMenuMobile = ({ pageType }) => {
                 From: "translate-x-0"
                 To: "-translate-x-full"
             --> */}
-            <div className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
+            <div className="relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-gray-800">
               <div className="absolute top-0 right-0 -mr-12 pt-2">
                 <button
                   className={classnames(
@@ -64,73 +55,57 @@ const OffCanvasMenuMobile = ({ pageType }) => {
                   <X className="h-6 w-6 text-white" />
                 </button>
               </div>
-              <div className="flex-shrink-0 flex items-center px-4">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Workflow"
-                />
+              <div className="flex-shrink-0 flex items-center h-16 px-4 bg-gray-900">
+                <img className="h-8 w-auto" src={logo} alt="Gitinsight" />
+                <span className="text-white px-2 py-2 text-2xl font-semibold">Gitinsight</span>
               </div>
-              <div className="mt-5 flex-1 h-0 overflow-y-auto">
-                <nav className="px-2 space-y-1">
-                  {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                  <a
-                    href="#"
-                    className="bg-gray-900 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    {/* <!-- Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300" --> */}
-                    <Home className="text-fav-orange-middle mr-4 h-6 w-6" />
-                    Dashboard
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <UserGroup className="text-fav-orange-dark group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Contributors
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Folder className="text-fav-purple-middle group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Repositories
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Code className="text-fav-green-dark group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Commits
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Calendar className="text-fav-green-light group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Calendar
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <TrendingUp className="text-fav-turquoise group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Trends
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Flag className="text-fav-pink-shock group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Staleness
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Sparkles className="text-fav-yellow group-hover:text-gray-300 mr-4 h-6 w-6" />
-                    Curiosa
-                  </a>
+              <div className="flex-1 flex flex-col overflow-y-auto">
+                <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
+                  {stats && (
+                    <>
+                      <SidebarItem name="Dashboard" pageType={pageType} type="dashboard" url="/" />
+                      <SidebarItem
+                        badge={thousandify(contributors)}
+                        name="Contributors"
+                        pageType={pageType}
+                        type="contributors"
+                        url="/contributors"
+                      />
+                      <SidebarItem
+                        badge={thousandify(repositories)}
+                        name="Repositories"
+                        pageType={pageType}
+                        type="repositories"
+                        url="/repositories"
+                      />
+                      <SidebarItem
+                        badge={thousandify(commits)}
+                        name="Commits"
+                        pageType={pageType}
+                        type="commits"
+                        url="/commits"
+                      />
+                      <SidebarItem
+                        name="Calendar"
+                        pageType={pageType}
+                        type="calendar"
+                        url="/calendar"
+                      />
+                      <SidebarItem name="Trends" pageType={pageType} type="trends" url="/trends" />
+                      <SidebarItem
+                        name="Staleness"
+                        pageType={pageType}
+                        type="staleness"
+                        url="/staleness"
+                      />
+                      <SidebarItem
+                        name="Curiosa"
+                        pageType={pageType}
+                        type="curiosa"
+                        url="/curiosa"
+                      />
+                    </>
+                  )}
                 </nav>
               </div>
             </div>
@@ -145,6 +120,9 @@ const OffCanvasMenuMobile = ({ pageType }) => {
 };
 
 OffCanvasMenuMobile.propTypes = {
+  stats: PropTypes.object,
+  commits: PropTypes.number,
+  contributors: PropTypes.number,
   pageType: PropTypes.oneOf([
     'calendar',
     'commits',
@@ -158,6 +136,7 @@ OffCanvasMenuMobile.propTypes = {
     // This page type strips the wrapper, good for modal-like pages
     'fullscreen',
   ]),
+  repositories: PropTypes.number,
 };
 
 export default OffCanvasMenuMobile;

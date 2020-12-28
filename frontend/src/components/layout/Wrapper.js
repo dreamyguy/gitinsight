@@ -25,7 +25,13 @@ const Wrapper = ({ pageType, children }) => {
         {pageType !== 'fullscreen' ? (
           <>
             <div className="h-screen flex overflow-hidden bg-gray-100">
-              <OffCanvasMenuMobile stats={statsGlobal} pageType={pageType} />
+              <OffCanvasMenuMobile
+                stats={statsGlobal}
+                commits={commits}
+                contributors={contributors}
+                repositories={repositories}
+                pageType={pageType}
+              />
               <SidebarDesktop
                 stats={statsGlobal}
                 commits={commits}
