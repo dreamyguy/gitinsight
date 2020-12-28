@@ -103,18 +103,22 @@ const PageStaleness = () => {
               </>
             )}
           </div>
-          <Chart
-            categories={Object.values(statsReposStaleness).map((m, i) => i)}
-            data={Object.values(statsReposStaleness).map(m => m.staleness)}
-            title="Staleness among repos, plotted"
-            type="spline"
-          />
-          <Chart
-            categories={Object.values(statsAuthorsStaleness).map((m, i) => i)}
-            data={Object.values(statsAuthorsStaleness).map(m => m.staleness)}
-            title="Staleness among contributors, plotted"
-            type="spline"
-          />
+          {statsReposStaleness && (
+            <Chart
+              categories={Object.values(statsReposStaleness).map((m, i) => i)}
+              data={Object.values(statsReposStaleness).map(m => m.staleness)}
+              title="Staleness among repos, plotted"
+              type="spline"
+            />
+          )}
+          {statsAuthorsStaleness && (
+            <Chart
+              categories={Object.values(statsAuthorsStaleness).map((m, i) => i)}
+              data={Object.values(statsAuthorsStaleness).map(m => m.staleness)}
+              title="Staleness among contributors, plotted"
+              type="spline"
+            />
+          )}
         </>
       )}
     </Wrapper>
