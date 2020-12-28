@@ -26,7 +26,6 @@ const PageCalendar = () => {
         commitsPerMonthDay, // obj with single key-value pair
         commitsPerMonthNr, // obj with single key-value pair
         commitsPerYear, // obj with single key-value pair
-        impactPerSecond,
         daysActive,
         daysSinceFirstCommit,
         daysSinceLastCommit,
@@ -70,11 +69,6 @@ const PageCalendar = () => {
               stat={commitsPerDayAverage.toFixed(2)}
             />
             <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
-            <Card
-              type="calendar"
-              heading="Lines of code per second"
-              stat={impactPerSecond.toFixed(2)}
-            />
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
             <div className="mt-5">
