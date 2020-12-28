@@ -21,27 +21,19 @@ const PageDashboard = () => {
         commitsImpactGtThousand,
         commitsOnWeekend,
         commitsPerContributorAverage,
-        commitsPerSecond, // obj with single key-value pair
-        commitsPerMinute, // obj with single key-value pair
-        commitsPerHour, // obj with single key-value pair
         commitsPerDay,
         commitsPerDayAverage,
-        commitsPerMonthDay, // obj with single key-value pair
-        commitsPerMonthNr, // obj with single key-value pair
-        commitsPerYear, // obj with single key-value pair
+        impactByDayCummulative, // obj with single key-value pair
         commitsWithoutFileChanges,
         commitsWithoutImpact,
         contributors,
-        // contributorsList, // array list
         daysActive,
         daysSinceFirstCommit,
         daysSinceLastCommit,
         fileChanges,
         lines,
         repositories,
-        // repositoriesList, // array list
         staleness,
-        weekdays, // obj with single key-value pair
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
@@ -69,31 +61,11 @@ const PageDashboard = () => {
               heading="Average commits / contributor"
               stat={commitsPerContributorAverage.toFixed(2)}
             />
-            {/* <Card
-              type="repositories"
-              heading="Commits per day"
-              stat={commitsPerDay}
-            /> */}
             <Card
               type="trends"
               heading="Average commits / day"
               stat={commitsPerDayAverage.toFixed(2)}
             />
-            {/* <Card
-              type="repositories"
-              heading="commitsPerMonthDay"
-              stat={commitsPerMonthDay}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerMonthNr"
-              stat={commitsPerMonthNr}
-            />
-            <Card
-              type="repositories"
-              heading="commitsPerYear"
-              stat={commitsPerYear}
-            /> */}
             <Card
               type="curiosa"
               heading="Commits without file changes"
@@ -104,11 +76,6 @@ const PageDashboard = () => {
               heading="Commits without impact"
               stat={thousandify(commitsWithoutImpact)}
             />
-            {/* <Card
-              type="repositories"
-              heading="contributorsList"
-              stat={contributorsList}
-            /> */}
             <Card
               type="calendar"
               heading="Days since first commit"
@@ -126,11 +93,6 @@ const PageDashboard = () => {
             />
             <Card type="code" heading="File changes" stat={thousandify(fileChanges)} />
             <Card type="code" heading="Lines of code" stat={thousandify(lines)} />
-            {/* <Card
-              type="repositories"
-              heading="repositoriesList"
-              stat={repositoriesList}
-            /> */}
             <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
@@ -143,45 +105,9 @@ const PageDashboard = () => {
             </div>
           )}
           <Chart
-            categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
-            title="Commits per year"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMonthNr)}
-            data={Object.values(commitsPerMonthNr)}
-            title="Commits per month"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMonthDay)}
-            data={Object.values(commitsPerMonthDay)}
-            title="Commits per day in a month"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(weekdays)}
-            data={Object.values(weekdays)}
-            title="Commits per weekday"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerHour)}
-            data={Object.values(commitsPerHour)}
-            title="Commits per hour"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerMinute)}
-            data={Object.values(commitsPerMinute)}
-            title="Commits per minute"
-            type="spline"
-          />
-          <Chart
-            categories={Object.keys(commitsPerSecond)}
-            data={Object.values(commitsPerSecond)}
-            title="Commits per second"
+            categories={Object.keys(impactByDayCummulative)}
+            data={Object.values(impactByDayCummulative)}
+            title="Lines of code, over time"
             type="spline"
           />
         </>
