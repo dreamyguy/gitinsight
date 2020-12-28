@@ -9,6 +9,7 @@ import {
   statsGlobalQuery,
 } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
+import DatesFromUntil from '../content/DatesFromUntil';
 import {
   Calendar,
   ChevronRight,
@@ -26,16 +27,6 @@ import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
-
-const DatesFromUntil = ({ from, until }) => (
-  <>
-    {from && until ? (
-      <div>
-        <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
-      </div>
-    ) : null}
-  </>
-);
 
 const renderRepositories = ({ statsRepos }) => {
   const output = [];

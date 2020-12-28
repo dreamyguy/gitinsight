@@ -1,21 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import DatesFromUntil from '../content/DatesFromUntil';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
 import { thousandify } from '../../utils/thousandifyUtil';
-import { getDate } from '../../utils/getDateUtil';
 import { statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
-
-const DatesFromUntil = ({ from, until }) => (
-  <>
-    {from && until ? (
-      <div>
-        <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
-      </div>
-    ) : null}
-  </>
-);
 
 const PageTrends = () => {
   const {

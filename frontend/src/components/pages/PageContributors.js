@@ -9,6 +9,7 @@ import {
   statsGlobalQuery,
 } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
+import DatesFromUntil from '../content/DatesFromUntil';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import Heat from '../primitives/Heat/Heat';
@@ -18,16 +19,6 @@ import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
-
-const DatesFromUntil = ({ from, until }) => (
-  <>
-    {from && until ? (
-      <div>
-        <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
-      </div>
-    ) : null}
-  </>
-);
 
 const renderContributors = ({ statsAuthors }) => {
   const output = [];

@@ -1,24 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import DatesFromUntil from '../content/DatesFromUntil';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
 import { thousandify } from '../../utils/thousandifyUtil';
-import { getDate } from '../../utils/getDateUtil';
 import { isNotEmptyObject } from '../../utils/isEmptyUtil';
 import { statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
-
-const DatesFromUntil = ({ from, until }) => (
-  <>
-    {from && until ? (
-      <div>
-        <span>{getDate(from)}</span> - <span>{getDate(until)}</span>
-      </div>
-    ) : null}
-  </>
-);
 
 const PageDashboard = () => {
   const {
