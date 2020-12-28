@@ -1,13 +1,13 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import DatesFromUntil from '../content/DatesFromUntil';
+import { statsGlobalQuery } from '../../graphql/queries';
+import Wrapper from '../layout/Wrapper';
+import PageTitleWithDate from '../content/PageTitleWithDate';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
 import { thousandify } from '../../utils/thousandifyUtil';
 import { isNotEmptyObject } from '../../utils/isEmptyUtil';
-import { statsGlobalQuery } from '../../graphql/queries';
-import Wrapper from '../layout/Wrapper';
 
 const PageCommits = () => {
   const {
@@ -40,10 +40,7 @@ const PageCommits = () => {
     <Wrapper pageType="commits">
       {statsGlobal && (
         <>
-          <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Commits</h1>
-            <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
-          </dl>
+          <PageTitleWithDate title="Commits" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <Card type="commits" heading="Commits" stat={thousandify(commits)} />
             <Card type="code" heading="Lines of code" stat={thousandify(lines)} />

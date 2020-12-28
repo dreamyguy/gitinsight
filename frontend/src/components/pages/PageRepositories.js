@@ -9,7 +9,7 @@ import {
   statsGlobalQuery,
 } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
-import DatesFromUntil from '../content/DatesFromUntil';
+import PageTitleWithDate from '../content/PageTitleWithDate';
 import {
   Calendar,
   ChevronRight,
@@ -143,10 +143,7 @@ const PageRepositories = () => {
     <Wrapper pageType="repositories">
       {statsGlobal && (
         <>
-          <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Repositories</h1>
-            <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
-          </dl>
+          <PageTitleWithDate title="Repositories" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
             <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />

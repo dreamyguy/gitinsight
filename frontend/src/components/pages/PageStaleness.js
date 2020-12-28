@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import DatesFromUntil from '../content/DatesFromUntil';
-import Card from '../primitives/Card/Card';
-import { thousandify } from '../../utils/thousandifyUtil';
 import { statsGlobalQuery } from '../../graphql/queries';
 import Wrapper from '../layout/Wrapper';
+import PageTitleWithDate from '../content/PageTitleWithDate';
+import Card from '../primitives/Card/Card';
+import { thousandify } from '../../utils/thousandifyUtil';
 
 const PageStaleness = () => {
   const {
@@ -35,10 +35,7 @@ const PageStaleness = () => {
     <Wrapper pageType="staleness">
       {statsGlobal && (
         <>
-          <dl className="flex items-baseline md:flex-col lg:flex-row lg:justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Staleness</h1>
-            <DatesFromUntil from={commitDateFirst} until={commitDateLast} />
-          </dl>
+          <PageTitleWithDate title="Staleness" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />
             <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />

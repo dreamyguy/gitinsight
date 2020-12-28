@@ -2,7 +2,8 @@ import dayjs from 'dayjs';
 import { isNotEmptyObject } from './isEmptyUtil';
 
 // Output date based on a valid date value and locale
-export const getDate = date => dayjs.unix(date).format('dddd, MMMM D, YYYY');
+export const getDate = (date, mode) =>
+  dayjs.unix(date).format(mode === 'compact' ? 'ddd, MMM D, YYYY' : 'dddd, MMMM D, YYYY');
 
 // Usage:
 // getDate('1382432573'); // Tuesday, October 22, 2013
