@@ -1,31 +1,8 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
-import { stalenessStatus } from './../../../utils/stalenessStatusUtil';
 import { isNotEmptyArray } from './../../../utils/isEmptyUtil';
-
-const resolveHeatIntensity = ({ list }) => {
-  const output = [];
-  const listTemp = [];
-  if (list && isNotEmptyArray(list)) {
-    list.map(l => {
-      const { staleness } = l;
-      listTemp.push(stalenessStatus(staleness, 'staleness'));
-      return null;
-    });
-    const totalItems = listTemp.length;
-    const uniqueItems = [...new Set(listTemp)];
-    uniqueItems.forEach(ui => {
-      const numItems = listTemp.filter(f => f === ui);
-      output.push({
-        bgColor: stalenessStatus(ui, 'color'),
-        legend: ui.toFixed(1),
-        percentage: (numItems.length * 100) / totalItems,
-      });
-    });
-  }
-  return output;
-};
+import { resolveHeatIntensity } from './../../../utils/resolveHeatIntensityUtil';
 
 const HeatIntensity = ({ list }) => {
   const output = [];
@@ -72,9 +49,13 @@ const HeatIntensityLegend = ({ list }) => {
     });
   }
   return (
-    <div className="hidden xl:flex xl:items-center xl:justify-end text-gray-400">
-      {output} (years)
-    </div>
+    <>
+      {output && isNotEmptyArray(output) && (
+        <div className="hidden xl:flex xl:items-center xl:justify-end text-gray-400">
+          {output} (years)
+        </div>
+      )}
+    </>
   );
 };
 
