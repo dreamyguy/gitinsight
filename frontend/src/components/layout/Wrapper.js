@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { sidebarQuery } from './../../graphql/queries';
 import Main from './Main';
+import Responsive from './Responsive';
 import OffCanvasMenuMobile from './../content/OffCanvasMenuMobile';
 import SidebarDesktop from './../content/SidebarDesktop';
 import TopSection from './../content/TopSection';
@@ -41,7 +42,10 @@ const Wrapper = ({ pageType, children }) => {
               />
               <div className="flex flex-col w-0 flex-1 overflow-hidden">
                 <TopSection pageType={pageType} />
-                <Main pageType={pageType}>{children}</Main>
+                <Main pageType={pageType}>
+                  <Responsive />
+                  {children}
+                </Main>
               </div>
             </div>
           </>
