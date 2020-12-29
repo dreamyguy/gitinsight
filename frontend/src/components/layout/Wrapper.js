@@ -67,7 +67,6 @@ Wrapper.propTypes = {
     'repositories',
     'staleness',
     'trends',
-    // 'home'
     'dashboard',
     // This page type strips the wrapper, good for modal-like pages
     'fullscreen',
