@@ -5,7 +5,7 @@ import logo from './../../images/logo.png';
 import SidebarItem from './SidebarItem';
 
 const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }) => (
-  <div className="hidden md:flex md:flex-shrink-0">
+  <div className="hidden lg:flex lg:flex-shrink-0">
     {/* <!-- Static sidebar for desktop --> */}
     <div className="flex flex-col w-64">
       {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}

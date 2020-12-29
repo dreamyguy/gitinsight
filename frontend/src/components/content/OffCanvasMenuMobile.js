@@ -15,7 +15,7 @@ const OffCanvasMenuMobile = ({ commits, contributors, pageType, repositories, st
   return (
     <>
       {menuIsExpanded && (
-        <div className="md:hidden">
+        <div className="lg:hidden">
           {/* <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. --> */}
           <div className="fixed inset-0 flex z-40">
             {/* <!--

@@ -17,7 +17,7 @@ const TopSection = ({ pageType }) => {
         className={classnames(
           'px-4 border-r border-gray-200 text-gray-500',
           'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500',
-          'md:hidden',
+          'lg:hidden',
         )}
         onClick={() => handleClick()}
       >

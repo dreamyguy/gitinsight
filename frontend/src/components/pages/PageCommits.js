@@ -32,7 +32,7 @@ const PageCommits = () => {
       {statsGlobal && (
         <>
           <PageTitleWithDate title="Commits" from={commitDateFirst} until={commitDateLast} />
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
             <Card type="commits" heading="Commits" stat={thousandify(commits)} />
             <Card type="code" heading="Lines of code" stat={thousandify(lines)} />
             <Card

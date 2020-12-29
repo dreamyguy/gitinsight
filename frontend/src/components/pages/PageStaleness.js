@@ -58,7 +58,7 @@ const PageStaleness = () => {
       {statsGlobal && (
         <>
           <PageTitleWithDate title="Staleness" from={commitDateFirst} until={commitDateLast} />
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
             <Card type="staleness" heading="Overall staleness" stat={staleness.toFixed(2)} />
             {statsAuthorsStaleness && contributorsHeatList && (
               <Card
