@@ -1,131 +1,46 @@
 {
   "name": "gitinsight",
-  "version": "2.0.0",
-  "description": "Visualise your git log in new and exciting ways!",
+  "version": "3.0.0",
+  "description": "👁 Visualise git log in new and exciting ways, with React & Apollo Server GraphQL Server API",
+  "private": false,
   "keywords": [
-    "react",
-    "webpack",
-    "front-end",
-    "sidhree",
-    "wallace sidhree",
-    "dreamyguy",
+    "git",
     "git log",
-    "git visualisation"
+    "git dashboard",
+    "git stats",
+    "git visualization",
+    "dashboard",
+    "visualization"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dreamyguy/gitinsight"
-  },
   "author": {
     "name": "Wallace Sidhrée",
-    "email": "i@dreamyguy.com",
     "url": "http://sidhree.com/"
   },
   "copyright": "Copyright (c) Wallace Sidhrée - All rights reserved.",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.15.3",
-    "lodash": "^4.17.4",
-    "lodash.throttle": "^4.1.1",
-    "moment": "^2.19.1",
-    "prop-types": "^15.5.10",
-    "react": "^15.4.2",
-    "react-chartist": "^0.10.2",
-    "react-day-picker": "^6.2.1",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.6",
-    "react-router": "^3.0.2",
-    "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^4.4.1",
-    "redux-thunk": "^2.2.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamyguy/gitinsight"
   },
-  "devDependencies": {
-    "@types/react": "^15.0.11",
-    "@types/react-addons-test-utils": "^0.14.17",
-    "@types/react-dom": "^0.14.23",
-    "@types/react-router": "^3.0.3",
-    "autoprefixer": "^6.7.3",
-    "babel-core": "^6.23.1",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^22.4.3",
-    "babel-loader": "^6.3.2",
-    "babel-plugin-istanbul": "^4.0.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "browser-sync": "^2.18.8",
-    "browser-sync-spa": "^1.0.3",
-    "css-loader": "^0.26.1",
-    "del": "^2.2.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-15": "^1.0.5",
-    "es6-shim": "^0.35.3",
-    "eslint": "^3.15.0",
-    "eslint-config-xo-react": "^0.10.0",
-    "eslint-config-xo-space": "^0.15.0",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-babel": "^4.0.1",
-    "eslint-plugin-jest": "^21.15.0",
-    "eslint-plugin-react": "^6.10.0",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
-    "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
-    "gulp-filter": "^5.0.0",
-    "gulp-flatten": "^0.3.1",
-    "gulp-hub": "frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4",
-    "gulp-sass": "^3.1.0",
-    "gulp-util": "^3.0.8",
-    "html-webpack-plugin": "^2.28.0",
-    "jasmine": "^2.5.3",
-    "jest": "^22.4.3",
-    "jest-css-modules": "^1.1.0",
-    "json-loader": "^0.5.7",
-    "node-sass": "^4.5.0",
-    "phantomjs-prebuilt": "^2.1.14",
-    "postcss-loader": "^1.3.1",
-    "react-addons-test-utils": "^15.4.2",
-    "react-hot-loader": "^1.3.1",
-    "react-test-renderer": "^15.6.2",
-    "sass-loader": "^6.0.1",
-    "style-loader": "^0.13.1",
-    "uuid": "^3.1.0",
-    "webpack": "^2.6.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-fail-plugin": "^1.0.5",
-    "webpack-hot-middleware": "^2.17.0"
+  "bugs": {
+    "url": "https://github.com/dreamyguy/gitinsight"
   },
   "scripts": {
-    "build": "gulp",
-    "serve": "gulp serve",
-    "serve:dist": "gulp serve:dist",
-    "testTravis": "jest",
-    "test": "jest --verbose --watch"
+    "setup": "cd frontend && npm i && cd ../backend && npm i && cd ../../"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "browser": true,
-      "jasmine": true,
-      "jest": true
-    },
-    "extends": [
-      "xo-react/space",
-      "xo-space/esnext"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "parser": "babel-eslint"
-  },
-  "jest": {
-    "setupFiles": [
-      "./src/app/test/setupTests.js"
-    ],
-    "transform": {
-      ".[css,scss]": "./node_modules/jest-css-modules"
-    }
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "engines": {
-    "node": "v6.11.2"
+    "node": "^v14.12.0"
   }
 }

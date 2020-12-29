@@ -1,0 +1,44 @@
+.n {
+  display: inline-block;
+  text-align: center;
+}
+.n-md {
+  .n {
+    width: 19px;
+  }
+  @media (min-width: 640px) {
+    .n {
+      width: 24px;
+    }
+  }
+  @media (min-width: 768px) {
+    .n {
+      width: 31px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .n {
+      width: 39px;
+    }
+  }
+}
+.n-sm {
+  .n {
+    width: 13px;
+  }
+  @media (min-width: 640px) {
+    .n {
+      width: 16px;
+    }
+  }
+  @media (min-width: 768px) {
+    .n {
+      width: 19px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .n {
+      width: 21px;
+    }
+  }
+}

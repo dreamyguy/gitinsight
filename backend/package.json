@@ -1,0 +1,45 @@
+{
+  "name": "gitinsight-backend",
+  "version": "0.0.1",
+  "description": "👁 Visualise git log in new and exciting ways, with React & Apollo Server GraphQL Server API",
+  "private": false,
+  "keywords": [
+    "git",
+    "git log",
+    "git dashboard",
+    "git stats",
+    "git visualization",
+    "dashboard",
+    "visualization"
+  ],
+  "author": {
+    "name": "Wallace Sidhrée",
+    "url": "http://sidhree.com/"
+  },
+  "copyright": "Copyright (c) Wallace Sidhrée - All rights reserved.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamyguy/gitinsight-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/dreamyguy/gitinsight-ts"
+  },
+  "scripts": {
+    "server:graphql": "nodemon -r esm server/graphql/server.js",
+    "server:json": "json-server --watch server/json/db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.19.0",
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "graphql-scalars": "^1.5.0",
+    "json-server": "^0.16.3",
+    "nodemon": "^2.0.6"
+  }
+}

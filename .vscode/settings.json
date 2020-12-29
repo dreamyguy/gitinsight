@@ -1,0 +1,13 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "sass.format.deleteEmptyRows": false,
+  "[css]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "javascript.format.semicolons": "insert",
+  "typescript.format.semicolons": "insert",
+  "sass.format.enabled": false,
+  "tailwindCSS.validate": false,
+  "eslint.alwaysShowStatus": true,
+  "editor.formatOnSave": true
+}

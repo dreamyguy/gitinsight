@@ -1,0 +1,7 @@
+.cache
+.vscode
+build
+dist
+node_modules
+public
+tailwind.js
