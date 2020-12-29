@@ -1,5 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
+import { config } from './../../config';
+
+const { showResponsiveGuide } = config;
 
 const sharedClasses = {
   'absolute top-4 right-4': true,
@@ -11,11 +14,15 @@ const sharedClasses = {
 
 const Responsive = () => (
   <>
-    <span className={classnames(sharedClasses, 'xs:inline-block', 'sm:hidden')}>xs</span>
-    <span className={classnames(sharedClasses, 'sm:inline-block', 'md:hidden')}>sm</span>
-    <span className={classnames(sharedClasses, 'md:inline-block', 'lg:hidden')}>md</span>
-    <span className={classnames(sharedClasses, 'lg:inline-block', 'xl:hidden')}>lg</span>
-    <span className={classnames(sharedClasses, 'xl:inline-block')}>xl</span>
+    {showResponsiveGuide ? (
+      <>
+        <span className={classnames(sharedClasses, 'xs:inline-block', 'sm:hidden')}>xs</span>
+        <span className={classnames(sharedClasses, 'sm:inline-block', 'md:hidden')}>sm</span>
+        <span className={classnames(sharedClasses, 'md:inline-block', 'lg:hidden')}>md</span>
+        <span className={classnames(sharedClasses, 'lg:inline-block', 'xl:hidden')}>lg</span>
+        <span className={classnames(sharedClasses, 'xl:inline-block')}>xl</span>
+      </>
+    ) : null}
   </>
 );
 
