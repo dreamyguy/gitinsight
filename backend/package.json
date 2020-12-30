@@ -27,7 +27,7 @@
   },
   "scripts": {
     "server:graphql": "nodemon -r esm server/graphql/server.js",
-    "server:json": "json-server --watch server/json/db.json",
+    "server:json": "json-server --watch server/json/gitlogg.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
