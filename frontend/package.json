@@ -1,6 +1,6 @@
 {
   "name": "gitinsight-frontend",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "description": "👁 Visualise git log in new and exciting ways, with React & Apollo Server GraphQL Server API",
   "private": false,
   "keywords": [
