@@ -87,7 +87,7 @@ Navigate to the `backend/` folder and run:
 
     npm run server:json
 
-That will start the `JSON Server` on `http://localhost:3000`.
+That will start the `JSON Server` on `http://localhost:3000`. The endpoint we'll be using will be at `http://localhost:3000/commits`.
 
 **2. GraphQL Server**
 
