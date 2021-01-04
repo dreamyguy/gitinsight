@@ -110,6 +110,13 @@ const Query = {
   statsRepos: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
     res => statsRepos({ data: res.data, sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
+  // stats - single
+  statsAuthor: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
+    res => statsAuthors({ data: res.data.filter(f => f.author_email === args.author_email), sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
+  ),
+  statsRepo: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
+    res => statsRepos({ data: res.data.filter(f => f.repository === args.repository), sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
+  ),
 };
 
 const JSON = GraphQLJSON;

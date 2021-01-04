@@ -199,4 +199,7 @@ type Query {
   statsAuthors(sortBy: SortAuthorsBy, sortDirection: SortDirection, count: Int): [statsAuthors!]
   statsGlobal: statsGlobal!
   statsRepos(sortBy: SortReposBy, sortDirection: SortDirection, count: Int): [statsRepos!]
+  # stats - single
+  statsAuthor(author_email: String!, sortBy: SortAuthorsBy, sortDirection: SortDirection, count: Int): [statsAuthors!]
+  statsRepo(repository: String!, sortBy: SortAuthorsBy, sortDirection: SortDirection, count: Int): [statsRepos!]
 }
