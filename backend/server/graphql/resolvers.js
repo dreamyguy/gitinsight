@@ -115,7 +115,7 @@ const Query = {
     res => statsAuthors({ data: res.data.filter(f => f.author_email === args.author_email), sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
   statsRepo: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
-    res => statsRepos({ data: res.data.filter(f => f.repository === args.repository), sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
+    res => statsRepos({ data: res.data.filter(f => f.repository.toLowerCase().replace(/.git/g, '') === args.repository.toLowerCase().replace(/.git/g, '')), sortBy: args.sortBy, sortDirection: args.sortDirection, count: args.count })
   ),
 };
 
