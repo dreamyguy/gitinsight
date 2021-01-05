@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import App from './components/hoc/App';
 import PageCalendar from './components/pages/PageCalendar';
 import PageCommits from './components/pages/PageCommits';
+import PageContributor from './components/pages/PageContributor';
 import PageContributors from './components/pages/PageContributors';
 import PageCuriosa from './components/pages/PageCuriosa';
 import PageRepositories from './components/pages/PageRepositories';
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/calendar/" component={PageCalendar} />
           <Route path="/commits/" component={PageCommits} />
+          <Route path="/contributor/:paramAuthorEmail" component={PageContributor} />
           <Route path="/contributors/" component={PageContributors} />
           <Route path="/curiosa/" component={PageCuriosa} />
           <Route path="/repositories/" component={PageRepositories} />

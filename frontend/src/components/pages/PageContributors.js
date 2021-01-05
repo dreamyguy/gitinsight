@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -37,7 +38,7 @@ const renderContributors = ({ statsAuthors }) => {
       } = sa;
       output.push(
         <li key={uuidv4()}>
-          <a href="#" className="block hover:bg-gray-50">
+          <Link to={`/contributor/${author}`} className="block hover:bg-gray-50">
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
                 <span className="inline-block relative">
@@ -103,7 +104,7 @@ const renderContributors = ({ statsAuthors }) => {
                 <ChevronRight className="h-5 w-5 text-gray-400" />
               </div>
             </div>
-          </a>
+          </Link>
         </li>,
       );
       return null;

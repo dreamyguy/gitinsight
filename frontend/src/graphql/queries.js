@@ -148,3 +148,40 @@ export const statsReposQueryStaleness = gql`
     }
   }
 `;
+
+export const statsAuthorQuery = gql`
+  query StatsAuthorQuery($authorEmail: String!) {
+    statsAuthor(author_email: $authorEmail, sortBy: staleness, sortDirection: asc) {
+      author
+      commitDateFirst
+      commitDateLast
+      commits
+      commitsPerSecond
+      commitsPerMinute
+      commitsPerHour
+      commitsPerDay
+      commitsPerDayAverage
+      commitsPerMonthDay
+      commitsPerMonthName
+      commitsPerMonthNr
+      commitsPerYear
+      daysActive
+      daysSinceFirstCommit
+      daysSinceLastCommit
+      impact
+      impactRatio
+      repositories
+      repositoriesList
+      staleness
+      weekdays {
+        Mon
+        Tue
+        Wed
+        Thu
+        Fri
+        Sat
+        Sun
+      }
+    }
+  }
+`;

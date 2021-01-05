@@ -65,9 +65,11 @@ SidebarDesktop.propTypes = {
   pageType: PropTypes.oneOf([
     'calendar',
     'commits',
+    'contributor',
     'contributors',
     'curiosa',
     'repositories',
+    'repository',
     'staleness',
     'trends',
     'dashboard',
