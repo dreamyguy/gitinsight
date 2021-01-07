@@ -48,6 +48,8 @@ type statsAuthors {
   commitDateFirst: String
   commitDateLast: String
   commits: Int
+  commitsImpactGtThousand: Int
+  commitsOnWeekend: Int
   commitsPerDay: JSON
   commitsPerDayAverage: Float
   commitsPerHour: JSON
@@ -57,9 +59,12 @@ type statsAuthors {
   commitsPerMonthNr: JSON
   commitsPerSecond: JSON
   commitsPerYear: JSON
+  commitsWithoutFileChanges: Int
+  commitsWithoutImpact: Int
   daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
+  fileChanges: Int
   impact: Int
   impactRatio: Float
   repositories: Int

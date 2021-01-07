@@ -1,4 +1,6 @@
 import arrayByKey from './arrayByKey';
+import arrayByKeyFiltered from './arrayByKeyFiltered';
+import arrayByKeyFilteredGreaterThan from './arrayByKeyFilteredGreaterThan';
 import arrayMaxMin from './arrayMaxMin';
 import daysBetween from './daysBetween';
 import daysSince from './daysSince';
@@ -36,6 +38,36 @@ const authorStats = ({ author, objData }) => {
   const daysSinceLastCommit = daysSince(commitDateLast);
   // calculate staleness
   const staleness = daysSinceLastCommit / 365;
+  // miscellaneous
+  // total file changes
+  const totalFileChanges = totalSum(
+    arrayByKey(objData, 'files_changed')
+  );
+  // total commits without file changes
+  const totalCommitsWithoutFileChanges = itemsSum(
+    arrayByKeyFiltered(objData, 'files_changed', '0')
+  );
+  // total commits with no impact
+  const totalCommitsWithoutImpact = itemsSum(
+    arrayByKeyFiltered(objData, 'impact', '0')
+  );
+  // total commits impact greater than 1000
+  const totalCommitsImpactGreaterThan = itemsSum(
+    arrayByKeyFilteredGreaterThan(objData, 'impact', '1000')
+  );
+  // total commits on weekends
+  const totalCommitsOnSaturday = itemsSum(
+    arrayByKeyFiltered(objData, 'date_day_week', 'Sat')
+  );
+  const totalCommitsOnSunday = itemsSum(
+    arrayByKeyFiltered(objData, 'date_day_week', 'Sun')
+  );
+  const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
+  const fileChanges = totalFileChanges;
+  const commitsWithoutFileChanges = totalCommitsWithoutFileChanges;
+  const commitsWithoutImpact = totalCommitsWithoutImpact;
+  const commitsImpactGtThousand = totalCommitsImpactGreaterThan;
+  const commitsOnWeekend = totalCommitsOnWeekends;
   // calculate commits per time unit
   const commitsBySecondsCalendar = arrayByKey(objData, 'time_seconds');
   const commitsByMinutesCalendar = arrayByKey(objData, 'time_minutes');
@@ -73,18 +105,23 @@ const authorStats = ({ author, objData }) => {
     commitDateFirst,
     commitDateLast,
     commits,
-    commitsPerSecond,
-    commitsPerMinute,
-    commitsPerHour,
+    commitsImpactGtThousand,
+    commitsOnWeekend,
     commitsPerDay,
     commitsPerDayAverage,
+    commitsPerHour,
+    commitsPerMinute,
     commitsPerMonthDay,
     commitsPerMonthName,
     commitsPerMonthNr,
+    commitsPerSecond,
     commitsPerYear,
+    commitsWithoutFileChanges,
+    commitsWithoutImpact,
     daysActive,
     daysSinceFirstCommit,
     daysSinceLastCommit,
+    fileChanges,
     impact,
     impactRatio,
     repositories,

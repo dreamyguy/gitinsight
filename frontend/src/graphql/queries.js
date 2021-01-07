@@ -156,18 +156,23 @@ export const statsAuthorQuery = gql`
       commitDateFirst
       commitDateLast
       commits
-      commitsPerSecond
-      commitsPerMinute
-      commitsPerHour
+      commitsImpactGtThousand
+      commitsOnWeekend
       commitsPerDay
       commitsPerDayAverage
+      commitsPerHour
+      commitsPerMinute
       commitsPerMonthDay
       commitsPerMonthName
       commitsPerMonthNr
+      commitsPerSecond
       commitsPerYear
+      commitsWithoutFileChanges
+      commitsWithoutImpact
       daysActive
       daysSinceFirstCommit
       daysSinceLastCommit
+      fileChanges
       impact
       impactRatio
       repositories

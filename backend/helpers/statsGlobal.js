@@ -34,30 +34,30 @@ export const statsGlobal = ({ data }) => {
   const totalLinesOfCode = totalSum(
     arrayByKey(data, 'impact')
   );
-// total file changes
-const totalFileChanges = totalSum(
-  arrayByKey(data, 'files_changed')
-);
-// total commits without file changes
-const totalCommitsWithoutFileChanges = itemsSum(
-  arrayByKeyFiltered(data, 'files_changed', '0')
-);
-// total commits with no impact
-const totalCommitsWithoutImpact = itemsSum(
-  arrayByKeyFiltered(data, 'impact', '0')
-);
-// total commits impact greater than 1000
-const totalCommitsImpactGreaterThan = itemsSum(
-  arrayByKeyFilteredGreaterThan(data, 'impact', '1000')
-);
-// total commits on weekends
-const totalCommitsOnSaturday = itemsSum(
-  arrayByKeyFiltered(data, 'date_day_week', 'Sat')
-);
-const totalCommitsOnSunday = itemsSum(
-  arrayByKeyFiltered(data, 'date_day_week', 'Sun')
-);
-const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
+  // total file changes
+  const totalFileChanges = totalSum(
+    arrayByKey(data, 'files_changed')
+  );
+  // total commits without file changes
+  const totalCommitsWithoutFileChanges = itemsSum(
+    arrayByKeyFiltered(data, 'files_changed', '0')
+  );
+  // total commits with no impact
+  const totalCommitsWithoutImpact = itemsSum(
+    arrayByKeyFiltered(data, 'impact', '0')
+  );
+  // total commits impact greater than 1000
+  const totalCommitsImpactGreaterThan = itemsSum(
+    arrayByKeyFilteredGreaterThan(data, 'impact', '1000')
+  );
+  // total commits on weekends
+  const totalCommitsOnSaturday = itemsSum(
+    arrayByKeyFiltered(data, 'date_day_week', 'Sat')
+  );
+  const totalCommitsOnSunday = itemsSum(
+    arrayByKeyFiltered(data, 'date_day_week', 'Sun')
+  );
+  const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
   // variables to pass to final object
   const commits = totalNrCommits;
   const contributors = totalNrContributors;
