@@ -34,6 +34,7 @@ const PageContributor = () => {
           commitsOnWeekend,
           commitsPerDay,
           commitsPerDayAverage,
+          commitsPerDayCummulative,
           commitsPerHour, // obj with single key-value pair
           commitsPerMinute, // obj with single key-value pair
           commitsPerMonthDay, // obj with single key-value pair
@@ -48,6 +49,8 @@ const PageContributor = () => {
           daysSinceLastCommit,
           // fileChanges,
           // impact,
+          // impactByDay,
+          impactByDayCummulative,
           // impactRatio,
           repositories,
           // repositoriesList, // array list
@@ -141,6 +144,22 @@ const PageContributor = () => {
                 values={commitsPerDay}
               />
             </div>
+          )}
+          {impactByDayCummulative && isNotEmptyObject(impactByDayCummulative) && (
+            <Chart
+              categories={Object.keys(impactByDayCummulative)}
+              data={Object.values(impactByDayCummulative)}
+              title="Lines of code, over time"
+              type="spline"
+            />
+          )}
+          {commitsPerDayCummulative && isNotEmptyObject(commitsPerDayCummulative) && (
+            <Chart
+              categories={Object.keys(commitsPerDayCummulative)}
+              data={Object.values(commitsPerDayCummulative)}
+              title="Commits, over time"
+              type="spline"
+            />
           )}
           <Chart
             categories={Object.keys(commitsPerYear)}

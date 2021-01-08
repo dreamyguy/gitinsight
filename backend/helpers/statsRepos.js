@@ -1,8 +1,11 @@
+import { addEmptyDays } from './../../frontend/src/utils/getDateUtil';
+import { cummulative } from './../../frontend/src/utils/cummulativeUtil';
 import arrayByKey from './arrayByKey';
 import arrayMaxMin from './arrayMaxMin';
 import daysBetween from './daysBetween';
 import daysSince from './daysSince';
 import groupByDuplicatesInArray from './groupByDuplicatesInArray';
+import impactBy from './impactBy';
 import itemsSum from './itemsSum';
 import sortArrayByKey from './sortArrayByKey';
 import totalSum from './totalSum';
@@ -40,6 +43,36 @@ const repositoryStats = ({ repository, objData }) => {
   const daysSinceLastCommit = daysSince(commitDateLast);
   // calculate staleness
   const staleness = daysSinceLastCommit / 365;
+  // miscellaneous
+  // total file changes
+  const totalFileChanges = totalSum(
+    arrayByKey(objData, 'files_changed')
+  );
+  // total commits without file changes
+  const totalCommitsWithoutFileChanges = itemsSum(
+    arrayByKeyFiltered(objData, 'files_changed', '0')
+  );
+  // total commits with no impact
+  const totalCommitsWithoutImpact = itemsSum(
+    arrayByKeyFiltered(objData, 'impact', '0')
+  );
+  // total commits impact greater than 1000
+  const totalCommitsImpactGreaterThan = itemsSum(
+    arrayByKeyFilteredGreaterThan(objData, 'impact', '1000')
+  );
+  // total commits on weekends
+  const totalCommitsOnSaturday = itemsSum(
+    arrayByKeyFiltered(objData, 'date_day_week', 'Sat')
+  );
+  const totalCommitsOnSunday = itemsSum(
+    arrayByKeyFiltered(objData, 'date_day_week', 'Sun')
+  );
+  const totalCommitsOnWeekends = totalCommitsOnSaturday + totalCommitsOnSunday;
+  const fileChanges = totalFileChanges;
+  const commitsWithoutFileChanges = totalCommitsWithoutFileChanges;
+  const commitsWithoutImpact = totalCommitsWithoutImpact;
+  const commitsImpactGtThousand = totalCommitsImpactGreaterThan;
+  const commitsOnWeekend = totalCommitsOnWeekends;
   // calculate commits per time unit
   const commitsBySecondsCalendar = arrayByKey(objData, 'time_seconds');
   const commitsByMinutesCalendar = arrayByKey(objData, 'time_minutes');
@@ -55,10 +88,13 @@ const repositoryStats = ({ repository, objData }) => {
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
   const commitsPerDayAverage = daysActive / totalNrCommits;
+  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: commitsPerDay }));
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
+  const impactByDay = addEmptyDays({ dayList: impactBy(objData, "date_iso_8601") });
+  const impactByDayCummulative = cummulative(impactByDay);
   // total nr contributors
   var contributors = itemsSum(
     Object.keys(
@@ -74,27 +110,35 @@ const repositoryStats = ({ repository, objData }) => {
     )
   ).sort();
   return {
-    repository,
-    contributors,
-    contributorsList,
     commitDateFirst,
     commitDateLast,
     commits,
+    commitsImpactGtThousand,
+    commitsOnWeekend,
     commitsPerContributorAverage,
-    commitsPerSecond,
-    commitsPerMinute,
-    commitsPerHour,
     commitsPerDay,
     commitsPerDayAverage,
+    commitsPerDayCummulative,
+    commitsPerHour,
+    commitsPerMinute,
     commitsPerMonthDay,
     commitsPerMonthName,
     commitsPerMonthNr,
+    commitsPerSecond,
     commitsPerYear,
+    commitsWithoutFileChanges,
+    commitsWithoutImpact,
+    contributors,
+    contributorsList,
     daysActive,
     daysSinceFirstCommit,
     daysSinceLastCommit,
+    fileChanges,
     impact,
+    impactByDay,
+    impactByDayCummulative,
     impactRatio,
+    repository,
     staleness,
     weekdays,
   };

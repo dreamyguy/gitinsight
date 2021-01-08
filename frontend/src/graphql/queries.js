@@ -107,26 +107,35 @@ export const statsAuthorsQueryStaleness = gql`
 export const statsReposQueryTop30 = gql`
   query StatsReposQueryTop30 {
     statsRepos(sortBy: staleness, sortDirection: asc, count: 30) {
-      repository
       # commitDateFirst
       commitDateLast
       commits
-      # commitsPerSecond
-      # commitsPerMinute
-      # commitsPerHour
+      commitsImpactGtThousand
+      commitsOnWeekend
+      commitsPerContributorAverage
       # commitsPerDay
       # commitsPerDayAverage
+      # commitsPerDayCummulative
+      # commitsPerHour
+      # commitsPerMinute
       # commitsPerMonthDay
       # commitsPerMonthName
       # commitsPerMonthNr
+      # commitsPerSecond
       # commitsPerYear
+      # commitsWithoutFileChanges
+      # commitsWithoutImpact
       contributors
       # contributorsList
       daysActive
       # daysSinceFirstCommit
       daysSinceLastCommit
+      # fileChanges
       impact
+      # impactByDay
+      # impactByDayCummulative
       impactRatio
+      repository
       staleness
       # weekdays {
       #   Mon
@@ -160,6 +169,7 @@ export const statsAuthorQuery = gql`
       commitsOnWeekend
       commitsPerDay
       commitsPerDayAverage
+      commitsPerDayCummulative
       commitsPerHour
       commitsPerMinute
       commitsPerMonthDay
@@ -174,6 +184,8 @@ export const statsAuthorQuery = gql`
       daysSinceLastCommit
       fileChanges
       impact
+      impactByDay
+      impactByDayCummulative
       impactRatio
       repositories
       repositoriesList

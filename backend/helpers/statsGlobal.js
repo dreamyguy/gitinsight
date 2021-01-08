@@ -113,19 +113,19 @@ export const statsGlobal = ({ data }) => {
   const commitsByMonthName = arrayByKey(data, 'date_month_name');
   const commitsByMonthNr = arrayByKey(data, 'date_month_number');
   const commitsByYear = arrayByKey(data, 'date_year');
-  const impactByDay = addEmptyDays({ dayList: impactBy(data, "date_iso_8601") });
-  const impactByDayCummulative = cummulative(addEmptyDays({ dayList: impactBy(data, "date_iso_8601") }));
   const commitsPerContributorAverage = totalNrCommits / totalNrContributors;
   const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
   const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
-  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: groupByDuplicatesInArray(commitsByDaysCalendar) }));
   const commitsPerDayAverage = totalNrCommits / daysActive;
+  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: commitsPerDay }));
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
+  const impactByDay = addEmptyDays({ dayList: impactBy(data, "date_iso_8601") });
+  const impactByDayCummulative = cummulative(impactByDay);
   const impactPerSecond = totalLinesOfCode / secondsInActivity;
   return {
     commitDateFirst,
@@ -134,19 +134,16 @@ export const statsGlobal = ({ data }) => {
     commitsImpactGtThousand,
     commitsOnWeekend,
     commitsPerContributorAverage,
-    commitsPerSecond,
-    commitsPerMinute,
-    commitsPerHour,
     commitsPerDay,
-    commitsPerDayCummulative,
     commitsPerDayAverage,
+    commitsPerDayCummulative,
+    commitsPerHour,
+    commitsPerMinute,
     commitsPerMonthDay,
     commitsPerMonthName,
     commitsPerMonthNr,
+    commitsPerSecond,
     commitsPerYear,
-    impactPerSecond,
-    impactByDay,
-    impactByDayCummulative,
     commitsWithoutFileChanges,
     commitsWithoutImpact,
     contributors,
@@ -155,6 +152,9 @@ export const statsGlobal = ({ data }) => {
     daysSinceFirstCommit,
     daysSinceLastCommit,
     fileChanges,
+    impactByDay,
+    impactByDayCummulative,
+    impactPerSecond,
     lines,
     repositories,
     repositoriesList,

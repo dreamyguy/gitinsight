@@ -52,6 +52,7 @@ type statsAuthors {
   commitsOnWeekend: Int
   commitsPerDay: JSON
   commitsPerDayAverage: Float
+  commitsPerDayCummulative: JSON
   commitsPerHour: JSON
   commitsPerMinute: JSON
   commitsPerMonthDay: JSON
@@ -66,6 +67,8 @@ type statsAuthors {
   daysSinceLastCommit: Int
   fileChanges: Int
   impact: Int
+  impactByDay: JSON
+  impactByDayCummulative: JSON
   impactRatio: Float
   repositories: Int
   repositoriesList: [String]
@@ -81,8 +84,8 @@ type statsGlobal {
   commitsOnWeekend: Int
   commitsPerContributorAverage: Float
   commitsPerDay: JSON
-  commitsPerDayCummulative: JSON
   commitsPerDayAverage: Float
+  commitsPerDayCummulative: JSON
   commitsPerHour: JSON
   commitsPerMinute: JSON
   commitsPerMonthDay: JSON
@@ -90,9 +93,6 @@ type statsGlobal {
   commitsPerMonthNr: JSON
   commitsPerSecond: JSON
   commitsPerYear: JSON
-  impactPerSecond: Float
-  impactByDay: JSON
-  impactByDayCummulative: JSON
   commitsWithoutFileChanges: Int
   commitsWithoutImpact: Int
   contributors: Int
@@ -101,6 +101,9 @@ type statsGlobal {
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
   fileChanges: Int
+  impactPerSecond: Float
+  impactByDay: JSON
+  impactByDayCummulative: JSON
   lines: Int
   repositories: Int
   repositoriesList: [String]
@@ -112,9 +115,12 @@ type statsRepos {
   commitDateFirst: String
   commitDateLast: String
   commits: Int
+  commitsImpactGtThousand: Int
+  commitsOnWeekend: Int
   commitsPerContributorAverage: Float
   commitsPerDay: JSON
   commitsPerDayAverage: Float
+  commitsPerDayCummulative: JSON
   commitsPerHour: JSON
   commitsPerMinute: JSON
   commitsPerMonthDay: JSON
@@ -122,12 +128,17 @@ type statsRepos {
   commitsPerMonthNr: JSON
   commitsPerSecond: JSON
   commitsPerYear: JSON
+  commitsWithoutFileChanges: Int
+  commitsWithoutImpact: Int
   contributors: Int
   contributorsList: [String]
   daysActive: Int
   daysSinceFirstCommit: Int
   daysSinceLastCommit: Int
+  fileChanges: Int
   impact: Int
+  impactByDay: JSON
+  impactByDayCummulative: JSON
   impactRatio: Float
   repository: String
   staleness: Float
