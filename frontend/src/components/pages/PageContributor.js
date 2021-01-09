@@ -11,6 +11,7 @@ import CalendarContributions from '../primitives/Calendar/CalendarContributions'
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
 import { addEmptyDays } from '../../utils/getDateUtil';
+import { cummulative } from '../../utils/cummulativeUtil';
 import { isNotEmptyArray, isNotEmptyObject } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
@@ -25,8 +26,10 @@ const PageContributor = () => {
       statsGlobal: {
         commitDateFirst,
         commitDateLast,
-        commitsPerDayCummulative,
-        impactByDayCummulative,
+        commitsPerDay,
+        // commitsPerDayCummulative,
+        impactByDay,
+        // impactByDayCummulative,
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
@@ -41,9 +44,9 @@ const PageContributor = () => {
           commits,
           // commitsImpactGtThousand,
           commitsOnWeekend,
-          commitsPerDay,
+          commitsPerDay: commitsPerDayAuthor,
           commitsPerDayAverage,
-          commitsPerDayCummulative: commitsPerDayCummulativeAuthor,
+          // commitsPerDayCummulative: commitsPerDayCummulativeAuthor,
           commitsPerHour, // obj with single key-value pair
           commitsPerMinute, // obj with single key-value pair
           commitsPerMonthDay, // obj with single key-value pair
@@ -58,7 +61,7 @@ const PageContributor = () => {
           daysSinceLastCommit,
           // fileChanges,
           // impact,
-          // impactByDay,
+          impactByDay: impactByDayAuthor,
           impactByDayCummulative: impactByDayCummulativeAuthor,
           // impactRatio,
           repositories,
@@ -145,12 +148,12 @@ const PageContributor = () => {
             />
             <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
           </dl>
-          {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
+          {commitsPerDayAuthor && isNotEmptyObject(commitsPerDayAuthor) && (
             <div className="mt-5">
               <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
               <CalendarContributions
-                until={Object.keys(commitsPerDay).pop()}
-                values={commitsPerDay}
+                until={Object.keys(commitsPerDayAuthor).pop()}
+                values={commitsPerDayAuthor}
               />
             </div>
           )}
@@ -162,61 +165,89 @@ const PageContributor = () => {
               type="spline"
             />
           )}
-          {impactByDayCummulative &&
-            isNotEmptyObject(impactByDayCummulative) &&
-            impactByDayCummulativeAuthor &&
-            isNotEmptyObject(impactByDayCummulativeAuthor) && (
-              <Chart
-                categories={Object.keys(impactByDayCummulative)}
-                series={[
-                  {
-                    name: author,
-                    data: Object.values(
-                      addEmptyDays({
-                        dayList: impactByDayCummulativeAuthor,
-                        firstDay: commitDateFirst,
-                        lastDay: commitDateLast,
-                      }),
-                    ),
-                    color: '#ff0000',
-                  },
-                  {
-                    name: 'All',
-                    data: Object.values(impactByDayCummulative),
-                  },
-                ]}
-                title="Lines of code, over time, compared to absolute total"
-                type="spline"
-              />
-            )}
-          {commitsPerDayCummulative &&
-            isNotEmptyObject(commitsPerDayCummulative) &&
-            commitsPerDayCummulativeAuthor &&
-            isNotEmptyObject(commitsPerDayCummulativeAuthor) && (
+          {impactByDay &&
+            isNotEmptyObject(impactByDay) &&
+            impactByDayAuthor &&
+            isNotEmptyObject(impactByDayAuthor) && (
               <Chart
                 categories={Object.keys(
                   addEmptyDays({
-                    dayList: commitsPerDayCummulative,
+                    dayList: impactByDay,
+                    firstDay: commitDateFirst,
+                    lastDay: commitDateLast,
                   }),
                 )}
                 series={[
                   {
                     name: author,
                     data: Object.values(
-                      addEmptyDays({
-                        dayList: commitsPerDayCummulativeAuthor,
-                        firstDay: commitDateFirst,
-                        lastDay: commitDateLast,
-                      }),
+                      cummulative(
+                        addEmptyDays({
+                          dayList: impactByDayAuthor,
+                          firstDay: commitDateFirst,
+                          lastDay: commitDateLast,
+                        }),
+                      ),
                     ),
                     color: '#ff0000',
                   },
                   {
                     name: 'All',
                     data: Object.values(
-                      addEmptyDays({
-                        dayList: commitsPerDayCummulative,
-                      }),
+                      cummulative(
+                        addEmptyDays({
+                          dayList: impactByDay,
+                          firstDay: commitDateFirst,
+                          lastDay: commitDateLast,
+                        }),
+                      ),
+                    ),
+                  },
+                ]}
+                title="Lines of code, over time, compared to absolute total"
+                type="spline"
+              />
+            )}
+          {commitDateFirst &&
+            commitDateLast &&
+            commitsPerDay &&
+            isNotEmptyObject(commitsPerDay) &&
+            commitsPerDayAuthor &&
+            isNotEmptyObject(commitsPerDayAuthor) && (
+              <Chart
+                categories={Object.keys(
+                  cummulative(
+                    addEmptyDays({
+                      dayList: commitsPerDay,
+                      firstDay: commitDateFirst,
+                      lastDay: commitDateLast,
+                    }),
+                  ),
+                )}
+                series={[
+                  {
+                    name: author,
+                    data: Object.values(
+                      cummulative(
+                        addEmptyDays({
+                          dayList: commitsPerDayAuthor,
+                          firstDay: commitDateFirst,
+                          lastDay: commitDateLast,
+                        }),
+                      ),
+                    ),
+                    color: '#ff0000',
+                  },
+                  {
+                    name: 'All',
+                    data: Object.values(
+                      cummulative(
+                        addEmptyDays({
+                          dayList: commitsPerDay,
+                          firstDay: commitDateFirst,
+                          lastDay: commitDateLast,
+                        }),
+                      ),
                     ),
                   },
                 ]}

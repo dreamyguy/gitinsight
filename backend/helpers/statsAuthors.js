@@ -83,9 +83,9 @@ const authorStats = ({ author, objData }) => {
   const commitsPerSecond = groupByDuplicatesInArray(commitsBySecondsCalendar);
   const commitsPerMinute = groupByDuplicatesInArray(commitsByMinutesCalendar);
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
-  const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
+  const commitsPerDay = addEmptyDays({ dayList: groupByDuplicatesInArray(commitsByDaysCalendar) });
   const commitsPerDayAverage = daysActive / totalNrCommits;
-  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: commitsPerDay }));
+  const commitsPerDayCummulative = cummulative(commitsPerDay);
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
