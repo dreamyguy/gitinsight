@@ -152,7 +152,7 @@ const sharedChartPropsSpline = {
   },
 };
 
-const Chart = ({ categories, data, title, type }) => {
+const Chart = ({ categories, series, title, type }) => {
   // Set shared 'props' for each chart type
   let sharedChartProps = null;
   switch (type) {
@@ -185,12 +185,12 @@ const Chart = ({ categories, data, title, type }) => {
       categories,
     },
     yAxis: sharedYAxis,
-    series: [{ name: '', data }],
+    series,
   };
 
   return (
     <>
-      {categories && isNotEmptyArray(categories) && data && isNotEmptyArray(data) ? (
+      {categories && isNotEmptyArray(categories) && series && isNotEmptyArray(series) ? (
         <div className="mt-5">
           <h2 className="text-2xl font-semibold text-gray-900 mb-5">{title}</h2>
           <div className="bg-white overflow-hidden shadow rounded-lg mb-2 px-2 py-2">

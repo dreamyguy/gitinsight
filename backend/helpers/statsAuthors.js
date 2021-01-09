@@ -85,10 +85,13 @@ const authorStats = ({ author, objData }) => {
   const commitsPerHour = groupByDuplicatesInArray(commitsByHoursCalendar);
   const commitsPerDay = groupByDuplicatesInArray(commitsByDaysCalendar);
   const commitsPerDayAverage = daysActive / totalNrCommits;
+  const commitsPerDayCummulative = cummulative(addEmptyDays({ dayList: commitsPerDay }));
   const commitsPerMonthDay = groupByDuplicatesInArray(commitsByMonthDay);
   const commitsPerMonthName = groupByDuplicatesInArray(commitsByMonthName);
   const commitsPerMonthNr = groupByDuplicatesInArray(commitsByMonthNr);
   const commitsPerYear = groupByDuplicatesInArray(commitsByYear);
+  const impactByDay = addEmptyDays({ dayList: impactBy(objData, "date_iso_8601") });
+  const impactByDayCummulative = cummulative(impactByDay);
   // total nr repositories
   const repositories = itemsSum(
     Object.keys(

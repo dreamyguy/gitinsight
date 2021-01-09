@@ -106,7 +106,9 @@ const PageStaleness = () => {
           {statsReposStaleness && (
             <Chart
               categories={Object.values(statsReposStaleness).map((m, i) => i)}
-              data={Object.values(statsReposStaleness).map(m => m.staleness)}
+              series={[
+                { name: '', data: Object.values(statsReposStaleness).map(m => m.staleness) },
+              ]}
               title="Staleness among repos, plotted"
               type="spline"
             />
@@ -114,7 +116,9 @@ const PageStaleness = () => {
           {statsAuthorsStaleness && (
             <Chart
               categories={Object.values(statsAuthorsStaleness).map((m, i) => i)}
-              data={Object.values(statsAuthorsStaleness).map(m => m.staleness)}
+              series={[
+                { name: '', data: Object.values(statsAuthorsStaleness).map(m => m.staleness) },
+              ]}
               title="Staleness among contributors, plotted"
               type="spline"
             />

@@ -63,7 +63,7 @@ const PageCommits = () => {
           )}
           <Chart
             categories={Object.keys(commitsPerDayCummulative)}
-            data={Object.values(commitsPerDayCummulative)}
+            series={[{ name: '', data: Object.values(commitsPerDayCummulative) }]}
             title="Commits, over time"
             type="spline"
           />

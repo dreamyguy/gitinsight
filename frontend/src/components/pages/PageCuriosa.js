@@ -45,7 +45,7 @@ const PageCuriosa = () => {
           </dl>
           <Chart
             categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
+            series={[{ name: '', data: Object.values(commitsPerYear) }]}
             title="Commits per year"
             type="spline"
           />

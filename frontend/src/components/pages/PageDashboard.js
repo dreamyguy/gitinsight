@@ -106,7 +106,7 @@ const PageDashboard = () => {
           )}
           <Chart
             categories={Object.keys(impactByDayCummulative)}
-            data={Object.values(impactByDayCummulative)}
+            series={[{ name: '', data: Object.values(impactByDayCummulative) }]}
             title="Lines of code, over time"
             type="spline"
           />

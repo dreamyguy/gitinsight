@@ -45,13 +45,13 @@ const PageTrends = () => {
           </dl>
           <Chart
             categories={Object.keys(impactByDayCummulative)}
-            data={Object.values(impactByDayCummulative)}
+            series={[{ name: '', data: Object.values(impactByDayCummulative) }]}
             title="Lines of code, over time"
             type="spline"
           />
           <Chart
             categories={Object.keys(impactByDay)}
-            data={Object.values(impactByDay)}
+            series={[{ name: '', data: Object.values(impactByDay) }]}
             title="Impact per day"
             type="spline"
           />

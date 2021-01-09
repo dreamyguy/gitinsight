@@ -10,6 +10,7 @@ import { Mail } from './../primitives/Icon';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
+import { addEmptyDays } from '../../utils/getDateUtil';
 import { isNotEmptyArray, isNotEmptyObject } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
@@ -19,7 +20,15 @@ import { thousandify } from '../../utils/thousandifyUtil';
 const PageContributor = () => {
   const { paramAuthorEmail } = useParams();
   const {
-    data: { statsGlobal, statsGlobal: { commitDateFirst, commitDateLast } = {} } = {},
+    data: {
+      statsGlobal,
+      statsGlobal: {
+        commitDateFirst,
+        commitDateLast,
+        commitsPerDayCummulative,
+        impactByDayCummulative,
+      } = {},
+    } = {},
   } = useQuery(statsGlobalQuery);
   const {
     data: {
@@ -34,7 +43,7 @@ const PageContributor = () => {
           commitsOnWeekend,
           commitsPerDay,
           commitsPerDayAverage,
-          commitsPerDayCummulative,
+          commitsPerDayCummulative: commitsPerDayCummulativeAuthor,
           commitsPerHour, // obj with single key-value pair
           commitsPerMinute, // obj with single key-value pair
           commitsPerMonthDay, // obj with single key-value pair
@@ -50,7 +59,7 @@ const PageContributor = () => {
           // fileChanges,
           // impact,
           // impactByDay,
-          impactByDayCummulative,
+          impactByDayCummulative: impactByDayCummulativeAuthor,
           // impactRatio,
           repositories,
           // repositoriesList, // array list
@@ -145,61 +154,123 @@ const PageContributor = () => {
               />
             </div>
           )}
-          {impactByDayCummulative && isNotEmptyObject(impactByDayCummulative) && (
+          {impactByDayCummulativeAuthor && isNotEmptyObject(impactByDayCummulativeAuthor) && (
             <Chart
-              categories={Object.keys(impactByDayCummulative)}
-              data={Object.values(impactByDayCummulative)}
+              categories={Object.keys(impactByDayCummulativeAuthor)}
+              series={[{ name: '', data: Object.values(impactByDayCummulativeAuthor) }]}
               title="Lines of code, over time"
               type="spline"
             />
           )}
-          {commitsPerDayCummulative && isNotEmptyObject(commitsPerDayCummulative) && (
+          {impactByDayCummulative &&
+            isNotEmptyObject(impactByDayCummulative) &&
+            impactByDayCummulativeAuthor &&
+            isNotEmptyObject(impactByDayCummulativeAuthor) && (
+              <Chart
+                categories={Object.keys(impactByDayCummulative)}
+                series={[
+                  {
+                    name: author,
+                    data: Object.values(
+                      addEmptyDays({
+                        dayList: impactByDayCummulativeAuthor,
+                        firstDay: commitDateFirst,
+                        lastDay: commitDateLast,
+                      }),
+                    ),
+                    color: '#ff0000',
+                  },
+                  {
+                    name: 'All',
+                    data: Object.values(impactByDayCummulative),
+                  },
+                ]}
+                title="Lines of code, over time, compared to absolute total"
+                type="spline"
+              />
+            )}
+          {commitsPerDayCummulative &&
+            isNotEmptyObject(commitsPerDayCummulative) &&
+            commitsPerDayCummulativeAuthor &&
+            isNotEmptyObject(commitsPerDayCummulativeAuthor) && (
+              <Chart
+                categories={Object.keys(
+                  addEmptyDays({
+                    dayList: commitsPerDayCummulative,
+                  }),
+                )}
+                series={[
+                  {
+                    name: author,
+                    data: Object.values(
+                      addEmptyDays({
+                        dayList: commitsPerDayCummulativeAuthor,
+                        firstDay: commitDateFirst,
+                        lastDay: commitDateLast,
+                      }),
+                    ),
+                    color: '#ff0000',
+                  },
+                  {
+                    name: 'All',
+                    data: Object.values(
+                      addEmptyDays({
+                        dayList: commitsPerDayCummulative,
+                      }),
+                    ),
+                  },
+                ]}
+                title="Commits per day, over time, compared to absolute total"
+                type="spline"
+              />
+            )}
+          {/* {commitsPerDayCummulative && isNotEmptyObject(commitsPerDayCummulative) && (
             <Chart
               categories={Object.keys(commitsPerDayCummulative)}
-              data={Object.values(commitsPerDayCummulative)}
+              series={[{ name: '', data: Object.values(commitsPerDayCummulative) }]}
               title="Commits, over time"
               type="spline"
             />
-          )}
+          )} */}
           <Chart
             categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
+            series={[{ name: '', data: Object.values(commitsPerYear) }]}
             title="Commits per year"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMonthNr)}
-            data={Object.values(commitsPerMonthNr)}
+            series={[{ name: '', data: Object.values(commitsPerMonthNr) }]}
             title="Commits per month"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMonthDay)}
-            data={Object.values(commitsPerMonthDay)}
+            series={[{ name: '', data: Object.values(commitsPerMonthDay) }]}
             title="Commits per day in a month"
             type="spline"
           />
           <Chart
             categories={Object.keys(weekdays)}
-            data={Object.values(weekdays)}
+            series={[{ name: '', data: Object.values(weekdays) }]}
             title="Commits per weekday"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerHour)}
-            data={Object.values(commitsPerHour)}
+            series={[{ name: '', data: Object.values(commitsPerHour) }]}
             title="Commits per hour"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMinute)}
-            data={Object.values(commitsPerMinute)}
+            series={[{ name: '', data: Object.values(commitsPerMinute) }]}
             title="Commits per minute"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerSecond)}
-            data={Object.values(commitsPerSecond)}
+            series={[{ name: '', data: Object.values(commitsPerSecond) }]}
             title="Commits per second"
             type="spline"
           />

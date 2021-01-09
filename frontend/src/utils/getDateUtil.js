@@ -8,24 +8,25 @@ export const getDate = (date, mode) =>
 // Usage:
 // getDate('1382432573'); // Tuesday, October 22, 2013
 
-const getAllDaysArray = (start, end) => {
+export const getAllDaysArray = (start, end) => {
   const arr = [];
-  for (let dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+  const startDate = dayjs.unix(start).toDate();
+  const endDate = dayjs.unix(end).toDate();
+  for (let dt = startDate; dt <= endDate; dt.setDate(dt.getDate() + 1)) {
     arr.push(dayjs(dt).format('YYYY-MM-DD'));
   }
   return arr;
 };
 
 // Add empty days to the array of days
-export const addEmptyDays = ({ dayList }) => {
+export const addEmptyDays = ({ dayList, firstDay, lastDay, test }) => {
   let finalObj = {};
   if (dayList && isNotEmptyObject(dayList)) {
     const daysArray = Object.keys(dayList);
-    const firstDay = daysArray[0];
-    const lastDay = daysArray[daysArray.length - 1];
-    const firstDayDate = new Date(firstDay);
-    const lastDayDate = new Date(lastDay);
-    const allDays = getAllDaysArray(firstDayDate, lastDayDate);
+    const firstDayFinal = firstDay || daysArray[0];
+    const lastDayFinal = lastDay || daysArray[daysArray.length - 1];
+    const allDays = getAllDaysArray(firstDayFinal, lastDayFinal);
+    test && console.log('addEmptyDays ~ allDays', allDays);
     allDays.map(ad => {
       // Key-value pair to be conditionally added to the object
       const zeroObj = { [ad]: 0 };

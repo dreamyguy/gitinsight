@@ -78,43 +78,43 @@ const PageCalendar = () => {
           )}
           <Chart
             categories={Object.keys(commitsPerYear)}
-            data={Object.values(commitsPerYear)}
+            series={[{ name: '', data: Object.values(commitsPerYear) }]}
             title="Commits per year"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMonthNr)}
-            data={Object.values(commitsPerMonthNr)}
+            series={[{ name: '', data: Object.values(commitsPerMonthNr) }]}
             title="Commits per month"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMonthDay)}
-            data={Object.values(commitsPerMonthDay)}
+            series={[{ name: '', data: Object.values(commitsPerMonthDay) }]}
             title="Commits per day in a month"
             type="spline"
           />
           <Chart
             categories={Object.keys(weekdays)}
-            data={Object.values(weekdays)}
+            series={[{ name: '', data: Object.values(weekdays) }]}
             title="Commits per weekday"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerHour)}
-            data={Object.values(commitsPerHour)}
+            series={[{ name: '', data: Object.values(commitsPerHour) }]}
             title="Commits per hour"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerMinute)}
-            data={Object.values(commitsPerMinute)}
+            series={[{ name: '', data: Object.values(commitsPerMinute) }]}
             title="Commits per minute"
             type="spline"
           />
           <Chart
             categories={Object.keys(commitsPerSecond)}
-            data={Object.values(commitsPerSecond)}
+            series={[{ name: '', data: Object.values(commitsPerSecond) }]}
             title="Commits per second"
             type="spline"
           />
