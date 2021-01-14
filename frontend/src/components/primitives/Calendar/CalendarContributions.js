@@ -11,7 +11,7 @@ import './CalendarContributions.css';
 const CalendarContributions = ({
   weekNames = [],
   monthNames = [],
-  baseColor = '#ebedf0',
+  baseColor = 'rgba(235, 237, 240, 0.10)', // Based on '#ebedf0' (GH's original), but converted to 'rgba' at 10%
   panelColors = [],
   theme = 'default',
   values = {},

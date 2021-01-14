@@ -65,7 +65,7 @@ const TopSection = ({ pageType }) => {
         </div>
         <div className="ml-4 flex items-center md:ml-6">
           <Toggler
-            bgOn="bg-indigo-600 dark:bg-fav-orange-middle"
+            bgOn="bg-indigo-600 dark:bg-gray-600"
             bgOff="bg-gray-200"
             fgOn="bg-white dark:bg-gray-800"
             fgOff="bg-white dark:bg-gray-800"

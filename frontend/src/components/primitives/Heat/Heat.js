@@ -63,7 +63,7 @@ const Heat = ({ statuses }) => (
   <div className="text-xs mt-5">
     <HeatIntensityLegend list={statuses} />
     <div className="relative pt-1">
-      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100 ring-2 ring-white dark:ring-gray-800">
+      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100 dark:bg-gray-900 ring-2 ring-white dark:ring-gray-800">
         <HeatIntensity list={statuses} />
       </div>
     </div>

@@ -152,7 +152,7 @@ const sharedChartPropsSpline = {
   },
 };
 
-const Chart = ({ categories, series, title, type }) => {
+const Chart = ({ categories, series, title, type, backgroundColor }) => {
   // Set shared 'props' for each chart type
   let sharedChartProps = null;
   switch (type) {
@@ -181,6 +181,11 @@ const Chart = ({ categories, series, title, type }) => {
   const chartOptions = {
     ...sharedChartOptions,
     ...sharedChartProps,
+    chart: {
+      ...sharedChartOptions.chart,
+      ...sharedChartProps.chart,
+      backgroundColor,
+    },
     xAxis: {
       categories,
     },
@@ -193,7 +198,7 @@ const Chart = ({ categories, series, title, type }) => {
       {categories && isNotEmptyArray(categories) && series && isNotEmptyArray(series) ? (
         <div className="mt-5">
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-5">{title}</h2>
-          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow rounded-lg mb-2 px-2 py-2">
+          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg mb-2 px-2 py-2">
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
           </div>
         </div>
