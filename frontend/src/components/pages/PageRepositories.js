@@ -56,7 +56,7 @@ const renderRepositories = ({ statsRepos }) => {
                   />
                   <span
                     className={classnames(
-                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white',
+                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white dark:ring-gray-800',
                       staleness ? stalenessStatus(staleness, 'color') : '',
                     )}
                   />
@@ -66,22 +66,22 @@ const renderRepositories = ({ statsRepos }) => {
                     <p className="text-sm font-medium text-indigo-600 truncate">
                       {getNameFromEmail(repository)}
                     </p>
-                    <p className="mt-2 flex items-center text-sm text-gray-500">
-                      <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" />
+                    <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
+                      <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
                       <span className="truncate">{repository.replace(/.git/g, '')}</span>
                     </p>
                   </div>
                   <div className="hidden md:block">
                     <div>
-                      <p className="text-sm text-gray-900">
-                        <span className="text-gray-400">Last commit: </span>
+                      <p className="text-sm text-gray-900 dark:text-gray-100">
+                        <span className="text-gray-400 dark:text-gray-300">Last commit: </span>
                         <time dateTime="2020-01-07">{getDate(commitDateLastRepo)}</time>
                       </p>
-                      {/* <p className="mt-2 flex items-center text-sm text-gray-500">
+                      {/* <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
                         <CheckCircle className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
                         Completed phone screening
                       </p> */}
-                      <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 mt-2">
+                      <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 dark:text-gray-200 mt-2">
                         <div className="flex items-center">
                           <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
                           <span className="mr-3">{thousandify(commitsRepo)}</span>
@@ -108,7 +108,7 @@ const renderRepositories = ({ statsRepos }) => {
                 </div>
               </div>
               <div>
-                <ChevronRight className="h-5 w-5 text-gray-400" />
+                <ChevronRight className="h-5 w-5 text-gray-400 dark:text-gray-300" />
               </div>
             </div>
           </a>
@@ -123,8 +123,10 @@ const renderRepositories = ({ statsRepos }) => {
 const Repositories = ({ statsRepos }) => (
   <>
     {statsRepos && isNotEmptyArray(statsRepos) ? (
-      <div className="bg-white shadow overflow-hidden sm:rounded-md mt-5">
-        <ul className="divide-y divide-gray-200">{renderRepositories({ statsRepos })}</ul>
+      <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-md mt-5">
+        <ul className="divide-y divide-gray-200 dark:divide-gray-900">
+          {renderRepositories({ statsRepos })}
+        </ul>
       </div>
     ) : null}
   </>

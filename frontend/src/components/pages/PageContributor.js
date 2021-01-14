@@ -83,7 +83,7 @@ const PageContributor = () => {
       )}
       {statsAuthor && isNotEmptyArray(statsAuthor) && (
         <>
-          <div className="bg-white shadow overflow-hidden sm:rounded-md mt-5">
+          <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-md mt-5">
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
                 <span className="inline-block relative">
@@ -94,18 +94,18 @@ const PageContributor = () => {
                   />
                   <span
                     className={classnames(
-                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white',
+                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white dark:ring-gray-800',
                       staleness ? stalenessStatus(staleness, 'color') : '',
                     )}
                   />
                 </span>
                 <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                   <div>
-                    <p className="text-sm font-medium text-indigo-600 truncate">
+                    <p className="text-sm font-medium text-indigo-600 dark:text-fav-orange-middle truncate">
                       {getNameFromEmail(author)}
                     </p>
-                    <p className="mt-2 flex items-center text-sm text-gray-500">
-                      <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" />
+                    <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
+                      <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
                       <span className="truncate">{author}</span>
                     </p>
                   </div>
@@ -150,7 +150,9 @@ const PageContributor = () => {
           </dl>
           {commitsPerDayAuthor && isNotEmptyObject(commitsPerDayAuthor) && (
             <div className="mt-5">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-5">
+                Commits per day
+              </h2>
               <CalendarContributions
                 until={Object.keys(commitsPerDayAuthor).pop()}
                 values={commitsPerDayAuthor}

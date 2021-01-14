@@ -1,21 +1,25 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { MenuContext } from './../../contexts';
+import { MenuContext, UiContext } from './../../contexts';
 import { MenuAlt2, Search } from './../primitives/Icon';
+import Toggler from './../primitives/Toggler/Toggler';
 // import Notifications from './Notifications';
 // import ProfileDropdown from './ProfileDropdown';
 
 const TopSection = ({ pageType }) => {
   const { menuIsExpanded, setMenuIsExpanded } = useContext(MenuContext);
+  const { uiDarkMode, setUiDarkMode } = useContext(UiContext);
   const handleClick = () => {
     setMenuIsExpanded(!menuIsExpanded);
   };
   return (
-    <div className="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+    <div className="relative z-10 flex-shrink-0 flex h-16 bg-white dark:bg-gray-800 shadow">
       <button
         className={classnames(
-          'px-4 border-r border-gray-200 text-gray-500',
+          'px-4 border-r',
+          'border-gray-200 dark:border-gray-500',
+          'text-gray-500 dark:text-gray-200',
           'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500',
           'lg:hidden',
         )}
@@ -30,13 +34,28 @@ const TopSection = ({ pageType }) => {
             <label htmlFor="search_field" className="sr-only">
               Search{pageType !== 'dashboard' ? ` for ${pageType}` : ''}
             </label>
-            <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+            <div
+              className={classnames(
+                'relative w-full',
+                'text-gray-400 dark:text-gray-200',
+                'focus-within:text-gray-600 dark:focus-within:text-gray-400',
+              )}
+            >
               <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                 <Search className="h-5 w-5" />
               </div>
               <input
                 id="search_field"
-                className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
+                className={classnames(
+                  'block w-full h-full pl-8 pr-3 py-2',
+                  'border-transparent',
+                  'bg-white dark:bg-gray-800',
+                  'text-gray-900 dark:text-gray-100',
+                  'placeholder-gray-500 dark:placeholder-gray-300',
+                  'focus:placeholder-gray-400 dark:focus:placeholder-gray-500',
+                  'focus:outline-none focus:ring-0 focus:border-transparent',
+                  'sm:text-sm',
+                )}
                 placeholder="Search"
                 type="search"
                 name="search"
@@ -44,10 +63,18 @@ const TopSection = ({ pageType }) => {
             </div>
           </form>
         </div>
-        {/* <div className="ml-4 flex items-center md:ml-6">
-          <Notifications />
-          <ProfileDropdown />
-        </div> */}
+        <div className="ml-4 flex items-center md:ml-6">
+          <Toggler
+            bgOn="bg-indigo-600 dark:bg-fav-orange-middle"
+            bgOff="bg-gray-200"
+            fgOn="bg-white dark:bg-gray-800"
+            fgOff="bg-white dark:bg-gray-800"
+            status={uiDarkMode}
+            handleTogglerStatus={() => setUiDarkMode(!uiDarkMode)}
+          />
+          {/* <Notifications />
+          <ProfileDropdown /> */}
+        </div>
       </div>
     </div>
   );

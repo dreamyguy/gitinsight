@@ -22,7 +22,7 @@ const Errors = ({ inlineErrors }) => {
     const errorPluralization = `${localErrors.length > 1 ? 'some errors' : 'an error'}`;
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-grey-aa">{errorHeading}</h3>
             <p className="text-md text-grey-dark">
@@ -59,7 +59,7 @@ const Errors = ({ inlineErrors }) => {
   }
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-grey-aa">Error</h3>
           <p className="text-md text-grey-dark">We have recorded an error in our logs.</p>

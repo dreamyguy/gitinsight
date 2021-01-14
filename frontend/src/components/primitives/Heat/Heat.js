@@ -36,11 +36,11 @@ const HeatIntensityLegend = ({ list }) => {
         <div key={uuidv4()} className="flex items-center mr-2">
           <span
             className={classnames(
-              'flex-shrink-0 h-3 w-3 rounded-full ring-2 ring-white mr-1',
+              'flex-shrink-0 h-3 w-3 rounded-full ring-2 ring-white dark:ring-gray-800 mr-1',
               bgColor || '',
             )}
           />
-          <span className="text-gray-400">
+          <span className="text-gray-400 dark:text-gray-300">
             {i === 0 ? '< ' : '> '} {legend}
           </span>
         </div>,
@@ -51,7 +51,7 @@ const HeatIntensityLegend = ({ list }) => {
   return (
     <>
       {output && isNotEmptyArray(output) && (
-        <div className="hidden xl:flex xl:items-center xl:justify-end text-gray-400">
+        <div className="hidden xl:flex xl:items-center xl:justify-end text-gray-400 dark:text-gray-300">
           {output} (years)
         </div>
       )}
@@ -63,7 +63,7 @@ const Heat = ({ statuses }) => (
   <div className="text-xs mt-5">
     <HeatIntensityLegend list={statuses} />
     <div className="relative pt-1">
-      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100">
+      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100 ring-2 ring-white dark:ring-gray-800">
         <HeatIntensity list={statuses} />
       </div>
     </div>

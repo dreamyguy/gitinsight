@@ -90,13 +90,15 @@ const PageStaleness = () => {
           <div className={classnames(statsReposStaleness || statsAuthorsStaleness ? 'mt-5' : '')}>
             {statsReposStaleness && (
               <>
-                <h2 className="text-2xl font-semibold text-gray-900">Staleness among repos</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                  Staleness among repos
+                </h2>
                 <Heat statuses={statsReposStaleness} />
               </>
             )}
             {statsAuthorsStaleness && (
               <>
-                <h2 className="text-2xl font-semibold text-gray-900">
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
                   Staleness among contributors
                 </h2>
                 <Heat statuses={statsAuthorsStaleness} />

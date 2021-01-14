@@ -38,7 +38,10 @@ const renderContributors = ({ statsAuthors }) => {
       } = sa;
       output.push(
         <li key={uuidv4()}>
-          <Link to={`/contributor/${author}`} className="block hover:bg-gray-50">
+          <Link
+            to={`/contributor/${author}`}
+            className="block hover:bg-gray-50 dark:hover:bg-gray-700"
+          >
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
                 <span className="inline-block relative">
@@ -49,32 +52,32 @@ const renderContributors = ({ statsAuthors }) => {
                   />
                   <span
                     className={classnames(
-                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white',
+                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white dark:ring-gray-800',
                       staleness ? stalenessStatus(staleness, 'color') : '',
                     )}
                   />
                 </span>
                 <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                   <div>
-                    <p className="text-sm font-medium text-indigo-600 truncate">
+                    <p className="text-sm font-medium text-indigo-600 dark:text-fav-orange-middle truncate">
                       {getNameFromEmail(author)}
                     </p>
-                    <p className="mt-2 flex items-center text-sm text-gray-500">
-                      <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" />
+                    <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
+                      <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
                       <span className="truncate">{author}</span>
                     </p>
                   </div>
                   <div className="hidden md:block">
                     <div>
-                      <p className="text-sm text-gray-900">
-                        <span className="text-gray-400">Last commit: </span>
+                      <p className="text-sm text-gray-900 dark:text-gray-100">
+                        <span className="text-gray-400 dark:text-gray-300">Last commit: </span>
                         <time dateTime="2020-01-07">{getDate(commitDateLastAuthor)}</time>
                       </p>
-                      {/* <p className="mt-2 flex items-center text-sm text-gray-500">
+                      {/* <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
                         <CheckCircle className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
                         Completed phone screening
                       </p> */}
-                      <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 mt-2">
+                      <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 dark:text-gray-200 mt-2">
                         <div className="flex items-center">
                           <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
                           <span className="mr-3">{thousandify(commitsAuthor)}</span>
@@ -101,7 +104,7 @@ const renderContributors = ({ statsAuthors }) => {
                 </div>
               </div>
               <div>
-                <ChevronRight className="h-5 w-5 text-gray-400" />
+                <ChevronRight className="h-5 w-5 text-gray-400 dark:text-gray-300" />
               </div>
             </div>
           </Link>
@@ -116,8 +119,10 @@ const renderContributors = ({ statsAuthors }) => {
 const Contributors = ({ statsAuthors }) => (
   <>
     {statsAuthors && isNotEmptyArray(statsAuthors) ? (
-      <div className="bg-white shadow overflow-hidden sm:rounded-md mt-5">
-        <ul className="divide-y divide-gray-200">{renderContributors({ statsAuthors })}</ul>
+      <div className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md mt-5">
+        <ul className="divide-y divide-gray-200 dark:divide-gray-900">
+          {renderContributors({ statsAuthors })}
+        </ul>
       </div>
     ) : null}
   </>

@@ -38,7 +38,7 @@ const resolveIcon = (type, mode) => {
 };
 
 const Card = ({ type, heading, stat, statIncreasedBy, statDecreasedBy }) => (
-  <div className="bg-white overflow-hidden shadow rounded-lg">
+  <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
     <div className="px-4 py-5 sm:p-6">
       <div className="flex items-center">
         <div
@@ -51,9 +51,11 @@ const Card = ({ type, heading, stat, statIncreasedBy, statDecreasedBy }) => (
           {resolveIcon(type)}
         </div>
         <div className="ml-5 w-0 flex-1">
-          <dt className="text-sm font-medium text-gray-500 truncate">{heading}</dt>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-200 truncate">
+            {heading}
+          </dt>
           <dd className="flex items-baseline">
-            <div className="text-2xl font-semibold text-gray-900">{stat}</div>
+            <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{stat}</div>
             {statIncreasedBy && (
               <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                 <svg

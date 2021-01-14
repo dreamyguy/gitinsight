@@ -14,7 +14,7 @@ const PageTitleWithDate = ({ from, until, title }) => (
       'lg:flex-row lg:justify-between',
     )}
   >
-    <h1 className="text-2xl font-semibold text-gray-900">{title}</h1>
+    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{title}</h1>
     <DatesFromUntil from={from} until={until} />
   </dl>
 );

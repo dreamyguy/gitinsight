@@ -97,7 +97,9 @@ const PageDashboard = () => {
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (
             <div className="mt-5">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-5">Commits per day</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-5">
+                Commits per day
+              </h2>
               <CalendarContributions
                 until={Object.keys(commitsPerDay).pop()}
                 values={commitsPerDay}

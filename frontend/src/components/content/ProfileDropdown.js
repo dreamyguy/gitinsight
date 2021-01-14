@@ -5,7 +5,7 @@ const ProfileDropdown = () => (
   <div className="ml-3 relative">
     <div>
       <button
-        className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="max-w-xs bg-white dark:bg-gray-900 flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         id="user-menu"
         aria-haspopup="true"
       >
@@ -28,7 +28,7 @@ const ProfileDropdown = () => (
         To: "transform opacity-0 scale-95"
     --> */}
     <div
-      className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+      className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="user-menu"

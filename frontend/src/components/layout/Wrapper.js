@@ -4,10 +4,12 @@
 // - Set data to relevant context(s)
 // - Wrap the layout
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
+import classnames from 'classnames';
 import { sidebarQuery } from './../../graphql/queries';
+import { UiContext } from './../../contexts';
 import Main from './Main';
 import Responsive from './Responsive';
 import OffCanvasMenuMobile from './../content/OffCanvasMenuMobile';
@@ -17,15 +19,16 @@ import TopSection from './../content/TopSection';
 import 'fontsource-ubuntu';
 
 const Wrapper = ({ pageType, children }) => {
+  const { uiDarkMode } = useContext(UiContext);
   const {
     data: { statsGlobal, statsGlobal: { commits, contributors, repositories } = {} } = {},
   } = useQuery(sidebarQuery);
   return (
-    <>
-      <div className="antialiased font-sans bg-gray-200 h-screen">
+    <div className={classnames(uiDarkMode ? 'dark' : '')}>
+      <div className="antialiased font-sans dark:bg-gray-800 bg-gray-200 h-screen">
         {pageType !== 'fullscreen' ? (
           <>
-            <div className="h-screen flex overflow-hidden bg-gray-100">
+            <div className="h-screen flex overflow-hidden dark:bg-gray-900 bg-gray-100">
               <OffCanvasMenuMobile
                 stats={statsGlobal}
                 commits={commits}
@@ -53,7 +56,7 @@ const Wrapper = ({ pageType, children }) => {
           children
         )}
       </div>
-    </>
+    </div>
   );
 };
 
