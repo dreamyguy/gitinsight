@@ -1,6 +1,8 @@
 import { addEmptyDays } from './../../frontend/src/utils/getDateUtil';
 import { cummulative } from './../../frontend/src/utils/cummulativeUtil';
 import arrayByKey from './arrayByKey';
+import arrayByKeyFiltered from './arrayByKeyFiltered';
+import arrayByKeyFilteredGreaterThan from './arrayByKeyFilteredGreaterThan';
 import arrayMaxMin from './arrayMaxMin';
 import daysBetween from './daysBetween';
 import daysSince from './daysSince';
