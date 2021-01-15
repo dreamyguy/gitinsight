@@ -42,7 +42,7 @@ const PageContributor = () => {
           // commitDateFirst: commitDateFirstAuthor,
           // commitDateLast: commitDateLastAuthor,
           commits,
-          // commitsImpactGtThousand,
+          commitsImpactGtThousand: commitsImpactGtThousandAuthor,
           commitsOnWeekend,
           commitsPerDay: commitsPerDayAuthor,
           commitsPerDayAverage,
@@ -83,71 +83,306 @@ const PageContributor = () => {
       )}
       {statsAuthor && isNotEmptyArray(statsAuthor) && (
         <>
-          <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-md mt-5">
-            <div className="flex items-center px-4 py-4 sm:px-6">
-              <div className="min-w-0 flex-1 flex items-center">
-                <span className="inline-block relative">
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={getAvatarFromEmail(author)}
-                    alt={getNameFromEmail(author)}
-                  />
-                  <span
-                    className={classnames(
-                      'absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white dark:ring-gray-800',
-                      staleness ? stalenessStatus(staleness, 'color') : '',
-                    )}
-                  />
-                </span>
-                <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-indigo-600 dark:text-fav-orange-middle truncate">
-                      {getNameFromEmail(author)}
-                    </p>
-                    <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
-                      <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
-                      <span className="truncate">{author}</span>
-                    </p>
+          <div className="grid grid-flow-col grid-rows-4 grid-cols-3 gap-5 mt-5">
+            <div className="row-span-2 bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md px-4 py-4 sm:p-6">
+              <div className="flex items-center">
+                <div className="min-w-0 flex-1 flex items-center">
+                  <span className="inline-block relative">
+                    <img
+                      className="h-32 w-32 rounded-full"
+                      src={getAvatarFromEmail(author)}
+                      alt={getNameFromEmail(author)}
+                    />
+                    <span
+                      className={classnames(
+                        'absolute bottom-0 right-0 block h-6 w-6 rounded-full ring-4 ring-white dark:ring-gray-800',
+                        staleness ? stalenessStatus(staleness, 'color') : '',
+                      )}
+                    />
+                  </span>
+                  <div className="min-w-0 flex-1 px-4">
+                    <div>
+                      <p className="text-medium font-medium text-indigo-600 dark:text-fav-orange-middle truncate">
+                        {getNameFromEmail(author)}
+                      </p>
+                      <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-200">
+                        <Mail className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
+                        <span className="truncate">{author}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="flex items-center mt-5">
+                <span
+                  role="img"
+                  aria-label="trophy"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🏆
+                </span>
+                <span
+                  role="img"
+                  aria-label="military medal"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🎖
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="sports medal"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🏅
+                </span> */}
+                {/* <span
+                  role="img"
+                  aria-label="1st place medal"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🥇
+                </span> */}
+                <span
+                  role="img"
+                  aria-label="2nd place medal"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🥈
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="3rd place medal"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🥉
+                </span> */}
+                <span
+                  role="img"
+                  aria-label="crystal ball"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🔮
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="tropical fish"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🐠
+                </span>
+                <span
+                  role="img"
+                  aria-label="tropical drink"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🍹
+                </span> */}
+                <span
+                  role="img"
+                  aria-label="hot beverage"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  ☕
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="teacup without handle"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🍵
+                </span> */}
+                <span
+                  role="img"
+                  aria-label="beer mug"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🍺
+                </span>
+                <span
+                  role="img"
+                  aria-label="mushroom"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🍄
+                </span>
+                <span
+                  role="img"
+                  aria-label="brain"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🧠
+                </span>
+                <span
+                  role="img"
+                  aria-label="superhero"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🦸
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="supervillain"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🦹
+                </span>
+                <span
+                  role="img"
+                  aria-label="zombie"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🧟
+                </span>
+                <span
+                  role="img"
+                  aria-label="person juggling"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🤹
+                </span> */}
+                <span
+                  role="img"
+                  aria-label="unicorn"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🦄
+                </span>
+                {/* <span
+                  role="img"
+                  aria-label="duck"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🦆
+                </span>
+                <span
+                  role="img"
+                  aria-label="elephant"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🐘
+                </span>
+                <span
+                  role="img"
+                  aria-label="green heart"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  💚
+                </span>
+                <span
+                  role="img"
+                  aria-label="purple heart"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  💜
+                </span>
+                <span
+                  role="img"
+                  aria-label="black heart"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  🖤
+                </span>
+                <span
+                  role="img"
+                  aria-label="chart increasing"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  📈
+                </span>
+                <span
+                  role="img"
+                  aria-label="chart decreasing"
+                  className="react-emojis mr-1"
+                  style={{ lineHeight: '1', fontSize: '24px' }}
+                >
+                  📉
+                </span> */}
+              </div>
+            </div>
+            <div className="row-start-1 col-start-2">
+              <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
+            </div>
+            <div className="row-start-1 col-start-3">
+              <Card type="code" heading="Commits" stat={thousandify(commits)} />
+            </div>
+            <div className="row-start-2 col-start-2">
+              <Card
+                type="calendar"
+                heading="Years active"
+                stat={thousandify((daysActive / 365).toFixed(1))}
+              />
+            </div>
+            <div className="row-start-2 col-start-3">
+              <Card
+                type="calendar"
+                heading="Days since first commit"
+                stat={thousandify(daysSinceFirstCommit)}
+              />
+            </div>
+            <div className="row-start-3 col-start-1">
+              <Card
+                type="calendar"
+                heading="Days between first and last commit"
+                stat={thousandify(daysActive)}
+              />
+            </div>
+            <div className="row-start-3 col-start-2">
+              <Card
+                type="calendar"
+                heading="Days since last commit"
+                stat={thousandify(daysSinceLastCommit)}
+              />
+            </div>
+            <div className="row-start-3 col-start-3">
+              <Card
+                type="calendar"
+                heading="Commits on weekends"
+                stat={thousandify(commitsOnWeekend)}
+              />
+            </div>
+            <div className="row-start-4 col-start-1">
+              <Card
+                type="trends"
+                heading="Average commits / day"
+                stat={commitsPerDayAverage.toFixed(2)}
+              />
+            </div>
+            <div className="row-start-4 col-start-2">
+              <Card
+                type="curiosa"
+                heading="Commits impact > thousand"
+                stat={thousandify(commitsImpactGtThousandAuthor)}
+              />
+            </div>
+            <div className="row-start-4 col-start-3">
+              <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
             </div>
           </div>
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
-            <Card type="code" heading="Commits" stat={thousandify(commits)} />
-            <Card
-              type="calendar"
-              heading="Years active"
-              stat={thousandify((daysActive / 365).toFixed(1))}
-            />
-            <Card
-              type="calendar"
-              heading="Days since first commit"
-              stat={thousandify(daysSinceFirstCommit)}
-            />
-            <Card
-              type="calendar"
-              heading="Days between first and last commit"
-              stat={thousandify(daysActive)}
-            />
-            <Card
-              type="calendar"
-              heading="Days since last commit"
-              stat={thousandify(daysSinceLastCommit)}
-            />
-            <Card
-              type="calendar"
-              heading="Commits on weekends"
-              stat={thousandify(commitsOnWeekend)}
-            />
-            <Card
-              type="trends"
-              heading="Average commits / day"
-              stat={commitsPerDayAverage.toFixed(2)}
-            />
-            <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
-          </dl>
           {commitsPerDayAuthor && isNotEmptyObject(commitsPerDayAuthor) && (
             <div className="mt-5">
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-5">
