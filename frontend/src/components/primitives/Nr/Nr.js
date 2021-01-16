@@ -6,14 +6,14 @@ import { UiContext } from '../../../contexts';
 import { thousandify } from '../../../utils/thousandifyUtil';
 import { isNotEmptyArray } from '../../../utils/isEmptyUtil';
 import AnimatedNumber from './AnimatedNumber/AnimatedNumber';
-import config from '../../../config';
+import { config } from '../../../config';
 import './Nr.scss';
 
 const { animateNumbers } = config;
 
 const waitForIt = 10; // Got to have a timeout, but it should be short
 
-const Nr = ({ duration = 2000, mode, value, size }) => {
+const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
   const { uiIsAnimating } = useContext(UiContext);
   const timeoutRef = useRef(null); // Keep track of the timeout
   const [nr, SetNr] = useState(0);
@@ -49,12 +49,13 @@ const Nr = ({ duration = 2000, mode, value, size }) => {
 
   const formatValue = n => {
     if (n) {
+      const formattedNr = thousand ? thousandify(n.toFixed(0), 'en') : n.toFixed(0);
       if (mode === 'currency') {
         // If you have a language context, pass it as the last param instead of 'en'
         // ('thousandify()' has support for both English and Norwegian)
-        return convertStringToArraysOfChars(thousandify(n.toFixed(0), 'en'));
+        return convertStringToArraysOfChars(formattedNr);
       }
-      return n.toFixed(0);
+      return formattedNr;
     }
     return 0;
   };

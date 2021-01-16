@@ -10,8 +10,8 @@ const inTest = process.env.NODE_ENV === 'test';
 
 // Modes and feature-togglers
 const serverMode = 'graphql'; // json | graphql
-const animateNumbers = false;
-const showResponsiveGuide = true;
+const animateNumbers = true;
+const showResponsiveGuide = false;
 
 // Ports
 export const PORT_JSON_SERVER = '3000';

@@ -10,13 +10,13 @@ import { Mail } from './../primitives/Icon';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
+import Nr from '../primitives/Nr/Nr';
 import { addEmptyDays } from '../../utils/getDateUtil';
 import { cummulative } from '../../utils/cummulativeUtil';
 import { isNotEmptyArray, isNotEmptyObject } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
-import { thousandify } from '../../utils/thousandifyUtil';
 
 const PageContributor = () => {
   const { paramAuthorEmail } = useParams();
@@ -325,44 +325,52 @@ const PageContributor = () => {
               </div>
             </div>
             <div className="row-start-1 col-start-2">
-              <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
+              <Card
+                type="repositories"
+                heading="Repositories"
+                stat={<Nr value={repositories} size="md" thousandify />}
+              />
             </div>
             <div className="row-start-1 col-start-3">
-              <Card type="code" heading="Commits" stat={thousandify(commits)} />
+              <Card
+                type="code"
+                heading="Commits"
+                stat={<Nr value={commits} size="md" thousandify />}
+              />
             </div>
             <div className="row-start-2 col-start-2">
               <Card
                 type="calendar"
                 heading="Years active"
-                stat={thousandify((daysActive / 365).toFixed(1))}
+                stat={<Nr value={(daysActive / 365).toFixed(1)} size="md" thousandify />}
               />
             </div>
             <div className="row-start-2 col-start-3">
               <Card
                 type="calendar"
                 heading="Days since first commit"
-                stat={thousandify(daysSinceFirstCommit)}
+                stat={<Nr value={daysSinceFirstCommit} size="md" thousandify />}
               />
             </div>
             <div className="row-start-3 col-start-1">
               <Card
                 type="calendar"
                 heading="Days between first and last commit"
-                stat={thousandify(daysActive)}
+                stat={<Nr value={daysActive} size="md" thousandify />}
               />
             </div>
             <div className="row-start-3 col-start-2">
               <Card
                 type="calendar"
                 heading="Days since last commit"
-                stat={thousandify(daysSinceLastCommit)}
+                stat={<Nr value={daysSinceLastCommit} size="md" thousandify />}
               />
             </div>
             <div className="row-start-3 col-start-3">
               <Card
                 type="calendar"
                 heading="Commits on weekends"
-                stat={thousandify(commitsOnWeekend)}
+                stat={<Nr value={commitsOnWeekend} size="md" thousandify />}
               />
             </div>
             <div className="row-start-4 col-start-1">
@@ -376,7 +384,7 @@ const PageContributor = () => {
               <Card
                 type="curiosa"
                 heading="Commits impact > thousand"
-                stat={thousandify(commitsImpactGtThousandAuthor)}
+                stat={<Nr value={commitsImpactGtThousandAuthor} size="md" thousandify />}
               />
             </div>
             <div className="row-start-4 col-start-3">

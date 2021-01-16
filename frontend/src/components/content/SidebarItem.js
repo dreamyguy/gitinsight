@@ -147,7 +147,7 @@ const SidebarItem = ({ badge, name, pageType, type, url }) => {
 };
 
 SidebarItem.propTypes = {
-  badge: PropTypes.string,
+  badge: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   name: PropTypes.string,
   pageType: PropTypes.oneOf([
     'calendar',

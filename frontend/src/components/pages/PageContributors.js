@@ -14,12 +14,12 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import Heat from '../primitives/Heat/Heat';
+import Nr from '../primitives/Nr/Nr';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
-import { thousandify } from '../../utils/thousandifyUtil';
 
 const renderContributors = ({ statsAuthors }) => {
   const output = [];
@@ -80,19 +80,27 @@ const renderContributors = ({ statsAuthors }) => {
                       <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 dark:text-gray-200 mt-2">
                         <div className="flex items-center">
                           <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
-                          <span className="mr-3">{thousandify(commitsAuthor)}</span>
+                          <span className="mr-3">
+                            <Nr value={commitsAuthor} size="md" thousandify />
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-purple-middle" />
-                          <span className="mr-3">{thousandify(repositoriesAuthor)}</span>
+                          <span className="mr-3">
+                            <Nr value={repositoriesAuthor} size="md" thousandify />
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
-                          <span className="mr-3">{thousandify((daysActive / 365).toFixed(1))}</span>
+                          <span className="mr-3">
+                            <Nr value={(daysActive / 365).toFixed(1)} size="md" thousandify />
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
-                          <span className="mr-3">{thousandify(impactRatio.toFixed(0))}</span>
+                          <span className="mr-3">
+                            <Nr value={impactRatio.toFixed(0)} size="md" thousandify />
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
@@ -152,9 +160,21 @@ const PageContributors = () => {
         <>
           <PageTitleWithDate title="Contributors" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card type="contributors" heading="Contributors" stat={thousandify(contributors)} />
-            <Card type="repositories" heading="Repositories" stat={thousandify(repositories)} />
-            <Card type="code" heading="Commits" stat={thousandify(commits)} />
+            <Card
+              type="contributors"
+              heading="Contributors"
+              stat={<Nr value={contributors} size="md" thousandify />}
+            />
+            <Card
+              type="repositories"
+              heading="Repositories"
+              stat={<Nr value={repositories} size="md" thousandify />}
+            />
+            <Card
+              type="code"
+              heading="Commits"
+              stat={<Nr value={commits} size="md" thousandify />}
+            />
           </dl>
           <Heat statuses={statsAuthorsStaleness} />
           <Contributors statsAuthors={statsAuthors} />

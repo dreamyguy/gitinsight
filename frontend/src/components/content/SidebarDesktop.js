@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { thousandify } from './../../utils/thousandifyUtil';
 import logo from './../../images/logo.png';
+import Nr from './../primitives/Nr/Nr';
 import SidebarItem from './SidebarItem';
 
 const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }) => (
@@ -20,21 +20,21 @@ const SidebarDesktop = ({ commits, contributors, pageType, repositories, stats }
               <>
                 <SidebarItem name="Dashboard" pageType={pageType} type="dashboard" url="/" />
                 <SidebarItem
-                  badge={thousandify(contributors)}
+                  badge={<Nr value={contributors} size="md" thousandify />}
                   name="Contributors"
                   pageType={pageType}
                   type="contributors"
                   url="/contributors"
                 />
                 <SidebarItem
-                  badge={thousandify(repositories)}
+                  badge={<Nr value={repositories} size="md" thousandify />}
                   name="Repositories"
                   pageType={pageType}
                   type="repositories"
                   url="/repositories"
                 />
                 <SidebarItem
-                  badge={thousandify(commits)}
+                  badge={<Nr value={commits} size="md" thousandify />}
                   name="Commits"
                   pageType={pageType}
                   type="commits"
