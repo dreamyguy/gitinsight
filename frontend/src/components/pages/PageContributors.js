@@ -20,6 +20,7 @@ import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
 import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
+import { thousandify } from '../../utils/thousandifyUtil';
 
 const renderContributors = ({ statsAuthors }) => {
   const output = [];
@@ -80,27 +81,19 @@ const renderContributors = ({ statsAuthors }) => {
                       <div className="min-w-0 flex-1 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-2 lg:gap-4 flex items-center text-sm text-gray-500 dark:text-gray-200 mt-2">
                         <div className="flex items-center">
                           <Code className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-dark" />
-                          <span className="mr-3">
-                            <Nr value={commitsAuthor} size="md" thousandify />
-                          </span>
+                          <span className="mr-3">{thousandify(commitsAuthor)}</span>
                         </div>
                         <div className="flex items-center">
                           <Folder className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-purple-middle" />
-                          <span className="mr-3">
-                            <Nr value={repositoriesAuthor} size="md" thousandify />
-                          </span>
+                          <span className="mr-3">{thousandify(repositoriesAuthor)}</span>
                         </div>
                         <div className="flex items-center">
                           <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
-                          <span className="mr-3">
-                            <Nr value={(daysActive / 365).toFixed(1)} size="md" thousandify />
-                          </span>
+                          <span className="mr-3">{thousandify((daysActive / 365).toFixed(1))}</span>
                         </div>
                         <div className="flex items-center">
                           <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
-                          <span className="mr-3">
-                            <Nr value={impactRatio.toFixed(0)} size="md" thousandify />
-                          </span>
+                          <span className="mr-3">{thousandify(impactRatio.toFixed(0))}</span>
                         </div>
                         <div className="flex items-center">
                           <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
