@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { UiContext } from './../../contexts';
 import {
   Calendar,
   Code,
@@ -14,6 +15,13 @@ import {
 } from './../primitives/Icon';
 
 const SidebarItem = ({ badge, name, pageType, type, url }) => {
+  const { uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
+  const handleNavigation = () => {
+    // Trigger number animation
+    if (!uiIsAnimating) {
+      setUiIsAnimating(true);
+    }
+  };
   const resolveIcon = () => {
     let output = null;
     switch (type) {
@@ -128,6 +136,7 @@ const SidebarItem = ({ badge, name, pageType, type, url }) => {
           ? 'bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md'
           : 'text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md',
       )}
+      onClick={() => handleNavigation()}
     >
       {resolveIcon(type)}
       {name}
