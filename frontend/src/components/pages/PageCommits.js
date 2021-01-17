@@ -6,7 +6,6 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
-import Nr from '../primitives/Nr/Nr';
 import { isNotEmptyObject } from '../../utils/isEmptyUtil';
 
 const PageCommits = () => {
@@ -33,26 +32,15 @@ const PageCommits = () => {
         <>
           <PageTitleWithDate title="Commits" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card
-              type="commits"
-              heading="Commits"
-              stat={<Nr value={commits} size="md" thousandify />}
-            />
-            <Card
-              type="code"
-              heading="Lines of code"
-              stat={<Nr value={lines} size="md" thousandify />}
-            />
+            <Card type="commits" heading="Commits" stat={commits} thousandify />
+            <Card type="code" heading="Lines of code" stat={lines} thousandify />
             <Card
               type="calendar"
               heading="Days between first and last commit"
-              stat={<Nr value={daysActive} size="md" thousandify />}
+              stat={daysActive}
+              thousandify
             />
-            <Card
-              type="code"
-              heading="File changes"
-              stat={<Nr value={fileChanges} size="md" thousandify />}
-            />
+            <Card type="code" heading="File changes" stat={fileChanges} thousandify />
             <Card
               type="trends"
               heading="Average commits / contributor"

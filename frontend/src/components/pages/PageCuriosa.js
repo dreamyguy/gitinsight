@@ -5,7 +5,6 @@ import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
-import Nr from '../primitives/Nr/Nr';
 
 const PageCuriosa = () => {
   const {
@@ -30,17 +29,20 @@ const PageCuriosa = () => {
             <Card
               type="curiosa"
               heading="Commits impact > thousand"
-              stat={<Nr value={commitsImpactGtThousand} size="md" thousandify />}
+              stat={commitsImpactGtThousand}
+              thousandify
             />
             <Card
               type="curiosa"
               heading="Commits without file changes"
-              stat={<Nr value={commitsWithoutFileChanges} size="md" thousandify />}
+              stat={commitsWithoutFileChanges}
+              thousandify
             />
             <Card
               type="curiosa"
               heading="Commits without impact"
-              stat={<Nr value={commitsWithoutImpact} size="md" thousandify />}
+              stat={commitsWithoutImpact}
+              thousandify
             />
           </dl>
           <Chart

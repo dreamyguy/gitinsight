@@ -14,7 +14,6 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import Heat from '../primitives/Heat/Heat';
-import Nr from '../primitives/Nr/Nr';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
@@ -153,21 +152,9 @@ const PageContributors = () => {
         <>
           <PageTitleWithDate title="Contributors" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card
-              type="contributors"
-              heading="Contributors"
-              stat={<Nr value={contributors} size="md" thousandify />}
-            />
-            <Card
-              type="repositories"
-              heading="Repositories"
-              stat={<Nr value={repositories} size="md" thousandify />}
-            />
-            <Card
-              type="code"
-              heading="Commits"
-              stat={<Nr value={commits} size="md" thousandify />}
-            />
+            <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
+            <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
+            <Card type="code" heading="Commits" stat={commits} thousandify />
           </dl>
           <Heat statuses={statsAuthorsStaleness} />
           <Contributors statsAuthors={statsAuthors} />

@@ -2,6 +2,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Calendar, Code, Flag, Folder, Sparkles, TrendingUp, UserGroup } from './../Icon';
+import Nr from '../Nr/Nr';
 
 const classesIcon = 'h-6 w-6 text-white';
 
@@ -37,7 +38,7 @@ const resolveIcon = (type, mode) => {
   return mode === 'color' ? output[1] : output[0];
 };
 
-const Card = ({ type, heading, stat, statIncreasedBy, statDecreasedBy }) => (
+const Card = ({ type, heading, stat, statIncreasedBy, statDecreasedBy, thousandify }) => (
   <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
     <div className="px-4 py-5 sm:p-6">
       <div className="flex items-center">
@@ -55,7 +56,9 @@ const Card = ({ type, heading, stat, statIncreasedBy, statDecreasedBy }) => (
             {heading}
           </dt>
           <dd className="flex items-baseline">
-            <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{stat}</div>
+            <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              {thousandify ? <Nr value={stat} size="md" thousandify /> : stat}
+            </div>
             {statIncreasedBy && (
               <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                 <svg

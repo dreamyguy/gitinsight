@@ -7,7 +7,6 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
-import Nr from '../primitives/Nr/Nr';
 import { isNotEmptyObject } from '../../utils/isEmptyUtil';
 
 const PageDashboard = () => {
@@ -43,30 +42,20 @@ const PageDashboard = () => {
         <>
           <PageTitleWithDate title="Dashboard" from={commitDateFirst} until={commitDateLast} />
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card
-              type="contributors"
-              heading="Contributors"
-              stat={<Nr value={contributors} size="md" thousandify />}
-            />
-            <Card
-              type="repositories"
-              heading="Repositories"
-              stat={<Nr value={repositories} size="md" thousandify />}
-            />
-            <Card
-              type="code"
-              heading="Commits"
-              stat={<Nr value={commits} size="md" thousandify />}
-            />
+            <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
+            <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
+            <Card type="code" heading="Commits" stat={commits} thousandify />
             <Card
               type="curiosa"
               heading="Commits impact > thousand"
-              stat={<Nr value={commitsImpactGtThousand} size="md" thousandify />}
+              stat={commitsImpactGtThousand}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Commits on weekends"
-              stat={<Nr value={commitsOnWeekend} size="md" thousandify />}
+              stat={commitsOnWeekend}
+              thousandify
             />
             <Card
               type="trends"
@@ -81,38 +70,35 @@ const PageDashboard = () => {
             <Card
               type="curiosa"
               heading="Commits without file changes"
-              stat={<Nr value={commitsWithoutFileChanges} size="md" thousandify />}
+              stat={commitsWithoutFileChanges}
+              thousandify
             />
             <Card
               type="curiosa"
               heading="Commits without impact"
-              stat={<Nr value={commitsWithoutImpact} size="md" thousandify />}
+              stat={commitsWithoutImpact}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Days since first commit"
-              stat={<Nr value={daysSinceFirstCommit} size="md" thousandify />}
+              stat={daysSinceFirstCommit}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Days between first and last commit"
-              stat={<Nr value={daysActive} size="md" thousandify />}
+              stat={daysActive}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Days since last commit"
-              stat={<Nr value={daysSinceLastCommit} size="md" thousandify />}
+              stat={daysSinceLastCommit}
+              thousandify
             />
-            <Card
-              type="code"
-              heading="File changes"
-              stat={<Nr value={fileChanges} size="md" thousandify />}
-            />
-            <Card
-              type="code"
-              heading="Lines of code"
-              stat={<Nr value={lines} size="md" thousandify />}
-            />
+            <Card type="code" heading="File changes" stat={fileChanges} thousandify />
+            <Card type="code" heading="Lines of code" stat={lines} thousandify />
             <Card type="staleness" heading="Staleness" stat={staleness.toFixed(2)} />
           </dl>
           {commitsPerDay && isNotEmptyObject(commitsPerDay) && (

@@ -7,7 +7,6 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import CalendarContributions from '../primitives/Calendar/CalendarContributions';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
-import Nr from '../primitives/Nr/Nr';
 import { isNotEmptyObject } from '../../utils/isEmptyUtil';
 
 const PageCalendar = () => {
@@ -43,22 +42,26 @@ const PageCalendar = () => {
             <Card
               type="calendar"
               heading="Days since first commit"
-              stat={<Nr value={daysSinceFirstCommit} size="md" thousandify />}
+              stat={daysSinceFirstCommit}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Days between first and last commit"
-              stat={<Nr value={daysActive} size="md" thousandify />}
+              stat={daysActive}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Days since last commit"
-              stat={<Nr value={daysSinceLastCommit} size="md" thousandify />}
+              stat={daysSinceLastCommit}
+              thousandify
             />
             <Card
               type="calendar"
               heading="Commits on weekends"
-              stat={<Nr value={commitsOnWeekend} size="md" thousandify />}
+              stat={commitsOnWeekend}
+              thousandify
             />
             <Card
               type="trends"

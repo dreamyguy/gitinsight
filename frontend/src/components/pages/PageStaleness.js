@@ -11,7 +11,6 @@ import PageTitleWithDate from '../content/PageTitleWithDate';
 import Card from '../primitives/Card/Card';
 import Chart from '../primitives/Chart/Chart';
 import Heat from '../primitives/Heat/Heat';
-import Nr from '../primitives/Nr/Nr';
 import { resolveHeatIntensity } from '../../utils/resolveHeatIntensityUtil';
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 
@@ -79,12 +78,14 @@ const PageStaleness = () => {
             <Card
               type="calendar"
               heading="Days since last commit"
-              stat={<Nr value={daysSinceLastCommit} size="md" thousandify />}
+              stat={daysSinceLastCommit}
+              thousandify
             />
             <Card
               type="curiosa"
               heading="Commits impact > thousand"
-              stat={<Nr value={commitsImpactGtThousand} size="md" thousandify />}
+              stat={commitsImpactGtThousand}
+              thousandify
             />
           </dl>
           <div className={classnames(statsReposStaleness || statsAuthorsStaleness ? 'mt-5' : '')}>
