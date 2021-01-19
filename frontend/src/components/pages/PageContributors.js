@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
@@ -9,6 +9,7 @@ import {
   statsAuthorsQueryTop30,
   statsGlobalQuery,
 } from '../../graphql/queries';
+import { UiContext } from './../../contexts';
 import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
@@ -21,7 +22,7 @@ import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
 
-const renderContributors = ({ statsAuthors }) => {
+const renderContributors = ({ statsAuthors, handleNavigation }) => {
   const output = [];
   if (statsAuthors && isNotEmptyArray(statsAuthors)) {
     statsAuthors.map(sa => {
@@ -41,6 +42,7 @@ const renderContributors = ({ statsAuthors }) => {
           <Link
             to={`/contributor/${author}`}
             className="block hover:bg-gray-50 dark:hover:bg-gray-700"
+            onClick={() => handleNavigation()}
           >
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
@@ -116,12 +118,12 @@ const renderContributors = ({ statsAuthors }) => {
   return output;
 };
 
-const Contributors = ({ statsAuthors }) => (
+const Contributors = ({ statsAuthors, handleNavigation }) => (
   <>
     {statsAuthors && isNotEmptyArray(statsAuthors) ? (
       <div className="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md mt-5">
         <ul className="divide-y divide-gray-200 dark:divide-gray-900">
-          {renderContributors({ statsAuthors })}
+          {renderContributors({ statsAuthors, handleNavigation })}
         </ul>
       </div>
     ) : null}
@@ -142,6 +144,13 @@ const PageContributors = () => {
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
+  const { uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
+  const handleNavigation = () => {
+    // Trigger number animation
+    if (!uiIsAnimating) {
+      setUiIsAnimating(true);
+    }
+  };
   const { data: { statsAuthors } = {} } = useQuery(statsAuthorsQueryTop30);
   const { data: { statsAuthors: statsAuthorsStaleness } = {} } = useQuery(
     statsAuthorsQueryStaleness,
@@ -157,7 +166,7 @@ const PageContributors = () => {
             <Card type="code" heading="Commits" stat={commits} thousandify />
           </dl>
           <Heat statuses={statsAuthorsStaleness} />
-          <Contributors statsAuthors={statsAuthors} />
+          <Contributors statsAuthors={statsAuthors} handleNavigation={handleNavigation} />
         </>
       )}
     </Wrapper>

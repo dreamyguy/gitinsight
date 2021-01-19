@@ -333,7 +333,7 @@ const PageContributor = () => {
               <Card
                 type="calendar"
                 heading="Years active"
-                stat={(daysActive / 365).toFixed(1)}
+                stat={parseInt((daysActive / 365).toFixed(1), 10)}
                 thousandify
               />
             </div>

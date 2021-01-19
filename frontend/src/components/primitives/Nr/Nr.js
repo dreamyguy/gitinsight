@@ -9,14 +9,18 @@ import AnimatedNumber from './AnimatedNumber/AnimatedNumber';
 import { config } from '../../../config';
 import './Nr.scss';
 
-const { animateNumbers } = config;
+const { animateNumbers, animateNumbersDuration, animateNumbersInit } = config;
 
-const waitForIt = 10; // Got to have a timeout, but it should be short
+const Nr = ({ mode, value, size, thousandify: thousand }) => {
+  const { uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
+  const timeoutRef = useRef(null); // Keep track of the timeout (for changing 'nr')
+  const [nr, setNr] = useState(0);
 
-const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
-  const { uiIsAnimating } = useContext(UiContext);
-  const timeoutRef = useRef(null); // Keep track of the timeout
-  const [nr, SetNr] = useState(0);
+  const handleCompleteAnimation = () => {
+    if (animateNumbers && uiIsAnimating) {
+      setUiIsAnimating(false);
+    }
+  };
 
   const convertStringToArraysOfChars = str => {
     const output = [];
@@ -64,7 +68,7 @@ const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
   useEffect(() => {
     // Set 'value' to 'nr' under certain conditions
     if (value && (!nr || nr === null || nr !== 0)) {
-      SetNr(value);
+      setNr(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
@@ -77,9 +81,9 @@ const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
       timeoutRef.current = setTimeout(() => {
         // Reset ref to null when it runs
         timeoutRef.current = null;
-        SetNr(value);
+        setNr(value);
         return null;
-      }, waitForIt);
+      }, animateNumbersInit);
       // If there's a running timeout...
       if (timeoutRef.current !== null) {
         // ...cancel it
@@ -97,7 +101,8 @@ const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
             animate={uiIsAnimating}
             value={nr}
             formatValue={formatValue}
-            duration={duration}
+            complete={handleCompleteAnimation}
+            duration={animateNumbersDuration}
           />
         ) : (
           formatValue(nr)
@@ -111,7 +116,6 @@ const Nr = ({ duration = 2000, mode, value, size, thousandify: thousand }) => {
 
 Nr.propTypes = {
   value: PropTypes.number.isRequired,
-  duration: PropTypes.number,
 };
 
 export default Nr;

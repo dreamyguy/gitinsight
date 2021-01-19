@@ -11,6 +11,8 @@ const inTest = process.env.NODE_ENV === 'test';
 // Modes and feature-togglers
 const serverMode = 'graphql'; // json | graphql
 const animateNumbers = true;
+const animateNumbersDuration = 2000; // Duration of timeout, used for 'animateNumbers'
+const animateNumbersInit = 10; // Initialize timeout for 'animateNumbers'
 const showResponsiveGuide = false;
 
 // Ports
@@ -117,6 +119,8 @@ const setApiUrl = host => {
 
 export const config = {
   animateNumbers,
+  animateNumbersDuration,
+  animateNumbersInit,
   currentEnv,
   hostname,
   hostnames,
