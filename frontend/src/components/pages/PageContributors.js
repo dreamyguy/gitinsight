@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
@@ -153,13 +152,20 @@ const PageContributors = () => {
     loading: loadingAuthorsStaleness,
     data: { statsAuthors: statsAuthorsStaleness } = {},
   } = useQuery(statsAuthorsQueryStaleness);
-  const { uiDarkMode, uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
+  const { uiDarkMode, uiIsAnimating, setUiIsAnimating, setUiIsLoading } = useContext(UiContext);
   const handleNavigation = () => {
     // Trigger number animation
     if (!uiIsAnimating) {
       setUiIsAnimating(true);
     }
   };
+
+  useEffect(() => {
+    const isLoading = loading || loadingAuthorsTop30 || loadingAuthorsStaleness;
+    setUiIsLoading(isLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, loadingAuthorsTop30, loadingAuthorsStaleness]);
+
   return (
     <Wrapper pageType="contributors">
       {loading ? (

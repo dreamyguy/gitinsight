@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -8,6 +8,7 @@ import {
   statsReposQueryTop30,
   statsGlobalQuery,
 } from '../../graphql/queries';
+import { UiContext } from './../../contexts';
 import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import {
@@ -134,6 +135,7 @@ const Repositories = ({ statsRepos }) => (
 
 const PageRepositories = () => {
   const {
+    loading,
     data: {
       statsGlobal,
       statsGlobal: { commitDateFirst, commitDateLast, commits, contributors, repositories } = {},
@@ -141,6 +143,14 @@ const PageRepositories = () => {
   } = useQuery(statsGlobalQuery);
   const { data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);
   const { data: { statsRepos: statsReposStaleness } = {} } = useQuery(statsReposQueryStaleness);
+  const { setUiIsLoading } = useContext(UiContext);
+
+  useEffect(() => {
+    const isLoading = loading;
+    setUiIsLoading(isLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
+
   return (
     <Wrapper pageType="repositories">
       {statsGlobal && (

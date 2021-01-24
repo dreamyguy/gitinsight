@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { statsGlobalQuery } from '../../graphql/queries';
 import { UiContext } from './../../contexts';
@@ -38,7 +38,14 @@ const PageDashboard = () => {
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
-  const { uiDarkMode } = useContext(UiContext);
+  const { uiDarkMode, setUiIsLoading } = useContext(UiContext);
+
+  useEffect(() => {
+    const isLoading = loading;
+    setUiIsLoading(isLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
+
   return (
     <Wrapper pageType="dashboard">
       {loading ? (

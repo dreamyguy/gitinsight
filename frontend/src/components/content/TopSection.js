@@ -9,7 +9,7 @@ import Toggler from './../primitives/Toggler/Toggler';
 
 const TopSection = ({ pageType }) => {
   const { menuIsExpanded, setMenuIsExpanded } = useContext(MenuContext);
-  const { uiDarkMode, setUiDarkMode } = useContext(UiContext);
+  const { uiDarkMode, setUiDarkMode, uiIsLoading } = useContext(UiContext);
   const handleClick = () => {
     setMenuIsExpanded(!menuIsExpanded);
   };
@@ -64,14 +64,16 @@ const TopSection = ({ pageType }) => {
           </form>
         </div>
         <div className="ml-4 flex items-center md:ml-6">
-          <Toggler
-            bgOn="bg-indigo-600 dark:bg-gray-600"
-            bgOff="bg-gray-200"
-            fgOn="bg-white dark:bg-gray-800"
-            fgOff="bg-white dark:bg-gray-800"
-            status={uiDarkMode}
-            handleTogglerStatus={() => setUiDarkMode(!uiDarkMode)}
-          />
+          {!uiIsLoading && (
+            <Toggler
+              bgOn="bg-indigo-600 dark:bg-gray-600"
+              bgOff="bg-gray-200"
+              fgOn="bg-white dark:bg-gray-800"
+              fgOff="bg-white dark:bg-gray-800"
+              status={uiDarkMode}
+              handleTogglerStatus={() => setUiDarkMode(!uiDarkMode)}
+            />
+          )}
           {/* <Notifications />
           <ProfileDropdown /> */}
         </div>

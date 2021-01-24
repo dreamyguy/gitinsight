@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import {
@@ -38,7 +38,7 @@ const PageStaleness = () => {
     loading: loadingReposStaleness,
     data: { statsRepos: statsReposStaleness } = {},
   } = useQuery(statsReposQueryStaleness);
-  const { uiDarkMode } = useContext(UiContext);
+  const { uiDarkMode, setUiIsLoading } = useContext(UiContext);
   // Some calculations within this page...
   const contributorsHeatList = resolveHeatIntensity({ list: statsAuthorsStaleness });
   const reposHeatList = resolveHeatIntensity({ list: statsReposStaleness });
@@ -60,6 +60,13 @@ const PageStaleness = () => {
     }
     return percentageSum.toFixed(2);
   };
+
+  useEffect(() => {
+    const isLoading = loading || loadingAuthorsStaleness || loadingReposStaleness;
+    setUiIsLoading(isLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, loadingAuthorsStaleness, loadingReposStaleness]);
+
   return (
     <Wrapper pageType="staleness">
       {loading ? (

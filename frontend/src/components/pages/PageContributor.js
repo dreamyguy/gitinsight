@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -19,7 +19,7 @@ import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 
 const PageContributor = () => {
-  const { uiDarkMode } = useContext(UiContext);
+  const { uiDarkMode, setUiIsLoading } = useContext(UiContext);
   const { paramAuthorEmail } = useParams();
   const {
     loading,
@@ -77,6 +77,13 @@ const PageContributor = () => {
   } = useQuery(statsAuthorQuery, {
     variables: { authorEmail: paramAuthorEmail },
   });
+
+  useEffect(() => {
+    const isLoading = loading || loadingAuthor;
+    setUiIsLoading(isLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, loadingAuthor]);
+
   return (
     <Wrapper pageType="contributor">
       {loading ? (
