@@ -52,6 +52,15 @@ module.exports = {
       fontFamily: {
         sans: ['Ubuntu', ...defaultTheme.fontFamily.sans],
       },
+      maxHeight: {
+        0: '0',
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '75%',
+        '5/6': '83.333333%',
+        '11/12': '91.666667%',
+        full: '100%',
+      },
     },
   },
   variants: {

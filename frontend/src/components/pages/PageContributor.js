@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import classnames from 'classnames';
@@ -109,7 +108,7 @@ const PageContributor = () => {
           fullHeight
           isDark={uiDarkMode}
           loading
-          message="Loading contributor's stats"
+          message="Loading contributor stats"
           messageDark="dark:text-gray-300"
           messageLight="text-gray-800"
         />

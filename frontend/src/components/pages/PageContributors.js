@@ -10,6 +10,7 @@ import {
   statsGlobalQuery,
 } from '../../graphql/queries';
 import { UiContext } from './../../contexts';
+import Loading from '../layout/Loading';
 import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
@@ -132,6 +133,7 @@ const Contributors = ({ statsAuthors, handleNavigation }) => (
 
 const PageContributors = () => {
   const {
+    loading,
     data: {
       statsGlobal,
       statsGlobal: {
@@ -144,29 +146,87 @@ const PageContributors = () => {
       } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
-  const { uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
+  const { loading: loadingAuthorsTop30, data: { statsAuthors } = {} } = useQuery(
+    statsAuthorsQueryTop30,
+  );
+  const {
+    loading: loadingAuthorsStaleness,
+    data: { statsAuthors: statsAuthorsStaleness } = {},
+  } = useQuery(statsAuthorsQueryStaleness);
+  const { uiDarkMode, uiIsAnimating, setUiIsAnimating } = useContext(UiContext);
   const handleNavigation = () => {
     // Trigger number animation
     if (!uiIsAnimating) {
       setUiIsAnimating(true);
     }
   };
-  const { data: { statsAuthors } = {} } = useQuery(statsAuthorsQueryTop30);
-  const { data: { statsAuthors: statsAuthorsStaleness } = {} } = useQuery(
-    statsAuthorsQueryStaleness,
-  );
   return (
     <Wrapper pageType="contributors">
-      {statsGlobal && (
+      {loading ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          isDark={uiDarkMode}
+          isOneLine
+          loading
+          message="Loading contributors stats"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
         <>
-          <PageTitleWithDate title="Contributors" from={commitDateFirst} until={commitDateLast} />
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
-            <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
-            <Card type="code" heading="Commits" stat={commits} thousandify />
-          </dl>
-          <Heat statuses={statsAuthorsStaleness} />
-          <Contributors statsAuthors={statsAuthors} handleNavigation={handleNavigation} />
+          {statsGlobal && (
+            <>
+              <PageTitleWithDate
+                title="Contributors"
+                from={commitDateFirst}
+                until={commitDateLast}
+              />
+              <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+                <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
+                <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
+                <Card type="code" heading="Commits" stat={commits} thousandify />
+              </dl>
+            </>
+          )}
+        </>
+      )}
+      {loadingAuthorsStaleness ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          isDark={uiDarkMode}
+          isOneLine
+          loading
+          message="Loading contributors staleness"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
+        <>{statsAuthorsStaleness && <Heat statuses={statsAuthorsStaleness} />}</>
+      )}
+      {loadingAuthorsTop30 ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          fullHeight
+          isDark={uiDarkMode}
+          loading
+          message="Loading top 30 contributors"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
+        <>
+          {statsAuthors && (
+            <Contributors statsAuthors={statsAuthors} handleNavigation={handleNavigation} />
+          )}
         </>
       )}
     </Wrapper>
