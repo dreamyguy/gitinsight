@@ -202,3 +202,49 @@ export const statsAuthorQuery = gql`
     }
   }
 `;
+
+export const statsRepoQuery = gql`
+  query StatsRepoQuery($repoName: String!) {
+    statsRepo(repository: $repoName, sortBy: staleness, sortDirection: asc) {
+      commitDateFirst
+      commitDateLast
+      commits
+      commitsImpactGtThousand
+      commitsOnWeekend
+      commitsPerContributorAverage
+      commitsPerDay
+      commitsPerDayAverage
+      commitsPerDayCummulative
+      commitsPerHour
+      commitsPerMinute
+      commitsPerMonthDay
+      commitsPerMonthName
+      commitsPerMonthNr
+      commitsPerSecond
+      commitsPerYear
+      commitsWithoutFileChanges
+      commitsWithoutImpact
+      contributors
+      contributorsList
+      daysActive
+      daysSinceFirstCommit
+      daysSinceLastCommit
+      fileChanges
+      impact
+      impactByDay
+      impactByDayCummulative
+      impactRatio
+      repository
+      staleness
+      weekdays {
+        Mon
+        Tue
+        Wed
+        Thu
+        Fri
+        Sat
+        Sun
+      }
+    }
+  }
+`;

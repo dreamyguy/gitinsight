@@ -8,6 +8,7 @@ import PageContributor from './components/pages/PageContributor';
 import PageContributors from './components/pages/PageContributors';
 import PageCuriosa from './components/pages/PageCuriosa';
 import PageRepositories from './components/pages/PageRepositories';
+import PageRepository from './components/pages/PageRepository';
 import PageStaleness from './components/pages/PageStaleness';
 import PageTrends from './components/pages/PageTrends';
 import PageDashboard from './components/pages/PageDashboard';
@@ -24,6 +25,7 @@ ReactDOM.render(
           <Route path="/contributor/:paramAuthorEmail" component={PageContributor} />
           <Route path="/contributors/" component={PageContributors} />
           <Route path="/curiosa/" component={PageCuriosa} />
+          <Route path="/repository/:paramRepoName" component={PageRepository} />
           <Route path="/repositories/" component={PageRepositories} />
           <Route path="/staleness/" component={PageStaleness} />
           <Route path="/trends/" component={PageTrends} />

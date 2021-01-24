@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -9,6 +9,7 @@ import {
   statsGlobalQuery,
 } from '../../graphql/queries';
 import { UiContext } from './../../contexts';
+import Loading from '../layout/Loading';
 import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import {
@@ -29,7 +30,7 @@ import { getNameFromEmail } from '../../utils/getNameFromEmailUtil';
 import { stalenessStatus } from '../../utils/stalenessStatusUtil';
 import { thousandify } from '../../utils/thousandifyUtil';
 
-const renderRepositories = ({ statsRepos }) => {
+const renderRepositories = ({ statsRepos, handleNavigation }) => {
   const output = [];
   if (statsRepos && isNotEmptyArray(statsRepos)) {
     statsRepos.map(sa => {
@@ -46,7 +47,11 @@ const renderRepositories = ({ statsRepos }) => {
       } = sa;
       output.push(
         <li key={uuidv4()}>
-          <a href="#" className="block hover:bg-gray-50">
+          <Link
+            to={`/repository/${repository}`}
+            className="block hover:bg-gray-50 dark:hover:bg-gray-700"
+            onClick={() => handleNavigation()}
+          >
             <div className="flex items-center px-4 py-4 sm:px-6">
               <div className="min-w-0 flex-1 flex items-center">
                 <span className="inline-block relative">
@@ -112,7 +117,7 @@ const renderRepositories = ({ statsRepos }) => {
                 <ChevronRight className="h-5 w-5 text-gray-400 dark:text-gray-300" />
               </div>
             </div>
-          </a>
+          </Link>
         </li>,
       );
       return null;
@@ -121,12 +126,12 @@ const renderRepositories = ({ statsRepos }) => {
   return output;
 };
 
-const Repositories = ({ statsRepos }) => (
+const Repositories = ({ statsRepos, handleNavigation }) => (
   <>
     {statsRepos && isNotEmptyArray(statsRepos) ? (
       <div className="bg-white dark:bg-gray-900 shadow overflow-hidden sm:rounded-md mt-5">
         <ul className="divide-y divide-gray-200 dark:divide-gray-900">
-          {renderRepositories({ statsRepos })}
+          {renderRepositories({ statsRepos, handleNavigation })}
         </ul>
       </div>
     ) : null}
@@ -141,9 +146,18 @@ const PageRepositories = () => {
       statsGlobal: { commitDateFirst, commitDateLast, commits, contributors, repositories } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
-  const { data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);
-  const { data: { statsRepos: statsReposStaleness } = {} } = useQuery(statsReposQueryStaleness);
-  const { setUiIsLoading } = useContext(UiContext);
+  const { loading: loadingReposTop30, data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);
+  const {
+    loading: loadingReposStaleness,
+    data: { statsRepos: statsReposStaleness } = {},
+  } = useQuery(statsReposQueryStaleness);
+  const { uiDarkMode, uiIsAnimating, setUiIsAnimating, setUiIsLoading } = useContext(UiContext);
+  const handleNavigation = () => {
+    // Trigger number animation
+    if (!uiIsAnimating) {
+      setUiIsAnimating(true);
+    }
+  };
 
   useEffect(() => {
     const isLoading = loading;
@@ -153,16 +167,72 @@ const PageRepositories = () => {
 
   return (
     <Wrapper pageType="repositories">
-      {statsGlobal && (
+      {loading ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          isDark={uiDarkMode}
+          isOneLine
+          loading
+          message="Loading repositories stats"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
         <>
-          <PageTitleWithDate title="Repositories" from={commitDateFirst} until={commitDateLast} />
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-            <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
-            <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
-            <Card type="code" heading="Commits" stat={commits} thousandify />
-          </dl>
-          <Heat statuses={statsReposStaleness} />
-          <Repositories statsRepos={statsRepos} />
+          {statsGlobal && (
+            <>
+              <PageTitleWithDate
+                title="Repositories"
+                from={commitDateFirst}
+                until={commitDateLast}
+              />
+              <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+                <Card type="repositories" heading="Repositories" stat={repositories} thousandify />
+                <Card type="contributors" heading="Contributors" stat={contributors} thousandify />
+                <Card type="code" heading="Commits" stat={commits} thousandify />
+              </dl>
+            </>
+          )}
+        </>
+      )}
+
+      {loadingReposStaleness ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          isDark={uiDarkMode}
+          isOneLine
+          loading
+          message="Loading repositories staleness"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
+        <>{statsReposStaleness && <Heat statuses={statsReposStaleness} />}</>
+      )}
+      {loadingReposTop30 ? (
+        <Loading
+          colorBackgroundDark="dark:bg-gray-900"
+          colorBackgroundLight="bg-white"
+          colorSpinnerDark="#e46119" // 'fav-orange-dark'
+          colorSpinnerLight="#e46119"
+          fullHeight
+          isDark={uiDarkMode}
+          loading
+          message="Loading top 30 repositories"
+          messageDark="dark:text-gray-300"
+          messageLight="text-gray-800"
+        />
+      ) : (
+        <>
+          {statsRepos && (
+            <Repositories statsRepos={statsRepos} handleNavigation={handleNavigation} />
+          )}
         </>
       )}
     </Wrapper>
