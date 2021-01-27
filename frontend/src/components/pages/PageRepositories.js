@@ -5,8 +5,9 @@ import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import {
   statsReposQueryStaleness,
-  statsReposQueryTop30,
+  // statsReposQueryTop30,
   statsGlobalQuery,
+  statsReposQueryTop30BySize,
 } from '../../graphql/queries';
 import { UiContext } from './../../contexts';
 import Loading from '../layout/Loading';
@@ -40,8 +41,8 @@ const renderRepositories = ({ statsRepos, handleNavigation }) => {
         commits: commitsRepo,
         daysActive,
         // daysSinceLastCommit,
-        // impact,
-        impactRatio,
+        impact,
+        // impactRatio,
         contributors: contributorsRepo,
         staleness,
       } = sa;
@@ -100,9 +101,13 @@ const renderRepositories = ({ statsRepos, handleNavigation }) => {
                           <Calendar className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-green-light" />
                           <span className="mr-3">{thousandify((daysActive / 365).toFixed(1))}</span>
                         </div>
-                        <div className="flex items-center">
+                        {/* <div className="flex items-center">
                           <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
                           <span className="mr-3">{thousandify(impactRatio.toFixed(0))}</span>
+                        </div> */}
+                        <div className="flex items-center">
+                          <TrendingUp className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-turquoise" />
+                          <span className="mr-3">{thousandify(impact)}</span>
                         </div>
                         <div className="flex items-center">
                           <Flag className="flex-shrink-0 mr-1.5 h-5 w-5 text-fav-pink-shock" />
@@ -146,7 +151,10 @@ const PageRepositories = () => {
       statsGlobal: { commitDateFirst, commitDateLast, commits, contributors, repositories } = {},
     } = {},
   } = useQuery(statsGlobalQuery);
-  const { loading: loadingReposTop30, data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);
+  // const { loading: loadingReposTop30, data: { statsRepos } = {} } = useQuery(statsReposQueryTop30);
+  const { loading: loadingReposTop30, data: { statsRepos } = {} } = useQuery(
+    statsReposQueryTop30BySize,
+  );
   const {
     loading: loadingReposStaleness,
     data: { statsRepos: statsReposStaleness } = {},

@@ -149,6 +149,51 @@ export const statsReposQueryTop30 = gql`
     }
   }
 `;
+export const statsReposQueryTop30BySize = gql`
+  query StatsReposQueryTop30BySize {
+    statsRepos(sortBy: impact, sortDirection: desc, count: 30) {
+      # commitDateFirst
+      commitDateLast
+      commits
+      commitsImpactGtThousand
+      commitsOnWeekend
+      commitsPerContributorAverage
+      # commitsPerDay
+      # commitsPerDayAverage
+      # commitsPerDayCummulative
+      # commitsPerHour
+      # commitsPerMinute
+      # commitsPerMonthDay
+      # commitsPerMonthName
+      # commitsPerMonthNr
+      # commitsPerSecond
+      # commitsPerYear
+      # commitsWithoutFileChanges
+      # commitsWithoutImpact
+      contributors
+      # contributorsList
+      daysActive
+      # daysSinceFirstCommit
+      daysSinceLastCommit
+      # fileChanges
+      impact
+      # impactByDay
+      # impactByDayCummulative
+      impactRatio
+      repository
+      staleness
+      # weekdays {
+      #   Mon
+      #   Tue
+      #   Wed
+      #   Thu
+      #   Fri
+      #   Sat
+      #   Sun
+      # }
+    }
+  }
+`;
 
 export const statsReposQueryStaleness = gql`
   query StatsReposQueryStaleness {
