@@ -69,7 +69,7 @@ const Loading = ({
     fullHeight && 'absolute',
     fullHeight && '-top-0',
     fullHeight && '-left-0',
-    !fullHeight && 'mb-4',
+    !fullHeight && 'mt-4 mb-4',
     'z-10',
   ];
   const classesWrapper = absolute ? classesWrapperAbsolute : classesWrapperDefault;
