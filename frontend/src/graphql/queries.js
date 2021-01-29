@@ -293,3 +293,36 @@ export const statsRepoQuery = gql`
     }
   }
 `;
+
+export const commitsSortedByImpactDescQuery = gql`
+  query CommitsSortedByImpactDescQuery($count: Int) {
+    commitsSorted(sortBy: impact, sortDirection: desc, count: $count) {
+      repository
+      commit_nr
+      commit_hash
+      author_name
+      author_email
+      author_date
+      author_date_relative
+      author_date_unix_timestamp
+      author_date_iso_8601
+      subject
+      subject_sanitized
+      stats
+      time_hour
+      time_minutes
+      time_seconds
+      time_gmt
+      date_day_week
+      date_month_day
+      date_month_name
+      date_month_number
+      date_year
+      date_iso_8601
+      files_changed
+      insertions
+      deletions
+      impact
+    }
+  }
+`;

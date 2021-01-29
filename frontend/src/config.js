@@ -14,6 +14,7 @@ const animateNumbers = true;
 const animateNumbersDuration = 2000; // Duration of timeout, used for 'animateNumbers'
 const animateNumbersInit = 10; // Initialize timeout for 'animateNumbers'
 const showResponsiveGuide = false;
+const githubOrg = 'netliferesearch';
 
 // Ports
 export const PORT_JSON_SERVER = '3000';
@@ -122,6 +123,7 @@ export const config = {
   animateNumbersDuration,
   animateNumbersInit,
   currentEnv,
+  githubOrg,
   hostname,
   hostnames,
   apiUrl,

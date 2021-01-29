@@ -184,6 +184,12 @@ enum SortDirection {
 type Query {
   # all commits
   commits: Commit!
+  # commits with sorting
+  commitsSorted(
+    sortBy: SortAuthorsBy
+    sortDirection: SortDirection
+    count: Int
+  ): [Commit!]
   # commits by
   commitsByRepository(repository: String!): [Commit!]
   commitsByCommitNr(commit_nr: Int!): [Commit!]

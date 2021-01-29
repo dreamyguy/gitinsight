@@ -13,6 +13,7 @@ const graphQLRequestRoot = () => {
   return url;
 };
 // Import helpers
+const { commitsSorted } = require('./../../helpers/commitsSorted');
 const { statsAuthors } = require('./../../helpers/statsAuthors');
 const { statsGlobal } = require('./../../helpers/statsGlobal');
 const { statsRepos } = require('./../../helpers/statsRepos');
@@ -21,6 +22,15 @@ const Query = {
   // ('res.data' because 'axios' returns a 'data' array)
   // all commits
   commits: () => axios.get(`${graphQLRequestRoot()}`).then(res => res.data),
+  // commits with sorting
+  commitsSorted: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
+    res => commitsSorted({
+      data: res.data,
+      sortBy: args.sortBy,
+      sortDirection: args.sortDirection,
+      count: args.count,
+    })
+  ),
   // commits by
   commitsByRepository: (parentValue, args) => axios.get(`${graphQLRequestRoot()}`).then(
     res => res.data.filter(f => f.repository === args.repository)
