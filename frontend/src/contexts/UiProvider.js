@@ -2,13 +2,13 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const UiContext = createContext({
-  uiDarkMode: false,
+  uiDarkMode: true,
   uiIsLoading: false,
   uiIsAnimating: false,
 });
 
 const UiProvider = ({ children }) => {
-  const [uiDarkMode, setUiDarkMode] = useState(false);
+  const [uiDarkMode, setUiDarkMode] = useState(true);
   const [uiIsLoading, setUiIsLoading] = useState(false);
   const [uiIsAnimating, setUiIsAnimating] = useState(false);
 
