@@ -59,9 +59,10 @@ export const statsGlobalQuery = gql`
   }
 `;
 
-export const statsAuthorsQueryTop30 = gql`
-  query StatsAuthorsQueryTop30 {
-    statsAuthors(sortBy: staleness, sortDirection: asc, count: 30) {
+export const statsAuthorsQuery = gql`
+  query StatsAuthorsQuery($sortBy: String, $sortDirection: String, $count: Int) {
+    # ie.       (sortBy: impact, sortDirection: desc, count: 30)
+    statsAuthors(sortBy: $sortBy, sortDirection: $sortDirection, count: $count) {
       author
       # commitDateFirst
       commitDateLast
@@ -96,7 +97,7 @@ export const statsAuthorsQueryTop30 = gql`
   }
 `;
 
-export const statsAuthorsQueryStaleness = gql`
+export const statsAuthorsStalenessQuery = gql`
   query StatsAuthorsQueryStaleness {
     statsAuthors(sortBy: staleness, sortDirection: asc) {
       staleness

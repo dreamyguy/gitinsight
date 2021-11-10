@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import {
-  statsAuthorsQueryStaleness,
+  statsAuthorsStalenessQuery,
   statsReposQueryStaleness,
   statsGlobalQuery,
 } from '../../graphql/queries';
@@ -33,7 +33,7 @@ const PageStaleness = () => {
   const {
     loading: loadingAuthorsStaleness,
     data: { statsAuthors: statsAuthorsStaleness } = {},
-  } = useQuery(statsAuthorsQueryStaleness);
+  } = useQuery(statsAuthorsStalenessQuery);
   const {
     loading: loadingReposStaleness,
     data: { statsRepos: statsReposStaleness } = {},

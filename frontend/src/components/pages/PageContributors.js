@@ -3,18 +3,26 @@ import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
+
+// Queries
 import {
-  statsAuthorsQueryStaleness,
-  statsAuthorsQueryTop30,
+  statsAuthorsStalenessQuery,
+  statsAuthorsQuery,
   statsGlobalQuery,
 } from '../../graphql/queries';
+
+// Contexts
 import { UiContext } from './../../contexts';
+
+// Components
 import Loading from '../layout/Loading';
 import Wrapper from '../layout/Wrapper';
 import PageTitleWithDate from '../content/PageTitleWithDate';
 import { Calendar, ChevronRight, Code, Flag, Folder, Mail, TrendingUp } from './../primitives/Icon';
 import Card from '../primitives/Card/Card';
 import Heat from '../primitives/Heat/Heat';
+
+// Utils
 import { isNotEmptyArray } from '../../utils/isEmptyUtil';
 import { getAvatarFromEmail } from '../../utils/getAvatarFromEmailUtil';
 import { getDate } from '../../utils/getDateUtil';
@@ -131,6 +139,9 @@ const Contributors = ({ statsAuthors, handleNavigation }) => (
 );
 
 const PageContributors = () => {
+  // * State - Context
+  const { uiDarkMode, uiIsAnimating, setUiIsAnimating, setUiIsLoading } = useContext(UiContext);
+  // * Queries + Data
   const {
     loading,
     data: {
@@ -146,13 +157,21 @@ const PageContributors = () => {
     } = {},
   } = useQuery(statsGlobalQuery);
   const { loading: loadingAuthorsTop30, data: { statsAuthors } = {} } = useQuery(
-    statsAuthorsQueryTop30,
+    statsAuthorsQuery,
+    {
+      variables: {
+        sortBy: 'staleness',
+        sortDirection: 'desc',
+        count: 30,
+      },
+    },
   );
   const {
     loading: loadingAuthorsStaleness,
     data: { statsAuthors: statsAuthorsStaleness } = {},
-  } = useQuery(statsAuthorsQueryStaleness);
-  const { uiDarkMode, uiIsAnimating, setUiIsAnimating, setUiIsLoading } = useContext(UiContext);
+  } = useQuery(statsAuthorsStalenessQuery);
+
+  // * Handlers
   const handleNavigation = () => {
     // Trigger number animation
     if (!uiIsAnimating) {
@@ -160,6 +179,7 @@ const PageContributors = () => {
     }
   };
 
+  // * useEffect
   useEffect(() => {
     const isLoading = loading || loadingAuthorsTop30 || loadingAuthorsStaleness;
     setUiIsLoading(isLoading);
