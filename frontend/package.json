@@ -44,7 +44,7 @@
     "highcharts": "^8.2.2",
     "highcharts-react-official": "^3.0.0",
     "node-sass": "^4.14.1",
-    "postcss": "^7.0.35",
+    "postcss": "^8.2.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-measure": "^2.5.2",
